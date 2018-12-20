@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.TradeInfoDomain;
 import com.cdd.gsl.domain.TradeInfoDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TradeInfoDomainMapper {
     int countByExample(TradeInfoDomainExample example);

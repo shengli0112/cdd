@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.BrowseHouseRecordDomain;
 import com.cdd.gsl.domain.BrowseHouseRecordDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BrowseHouseRecordDomainMapper {
     int countByExample(BrowseHouseRecordDomainExample example);

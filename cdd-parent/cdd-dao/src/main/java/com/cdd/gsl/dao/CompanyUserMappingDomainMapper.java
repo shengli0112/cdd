@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.CompanyUserMappingDomain;
 import com.cdd.gsl.domain.CompanyUserMappingDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CompanyUserMappingDomainMapper {
     int countByExample(CompanyUserMappingDomainExample example);

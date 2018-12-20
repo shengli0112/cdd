@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.HouseTypeDomain;
 import com.cdd.gsl.domain.HouseTypeDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface HouseTypeDomainMapper {
     int countByExample(HouseTypeDomainExample example);

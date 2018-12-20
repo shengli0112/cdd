@@ -17,6 +17,8 @@ public class CompanyInfoDomain {
 
     private Date updateTs;
 
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class CompanyInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

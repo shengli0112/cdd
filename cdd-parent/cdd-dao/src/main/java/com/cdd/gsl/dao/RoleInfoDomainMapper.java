@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.RoleInfoDomain;
 import com.cdd.gsl.domain.RoleInfoDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RoleInfoDomainMapper {
     int countByExample(RoleInfoDomainExample example);

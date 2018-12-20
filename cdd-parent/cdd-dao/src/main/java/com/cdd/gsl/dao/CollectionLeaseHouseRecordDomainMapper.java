@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.CollectionLeaseHouseRecordDomain;
 import com.cdd.gsl.domain.CollectionLeaseHouseRecordDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CollectionLeaseHouseRecordDomainMapper {
     int countByExample(CollectionLeaseHouseRecordDomainExample example);

@@ -2,8 +2,9 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.CompanyInfoDomain;
 import com.cdd.gsl.domain.CompanyInfoDomainExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CompanyInfoDomainMapper {
     int countByExample(CompanyInfoDomainExample example);
