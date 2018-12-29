@@ -13,6 +13,15 @@
     </param-value>
   </context-param>
 
+
+
+    <!--负责启动spring容器的监听器,将引用 1 处上下文参数获得的spring配置文件地址-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <!--springMVC的主控servlet-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
@@ -28,14 +37,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--负责启动spring容器的监听器,将引用 1 处上下文参数获得的spring配置文件地址-->
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-
-
 
     <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
 
@@ -45,7 +46,7 @@
 
     <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->
 
-    <filter>
+   <!-- <filter>
 
         <filter-name>shiroFilter</filter-name>
 
@@ -53,7 +54,7 @@
 
         <init-param>
 
-            <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+            &lt;!&ndash; 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 &ndash;&gt;
 
             <param-name>targetFilterLifecycle</param-name>
 
@@ -69,7 +70,7 @@
 
         <url-pattern>/*</url-pattern>
 
-    </filter-mapping>
+    </filter-mapping>-->
 
     <!-- session共享 代理Filter delegatingFilterProxy -->
     <!--<filter>

@@ -4,6 +4,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.service.CompanyService;
 import com.cdd.gsl.vo.CompanyVo;
 import com.cdd.gsl.vo.ThirdUserVo;
+import com.cdd.gsl.vo.UserCompanyInfoVo;
 import com.cdd.gsl.vo.UserParamVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,13 +64,14 @@ public class UserController {
     @RequestMapping("inviteUserToCompany")
     public CommonResult inviteUserToCompany(Long companyId,Long userId){
         logger.info("UserController inviteUserToCompany companyId -{}，userId - {}",companyId,userId);
-        CommonResult result = new CommonResult();
-        if(companyId != null && userId != null){
-
-        }else{
-            result.setFlag(0);
-            result.setMessage("参数不能为空");
-        }
+        CommonResult result = companyService.inviteUserToCompany(companyId,userId);
         return result;
     }
+
+    @RequestMapping("findUserByPhone")
+    public CommonResult<UserCompanyInfoVo> findUserByPhone(Long companyId,String phone){
+        CommonResult<UserCompanyInfoVo> result = companyService.findUserByPhone(companyId,phone);
+        return result;
+    }
+
 }

@@ -19,6 +19,7 @@
         <context:exclude-filter type="annotation" expression="com.cdd.gsl.common.annotation.ExcludeAnnotation"/>
     </context:component-scan>
 
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>

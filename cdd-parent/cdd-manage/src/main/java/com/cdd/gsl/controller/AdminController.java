@@ -1,10 +1,12 @@
 package com.cdd.gsl.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.ValidateLoginVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,9 +20,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("admin")
 public class AdminController {
+    @Autowired
+    private ShiroService shiroService;
+
     @RequestMapping(value = "/login")
-    public String login(){
-        return "common/login";
+    public String login(String username, String password){
+        try{
+            shiroService.doLogin(username,password);
+        }catch (Exception e){
+            return "error";
+        }
+        return "success";
     }
 
     //菜单页
@@ -114,17 +124,17 @@ public class AdminController {
         return JSONUtils.toJSONString(result);
     }
 
-//    /**
-//     * 退出登录
-//     */
-//    @RequestMapping(value="/logout.json",method=RequestMethod.POST)
-//    @ResponseBody
-//    public String logout() {
-//    	Map<String, Object> result = new HashMap<String, Object>();
-//        result.put("success", true);
-//        Subject currentUser = SecurityUtils.getSubject();
-//        currentUser.logout();
-//        return JSONUtils.toJSONString(result);
-//    }
+    /**
+     * 退出登录
+     */
+    @RequestMapping(value="/logout",method=RequestMethod.POST)
+    @ResponseBody
+    public String logout() {
+    	Map<String, Object> result = new HashMap<String, Object>();
+        result.put("success", true);
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        return JSONUtils.toJSONString(result);
+    }
 
 }

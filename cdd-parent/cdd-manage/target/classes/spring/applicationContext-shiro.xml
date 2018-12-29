@@ -16,19 +16,20 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- 没有权限 或者失败后跳转的页面 -->
         <property name="securityManager" ref="securityManager" />
-        <property name="loginUrl" value="/login" />
+        <property name="loginUrl" value="/admin/login" />
         <property name="successUrl" value="/loginsuccess.jhtml" />
-        <property name="unauthorizedUrl" value="/error.jhtml" />
+        <property name="unauthorizedUrl" value="/error.html" />
         <property name="filterChainDefinitions">
             <value>
-                /index = authc  <!-- 需要认证的url -->
-                /login = anon   <!-- 排除认证url -->
+                /login = anon
+                /** = authc  <!-- 需要认证的url -->
+                   <!-- 排除认证url -->
                 /checkLogin.json = anon
                 /loginsuccess.jhtml = anon
                 /js/** = anon
                 /css/** = anon
                 /images/** = anon
-                <!--  /** = authc  -->
+                <!--/** = authc-->
             </value>
         </property>
     </bean>

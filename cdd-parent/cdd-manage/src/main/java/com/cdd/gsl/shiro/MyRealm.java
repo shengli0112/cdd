@@ -1,68 +1,87 @@
 package com.cdd.gsl.shiro;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.service.ShiroService;
+import com.cdd.gsl.vo.MenuInfoVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyRealm extends AuthorizingRealm {
+    private Logger logger = LoggerFactory.getLogger(MyRealm.class);
+
+
+    private ShiroService shiroService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        logger.info("MyRealm doGetAuthorizationInfo principals-{}",principals.toString());
         //获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
 
-        String currentUsername = (String)super.getAvailablePrincipal(principals);
+        String username = (String)super.getAvailablePrincipal(principals);
 
-//      List<String> roleList = new ArrayList<String>();
+        if (username != null) {
+            List<MenuInfoVo> perms = shiroService.getPermissionByUserName(username);
+            if (perms != null && perms.size() > 0) {
+                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+                List<MenuInfoVo> parentList = new ArrayList<>();
+                for(MenuInfoVo perm:perms){
+                    if(perm.getParentId() == 0){
+                        parentList.add(perm);
+                    }
+                }
+                perms.removeAll(parentList);
+                for(MenuInfoVo parent:parentList){
+                    List<MenuInfoVo> childMenuList = new ArrayList<>();
+                    for(MenuInfoVo perm:perms){
+                        if(parent.getMenuId() == perm.getParentId()){
+                            childMenuList.add(perm);
+                        }
+                    }
+                    parent.setMenuInfoList(childMenuList);
+                    perms.removeAll(childMenuList);
+                }
+                if(perms != null && perms.size() > 0){
+                    for(MenuInfoVo parent:parentList){
+                        List<MenuInfoVo> menuInfoVos = parent.getMenuInfoList();
+                        if(menuInfoVos != null && menuInfoVos.size() > 0){
+                            for(MenuInfoVo child:menuInfoVos){
+                                List<MenuInfoVo> childChildMenuList = new ArrayList<>();
+                                for(MenuInfoVo perm:perms){
+                                    if(perm.getParentId() == child.getMenuId()){
+                                        childChildMenuList.add(perm);
+                                    }
+                                }
 
-//      List<String> permissionList = new ArrayList<String>();
+                                child.setMenuInfoList(childChildMenuList);
+                                perms.removeAll(childChildMenuList);
+                            }
+                        }
+                    }
+                }
 
-//      //从数据库中获取当前登录用户的详细信息
 
-//      User user = userService.getByUsername(currentUsername);
+                for (MenuInfoVo each : parentList) {
+                    //将权限资源添加到用户信息中
+                    info.addObjectPermission((Permission) each);
+                 }
+                return info;
+            }
+        }
+                return null;
 
-//      if(null != user){
-
-//          //实体类User中包含有用户角色的实体类信息
-
-//          if(null!=user.getRoles() && user.getRoles().size()>0){
-
-//              //获取当前登录用户的角色
-
-//              for(Role role : user.getRoles()){
-
-//                  roleList.add(role.getName());
-
-//                  //实体类Role中包含有角色权限的实体类信息
-
-//                  if(null!=role.getPermissions() && role.getPermissions().size()>0){
-
-//                      //获取权限
-
-//                      for(Permission pmss : role.getPermissions()){
-
-//                          if(!StringUtils.isEmpty(pmss.getPermission())){
-
-//                              permissionList.add(pmss.getPermission());
-
-//                          }
-
-//                      }
-
-//                  }
-
-//              }
-
-//          }
-
-//      }else{
-
-//          throw new AuthorizationException();
-
-//      }
 
 //      //为当前用户设置角色和权限
 
@@ -72,7 +91,7 @@ public class MyRealm extends AuthorizingRealm {
 
 //      simpleAuthorInfo.addStringPermissions(permissionList);
 
-        SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
+        /*SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
 
         //实际中可能会像上面注释的那样从数据库取得
 
@@ -90,12 +109,11 @@ public class MyRealm extends AuthorizingRealm {
 
             return simpleAuthorInfo;
 
-        }
+        }*/
 
         //若该方法什么都不做直接返回null的话,就会导致任何用户访问/admin/listUser.jsp时都会自动跳转到unauthorizedUrl指定的地址
 
         //详见applicationContext.xml中的<bean id="shiroFilter">的配置
-        return null;
 
     }
 
@@ -132,14 +150,16 @@ public class MyRealm extends AuthorizingRealm {
         //说白了就是第一个参数填登录用户名,第二个参数填合法的登录密码(可以是从数据库中取到的,本例中为了演示就硬编码了)
 
         //这样一来,在随后的登录页面上就只有这里指定的用户和密码才能通过验证
+        String username = token.getUsername();
 
-        if("mike".equals(token.getUsername())){
+        if(!StringUtils.isEmpty(username)){
 
-            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo("mike", "mike", this.getName());
+            String password = shiroService.getPasswordByUserName(username);
+            if(!StringUtils.isEmpty(password)){
+                return new SimpleAuthenticationInfo(username,password,getName());
+            }
 
-            this.setSession("currentUser", "mike");
-
-            return authcInfo;
+            return null;
 
         }
 
