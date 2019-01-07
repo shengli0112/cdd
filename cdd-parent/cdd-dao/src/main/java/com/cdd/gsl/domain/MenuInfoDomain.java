@@ -7,11 +7,9 @@ public class MenuInfoDomain {
 
     private String menuName;
 
-    private String menuCode;
-
     private Long parentId;
 
-    private Integer status;
+    private Byte status;
 
     private Date createTs;
 
@@ -33,14 +31,6 @@ public class MenuInfoDomain {
         this.menuName = menuName == null ? null : menuName.trim();
     }
 
-    public String getMenuCode() {
-        return menuCode;
-    }
-
-    public void setMenuCode(String menuCode) {
-        this.menuCode = menuCode == null ? null : menuCode.trim();
-    }
-
     public Long getParentId() {
         return parentId;
     }
@@ -49,11 +39,11 @@ public class MenuInfoDomain {
         this.parentId = parentId;
     }
 
-    public Integer getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

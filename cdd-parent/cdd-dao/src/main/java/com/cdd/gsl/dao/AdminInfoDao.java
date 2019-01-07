@@ -1,6 +1,5 @@
 package com.cdd.gsl.dao;
 
-import com.cdd.gsl.domain.MenuInfoDomain;
 import com.cdd.gsl.vo.MenuInfoVo;
 import org.apache.ibatis.annotations.Select;
 

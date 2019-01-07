@@ -2,10 +2,6 @@ package com.cdd.gsl.service.impl;
 
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.CompanyInfoDao;
-import com.cdd.gsl.dao.CompanyInfoDomainMapper;
-import com.cdd.gsl.dao.CompanyUserMappingDomainMapper;
-import com.cdd.gsl.domain.CompanyInfoDomain;
-import com.cdd.gsl.domain.CompanyUserMappingDomain;
 import com.cdd.gsl.service.CompanyService;
 import com.cdd.gsl.vo.CompanyVo;
 import com.cdd.gsl.vo.UserCompanyInfoVo;
@@ -79,4 +75,8 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return commonResult;
     }
+
+
+
+
 }

@@ -15,6 +15,10 @@ public class UserInfoDomain {
 
     private String portrait;
 
+    private String password;
+
+    private String salt;
+
     private Integer status;
 
     private Date createTs;
@@ -67,6 +71,22 @@ public class UserInfoDomain {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait == null ? null : portrait.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
     }
 
     public Integer getStatus() {
