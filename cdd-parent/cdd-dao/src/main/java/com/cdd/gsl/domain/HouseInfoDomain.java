@@ -5,33 +5,41 @@ import java.util.Date;
 public class HouseInfoDomain {
     private Long id;
 
-    private String username;
+    private String title;
 
     private String phone;
-
-    private String province;
 
     private String city;
 
     private String country;
 
-    private String town;
-
     private String street;
 
     private Integer area;
 
-    private Float rent;
+    private Integer sellingPrice;
 
-    private String rentType;
+    private String electricity;
 
-    private Long houseTypeId;
+    private Integer houseType;
+
+    private String houseNumber;
+
+    private Integer houseUseType;
+
+    private String floor;
+
+    private String fireControl;
+
+    private String contacts;
 
     private Integer status;
 
     private Date createTs;
 
     private Date updateTs;
+
+    private String background;
 
     public Long getId() {
         return id;
@@ -41,12 +49,12 @@ public class HouseInfoDomain {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getPhone() {
@@ -55,14 +63,6 @@ public class HouseInfoDomain {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
     }
 
     public String getCity() {
@@ -81,14 +81,6 @@ public class HouseInfoDomain {
         this.country = country == null ? null : country.trim();
     }
 
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town == null ? null : town.trim();
-    }
-
     public String getStreet() {
         return street;
     }
@@ -105,28 +97,68 @@ public class HouseInfoDomain {
         this.area = area;
     }
 
-    public Float getRent() {
-        return rent;
+    public Integer getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setRent(Float rent) {
-        this.rent = rent;
+    public void setSellingPrice(Integer sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
-    public String getRentType() {
-        return rentType;
+    public String getElectricity() {
+        return electricity;
     }
 
-    public void setRentType(String rentType) {
-        this.rentType = rentType == null ? null : rentType.trim();
+    public void setElectricity(String electricity) {
+        this.electricity = electricity == null ? null : electricity.trim();
     }
 
-    public Long getHouseTypeId() {
-        return houseTypeId;
+    public Integer getHouseType() {
+        return houseType;
     }
 
-    public void setHouseTypeId(Long houseTypeId) {
-        this.houseTypeId = houseTypeId;
+    public void setHouseType(Integer houseType) {
+        this.houseType = houseType;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber == null ? null : houseNumber.trim();
+    }
+
+    public Integer getHouseUseType() {
+        return houseUseType;
+    }
+
+    public void setHouseUseType(Integer houseUseType) {
+        this.houseUseType = houseUseType;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor == null ? null : floor.trim();
+    }
+
+    public String getFireControl() {
+        return fireControl;
+    }
+
+    public void setFireControl(String fireControl) {
+        this.fireControl = fireControl == null ? null : fireControl.trim();
+    }
+
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts == null ? null : contacts.trim();
     }
 
     public Integer getStatus() {
@@ -151,5 +183,13 @@ public class HouseInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background == null ? null : background.trim();
     }
 }

@@ -9,15 +9,25 @@ public class CompanyInfoDomain {
 
     private Long userId;
 
-    private String background;
+    private String license;
+
+    private String address;
+
+    private String lineBusiness;
+
+    private String registerDate;
+
+    private String description;
+
+    private String contacts;
+
+    private String phone;
 
     private Integer status;
 
     private Date createTs;
 
     private Date updateTs;
-
-    private String description;
 
     public Long getId() {
         return id;
@@ -43,12 +53,60 @@ public class CompanyInfoDomain {
         this.userId = userId;
     }
 
-    public String getBackground() {
-        return background;
+    public String getLicense() {
+        return license;
     }
 
-    public void setBackground(String background) {
-        this.background = background == null ? null : background.trim();
+    public void setLicense(String license) {
+        this.license = license == null ? null : license.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getLineBusiness() {
+        return lineBusiness;
+    }
+
+    public void setLineBusiness(String lineBusiness) {
+        this.lineBusiness = lineBusiness == null ? null : lineBusiness.trim();
+    }
+
+    public String getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(String registerDate) {
+        this.registerDate = registerDate == null ? null : registerDate.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts == null ? null : contacts.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public Integer getStatus() {
@@ -73,13 +131,5 @@ public class CompanyInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
     }
 }

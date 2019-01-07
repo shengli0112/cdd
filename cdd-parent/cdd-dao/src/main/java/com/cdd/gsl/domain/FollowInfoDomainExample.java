@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MenuInfoDomainExample {
+public class FollowInfoDomainExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MenuInfoDomainExample() {
+    public FollowInfoDomainExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,193 +165,183 @@ public class MenuInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameIsNull() {
-            addCriterion("menu_name is null");
+        public Criteria andFollowIdIsNull() {
+            addCriterion("follow_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameIsNotNull() {
-            addCriterion("menu_name is not null");
+        public Criteria andFollowIdIsNotNull() {
+            addCriterion("follow_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameEqualTo(String value) {
-            addCriterion("menu_name =", value, "menuName");
+        public Criteria andFollowIdEqualTo(Long value) {
+            addCriterion("follow_id =", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameNotEqualTo(String value) {
-            addCriterion("menu_name <>", value, "menuName");
+        public Criteria andFollowIdNotEqualTo(Long value) {
+            addCriterion("follow_id <>", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameGreaterThan(String value) {
-            addCriterion("menu_name >", value, "menuName");
+        public Criteria andFollowIdGreaterThan(Long value) {
+            addCriterion("follow_id >", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameGreaterThanOrEqualTo(String value) {
-            addCriterion("menu_name >=", value, "menuName");
+        public Criteria andFollowIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("follow_id >=", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameLessThan(String value) {
-            addCriterion("menu_name <", value, "menuName");
+        public Criteria andFollowIdLessThan(Long value) {
+            addCriterion("follow_id <", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameLessThanOrEqualTo(String value) {
-            addCriterion("menu_name <=", value, "menuName");
+        public Criteria andFollowIdLessThanOrEqualTo(Long value) {
+            addCriterion("follow_id <=", value, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameLike(String value) {
-            addCriterion("menu_name like", value, "menuName");
+        public Criteria andFollowIdIn(List<Long> values) {
+            addCriterion("follow_id in", values, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameNotLike(String value) {
-            addCriterion("menu_name not like", value, "menuName");
+        public Criteria andFollowIdNotIn(List<Long> values) {
+            addCriterion("follow_id not in", values, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameIn(List<String> values) {
-            addCriterion("menu_name in", values, "menuName");
+        public Criteria andFollowIdBetween(Long value1, Long value2) {
+            addCriterion("follow_id between", value1, value2, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameNotIn(List<String> values) {
-            addCriterion("menu_name not in", values, "menuName");
+        public Criteria andFollowIdNotBetween(Long value1, Long value2) {
+            addCriterion("follow_id not between", value1, value2, "followId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameBetween(String value1, String value2) {
-            addCriterion("menu_name between", value1, value2, "menuName");
+        public Criteria andFollowTypeIsNull() {
+            addCriterion("follow_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andMenuNameNotBetween(String value1, String value2) {
-            addCriterion("menu_name not between", value1, value2, "menuName");
+        public Criteria andFollowTypeIsNotNull() {
+            addCriterion("follow_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIsNull() {
-            addCriterion("parent_id is null");
+        public Criteria andFollowTypeEqualTo(Integer value) {
+            addCriterion("follow_type =", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIsNotNull() {
-            addCriterion("parent_id is not null");
+        public Criteria andFollowTypeNotEqualTo(Integer value) {
+            addCriterion("follow_type <>", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdEqualTo(Long value) {
-            addCriterion("parent_id =", value, "parentId");
+        public Criteria andFollowTypeGreaterThan(Integer value) {
+            addCriterion("follow_type >", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotEqualTo(Long value) {
-            addCriterion("parent_id <>", value, "parentId");
+        public Criteria andFollowTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("follow_type >=", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdGreaterThan(Long value) {
-            addCriterion("parent_id >", value, "parentId");
+        public Criteria andFollowTypeLessThan(Integer value) {
+            addCriterion("follow_type <", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("parent_id >=", value, "parentId");
+        public Criteria andFollowTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("follow_type <=", value, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdLessThan(Long value) {
-            addCriterion("parent_id <", value, "parentId");
+        public Criteria andFollowTypeIn(List<Integer> values) {
+            addCriterion("follow_type in", values, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdLessThanOrEqualTo(Long value) {
-            addCriterion("parent_id <=", value, "parentId");
+        public Criteria andFollowTypeNotIn(List<Integer> values) {
+            addCriterion("follow_type not in", values, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdIn(List<Long> values) {
-            addCriterion("parent_id in", values, "parentId");
+        public Criteria andFollowTypeBetween(Integer value1, Integer value2) {
+            addCriterion("follow_type between", value1, value2, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotIn(List<Long> values) {
-            addCriterion("parent_id not in", values, "parentId");
+        public Criteria andFollowTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("follow_type not between", value1, value2, "followType");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdBetween(Long value1, Long value2) {
-            addCriterion("parent_id between", value1, value2, "parentId");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andParentIdNotBetween(Long value1, Long value2) {
-            addCriterion("parent_id not between", value1, value2, "parentId");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+        public Criteria andUserIdEqualTo(Long value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+        public Criteria andUserIdNotEqualTo(Long value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Byte value) {
-            addCriterion("status =", value, "status");
+        public Criteria andUserIdGreaterThan(Long value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Byte value) {
-            addCriterion("status <>", value, "status");
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Byte value) {
-            addCriterion("status >", value, "status");
+        public Criteria andUserIdLessThan(Long value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
-            addCriterion("status >=", value, "status");
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Byte value) {
-            addCriterion("status <", value, "status");
+        public Criteria andUserIdIn(List<Long> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Byte value) {
-            addCriterion("status <=", value, "status");
+        public Criteria andUserIdNotIn(List<Long> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Byte> values) {
-            addCriterion("status in", values, "status");
+        public Criteria andUserIdBetween(Long value1, Long value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Byte> values) {
-            addCriterion("status not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Byte value1, Byte value2) {
-            addCriterion("status between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
@@ -412,66 +402,6 @@ public class MenuInfoDomainExample {
 
         public Criteria andCreateTsNotBetween(Date value1, Date value2) {
             addCriterion("create_ts not between", value1, value2, "createTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsIsNull() {
-            addCriterion("update_ts is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsIsNotNull() {
-            addCriterion("update_ts is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsEqualTo(Date value) {
-            addCriterion("update_ts =", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsNotEqualTo(Date value) {
-            addCriterion("update_ts <>", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsGreaterThan(Date value) {
-            addCriterion("update_ts >", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsGreaterThanOrEqualTo(Date value) {
-            addCriterion("update_ts >=", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsLessThan(Date value) {
-            addCriterion("update_ts <", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsLessThanOrEqualTo(Date value) {
-            addCriterion("update_ts <=", value, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsIn(List<Date> values) {
-            addCriterion("update_ts in", values, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsNotIn(List<Date> values) {
-            addCriterion("update_ts not in", values, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsBetween(Date value1, Date value2) {
-            addCriterion("update_ts between", value1, value2, "updateTs");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTsNotBetween(Date value1, Date value2) {
-            addCriterion("update_ts not between", value1, value2, "updateTs");
             return (Criteria) this;
         }
     }

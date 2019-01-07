@@ -1,11 +1,11 @@
 package com.cdd.gsl.controller;
 
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.domain.FollowInfoDomain;
+import com.cdd.gsl.domain.ThirdUserInfoDomain;
 import com.cdd.gsl.service.CompanyService;
-import com.cdd.gsl.vo.CompanyVo;
-import com.cdd.gsl.vo.ThirdUserVo;
-import com.cdd.gsl.vo.UserCompanyInfoVo;
-import com.cdd.gsl.vo.UserParamVo;
+import com.cdd.gsl.service.UserService;
+import com.cdd.gsl.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +20,33 @@ public class UserController {
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private UserService userService;
+
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping("register")
-    public CommonResult register(@RequestBody UserParamVo userParamVo){
-        return null;
+    public CommonResult register(@RequestBody UserInfoVo userParamVo){
+        CommonResult commonResult = userService.register(userParamVo);
+        return commonResult;
     }
 
     @RequestMapping("login")
-    public CommonResult login(){
+    public CommonResult login(LoginUserVo loginUserVo){
         return null;
+
     }
 
     /**
      * 三方登录
-     * @param thirdUserVo
+     * @param thirdUserInfoDomain
      * @return
      */
     @RequestMapping("thirdLogin")
-    public CommonResult thirdLogin(@RequestBody ThirdUserVo thirdUserVo){
-        logger.info("UserController thirdLogin ThirdUserVo -{}",thirdUserVo);
-        return null;
+    public CommonResult thirdLogin(@RequestBody ThirdUserInfoDomain thirdUserInfoDomain){
+        logger.info("UserController thirdLogin ThirdUserVo -{}",thirdUserInfoDomain);
+        CommonResult commonResult = userService.thirdLogin(thirdUserInfoDomain);
+        return commonResult;
     }
 
     /**
@@ -74,4 +80,76 @@ public class UserController {
         return result;
     }
 
+    @RequestMapping("forgetPassword")
+    public CommonResult forgetPassword(UserInfoVo forgetPasswordVo){
+        CommonResult result = userService.forgetPassword(forgetPasswordVo);
+        return result;
+    }
+
+    @RequestMapping("checkPhone")
+    public CommonResult checkPhone(String phone){
+        CommonResult result = userService.checkPhone(phone);
+        return result;
+    }
+
+    /**
+     * 同意加入公司
+     */
+    @RequestMapping("agreeCompany")
+    public CommonResult agreeCompany(Long companyId){
+        CommonResult commonResult = new CommonResult();
+        Long userId = 0L;
+        userService.agreeCompany(userId,companyId);
+
+        return commonResult;
+    }
+
+    @RequestMapping("bindPhone")
+    public CommonResult bindPhone(String phone){
+        Long userId = 0L;
+        CommonResult commonResult = userService.bindPhone(userId,phone);
+        return commonResult;
+    }
+
+    /**
+     * 个人托管厂房创建
+     */
+    @RequestMapping("addPlant")
+    public CommonResult addPlant(){
+        return null;
+    }
+
+    /**
+     * 个人托管仓库创建
+     */
+    @RequestMapping("addStorage")
+    public CommonResult addStorage(){
+        return null;
+    }
+
+    /**
+     * 个人托管土地创建
+     */
+    @RequestMapping("addLand")
+    public CommonResult addLand(){
+        return null;
+    }
+
+    /**
+     * 关注信息
+     */
+    @RequestMapping("followInfo")
+    public CommonResult followInfo(FollowInfoDomain followInfoDomain){
+        CommonResult commonResult = userService.followInfo(followInfoDomain);
+        return commonResult;
+    }
+
+    /**
+     * 取消关注信息
+     */
+    @RequestMapping("cancelFollow")
+    public CommonResult cancelFollow(FollowInfoVo followInfoVo){
+        CommonResult commonResult = userService.cancelFollow(followInfoVo);
+        return commonResult;
+    }
 }

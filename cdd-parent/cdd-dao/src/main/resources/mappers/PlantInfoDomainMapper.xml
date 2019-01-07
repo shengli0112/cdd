@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cdd.gsl.dao.UserInfoDomainMapper" >
-  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.UserInfoDomain" >
+<mapper namespace="com.cdd.gsl.dao.PlantInfoDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.PlantInfoDomain" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="INTEGER" />
-    <result column="integral" property="integral" jdbcType="INTEGER" />
-    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="salt" property="salt" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,16 +74,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, phone, user_type, integral, portrait, password, salt, status, create_ts, 
-    update_ts
+    id, city, county, area, business, contacts, phone, type, create_ts, update_ts, status, 
+    user_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.PlantInfoDomainExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user_info
+    from t_plant_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,58 +94,57 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_user_info
+    from t_plant_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_user_info
+    delete from t_plant_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
-    delete from t_user_info
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.PlantInfoDomainExample" >
+    delete from t_plant_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    insert into t_user_info (id, username, phone, 
-      user_type, integral, portrait, 
-      password, salt, status, 
-      create_ts, update_ts)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.cdd.gsl.domain.PlantInfoDomain" >
+    insert into t_plant_info (id, city, county, 
+      area, business, contacts, 
+      phone, type, create_ts, 
+      update_ts, status, user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{area,jdbcType=INTEGER}, #{business,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    insert into t_user_info
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.PlantInfoDomain" >
+    insert into t_plant_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="contacts != null" >
+        contacts,
       </if>
       <if test="phone != null" >
         phone,
       </if>
-      <if test="userType != null" >
-        user_type,
-      </if>
-      <if test="integral != null" >
-        integral,
-      </if>
-      <if test="portrait != null" >
-        portrait,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="salt != null" >
-        salt,
-      </if>
-      <if test="status != null" >
-        status,
+      <if test="type != null" >
+        type,
       </if>
       <if test="createTs != null" >
         create_ts,
@@ -152,34 +152,37 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=INTEGER},
-      </if>
-      <if test="integral != null" >
-        #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="portrait != null" >
-        #{portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null" >
-        #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
@@ -187,43 +190,46 @@
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" resultType="java.lang.Integer" >
-    select count(*) from t_user_info
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.PlantInfoDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_plant_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user_info
+    update t_plant_info
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=INTEGER},
+      </if>
+      <if test="record.business != null" >
+        business = #{record.business,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacts != null" >
+        contacts = #{record.contacts,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.userType != null" >
-        user_type = #{record.userType,jdbcType=INTEGER},
-      </if>
-      <if test="record.integral != null" >
-        integral = #{record.integral,jdbcType=INTEGER},
-      </if>
-      <if test="record.portrait != null" >
-        portrait = #{record.portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.salt != null" >
-        salt = #{record.salt,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=INTEGER},
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
@@ -231,54 +237,58 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user_info
+    update t_plant_info
     set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=INTEGER},
+      business = #{record.business,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=INTEGER},
-      integral = #{record.integral,jdbcType=INTEGER},
-      portrait = #{record.portrait,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      salt = #{record.salt,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    update t_user_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.PlantInfoDomain" >
+    update t_plant_info
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="userType != null" >
-        user_type = #{userType,jdbcType=INTEGER},
-      </if>
-      <if test="integral != null" >
-        integral = #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="portrait != null" >
-        portrait = #{portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null" >
-        salt = #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
@@ -286,21 +296,28 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    update t_user_info
-    set username = #{username,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.PlantInfoDomain" >
+    update t_plant_info
+    set city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      business = #{business,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=INTEGER},
-      integral = #{integral,jdbcType=INTEGER},
-      portrait = #{portrait,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
