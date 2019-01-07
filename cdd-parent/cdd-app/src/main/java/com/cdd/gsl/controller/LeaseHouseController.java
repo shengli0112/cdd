@@ -38,11 +38,20 @@ public class LeaseHouseController {
 
     @RequestMapping("deleteLeaseHouse")
     public CommonResult deleteLeaseHouse(Long leaseHouseId){
+        CommonResult commonResult = new CommonResult();
         if(leaseHouseId != null){
-
+            LeaseHouseInfoDomain leaseHouseInfoDomain = new LeaseHouseInfoDomain();
+            leaseHouseInfoDomain.setId(leaseHouseId);
+            leaseHouseInfoDomain.setStatus(0);
+            leaseHouseService.updateLeaseHouse(leaseHouseInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除房源成功");
         }else{
-
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
         }
+
+        return commonResult;
     }
 
 }
