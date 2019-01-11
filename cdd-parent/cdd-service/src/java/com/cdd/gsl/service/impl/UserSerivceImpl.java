@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,6 +35,12 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private FollowInfoDomainMapper followInfoDomainMapper;
+
+    @Autowired
+    private CommonDictDomainMapper commonDictDomainMapper;
+
+    @Autowired
+    private CompanyUserMappingDomainMapper companyUserMappingDomainMapper;
 
     @Override
     public CommonResult thirdLogin(ThirdUserInfoDomain thirdUserInfoDomain) {
@@ -161,7 +169,29 @@ public class UserSerivceImpl implements UserService {
 
     @Override
     public CommonResult agreeCompany(Long userId, Long companyId) {
-        return null;
+        CommonResult commonResult = new CommonResult();
+        try{
+            if(userId != null && companyId != null){
+                CompanyUserMappingDomain companyUserMappingDomain = new CompanyUserMappingDomain();
+                companyUserMappingDomain.setUserId(userId);
+                companyUserMappingDomain.setCompanyId(companyId);
+                companyUserMappingDomain.setAgree(1);
+                companyUserMappingDomain.setUpdateTs(new Date());
+                companyUserMappingDomainMapper.updateByPrimaryKeySelective(companyUserMappingDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("同意加入该公司");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不为空");
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+
+        return commonResult;
     }
 
     @Override
@@ -223,6 +253,17 @@ public class UserSerivceImpl implements UserService {
             commonResult.setMessage("参数不能为空");
         }
         return commonResult;
+    }
+
+    @Override
+    public List<CommonDictDomain> findDictInfo(String dictName) {
+        List<CommonDictDomain> commonDictDomainList = new ArrayList<>();
+        CommonDictDomainExample commonDictDomainExample = new CommonDictDomainExample();
+        if(!Strings.isNullOrEmpty(dictName)){
+            commonDictDomainExample.createCriteria().andDictNameEqualTo(dictName);
+        }
+        commonDictDomainList = commonDictDomainMapper.selectByExample(commonDictDomainExample);
+        return commonDictDomainList;
     }
 
     public String createPassword(String password){

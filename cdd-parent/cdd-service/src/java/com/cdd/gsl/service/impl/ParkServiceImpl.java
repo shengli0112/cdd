@@ -3,6 +3,7 @@ package com.cdd.gsl.service.impl;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.LeaseParkInfoDomainMapper;
+import com.cdd.gsl.dao.SellParkDao;
 import com.cdd.gsl.dao.SellParkInfoDomainMapper;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
@@ -20,6 +21,9 @@ public class ParkServiceImpl implements ParkService {
 
     @Autowired
     private LeaseParkInfoDomainMapper leaseParkInfoDomainMapper;
+
+    @Autowired
+    private SellParkDao sellParkDao;
 
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
@@ -109,7 +113,8 @@ public class ParkServiceImpl implements ParkService {
 
     @Override
     public List<SellParkInfoDomain> findSellParkList(String region, String price, String area, Long sellParkId) {
-        return null;
+        List<SellParkInfoDomain> sellParkInfoDomainList = sellParkDao.selectSellParkInfoList(region,price,area,sellParkId);
+        return sellParkInfoDomainList;
     }
 
     @Override
