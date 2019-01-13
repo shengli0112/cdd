@@ -22,7 +22,7 @@ public class HouseController {
 
     private Logger logger = LoggerFactory.getLogger(HouseController.class);
 
-    @RequestMapping("addHouse")
+    @RequestMapping("createHouse")
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain){
         CommonResult commonResult = new CommonResult();
         if(houseInfoDomain != null){
@@ -68,7 +68,7 @@ public class HouseController {
         return commonResult;
     }
 
-    @RequestMapping("findHouseInfoDetail")
+    @RequestMapping("findHouseDetail")
     public CommonResult<HouseInfoDomain> findHouseInfoDetail(Long houseId){
         logger.info("HouseController findHouseInfoDetail houseId-{}",houseId);
         CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();
@@ -86,7 +86,7 @@ public class HouseController {
         return commonResult;
     }
 
-    @RequestMapping("findHouseInfoList")
+    @RequestMapping("findHouseList")
     public CommonResult<HouseInfoDomain> findHouseInfoList(){
         logger.info("HouseController findHouseInfoList");
         CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();

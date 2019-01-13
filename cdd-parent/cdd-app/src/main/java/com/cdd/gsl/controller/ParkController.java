@@ -79,7 +79,7 @@ public class ParkController {
      * @param leaseParkInfoDomain
      * @return
      */
-    @RequestMapping("createSellPark")
+    @RequestMapping("createLeasePark")
     public CommonResult createLeasePark(LeaseParkInfoDomain leaseParkInfoDomain){
         logger.info("ParkController createLeasePark leaseParkInfoDomain -{}",leaseParkInfoDomain);
         CommonResult result = parkService.createLeasePark(leaseParkInfoDomain);
