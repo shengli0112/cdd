@@ -1,6 +1,6 @@
 package com.cdd.gsl.vo;
 
-public class SellParkInfoVo {
+public class LeaseParkInfoVo {
     private Long id;
 
     private String parkName;

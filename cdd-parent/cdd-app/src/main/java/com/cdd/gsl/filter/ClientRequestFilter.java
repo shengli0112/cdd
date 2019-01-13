@@ -45,16 +45,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 		String uri = request.getRequestURI();
 		String regex = "[0-9]+";
 		String method = request.getMethod();
-		String ip = request.getHeader("X-Real-IP");
-	    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-	        ip = request.getHeader("X-Forwarded-For");
-	    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-	        ip = request.getHeader("Proxy-Client-IP");
-	    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-	        ip = request.getHeader("WL-Proxy-Client-IP");
-	    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-	        ip = request.getRemoteAddr();
-		logger.info("right ip ***"+ip);
+
 		if ((uri.equals("/fbpark/v1/users/appsignup"))
 				|| (uri.equals("/fbpark/v1/admin/signin"))
 				|| (uri.equals("/fbpark/v1/admin/export_user"))
