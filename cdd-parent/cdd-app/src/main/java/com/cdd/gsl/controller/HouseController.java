@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  *  求租房屋
  *  created:2018/12/28
@@ -87,20 +89,20 @@ public class HouseController {
     }
 
     @RequestMapping("findHouseInfoList")
-    public CommonResult<HouseInfoDomain> findHouseInfoList(){
+    public CommonResult<List<HouseInfoDomain>> findHouseInfoList(Integer houseType,Long houseId,Integer pageSize){
         logger.info("HouseController findHouseInfoList");
-        CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();
+        CommonResult<List<HouseInfoDomain>> commonResult = new CommonResult<>();
 
-//        if(houseId != null){
-//            HouseInfoDomain houseInfoDomain = houseService.findHouseInfoById(houseId);
-//            commonResult.setFlag(1);
-//            commonResult.setMessage("查询成功");
-//            commonResult.setData(houseInfoDomain);
-//
-//        }else{
-//            commonResult.setFlag(0);
-//            commonResult.setMessage("查询失败，参数不正确");
-//        }
+        if(houseType != null){
+            List<HouseInfoDomain> houseInfoDomainList = houseService.findHouseInfoList(houseType,houseId,pageSize);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(houseInfoDomainList);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
         return commonResult;
     }
 

@@ -19,6 +19,10 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <bean id="clientRequestFilter" class="com.cdd.gsl.filter.ClientRequestFilter"
+          lazy-init="false">
+    </bean>
+
 
     <import resource="applicationContext-db.xml"/>
     <import resource="mybatis.xml"/>
