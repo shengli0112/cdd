@@ -3,20 +3,24 @@
 <mapper namespace="com.cdd.gsl.dao.HouseInfoDomainMapper" >
   <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.HouseInfoDomain" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="country" property="country" jdbcType="VARCHAR" />
-    <result column="town" property="town" jdbcType="VARCHAR" />
     <result column="street" property="street" jdbcType="VARCHAR" />
     <result column="area" property="area" jdbcType="INTEGER" />
-    <result column="rent" property="rent" jdbcType="REAL" />
-    <result column="rent_type" property="rentType" jdbcType="VARCHAR" />
-    <result column="house_type_id" property="houseTypeId" jdbcType="BIGINT" />
+    <result column="selling_price" property="sellingPrice" jdbcType="INTEGER" />
+    <result column="electricity" property="electricity" jdbcType="VARCHAR" />
+    <result column="house_type" property="houseType" jdbcType="INTEGER" />
+    <result column="house_number" property="houseNumber" jdbcType="VARCHAR" />
+    <result column="house_use_type" property="houseUseType" jdbcType="INTEGER" />
+    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="fire_control" property="fireControl" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="background" property="background" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,8 +81,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, phone, province, city, country, town, street, area, rent, rent_type, 
-    house_type_id, status, create_ts, update_ts
+    id, title, phone, city, country, street, area, selling_price, electricity, house_type, 
+    house_number, house_use_type, floor, fire_control, contacts, status, create_ts, update_ts, 
+    background
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
     select
@@ -111,18 +116,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
-    insert into t_house_info (id, username, phone, 
-      province, city, country, 
-      town, street, area, 
-      rent, rent_type, house_type_id, 
-      status, create_ts, update_ts
-      )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
-      #{town,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, 
-      #{rent,jdbcType=REAL}, #{rentType,jdbcType=VARCHAR}, #{houseTypeId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}
-      )
+    insert into t_house_info (id, title, phone, 
+      city, country, street, 
+      area, selling_price, electricity, 
+      house_type, house_number, house_use_type, 
+      floor, fire_control, contacts, 
+      status, create_ts, update_ts, 
+      background)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, 
+      #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
+      #{houseType,jdbcType=INTEGER}, #{houseNumber,jdbcType=VARCHAR}, #{houseUseType,jdbcType=INTEGER}, 
+      #{floor,jdbcType=VARCHAR}, #{fireControl,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
+      #{background,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -130,14 +137,11 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="title != null" >
+        title,
       </if>
       <if test="phone != null" >
         phone,
-      </if>
-      <if test="province != null" >
-        province,
       </if>
       <if test="city != null" >
         city,
@@ -145,23 +149,35 @@
       <if test="country != null" >
         country,
       </if>
-      <if test="town != null" >
-        town,
-      </if>
       <if test="street != null" >
         street,
       </if>
       <if test="area != null" >
         area,
       </if>
-      <if test="rent != null" >
-        rent,
+      <if test="sellingPrice != null" >
+        selling_price,
       </if>
-      <if test="rentType != null" >
-        rent_type,
+      <if test="electricity != null" >
+        electricity,
       </if>
-      <if test="houseTypeId != null" >
-        house_type_id,
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="houseNumber != null" >
+        house_number,
+      </if>
+      <if test="houseUseType != null" >
+        house_use_type,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="fireControl != null" >
+        fire_control,
+      </if>
+      <if test="contacts != null" >
+        contacts,
       </if>
       <if test="status != null" >
         status,
@@ -172,19 +188,19 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="background != null" >
+        background,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="province != null" >
-        #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null" >
         #{city,jdbcType=VARCHAR},
@@ -192,23 +208,35 @@
       <if test="country != null" >
         #{country,jdbcType=VARCHAR},
       </if>
-      <if test="town != null" >
-        #{town,jdbcType=VARCHAR},
-      </if>
       <if test="street != null" >
         #{street,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         #{area,jdbcType=INTEGER},
       </if>
-      <if test="rent != null" >
-        #{rent,jdbcType=REAL},
+      <if test="sellingPrice != null" >
+        #{sellingPrice,jdbcType=INTEGER},
       </if>
-      <if test="rentType != null" >
-        #{rentType,jdbcType=VARCHAR},
+      <if test="electricity != null" >
+        #{electricity,jdbcType=VARCHAR},
       </if>
-      <if test="houseTypeId != null" >
-        #{houseTypeId,jdbcType=BIGINT},
+      <if test="houseType != null" >
+        #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="houseNumber != null" >
+        #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUseType != null" >
+        #{houseUseType,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="fireControl != null" >
+        #{fireControl,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -218,6 +246,9 @@
       </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="background != null" >
+        #{background,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -233,14 +264,11 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.province != null" >
-        province = #{record.province,jdbcType=VARCHAR},
       </if>
       <if test="record.city != null" >
         city = #{record.city,jdbcType=VARCHAR},
@@ -248,23 +276,35 @@
       <if test="record.country != null" >
         country = #{record.country,jdbcType=VARCHAR},
       </if>
-      <if test="record.town != null" >
-        town = #{record.town,jdbcType=VARCHAR},
-      </if>
       <if test="record.street != null" >
         street = #{record.street,jdbcType=VARCHAR},
       </if>
       <if test="record.area != null" >
         area = #{record.area,jdbcType=INTEGER},
       </if>
-      <if test="record.rent != null" >
-        rent = #{record.rent,jdbcType=REAL},
+      <if test="record.sellingPrice != null" >
+        selling_price = #{record.sellingPrice,jdbcType=INTEGER},
       </if>
-      <if test="record.rentType != null" >
-        rent_type = #{record.rentType,jdbcType=VARCHAR},
+      <if test="record.electricity != null" >
+        electricity = #{record.electricity,jdbcType=VARCHAR},
       </if>
-      <if test="record.houseTypeId != null" >
-        house_type_id = #{record.houseTypeId,jdbcType=BIGINT},
+      <if test="record.houseType != null" >
+        house_type = #{record.houseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseNumber != null" >
+        house_number = #{record.houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseUseType != null" >
+        house_use_type = #{record.houseUseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.floor != null" >
+        floor = #{record.floor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireControl != null" >
+        fire_control = #{record.fireControl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacts != null" >
+        contacts = #{record.contacts,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -275,6 +315,9 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.background != null" >
+        background = #{record.background,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,20 +326,24 @@
   <update id="updateByExample" parameterType="map" >
     update t_house_info
     set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      province = #{record.province,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       country = #{record.country,jdbcType=VARCHAR},
-      town = #{record.town,jdbcType=VARCHAR},
       street = #{record.street,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=INTEGER},
-      rent = #{record.rent,jdbcType=REAL},
-      rent_type = #{record.rentType,jdbcType=VARCHAR},
-      house_type_id = #{record.houseTypeId,jdbcType=BIGINT},
+      selling_price = #{record.sellingPrice,jdbcType=INTEGER},
+      electricity = #{record.electricity,jdbcType=VARCHAR},
+      house_type = #{record.houseType,jdbcType=INTEGER},
+      house_number = #{record.houseNumber,jdbcType=VARCHAR},
+      house_use_type = #{record.houseUseType,jdbcType=INTEGER},
+      floor = #{record.floor,jdbcType=VARCHAR},
+      fire_control = #{record.fireControl,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      background = #{record.background,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -304,14 +351,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     update t_house_info
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="province != null" >
-        province = #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null" >
         city = #{city,jdbcType=VARCHAR},
@@ -319,23 +363,35 @@
       <if test="country != null" >
         country = #{country,jdbcType=VARCHAR},
       </if>
-      <if test="town != null" >
-        town = #{town,jdbcType=VARCHAR},
-      </if>
       <if test="street != null" >
         street = #{street,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         area = #{area,jdbcType=INTEGER},
       </if>
-      <if test="rent != null" >
-        rent = #{rent,jdbcType=REAL},
+      <if test="sellingPrice != null" >
+        selling_price = #{sellingPrice,jdbcType=INTEGER},
       </if>
-      <if test="rentType != null" >
-        rent_type = #{rentType,jdbcType=VARCHAR},
+      <if test="electricity != null" >
+        electricity = #{electricity,jdbcType=VARCHAR},
       </if>
-      <if test="houseTypeId != null" >
-        house_type_id = #{houseTypeId,jdbcType=BIGINT},
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="houseNumber != null" >
+        house_number = #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUseType != null" >
+        house_use_type = #{houseUseType,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="fireControl != null" >
+        fire_control = #{fireControl,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -346,25 +402,32 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="background != null" >
+        background = #{background,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     update t_house_info
-    set username = #{username,jdbcType=VARCHAR},
+    set title = #{title,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       country = #{country,jdbcType=VARCHAR},
-      town = #{town,jdbcType=VARCHAR},
       street = #{street,jdbcType=VARCHAR},
       area = #{area,jdbcType=INTEGER},
-      rent = #{rent,jdbcType=REAL},
-      rent_type = #{rentType,jdbcType=VARCHAR},
-      house_type_id = #{houseTypeId,jdbcType=BIGINT},
+      selling_price = #{sellingPrice,jdbcType=INTEGER},
+      electricity = #{electricity,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=INTEGER},
+      house_number = #{houseNumber,jdbcType=VARCHAR},
+      house_use_type = #{houseUseType,jdbcType=INTEGER},
+      floor = #{floor,jdbcType=VARCHAR},
+      fire_control = #{fireControl,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      background = #{background,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

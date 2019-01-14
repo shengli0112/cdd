@@ -4,10 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-/**
- *
- * Created by xiexiyang on 15/7/13.
- */
+
 public class BeanUtils<T> {
 
     private static BeanUtils instance;

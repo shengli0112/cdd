@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  *  求租房屋
  *  created:2018/12/28
@@ -22,7 +24,7 @@ public class HouseController {
 
     private Logger logger = LoggerFactory.getLogger(HouseController.class);
 
-    @RequestMapping("createHouse")
+    @RequestMapping("addHouse")
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain){
         CommonResult commonResult = new CommonResult();
         if(houseInfoDomain != null){
@@ -68,7 +70,7 @@ public class HouseController {
         return commonResult;
     }
 
-    @RequestMapping("findHouseDetail")
+    @RequestMapping("findHouseInfoDetail")
     public CommonResult<HouseInfoDomain> findHouseInfoDetail(Long houseId){
         logger.info("HouseController findHouseInfoDetail houseId-{}",houseId);
         CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();
@@ -86,21 +88,21 @@ public class HouseController {
         return commonResult;
     }
 
-    @RequestMapping("findHouseList")
-    public CommonResult<HouseInfoDomain> findHouseInfoList(){
+    @RequestMapping("findHouseInfoList")
+    public CommonResult<List<HouseInfoDomain>> findHouseInfoList(Integer houseType,Long houseId,Integer pageSize){
         logger.info("HouseController findHouseInfoList");
-        CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();
+        CommonResult<List<HouseInfoDomain>> commonResult = new CommonResult<>();
 
-//        if(houseId != null){
-//            HouseInfoDomain houseInfoDomain = houseService.findHouseInfoById(houseId);
-//            commonResult.setFlag(1);
-//            commonResult.setMessage("查询成功");
-//            commonResult.setData(houseInfoDomain);
-//
-//        }else{
-//            commonResult.setFlag(0);
-//            commonResult.setMessage("查询失败，参数不正确");
-//        }
+        if(houseType != null){
+            List<HouseInfoDomain> houseInfoDomainList = houseService.findHouseInfoList(houseType,houseId,pageSize);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(houseInfoDomainList);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
         return commonResult;
     }
 

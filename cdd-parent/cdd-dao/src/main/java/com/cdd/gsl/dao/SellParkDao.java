@@ -11,7 +11,7 @@ public interface SellParkDao {
             "total_area as totalArea,total_price as totalPrice," +
             "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag " +
             "from t_sell_park_info where status=1 " +
-            "<if test='region != null' and " +
+            "<if test='region != null'></if>" +
 
             "</script>")
     public List<SellParkInfoDomain> selectSellParkInfoList(String region, String price, String area, Long sellParkId);

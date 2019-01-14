@@ -28,11 +28,11 @@ import com.google.common.base.Strings;
 public class ClientRequestFilter extends OncePerRequestFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(ClientRequestFilter.class);
 
-	@Autowired
-	private UserDao userDao;
-	
-	@Autowired
-	private AdminDao adminDao;
+//	@Autowired
+//	private UserDao userDao;
+//
+//	@Autowired
+//	private AdminDao adminDao;
 
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -85,7 +85,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 					logger.debug("*** no auth /v1/users/error/noData ****");
 					return;
 				}
-				if(device.equals("10")){
+				/*if(device.equals("10")){
 					Admin admin = null;
 					if (!Strings.isNullOrEmpty(userId)) {
 						admin = (Admin) this.adminDao.getAdminById(Long.parseLong(userId));
@@ -158,7 +158,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 					}else{
 						filterChain.doFilter(request, response);
 					}
-				}
+				}*/
 							
 
 			}
