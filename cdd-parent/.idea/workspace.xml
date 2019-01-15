@@ -7,205 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__args4j_args4j_2_33.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_7.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_3_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_util_3_3_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_0_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_3_2.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-common/cdd-common.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/cdd-dao.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml.orig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/cdd-app.iml" afterPath="$PROJECT_DIR$/cdd-app/cdd-app.iml" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/filter/ClientRequestFilter.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/filter/ClientRequestFilter.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/UserController.class" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-service.xml" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-service.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/web.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/spring/applicationContext-service.xml" afterPath="$PROJECT_DIR$/cdd-app/target/classes/spring/applicationContext-service.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/util/BeanUtils.java" afterPath="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/util/BeanUtils.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/BrowseHouseRecordDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/BrowseLeaseHouseRecordDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/CollectionHouseRecordDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/CollectionLeaseHouseRecordDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/CompanyInfoDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/CompanyInfoDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/LeaseHouseInfoDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/RoleMenuMappingDomainMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/UserInfoDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/UserInfoDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomain.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomain.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criterion.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criterion.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$GeneratedCriteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$GeneratedCriteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomain.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomain.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criterion.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criterion.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$GeneratedCriteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$GeneratedCriteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomain.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomain.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$Criteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$Criteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$Criterion.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$Criterion.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$GeneratedCriteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/MenuInfoDomainExample$GeneratedCriteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/RoleMenuMappingDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/RoleMenuMappingDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/RoleMenuMappingDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/RoleMenuMappingDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/RoleMenuMappingDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomain.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomain.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criterion.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criterion.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$GeneratedCriteria.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$GeneratedCriteria.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/BrowseHouseRecordDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/BrowseLeaseHouseRecordDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/CollectionHouseRecordDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/CollectionLeaseHouseRecordDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/CompanyInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/CompanyInfoDomainMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/HouseInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/HouseInfoDomainMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/LeaseHouseInfoDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/MenuInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/MenuInfoDomainMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/RoleMenuMappingDomainMapper.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/UserInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/mappers/UserInfoDomainMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/cdd-domain.iml" afterPath="$PROJECT_DIR$/cdd-domain/cdd-domain.iml" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/AdminInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/AdminInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/AdminInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/AdminInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/AdminInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/BrowseLeaseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CollectionLeaseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyUserMappingDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyUserMappingDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyUserMappingDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyUserMappingDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/CompanyUserMappingDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseTypeDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseTypeDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseTypeDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseTypeDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/HouseTypeDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformLeaseHouseRecordDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformLeaseHouseRecordDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformLeaseHouseRecordDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformLeaseHouseRecordDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/InformLeaseHouseRecordDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/LeaseHouseInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/RoleInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/RoleInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/RoleInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/RoleInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/RoleInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/TradeInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/TradeInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/TradeInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/TradeInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/TradeInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/UserInfoDomain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$Criterion.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/UserInfoDomainExample$GeneratedCriteria.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/domain/UserInfoDomainExample.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/cdd-manage.iml" afterPath="$PROJECT_DIR$/cdd-manage/cdd-manage.iml" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminController.java" afterPath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminController.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-parent.iml" afterPath="$PROJECT_DIR$/cdd-parent.iml" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/cdd-service.iml" afterPath="$PROJECT_DIR$/cdd-service/cdd-service.iml" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/CompanyService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/HouseService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/LandService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/ParkService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/PlantService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/RecordInfoService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/ShiroService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/StorageService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/UserService.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/CompanyServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/LandServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/ParkServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/PlantServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/RecordInfoServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/ShiroServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/StorageServiceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/HouseService.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/HouseService.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/CompanyServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/CompanyServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -242,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-126">
-              <caret line="223" column="35" lean-forward="true" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
+              <caret line="223" column="35" lean-forward="false" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -264,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/StorageInfoDomain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -273,8 +75,18 @@
       <file leaf-file-name="HouseController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1081">
+            <state relative-caret-position="115">
               <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegionController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -315,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParkController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ParkController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="184" column="69" lean-forward="true" selection-start-line="184" selection-start-column="69" selection-end-line="184" selection-end-column="69" />
+            <state relative-caret-position="442">
+              <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -344,16 +156,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseInfoDomain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/HouseInfoDomain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -361,8 +163,8 @@
       <list>
         <option value="spring-beans.schema" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -943,12 +745,12 @@
       <workItem from="1546394955720" duration="32195000" />
       <workItem from="1546827380468" duration="45927000" />
       <workItem from="1547432207851" duration="560000" />
-      <workItem from="1547432795715" duration="8648000" />
+      <workItem from="1547432795715" duration="10125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178000000" />
+    <option name="totallyTimeSpent" value="179477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1014,13 +816,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/RecordInfoDomainExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RecordInfoDomainMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1387,7 +1182,7 @@
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/StorageInfoDomain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1400,18 +1195,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-126">
-          <caret line="223" column="35" lean-forward="true" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
+          <caret line="223" column="35" lean-forward="false" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1420,8 +1207,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="184" column="69" lean-forward="true" selection-start-line="184" selection-start-column="69" selection-end-line="184" selection-end-column="69" />
+        <state relative-caret-position="442">
+          <caret line="185" column="19" lean-forward="true" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
           <folding />
         </state>
       </provider>
