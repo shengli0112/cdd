@@ -1,8 +1,9 @@
-package com.cdd.gsl.domain;
+package com.cdd.gsl.vo;
 
 import java.util.Date;
+import java.util.List;
 
-public class HouseInfoDomain {
+public class HouseInfoDetailVo {
     private Long id;
 
     private String title;
@@ -17,31 +18,27 @@ public class HouseInfoDomain {
 
     private Integer area;
 
-    private Integer sellingPrice;
+    private String sellingPrice;
 
     private String electricity;
 
-    private Integer houseType;
+    private String houseType;
 
-    private Integer houseUseType;
+    private String houseUseType;
 
-    private Integer floor;
+    private String floor;
 
-    private Integer fireControl;
+    private String fireControl;
 
     private String contacts;
 
     private String phone;
 
-    private Integer status;
-
-    private Date createTs;
-
-    private Date updateTs;
-
     private String background;
 
     private Integer houseStatus;
+
+    private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
         return id;
@@ -99,11 +96,11 @@ public class HouseInfoDomain {
         this.area = area;
     }
 
-    public Integer getSellingPrice() {
+    public String getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(Integer sellingPrice) {
+    public void setSellingPrice(String sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
@@ -115,35 +112,35 @@ public class HouseInfoDomain {
         this.electricity = electricity == null ? null : electricity.trim();
     }
 
-    public Integer getHouseType() {
+    public String getHouseType() {
         return houseType;
     }
 
-    public void setHouseType(Integer houseType) {
+    public void setHouseType(String houseType) {
         this.houseType = houseType;
     }
 
-    public Integer getHouseUseType() {
+    public String getHouseUseType() {
         return houseUseType;
     }
 
-    public void setHouseUseType(Integer houseUseType) {
+    public void setHouseUseType(String houseUseType) {
         this.houseUseType = houseUseType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getFireControl() {
+    public String getFireControl() {
         return fireControl;
     }
 
-    public void setFireControl(Integer fireControl) {
+    public void setFireControl(String fireControl) {
         this.fireControl = fireControl;
     }
 
@@ -163,30 +160,6 @@ public class HouseInfoDomain {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Date getCreateTs() {
-        return createTs;
-    }
-
-    public void setCreateTs(Date createTs) {
-        this.createTs = createTs;
-    }
-
-    public Date getUpdateTs() {
-        return updateTs;
-    }
-
-    public void setUpdateTs(Date updateTs) {
-        this.updateTs = updateTs;
-    }
-
     public String getBackground() {
         return background;
     }
@@ -201,5 +174,13 @@ public class HouseInfoDomain {
 
     public void setHouseStatus(Integer houseStatus) {
         this.houseStatus = houseStatus;
+    }
+
+    public List<HouseInfoDomainVo> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<HouseInfoDomainVo> likes) {
+        this.likes = likes;
     }
 }

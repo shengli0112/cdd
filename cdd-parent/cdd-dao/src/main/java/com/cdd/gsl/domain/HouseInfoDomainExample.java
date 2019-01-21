@@ -235,76 +235,6 @@ public class HouseInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhoneIsNull() {
-            addCriterion("phone is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneIsNotNull() {
-            addCriterion("phone is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneEqualTo(String value) {
-            addCriterion("phone =", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneNotEqualTo(String value) {
-            addCriterion("phone <>", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneGreaterThan(String value) {
-            addCriterion("phone >", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
-            addCriterion("phone >=", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneLessThan(String value) {
-            addCriterion("phone <", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneLessThanOrEqualTo(String value) {
-            addCriterion("phone <=", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneLike(String value) {
-            addCriterion("phone like", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneNotLike(String value) {
-            addCriterion("phone not like", value, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneIn(List<String> values) {
-            addCriterion("phone in", values, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneNotIn(List<String> values) {
-            addCriterion("phone not in", values, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneBetween(String value1, String value2) {
-            addCriterion("phone between", value1, value2, "phone");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhoneNotBetween(String value1, String value2) {
-            addCriterion("phone not between", value1, value2, "phone");
-            return (Criteria) this;
-        }
-
         public Criteria andCityIsNull() {
             addCriterion("city is null");
             return (Criteria) this;
@@ -512,6 +442,76 @@ public class HouseInfoDomainExample {
 
         public Criteria andStreetNotBetween(String value1, String value2) {
             addCriterion("street not between", value1, value2, "street");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberIsNull() {
+            addCriterion("house_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberIsNotNull() {
+            addCriterion("house_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberEqualTo(String value) {
+            addCriterion("house_number =", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberNotEqualTo(String value) {
+            addCriterion("house_number <>", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberGreaterThan(String value) {
+            addCriterion("house_number >", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberGreaterThanOrEqualTo(String value) {
+            addCriterion("house_number >=", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberLessThan(String value) {
+            addCriterion("house_number <", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberLessThanOrEqualTo(String value) {
+            addCriterion("house_number <=", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberLike(String value) {
+            addCriterion("house_number like", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberNotLike(String value) {
+            addCriterion("house_number not like", value, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberIn(List<String> values) {
+            addCriterion("house_number in", values, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberNotIn(List<String> values) {
+            addCriterion("house_number not in", values, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberBetween(String value1, String value2) {
+            addCriterion("house_number between", value1, value2, "houseNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseNumberNotBetween(String value1, String value2) {
+            addCriterion("house_number not between", value1, value2, "houseNumber");
             return (Criteria) this;
         }
 
@@ -765,76 +765,6 @@ public class HouseInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andHouseNumberIsNull() {
-            addCriterion("house_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberIsNotNull() {
-            addCriterion("house_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberEqualTo(String value) {
-            addCriterion("house_number =", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberNotEqualTo(String value) {
-            addCriterion("house_number <>", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberGreaterThan(String value) {
-            addCriterion("house_number >", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberGreaterThanOrEqualTo(String value) {
-            addCriterion("house_number >=", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberLessThan(String value) {
-            addCriterion("house_number <", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberLessThanOrEqualTo(String value) {
-            addCriterion("house_number <=", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberLike(String value) {
-            addCriterion("house_number like", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberNotLike(String value) {
-            addCriterion("house_number not like", value, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberIn(List<String> values) {
-            addCriterion("house_number in", values, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberNotIn(List<String> values) {
-            addCriterion("house_number not in", values, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberBetween(String value1, String value2) {
-            addCriterion("house_number between", value1, value2, "houseNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andHouseNumberNotBetween(String value1, String value2) {
-            addCriterion("house_number not between", value1, value2, "houseNumber");
-            return (Criteria) this;
-        }
-
         public Criteria andHouseUseTypeIsNull() {
             addCriterion("house_use_type is null");
             return (Criteria) this;
@@ -905,62 +835,52 @@ public class HouseInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andFloorEqualTo(String value) {
+        public Criteria andFloorEqualTo(Integer value) {
             addCriterion("floor =", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorNotEqualTo(String value) {
+        public Criteria andFloorNotEqualTo(Integer value) {
             addCriterion("floor <>", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorGreaterThan(String value) {
+        public Criteria andFloorGreaterThan(Integer value) {
             addCriterion("floor >", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorGreaterThanOrEqualTo(String value) {
+        public Criteria andFloorGreaterThanOrEqualTo(Integer value) {
             addCriterion("floor >=", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorLessThan(String value) {
+        public Criteria andFloorLessThan(Integer value) {
             addCriterion("floor <", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorLessThanOrEqualTo(String value) {
+        public Criteria andFloorLessThanOrEqualTo(Integer value) {
             addCriterion("floor <=", value, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorLike(String value) {
-            addCriterion("floor like", value, "floor");
-            return (Criteria) this;
-        }
-
-        public Criteria andFloorNotLike(String value) {
-            addCriterion("floor not like", value, "floor");
-            return (Criteria) this;
-        }
-
-        public Criteria andFloorIn(List<String> values) {
+        public Criteria andFloorIn(List<Integer> values) {
             addCriterion("floor in", values, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorNotIn(List<String> values) {
+        public Criteria andFloorNotIn(List<Integer> values) {
             addCriterion("floor not in", values, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorBetween(String value1, String value2) {
+        public Criteria andFloorBetween(Integer value1, Integer value2) {
             addCriterion("floor between", value1, value2, "floor");
             return (Criteria) this;
         }
 
-        public Criteria andFloorNotBetween(String value1, String value2) {
+        public Criteria andFloorNotBetween(Integer value1, Integer value2) {
             addCriterion("floor not between", value1, value2, "floor");
             return (Criteria) this;
         }
@@ -975,62 +895,52 @@ public class HouseInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andFireControlEqualTo(String value) {
+        public Criteria andFireControlEqualTo(Integer value) {
             addCriterion("fire_control =", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlNotEqualTo(String value) {
+        public Criteria andFireControlNotEqualTo(Integer value) {
             addCriterion("fire_control <>", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlGreaterThan(String value) {
+        public Criteria andFireControlGreaterThan(Integer value) {
             addCriterion("fire_control >", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlGreaterThanOrEqualTo(String value) {
+        public Criteria andFireControlGreaterThanOrEqualTo(Integer value) {
             addCriterion("fire_control >=", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlLessThan(String value) {
+        public Criteria andFireControlLessThan(Integer value) {
             addCriterion("fire_control <", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlLessThanOrEqualTo(String value) {
+        public Criteria andFireControlLessThanOrEqualTo(Integer value) {
             addCriterion("fire_control <=", value, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlLike(String value) {
-            addCriterion("fire_control like", value, "fireControl");
-            return (Criteria) this;
-        }
-
-        public Criteria andFireControlNotLike(String value) {
-            addCriterion("fire_control not like", value, "fireControl");
-            return (Criteria) this;
-        }
-
-        public Criteria andFireControlIn(List<String> values) {
+        public Criteria andFireControlIn(List<Integer> values) {
             addCriterion("fire_control in", values, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlNotIn(List<String> values) {
+        public Criteria andFireControlNotIn(List<Integer> values) {
             addCriterion("fire_control not in", values, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlBetween(String value1, String value2) {
+        public Criteria andFireControlBetween(Integer value1, Integer value2) {
             addCriterion("fire_control between", value1, value2, "fireControl");
             return (Criteria) this;
         }
 
-        public Criteria andFireControlNotBetween(String value1, String value2) {
+        public Criteria andFireControlNotBetween(Integer value1, Integer value2) {
             addCriterion("fire_control not between", value1, value2, "fireControl");
             return (Criteria) this;
         }
@@ -1102,6 +1012,76 @@ public class HouseInfoDomainExample {
 
         public Criteria andContactsNotBetween(String value1, String value2) {
             addCriterion("contacts not between", value1, value2, "contacts");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIsNull() {
+            addCriterion("phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIsNotNull() {
+            addCriterion("phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneEqualTo(String value) {
+            addCriterion("phone =", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotEqualTo(String value) {
+            addCriterion("phone <>", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneGreaterThan(String value) {
+            addCriterion("phone >", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("phone >=", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLessThan(String value) {
+            addCriterion("phone <", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLessThanOrEqualTo(String value) {
+            addCriterion("phone <=", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLike(String value) {
+            addCriterion("phone like", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotLike(String value) {
+            addCriterion("phone not like", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIn(List<String> values) {
+            addCriterion("phone in", values, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotIn(List<String> values) {
+            addCriterion("phone not in", values, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneBetween(String value1, String value2) {
+            addCriterion("phone between", value1, value2, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotBetween(String value1, String value2) {
+            addCriterion("phone not between", value1, value2, "phone");
             return (Criteria) this;
         }
 
@@ -1352,6 +1332,66 @@ public class HouseInfoDomainExample {
 
         public Criteria andBackgroundNotBetween(String value1, String value2) {
             addCriterion("background not between", value1, value2, "background");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusIsNull() {
+            addCriterion("house_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusIsNotNull() {
+            addCriterion("house_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusEqualTo(Integer value) {
+            addCriterion("house_status =", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusNotEqualTo(Integer value) {
+            addCriterion("house_status <>", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusGreaterThan(Integer value) {
+            addCriterion("house_status >", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("house_status >=", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusLessThan(Integer value) {
+            addCriterion("house_status <", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("house_status <=", value, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusIn(List<Integer> values) {
+            addCriterion("house_status in", values, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusNotIn(List<Integer> values) {
+            addCriterion("house_status not in", values, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusBetween(Integer value1, Integer value2) {
+            addCriterion("house_status between", value1, value2, "houseStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("house_status not between", value1, value2, "houseStatus");
             return (Criteria) this;
         }
     }

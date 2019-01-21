@@ -1,8 +1,8 @@
-package com.cdd.gsl.domain;
+package com.cdd.gsl.vo;
 
 import java.util.Date;
 
-public class HouseInfoDomain {
+public class HouseInfoDomainVo {
     private Long id;
 
     private String title;
@@ -17,27 +17,13 @@ public class HouseInfoDomain {
 
     private Integer area;
 
-    private Integer sellingPrice;
+    private String sellingPrice;
 
-    private String electricity;
+    private String houseType;
 
-    private Integer houseType;
+    private String houseUseType;
 
-    private Integer houseUseType;
-
-    private Integer floor;
-
-    private Integer fireControl;
-
-    private String contacts;
-
-    private String phone;
-
-    private Integer status;
-
-    private Date createTs;
-
-    private Date updateTs;
+    private String floor;
 
     private String background;
 
@@ -99,93 +85,39 @@ public class HouseInfoDomain {
         this.area = area;
     }
 
-    public Integer getSellingPrice() {
+    public String getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(Integer sellingPrice) {
+    public void setSellingPrice(String sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
-    public String getElectricity() {
-        return electricity;
-    }
-
-    public void setElectricity(String electricity) {
-        this.electricity = electricity == null ? null : electricity.trim();
-    }
-
-    public Integer getHouseType() {
+    public String getHouseType() {
         return houseType;
     }
 
-    public void setHouseType(Integer houseType) {
+    public void setHouseType(String houseType) {
         this.houseType = houseType;
     }
 
-    public Integer getHouseUseType() {
+    public String getHouseUseType() {
         return houseUseType;
     }
 
-    public void setHouseUseType(Integer houseUseType) {
+    public void setHouseUseType(String houseUseType) {
         this.houseUseType = houseUseType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getFireControl() {
-        return fireControl;
-    }
 
-    public void setFireControl(Integer fireControl) {
-        this.fireControl = fireControl;
-    }
-
-    public String getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(String contacts) {
-        this.contacts = contacts == null ? null : contacts.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Date getCreateTs() {
-        return createTs;
-    }
-
-    public void setCreateTs(Date createTs) {
-        this.createTs = createTs;
-    }
-
-    public Date getUpdateTs() {
-        return updateTs;
-    }
-
-    public void setUpdateTs(Date updateTs) {
-        this.updateTs = updateTs;
-    }
 
     public String getBackground() {
         return background;

@@ -1,6 +1,9 @@
 package com.cdd.gsl.service;
 
 import com.cdd.gsl.domain.HouseInfoDomain;
+import com.cdd.gsl.vo.HouseConditionVo;
+import com.cdd.gsl.vo.HouseInfoDetailVo;
+import com.cdd.gsl.vo.HouseInfoDomainVo;
 
 import java.util.List;
 
@@ -9,7 +12,7 @@ public interface HouseService {
 
     void updateHouse(HouseInfoDomain houseInfoDomain);
 
-    HouseInfoDomain findHouseInfoById(Long houseId);
+    HouseInfoDetailVo findHouseInfoById(Long houseId);
 
-    List<HouseInfoDomain> findHouseInfoList(Integer houseType,Long houseId,Integer pageSize);
+    List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo);
 }

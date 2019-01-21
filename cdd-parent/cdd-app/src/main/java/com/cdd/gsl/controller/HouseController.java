@@ -3,6 +3,9 @@ package com.cdd.gsl.controller;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.service.HouseService;
+import com.cdd.gsl.vo.HouseConditionVo;
+import com.cdd.gsl.vo.HouseInfoDetailVo;
+import com.cdd.gsl.vo.HouseInfoDomainVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,12 +74,12 @@ public class HouseController {
     }
 
     @RequestMapping("findHouseInfoDetail")
-    public CommonResult<HouseInfoDomain> findHouseInfoDetail(Long houseId){
+    public CommonResult<HouseInfoDetailVo> findHouseInfoDetail(Long houseId){
         logger.info("HouseController findHouseInfoDetail houseId-{}",houseId);
-        CommonResult<HouseInfoDomain> commonResult = new CommonResult<>();
+        CommonResult<HouseInfoDetailVo> commonResult = new CommonResult<>();
 
         if(houseId != null){
-            HouseInfoDomain houseInfoDomain = houseService.findHouseInfoById(houseId);
+            HouseInfoDetailVo houseInfoDomain = houseService.findHouseInfoById(houseId);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
             commonResult.setData(houseInfoDomain);
@@ -89,12 +92,12 @@ public class HouseController {
     }
 
     @RequestMapping("findHouseInfoList")
-    public CommonResult<List<HouseInfoDomain>> findHouseInfoList(Integer houseType,Long houseId,Integer pageSize){
+    public CommonResult<List<HouseInfoDomainVo>> findHouseInfoList(HouseConditionVo houseConditionVo){
         logger.info("HouseController findHouseInfoList");
-        CommonResult<List<HouseInfoDomain>> commonResult = new CommonResult<>();
+        CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
-        if(houseType != null){
-            List<HouseInfoDomain> houseInfoDomainList = houseService.findHouseInfoList(houseType,houseId,pageSize);
+        if(houseConditionVo != null){
+            List<HouseInfoDomainVo> houseInfoDomainList = houseService.findHouseInfoList(houseConditionVo);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
             commonResult.setData(houseInfoDomainList);

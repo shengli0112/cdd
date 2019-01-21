@@ -5,6 +5,9 @@ import com.cdd.gsl.dao.HouseInfoDomainMapper;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.domain.HouseInfoDomainExample;
 import com.cdd.gsl.service.HouseService;
+import com.cdd.gsl.vo.HouseConditionVo;
+import com.cdd.gsl.vo.HouseInfoDetailVo;
+import com.cdd.gsl.vo.HouseInfoDomainVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +32,17 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public HouseInfoDomain findHouseInfoById(Long houseId) {
-        return houseInfoDao.selectHouseInfoById(houseId);
+    public HouseInfoDetailVo findHouseInfoById(Long houseId) {
+        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+        houseInfoDetailVo.setLikes(houseInfoDomainVos);
+        return houseInfoDetailVo;
     }
 
     @Override
-    public List<HouseInfoDomain> findHouseInfoList(Integer houseType, Long houseId,Integer pageSize) {
-        HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
-        houseInfoDomainExample.createCriteria()
-                .andHouseTypeEqualTo(houseType).andIdLessThan(houseId);
-        List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+    public List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo) {
+
+        List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
         return houseInfoDomainList;
     }
 }
