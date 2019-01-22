@@ -48,7 +48,7 @@
     </filter>
     <filter-mapping>
         <filter-name>clientRequestFilter</filter-name>
-        <url-pattern>/v1/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <!--spring Web MVC框架提供了org.springframework.web.filter.CharacterEncodingFilter

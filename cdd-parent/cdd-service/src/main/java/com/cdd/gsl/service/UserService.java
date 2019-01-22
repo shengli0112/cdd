@@ -5,6 +5,7 @@ import com.cdd.gsl.domain.CommonDictDomain;
 import com.cdd.gsl.domain.FollowInfoDomain;
 import com.cdd.gsl.domain.ThirdUserInfoDomain;
 import com.cdd.gsl.vo.FollowInfoVo;
+import com.cdd.gsl.vo.LoginTokenVo;
 import com.cdd.gsl.vo.LoginUserVo;
 import com.cdd.gsl.vo.UserInfoVo;
 
@@ -19,7 +20,7 @@ public interface UserService {
 
     CommonResult forgetPassword(UserInfoVo userInfoVo);
 
-    CommonResult login(LoginUserVo loginUserVo);
+    CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo);
 
     CommonResult agreeCompany(Long userId,Long companyId);
 

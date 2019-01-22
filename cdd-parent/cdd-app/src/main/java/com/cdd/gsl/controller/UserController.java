@@ -48,8 +48,9 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public CommonResult login(LoginUserVo loginUserVo){
-        return null;
+    public CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo){
+        CommonResult<LoginTokenVo> commonResult = userService.login(loginUserVo);
+        return commonResult;
 
     }
 
