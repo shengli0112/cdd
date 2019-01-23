@@ -25,15 +25,15 @@ public class HouseConditionVo {
     private Integer areaOrder;
 
     //价格 开始 类似 100
-    private String priceFrom;
+    private Integer priceFrom;
 
     //价格 结束 类似 10000
-    private String priceTo;
+    private Integer priceTo;
 
     //价格顺序 0 默认顺序 1 价格从小到大 2 价格从大到小
     private Integer priceOrder;
 
-    //房源ID
+    //第几页
     private Integer pageNo;
 
     //每页多少条记录
@@ -107,21 +107,7 @@ public class HouseConditionVo {
         this.areaTo = areaTo;
     }
 
-    public String getPriceFrom() {
-        return priceFrom;
-    }
 
-    public void setPriceFrom(String priceFrom) {
-        this.priceFrom = priceFrom;
-    }
-
-    public String getPriceTo() {
-        return priceTo;
-    }
-
-    public void setPriceTo(String priceTo) {
-        this.priceTo = priceTo;
-    }
 
     public Integer getPriceOrder() {
         return priceOrder;
