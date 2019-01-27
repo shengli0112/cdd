@@ -13,11 +13,11 @@
           <element id="archive" name="cdd-domain-1.0-SNAPSHOT.jar">
             <element id="module-output" name="cdd-domain" />
           </element>
-          <element id="archive" name="cdd-service-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="cdd-service" />
-          </element>
           <element id="archive" name="cdd-dao-1.0-SNAPSHOT.jar">
             <element id="module-output" name="cdd-dao" />
+          </element>
+          <element id="archive" name="cdd-service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="cdd-service" />
           </element>
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:4.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:4.2.3.RELEASE" />

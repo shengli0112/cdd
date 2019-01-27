@@ -8,6 +8,8 @@ public class CompanyVo {
 
     private String description;
 
+    private Long userId;
+
     public String getCompanyName() {
         return companyName;
     }

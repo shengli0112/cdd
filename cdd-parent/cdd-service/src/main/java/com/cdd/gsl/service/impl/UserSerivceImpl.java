@@ -47,6 +47,9 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private UserTicketDomainMapper userTicketDomainMapper;
 
+    @Autowired
+    private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
+
     @Override
     public CommonResult thirdLogin(ThirdUserInfoDomain thirdUserInfoDomain) {
         ThirdUserInfoDomainExample thirdUserInfoDomainExample = new ThirdUserInfoDomainExample();
@@ -186,6 +189,7 @@ public class UserSerivceImpl implements UserService {
                         userTicketDomainMapper.insert(userTicketDomain);
                         LoginTokenVo loginTokenVo = new LoginTokenVo();
                         loginTokenVo.setUserId(userInfoDomain.getId());
+                        loginTokenVo.setUserType(userInfoDomain.getUserType());
                         loginTokenVo.setToken(token);
                         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                         commonResult.setMessage("登录成功");
@@ -204,6 +208,7 @@ public class UserSerivceImpl implements UserService {
                         String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
                         LoginTokenVo loginTokenVo = new LoginTokenVo();
                         loginTokenVo.setUserId(userInfoDomain.getId());
+                        loginTokenVo.setUserType(userInfoDomain.getUserType());
                         loginTokenVo.setToken(token);
                         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                         commonResult.setMessage("登录成功");
@@ -318,6 +323,20 @@ public class UserSerivceImpl implements UserService {
         }
         commonDictDomainList = commonDictDomainMapper.selectByExample(commonDictDomainExample);
         return commonDictDomainList;
+    }
+
+    @Override
+    public CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(applyBrokerInfoDomain != null){
+            applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("申请经纪人成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
     }
 
     public String createPassword(String password){

@@ -3,6 +3,8 @@ package com.cdd.gsl.vo;
 public class LoginTokenVo {
     private Long userId;
 
+    private Integer userType;
+
     private String token;
 
     public Long getUserId() {
@@ -19,5 +21,13 @@ public class LoginTokenVo {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 }

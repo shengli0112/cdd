@@ -9,7 +9,7 @@ public class HouseInfoDomain {
 
     private String city;
 
-    private String country;
+    private String county;
 
     private String street;
 
@@ -43,6 +43,10 @@ public class HouseInfoDomain {
 
     private Integer houseStatus;
 
+    private Integer coverArea;
+
+    private String houseEdge;
+
     public Long getId() {
         return id;
     }
@@ -67,12 +71,12 @@ public class HouseInfoDomain {
         this.city = city == null ? null : city.trim();
     }
 
-    public String getCountry() {
-        return country;
+    public String getCounty() {
+        return county;
     }
 
-    public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
+    public void setCounty(String county) {
+        this.county = county == null ? null : county.trim();
     }
 
     public String getStreet() {
@@ -201,5 +205,21 @@ public class HouseInfoDomain {
 
     public void setHouseStatus(Integer houseStatus) {
         this.houseStatus = houseStatus;
+    }
+
+    public Integer getCoverArea() {
+        return coverArea;
+    }
+
+    public void setCoverArea(Integer coverArea) {
+        this.coverArea = coverArea;
+    }
+
+    public String getHouseEdge() {
+        return houseEdge;
+    }
+
+    public void setHouseEdge(String houseEdge) {
+        this.houseEdge = houseEdge == null ? null : houseEdge.trim();
     }
 }

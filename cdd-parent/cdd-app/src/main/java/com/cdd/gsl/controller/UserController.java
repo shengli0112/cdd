@@ -72,9 +72,9 @@ public class UserController {
      * @return
      */
     @RequestMapping("createCompany")
-    public CommonResult createCompany(@RequestBody CompanyVo companyVo){
+    public CommonResult createCompany(@RequestBody CompanyInfoDomain companyVo){
         logger.info("UserController createCompany ThirdUserVo -{}",companyVo);
-        CommonResult result = companyService.createCompany(1l,companyVo);
+        CommonResult result = companyService.createCompany(companyVo);
         return result;
     }
 
@@ -113,8 +113,7 @@ public class UserController {
      * 同意加入公司
      */
     @RequestMapping("agreeCompany")
-    public CommonResult agreeCompany(Long companyId){
-        Long userId = 0L;
+    public CommonResult agreeCompany(Long userId,Long companyId){
         CommonResult commonResult = userService.agreeCompany(userId,companyId);
 
         return commonResult;
@@ -126,8 +125,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("bindPhone")
-    public CommonResult bindPhone(String phone){
-        Long userId = 0L;
+    public CommonResult bindPhone(Long userId,String phone){
         CommonResult commonResult = userService.bindPhone(userId,phone);
         return commonResult;
     }
@@ -257,8 +255,16 @@ public class UserController {
      * 认证经纪人
      */
     @RequestMapping("authenticationBroker")
-    public CommonResult authenticationBroker(){
-        return null;
+    public CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain){
+        return userService.authenticationBroker(applyBrokerInfoDomain);
+    }
+
+    /**
+     * 首页
+     */
+    @RequestMapping("homePage")
+    public CommonResult homePage(){
+        return userService.authenticationBroker(applyBrokerInfoDomain);
     }
 
 }

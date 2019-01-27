@@ -25,15 +25,10 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyUserMappingDomainMapper companyUserMappingDomainMapper;
 
     @Override
-    public CommonResult createCompany(Long userId,CompanyVo companyVo) {
-        CompanyInfoDomain companyInfoDomain = new CompanyInfoDomain();
+    public CommonResult createCompany(CompanyInfoDomain companyVo) {
         CommonResult result = new CommonResult();
-        if(userId != null && companyVo != null){
-            companyInfoDomain.setUserId(userId);
-            companyInfoDomain.setLicense(companyVo.getBackground());
-            companyInfoDomain.setCompanyName(companyVo.getCompanyName());
-            companyInfoDomain.setDescription(companyVo.getDescription());
-            companyInfoDomainMapper.insertSelective(companyInfoDomain);
+        if(companyVo.getUserId() != null && companyVo != null){
+            companyInfoDomainMapper.insertSelective(companyVo);
             result.setFlag(CommonResult.RESULT_SUCCESS_FLAG);
             result.setMessage("创建公司成功");
         }else{

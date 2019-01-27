@@ -29,8 +29,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="cdd-common" />
     <orderEntry type="module" module-name="cdd-domain" />
-    <orderEntry type="module" module-name="cdd-service" />
     <orderEntry type="module" module-name="cdd-dao" />
+    <orderEntry type="module" module-name="cdd-service" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:4.2.3.RELEASE" level="project" />

@@ -1,6 +1,7 @@
 package com.cdd.gsl.service;
 
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
 import com.cdd.gsl.domain.CommonDictDomain;
 import com.cdd.gsl.domain.FollowInfoDomain;
 import com.cdd.gsl.domain.ThirdUserInfoDomain;
@@ -31,4 +32,6 @@ public interface UserService {
     CommonResult cancelFollow(FollowInfoVo followInfoVo);
 
     List<CommonDictDomain> findDictInfo(String dictName);
+
+    CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 }
