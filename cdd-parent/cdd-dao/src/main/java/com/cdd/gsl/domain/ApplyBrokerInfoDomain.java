@@ -31,6 +31,8 @@ public class ApplyBrokerInfoDomain {
 
     private Integer applyType;
 
+    private Integer brokerType;
+
     public Long getId() {
         return id;
     }
@@ -141,5 +143,13 @@ public class ApplyBrokerInfoDomain {
 
     public void setApplyType(Integer applyType) {
         this.applyType = applyType;
+    }
+
+    public Integer getBrokerType() {
+        return brokerType;
+    }
+
+    public void setBrokerType(Integer brokerType) {
+        this.brokerType = brokerType;
     }
 }

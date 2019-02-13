@@ -34,4 +34,8 @@ public interface UserService {
     List<CommonDictDomain> findDictInfo(String dictName);
 
     CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain);
+
+    CommonResult findBroker(Long userId);
+
+    CommonResult agreeBroker(Long brokerId);
 }

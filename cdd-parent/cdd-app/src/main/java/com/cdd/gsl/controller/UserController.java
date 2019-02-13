@@ -260,11 +260,29 @@ public class UserController {
     }
 
     /**
+     * 主管查询所有待添加的经纪人
+     */
+    @RequestMapping("findBroker")
+    public CommonResult findBroker(Long userId){
+        return userService.findBroker(userId);
+    }
+
+    /**
+     * 同意加入该公司
+     */
+    @RequestMapping("agreeBroker")
+    public CommonResult agreeBroker(Long brokerId){
+        return userService.agreeBroker(brokerId);
+    }
+
+
+
+    /**
      * 首页
      */
     @RequestMapping("homePage")
     public CommonResult homePage(){
-        return userService.authenticationBroker(applyBrokerInfoDomain);
+        return null;
     }
 
 }

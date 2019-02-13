@@ -339,6 +339,51 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult<List<ApplyBrokerInfoDomain>> findBroker(Long userId) {
+        CommonResult<List<ApplyBrokerInfoDomain>> commonResult = new CommonResult<List<ApplyBrokerInfoDomain>>();
+        ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+        applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andStatusEqualTo(1);
+        List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+        if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
+            ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
+            int brokerType = applyBrokerInfoDomain.getBrokerType();
+            if(brokerType == CddConstant.MANAGE_BROKER_TYPE){
+                ApplyBrokerInfoDomainExample applyBrokerInfoExample = new ApplyBrokerInfoDomainExample();
+                applyBrokerInfoDomainExample.createCriteria().andCompanyNameEqualTo(applyBrokerInfoDomain.getCompanyName())
+                        .andStatusEqualTo(1).andUserIdNotEqualTo(applyBrokerInfoDomain.getUserId());
+                List<ApplyBrokerInfoDomain> applyBrokerDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoExample);
+                commonResult.setFlag(1);
+                commonResult.setMessage("查询成功");
+                commonResult.setData(applyBrokerDomains);
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("查询失败");
+            }
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult agreeBroker(Long brokerId) {
+        CommonResult commonResult = new CommonResult();
+        if(brokerId != null){
+            ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
+            applyBrokerInfoDomain.setId(brokerId);
+            applyBrokerInfoDomain.setApplyType(2);
+            applyBrokerInfoDomainMapper.updateByPrimaryKey(applyBrokerInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("加入成功");
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);

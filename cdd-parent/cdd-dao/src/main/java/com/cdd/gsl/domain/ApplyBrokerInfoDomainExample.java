@@ -1024,6 +1024,66 @@ public class ApplyBrokerInfoDomainExample {
             addCriterion("apply_type not between", value1, value2, "applyType");
             return (Criteria) this;
         }
+
+        public Criteria andBrokerTypeIsNull() {
+            addCriterion("broker_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeIsNotNull() {
+            addCriterion("broker_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeEqualTo(Integer value) {
+            addCriterion("broker_type =", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeNotEqualTo(Integer value) {
+            addCriterion("broker_type <>", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeGreaterThan(Integer value) {
+            addCriterion("broker_type >", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("broker_type >=", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeLessThan(Integer value) {
+            addCriterion("broker_type <", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("broker_type <=", value, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeIn(List<Integer> values) {
+            addCriterion("broker_type in", values, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeNotIn(List<Integer> values) {
+            addCriterion("broker_type not in", values, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeBetween(Integer value1, Integer value2) {
+            addCriterion("broker_type between", value1, value2, "brokerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrokerTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("broker_type not between", value1, value2, "brokerType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

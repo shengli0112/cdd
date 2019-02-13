@@ -108,23 +108,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
-    insert into t_entrust_info (id, city, county, 
-      area, business, pay_tax, 
-      contacts, phone, entrust_type, 
-      entrust_use_type, create_ts, update_ts
-      )
-    values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
-      #{area,jdbcType=INTEGER}, #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, 
-      #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, 
-      #{entrustUseType,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}
-      )
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_entrust_info (city, county, area, 
+      business, pay_tax, contacts, 
+      phone, entrust_type, entrust_use_type, 
+      create_ts, update_ts)
+    values (#{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, 
+      #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, #{entrustUseType,jdbcType=INTEGER}, 
+      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into t_entrust_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="city != null" >
         city,
       </if>
@@ -160,9 +161,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="city != null" >
         #{city,jdbcType=VARCHAR},
       </if>

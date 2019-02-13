@@ -26,8 +26,12 @@ public class EntrustController {
         return entrustService.createEntrust(entrustInfoDomain);
     }
 
+    /**
+     * 个人房源列表
+     */
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoList(EntrustConditionVo entrustConditionVo){
         //TODO 有问题条件没有判断清楚
         return entrustService.findEntrustInfoList(entrustConditionVo);
     }
+
 }
