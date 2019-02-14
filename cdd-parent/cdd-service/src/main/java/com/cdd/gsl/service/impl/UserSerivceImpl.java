@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -319,7 +320,9 @@ public class UserSerivceImpl implements UserService {
         List<CommonDictDomain> commonDictDomainList = new ArrayList<>();
         CommonDictDomainExample commonDictDomainExample = new CommonDictDomainExample();
         if(!Strings.isNullOrEmpty(dictName)){
-            commonDictDomainExample.createCriteria().andDictNameEqualTo(dictName);
+            String[] dictArr = dictName.split(",");
+            List<String> dictList = Arrays.asList(dictArr);
+            commonDictDomainExample.createCriteria().andDictNameIn(dictList);
         }
         commonDictDomainList = commonDictDomainMapper.selectByExample(commonDictDomainExample);
         return commonDictDomainList;

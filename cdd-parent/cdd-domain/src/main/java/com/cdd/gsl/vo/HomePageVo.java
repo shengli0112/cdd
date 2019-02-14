@@ -1,6 +1,5 @@
 package com.cdd.gsl.vo;
 
-import com.cdd.gsl.domain.EnterpriseInfoDomain;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class HomePageVo {
     private List<ParkInfoVo> parkInfoVos;
 
     //企业圈
-    private List<EnterpriseInfoDomain> enterpriseInfoDomains;
+    private List<EnterpriseInfoVo> enterpriseInfoDomains;
 
     public int getHouseCount() {
         return houseCount;
@@ -50,11 +49,11 @@ public class HomePageVo {
         this.parkInfoVos = parkInfoVos;
     }
 
-    public List<EnterpriseInfoDomain> getEnterpriseInfoDomains() {
+    public List<EnterpriseInfoVo> getEnterpriseInfoDomains() {
         return enterpriseInfoDomains;
     }
 
-    public void setEnterpriseInfoDomains(List<EnterpriseInfoDomain> enterpriseInfoDomains) {
+    public void setEnterpriseInfoDomains(List<EnterpriseInfoVo> enterpriseInfoDomains) {
         this.enterpriseInfoDomains = enterpriseInfoDomains;
     }
 }
