@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface HouseInfoDao {
     @Select("select id as id, title as title, city as city, " +
-            "country as country, street as street, area as area,house_number as houseNumber, concat(selling_price,'万元') as sellingPrice,concat(electricity,'KV') as electricity," +
+            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,'万元') as sellingPrice,concat(electricity,'KV') as electricity," +
             "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
@@ -21,7 +21,7 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select id as id, title as title, city as city, " +
-            "country as country, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
+            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
@@ -60,7 +60,7 @@ public interface HouseInfoDao {
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     @Select("select id as id, title as title, city as city, " +
-            "country as country, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
+            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as floor, " +

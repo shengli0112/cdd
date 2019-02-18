@@ -10,7 +10,7 @@ public class HouseInfoDetailVo {
 
     private String city;
 
-    private String country;
+    private String county;
 
     private String street;
 
@@ -64,12 +64,12 @@ public class HouseInfoDetailVo {
         this.city = city == null ? null : city.trim();
     }
 
-    public String getCountry() {
-        return country;
+    public String getCounty() {
+        return county;
     }
 
-    public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     public String getStreet() {
