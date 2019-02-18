@@ -34,7 +34,7 @@ public class HouseConditionVo {
     private Integer priceOrder;
 
     //第几页
-    private Integer pageNo;
+    private Integer pageNo=1;
 
     //每页多少条记录
     private Integer pageSize = 10;
