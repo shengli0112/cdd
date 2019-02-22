@@ -71,21 +71,6 @@
     </filter-mapping>
 
 
-    <!--sso单点登录 start-->
-
-    <listener>
-        <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
-    </listener>
-
-    <!-- 单点登出 -->
-
-
-    <!--用户认证过滤器-->
-
-
-    <!-- Ticket的校验过滤器 -->
-
-
 
 
     <!--sso单点登录 end-->

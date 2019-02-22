@@ -5,6 +5,8 @@ public class CddConstant {
 
     public static final int RESULT_FAILD_CODE = 0;
 
+    public static final int RESULT_CHANGE_DEVICE_CODE = 2;
+
     //普通经纪人
     public static final int COMMON_BROKER_TYPE = 1;
 

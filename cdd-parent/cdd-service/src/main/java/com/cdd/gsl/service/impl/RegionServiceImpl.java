@@ -5,6 +5,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.RegionCityInfoDomainMapper;
 import com.cdd.gsl.dao.RegionCountyInfoDao;
 import com.cdd.gsl.dao.RegionCountyInfoDomainMapper;
+import com.cdd.gsl.dao.RegionTownInfoDao;
 import com.cdd.gsl.domain.RegionCityInfoDomain;
 import com.cdd.gsl.domain.RegionCityInfoDomainExample;
 import com.cdd.gsl.service.RegionService;
@@ -25,6 +26,9 @@ public class RegionServiceImpl implements RegionService {
 
     @Autowired
     private RegionCountyInfoDao regionCountyInfoDao;
+
+    @Autowired
+    private RegionTownInfoDao regionTownInfoDao;
 
 
     @Override
@@ -48,6 +52,16 @@ public class RegionServiceImpl implements RegionService {
     public CommonResult<List<String>> findCountyByCity(String city) {
         CommonResult<List<String>> commonResult = new CommonResult<List<String>>();
         List<String> countyList = regionCountyInfoDao.findCountyNameByCityName(city);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(countyList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findTownByCounty(String county) {
+        CommonResult<List<String>> commonResult = new CommonResult<List<String>>();
+        List<String> countyList = regionTownInfoDao.findTownNameByCountyName(county);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(countyList);

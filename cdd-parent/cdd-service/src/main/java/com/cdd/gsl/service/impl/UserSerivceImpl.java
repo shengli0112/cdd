@@ -1,24 +1,24 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.UserService;
-import com.cdd.gsl.vo.FollowInfoVo;
-import com.cdd.gsl.vo.LoginTokenVo;
-import com.cdd.gsl.vo.LoginUserVo;
-import com.cdd.gsl.vo.UserInfoVo;
+import com.cdd.gsl.vo.*;
+import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.*;
 
 @Service
 public class UserSerivceImpl implements UserService {
@@ -50,6 +50,24 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
+
+    @Autowired
+    private VerifyPhoneDomainMapper verifyPhoneDomainMapper;
+
+    @Autowired
+    private DeviceLoginDomainMapper deviceLoginDomainMapper;
+
+    @Autowired
+    private DeviceLoginDao deviceLoginDao;
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${verify.code.id}")
+    private String verifyCodeId;
 
     @Override
     public CommonResult thirdLogin(ThirdUserInfoDomain thirdUserInfoDomain) {
@@ -88,7 +106,10 @@ public class UserSerivceImpl implements UserService {
                 commonResult.setMessage("该手机号已存在");
             }else{
                 //发送手机号和验证码校验是否正确
-                if(true){
+                VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
+                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerification());
+                List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
+                if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
                     UserInfoDomain userInfoDomain = new UserInfoDomain();
                     userInfoDomain.setPhone(userInfoVo.getPhone());
                     userInfoDomain.setUsername(userInfoVo.getPhone());
@@ -141,7 +162,10 @@ public class UserSerivceImpl implements UserService {
             List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
                 //验证校验码
-                if(true){
+                VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
+                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerification());
+                List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
+                if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
                     UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
                     //缺少加密的步骤
                     String saltPassword = createPassword(userInfoVo.getPassword());
@@ -171,57 +195,85 @@ public class UserSerivceImpl implements UserService {
 
         CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
         if(loginUserVo != null){
-            UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
-            userInfoDomainExample.createCriteria().andPhoneEqualTo(loginUserVo.getPhone()).andStatusEqualTo(1);
-            List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
-            if(!Strings.isNullOrEmpty(loginUserVo.getVerfication())){
-                //验证码登录没有密码 当手机号不存在 自己注册一个账号
-                //校验验证码
-                if(true){
 
-                    if(userInfoDomainList != null && userInfoDomainList.size() > 0){
-                        //token 待定
-                        UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                        String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
-                        String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
-                        UserTicketDomain userTicketDomain = new UserTicketDomain();
-                        userTicketDomain.setUserId(userInfoDomain.getId());
-                        userTicketDomain.setToken(token);
-                        userTicketDomainMapper.insert(userTicketDomain);
-                        LoginTokenVo loginTokenVo = new LoginTokenVo();
-                        loginTokenVo.setUserId(userInfoDomain.getId());
-                        loginTokenVo.setUserType(userInfoDomain.getUserType());
-                        loginTokenVo.setToken(token);
-                        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                        commonResult.setMessage("登录成功");
-                        commonResult.setData(loginTokenVo);
-                    }else{
-                        commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                        commonResult.setMessage("登录失败，手机号不存在，请注册");
-                    }
+            //该手机号是否登录过
+            List<DeviceLoginDomain> deviceLoginDomains = deviceLoginDao.selectDeviceLoginByPhone(loginUserVo.getPhone());
+            if(CollectionUtils.isNotEmpty(deviceLoginDomains)){
+                DeviceLoginDomain deviceLoginDomain = deviceLoginDomains.get(0);
+                if(deviceLoginDomain.getDeviceId().equals(loginUserVo.getDeviceId())){
+                    commonResult = phoneLogin(loginUserVo);
+                }else{
+                    //更换设备
+                    commonResult.setFlag(CddConstant.RESULT_CHANGE_DEVICE_CODE);
+                    commonResult.setMessage("更换设备登陆，请验证手机号");
                 }
             }else{
+                DeviceLoginDomain deviceLoginDomain = new DeviceLoginDomain();
+                deviceLoginDomain.setPhone(loginUserVo.getPhone());
+                deviceLoginDomain.setDeviceId(loginUserVo.getDeviceId());
+                deviceLoginDomainMapper.insertSelective(deviceLoginDomain);
+                commonResult = phoneLogin(loginUserVo);
+            }
+
+        }
+        return commonResult;
+    }
+
+    public CommonResult<LoginTokenVo> phoneLogin(LoginUserVo loginUserVo){
+        CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
+        //是否存在该手机号
+        UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
+        userInfoDomainExample.createCriteria().andPhoneEqualTo(loginUserVo.getPhone()).andStatusEqualTo(1);
+        List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
+        if(!Strings.isNullOrEmpty(loginUserVo.getPhone())
+                && !Strings.isNullOrEmpty(loginUserVo.getVerfication())){
+            VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
+            verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(loginUserVo.getPhone()).andVerifyCodeEqualTo(loginUserVo.getVerfication());
+            List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
+            if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
+
                 if(userInfoDomainList != null && userInfoDomainList.size() > 0){
+                    //token 待定
                     UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                    String dataPassword = BCrypt.hashpw(loginUserVo.getPassword(),userInfoDomain.getSalt());
-                    if(dataPassword.equals(userInfoDomain.getPassword())){
-                        String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
-                        String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
-                        LoginTokenVo loginTokenVo = new LoginTokenVo();
-                        loginTokenVo.setUserId(userInfoDomain.getId());
-                        loginTokenVo.setUserType(userInfoDomain.getUserType());
-                        loginTokenVo.setToken(token);
-                        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                        commonResult.setMessage("登录成功");
-                        commonResult.setData(loginTokenVo);
-                    }else{
-                        commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                        commonResult.setMessage("账号或密码不正确");
-                    }
+                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    UserTicketDomain userTicketDomain = new UserTicketDomain();
+                    userTicketDomain.setUserId(userInfoDomain.getId());
+                    userTicketDomain.setToken(token);
+                    userTicketDomainMapper.insert(userTicketDomain);
+                    LoginTokenVo loginTokenVo = new LoginTokenVo();
+                    loginTokenVo.setUserId(userInfoDomain.getId());
+                    loginTokenVo.setUserType(userInfoDomain.getUserType());
+                    loginTokenVo.setToken(token);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("登录成功");
+                    commonResult.setData(loginTokenVo);
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("登录失败，手机号不存在，请注册");
                 }
+            }
+        }else{
+            if(userInfoDomainList != null && userInfoDomainList.size() > 0){
+                UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
+                String dataPassword = BCrypt.hashpw(loginUserVo.getPassword(),userInfoDomain.getSalt());
+                if(dataPassword.equals(userInfoDomain.getPassword())){
+                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    LoginTokenVo loginTokenVo = new LoginTokenVo();
+                    loginTokenVo.setUserId(userInfoDomain.getId());
+                    loginTokenVo.setUserType(userInfoDomain.getUserType());
+                    loginTokenVo.setToken(token);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("登录成功");
+                    commonResult.setData(loginTokenVo);
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("账号或密码不正确");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("登录失败，手机号不存在，请注册");
             }
         }
         return commonResult;
@@ -383,6 +435,78 @@ public class UserSerivceImpl implements UserService {
         }else{
             commonResult.setFlag(0);
             commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult<String> verifyCode(String phone) {
+        CommonResult commonResult = new CommonResult();
+        if(!Strings.isNullOrEmpty(phone) &&
+                !Strings.isNullOrEmpty(verifyCodeUrl) &&
+                !Strings.isNullOrEmpty(verifyCodeKey)){
+            String verifyCode = String
+                    .valueOf(new Random().nextInt(899999) + 100000);//生成短信验证码
+            String tplValue = null;
+            try {
+                tplValue = URLEncoder.encode("#code#="+verifyCode+"&#m#=5","UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                    .append("?mobile=").append(phone).append("&tpl_id=").append(verifyCodeId)
+                    .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+            String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+            if(!Strings.isNullOrEmpty(response)){
+                JSONObject res = JSONObject.parseObject(response);
+                Integer flag = res.getInteger("error_code");
+                if(flag == 0){
+                    //TODO 把对应的手机号和验证码存入库中
+                    VerifyPhoneDomain verifyPhoneDomain = new VerifyPhoneDomain();
+                    verifyPhoneDomain.setPhone(phone);
+                    verifyPhoneDomain.setVerifyCode(verifyCode);
+                    verifyPhoneDomainMapper.insertSelective(verifyPhoneDomain);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("验证码发送成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("验证码发送失败");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("验证码发送失败");
+            }
+
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数异常");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult changeDevice(ChangeDeviceVo changeDeviceVo) {
+        CommonResult commonResult = new CommonResult();
+        if(changeDeviceVo != null){
+            if(changeDeviceVo.getPhone().equals(changeDeviceVo.getLoginPhone())){
+                VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
+                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(changeDeviceVo.getPhone()).andVerifyCodeEqualTo(changeDeviceVo.getVerfication());
+                List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
+                if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
+                    DeviceLoginDomain deviceLoginDomain = new DeviceLoginDomain();
+                    deviceLoginDomain.setPhone(changeDeviceVo.getPhone());
+                    deviceLoginDomain.setDeviceId(changeDeviceVo.getDeviceId());
+                    deviceLoginDomainMapper.insertSelective(deviceLoginDomain);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("验证成功请登录");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("验证码不正确");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("登录手机号和验证手机号必须相同");
+            }
         }
         return commonResult;
     }

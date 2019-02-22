@@ -7,6 +7,8 @@ public class LoginUserVo {
 
     private String verfication;//验证码
 
+    private String deviceId; //设备唯一标识
+
     public String getPhone() {
         return phone;
     }
@@ -29,5 +31,13 @@ public class LoginUserVo {
 
     public void setVerfication(String verfication) {
         this.verfication = verfication;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

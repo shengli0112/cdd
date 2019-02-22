@@ -25,6 +25,12 @@ public class RegionController {
         return commonResult;
     }
 
+    @RequestMapping("findTownByCounty")
+    public CommonResult<List<String>> findTownByCounty(String county){
+        CommonResult<List<String>> commonResult = regionService.findTownByCounty(county);
+        return commonResult;
+    }
+
     @RequestMapping("findAllCity")
     public CommonResult<List<String>> findAllCity(){
         CommonResult<List<String>> commonResult = regionService.findAllCity();

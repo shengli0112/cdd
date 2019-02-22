@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,8 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+
+
     @RequestMapping("register")
     public CommonResult register(@RequestBody UserInfoVo userParamVo){
         CommonResult commonResult = userService.register(userParamVo);
@@ -48,7 +51,7 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo){
+    public CommonResult<LoginTokenVo> login(@RequestBody LoginUserVo loginUserVo){
         CommonResult<LoginTokenVo> commonResult = userService.login(loginUserVo);
         return commonResult;
 
@@ -275,7 +278,21 @@ public class UserController {
         return userService.agreeBroker(brokerId);
     }
 
+    /**
+     * 获取短信验证码
+     */
+    @RequestMapping("verifyCode")
+    public CommonResult<String> verifyCode(String phone){
+        return userService.verifyCode(phone);
+    }
 
+    /**
+     * 更换设备登陆验证
+     */
+    @RequestMapping("changeDevice")
+    public CommonResult changeDevice(ChangeDeviceVo changeDeviceVo){
+        return userService.changeDevice(changeDeviceVo);
+    }
 
     /**
      * 首页

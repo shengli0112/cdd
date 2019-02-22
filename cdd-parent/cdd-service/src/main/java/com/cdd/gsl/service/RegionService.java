@@ -9,4 +9,6 @@ public interface RegionService {
     public CommonResult<List<String>> findAllCity();
 
     public CommonResult findCountyByCity(String city);
+
+    public CommonResult findTownByCounty(String county);
 }

@@ -5,10 +5,7 @@ import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
 import com.cdd.gsl.domain.CommonDictDomain;
 import com.cdd.gsl.domain.FollowInfoDomain;
 import com.cdd.gsl.domain.ThirdUserInfoDomain;
-import com.cdd.gsl.vo.FollowInfoVo;
-import com.cdd.gsl.vo.LoginTokenVo;
-import com.cdd.gsl.vo.LoginUserVo;
-import com.cdd.gsl.vo.UserInfoVo;
+import com.cdd.gsl.vo.*;
 
 import java.util.List;
 
@@ -38,4 +35,8 @@ public interface UserService {
     CommonResult findBroker(Long userId);
 
     CommonResult agreeBroker(Long brokerId);
+
+    CommonResult<String> verifyCode(String phone);
+
+    CommonResult changeDevice(ChangeDeviceVo changeDeviceVo);
 }
