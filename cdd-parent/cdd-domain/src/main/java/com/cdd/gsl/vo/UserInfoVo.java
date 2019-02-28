@@ -3,7 +3,7 @@ package com.cdd.gsl.vo;
 public class UserInfoVo {
     private String phone;
 
-    private String verification;
+    private String verfication;
 
     private String password;
 
@@ -15,12 +15,12 @@ public class UserInfoVo {
         this.phone = phone;
     }
 
-    public String getVerification() {
-        return verification;
+    public String getVerfication() {
+        return verfication;
     }
 
-    public void setVerification(String verification) {
-        this.verification = verification;
+    public void setVerfication(String verfication) {
+        this.verfication = verfication;
     }
 
     public String getPassword() {

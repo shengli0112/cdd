@@ -107,7 +107,7 @@ public class UserSerivceImpl implements UserService {
             }else{
                 //发送手机号和验证码校验是否正确
                 VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
-                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerification());
+                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerfication());
                 List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
                 if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
                     UserInfoDomain userInfoDomain = new UserInfoDomain();
@@ -163,7 +163,7 @@ public class UserSerivceImpl implements UserService {
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
                 //验证校验码
                 VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
-                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerification());
+                verifyPhoneDomainExample.createCriteria().andPhoneEqualTo(userInfoVo.getPhone()).andVerifyCodeEqualTo(userInfoVo.getVerfication());
                 List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
                 if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
                     UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
