@@ -101,7 +101,7 @@ public class UserController {
     }
 
     @RequestMapping("forgetPassword")
-    public CommonResult forgetPassword(UserInfoVo forgetPasswordVo){
+    public CommonResult forgetPassword(@RequestBody UserInfoVo forgetPasswordVo){
         CommonResult result = userService.forgetPassword(forgetPasswordVo);
         return result;
     }
