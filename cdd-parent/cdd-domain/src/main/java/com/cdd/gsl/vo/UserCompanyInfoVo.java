@@ -6,7 +6,7 @@ public class UserCompanyInfoVo {
 
     private String phone;
 
-    //用户类型 1 个人 2 经纪人
+    //用户类型 1 个人 2 经纪人 3 经纪人主管
     private Integer userType;
 
     //头像

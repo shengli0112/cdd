@@ -290,6 +290,10 @@ public class UserSerivceImpl implements UserService {
                 companyUserMappingDomain.setAgree(1);
                 companyUserMappingDomain.setUpdateTs(new Date());
                 companyUserMappingDomainMapper.updateByPrimaryKeySelective(companyUserMappingDomain);
+                UserInfoDomain userInfoDomain = new UserInfoDomain();
+                userInfoDomain.setId(userId);
+                userInfoDomain.setUserType(2);
+                userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("同意加入该公司");
             }else{

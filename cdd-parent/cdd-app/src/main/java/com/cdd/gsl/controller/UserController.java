@@ -258,7 +258,7 @@ public class UserController {
      * 认证经纪人
      */
     @RequestMapping("authenticationBroker")
-    public CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain){
+    public CommonResult authenticationBroker(@RequestBody ApplyBrokerInfoDomain applyBrokerInfoDomain){
         return userService.authenticationBroker(applyBrokerInfoDomain);
     }
 
