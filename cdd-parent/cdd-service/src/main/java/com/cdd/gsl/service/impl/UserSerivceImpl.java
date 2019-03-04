@@ -392,7 +392,7 @@ public class UserSerivceImpl implements UserService {
             ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
             applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(applyBrokerInfoVo.getUserId());
             List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
-            if(applyBrokerInfoDomains != null){
+            if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("该用户已申请");
             }else{
