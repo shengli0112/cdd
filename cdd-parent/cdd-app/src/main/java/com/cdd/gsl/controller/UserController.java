@@ -100,6 +100,12 @@ public class UserController {
         return result;
     }
 
+    @RequestMapping("findUserInfo")
+    public CommonResult<SingleUserInfoVo> findUserInfo(Long userId){
+        CommonResult<SingleUserInfoVo> result = userService.findUserInfo(userId);
+        return result;
+    }
+
     @RequestMapping("forgetPassword")
     public CommonResult forgetPassword(@RequestBody UserInfoVo forgetPasswordVo){
         CommonResult result = userService.forgetPassword(forgetPasswordVo);
@@ -258,8 +264,13 @@ public class UserController {
      * 认证经纪人
      */
     @RequestMapping("authenticationBroker")
-    public CommonResult authenticationBroker(@RequestBody ApplyBrokerInfoDomain applyBrokerInfoDomain){
+    public CommonResult authenticationBroker(@RequestBody ApplyBrokerInfoVo applyBrokerInfoDomain){
         return userService.authenticationBroker(applyBrokerInfoDomain);
+    }
+
+    @RequestMapping("findApplyBroker")
+    public CommonResult findApplyBroker(Long userId){
+        return userService.findApplyBroker(userId);
     }
 
     /**

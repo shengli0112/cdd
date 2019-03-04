@@ -1,8 +1,10 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.UserInfoDomain;
+import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 
 public interface UserInfoDao {
     @Insert("insert into t_user_info\n" +
@@ -78,4 +80,8 @@ public interface UserInfoDao {
             "    </trim>")
     @Options(useGeneratedKeys = true,keyProperty = "id" ,keyColumn = "id")
     void insertUserInfo(UserInfoDomain userInfoDomain);
+
+    @Select("select id as userId,username as username,phone as phone,portrait as portrait " +
+            "from t_user_info where id=#{userId} and status=1")
+    SingleUserInfoVo findUserInfoById(Long userId);
 }

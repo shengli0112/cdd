@@ -30,7 +30,7 @@ public interface UserService {
 
     List<CommonDictDomain> findDictInfo(String dictName);
 
-    CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain);
+    CommonResult authenticationBroker(ApplyBrokerInfoVo applyBrokerInfoDomain);
 
     CommonResult findBroker(Long userId);
 
@@ -39,4 +39,9 @@ public interface UserService {
     CommonResult<String> verifyCode(String phone);
 
     CommonResult changeDevice(ChangeDeviceVo changeDeviceVo);
+
+    CommonResult<SingleUserInfoVo> findUserInfo(Long userId);
+
+    CommonResult findApplyBroker(Long userId);
+
 }

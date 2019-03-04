@@ -10,6 +10,7 @@ import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -385,12 +386,34 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult authenticationBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+    public CommonResult authenticationBroker(ApplyBrokerInfoVo applyBrokerInfoVo) {
         CommonResult commonResult = new CommonResult();
-        if(applyBrokerInfoDomain != null){
-            applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("申请经纪人成功");
+        if(applyBrokerInfoVo != null){
+            ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(applyBrokerInfoVo.getUserId());
+            List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            if(applyBrokerInfoDomains != null){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("该用户已申请");
+            }else{
+                VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
+                verifyPhoneDomainExample.createCriteria()
+                        .andPhoneEqualTo(applyBrokerInfoVo.getPhone())
+                        .andVerifyCodeEqualTo(applyBrokerInfoVo.getVerfication());
+                List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
+                if(verifyPhoneDomains != null){
+                    ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
+                    BeanUtils.copyProperties(applyBrokerInfoVo,applyBrokerInfoDomain);
+                    applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("申请经纪人成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("验证失败");
+                }
+
+            }
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
@@ -512,6 +535,43 @@ public class UserSerivceImpl implements UserService {
                 commonResult.setMessage("登录手机号和验证手机号必须相同");
             }
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult<SingleUserInfoVo> findUserInfo(Long userId) {
+        CommonResult<SingleUserInfoVo> commonResult = new CommonResult<>();
+        if(userId != null){
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(singleUserInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findApplyBroker(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId);
+            List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("申请已存在");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("该用户未申请");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
         return commonResult;
     }
 
