@@ -401,7 +401,7 @@ public class UserSerivceImpl implements UserService {
                         .andPhoneEqualTo(applyBrokerInfoVo.getPhone())
                         .andVerifyCodeEqualTo(applyBrokerInfoVo.getVerfication());
                 List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
-                if(verifyPhoneDomains != null){
+                if(verifyPhoneDomains != null && verifyPhoneDomains.size() > 0){
                     ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
                     BeanUtils.copyProperties(applyBrokerInfoVo,applyBrokerInfoDomain);
                     applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
