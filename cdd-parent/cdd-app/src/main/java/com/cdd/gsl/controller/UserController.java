@@ -70,6 +70,10 @@ public class UserController {
         return commonResult;
     }
 
+    public CommonResult updateUser(@RequestBody UserParamVo userParamVo){
+        return userService.updateUser(userParamVo);
+    }
+
     /**
      * 创建公司
      * @param companyVo

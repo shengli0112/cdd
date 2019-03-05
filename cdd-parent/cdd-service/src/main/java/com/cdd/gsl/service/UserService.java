@@ -46,4 +46,6 @@ public interface UserService {
 
     CommonResult companyTeam(Long userId,Integer userType);
 
+    CommonResult updateUser(UserParamVo userParamVo);
+
 }

@@ -586,6 +586,24 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult updateUser(UserParamVo userParamVo) {
+        CommonResult commonResult = new CommonResult();
+        if(userParamVo != null && userParamVo.getUserId() != null){
+            UserInfoDomain userInfoDomain = new UserInfoDomain();
+            userInfoDomain.setId(userParamVo.getUserId());
+            userInfoDomain.setUsername(userParamVo.getUsername());
+            userInfoDomain.setPortrait(userParamVo.getPortrait());
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("修改成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不正确");
+        }
+        return commonResult;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);
