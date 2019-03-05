@@ -390,7 +390,8 @@ public class UserSerivceImpl implements UserService {
         CommonResult commonResult = new CommonResult();
         if(applyBrokerInfoVo != null){
             ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
-            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(applyBrokerInfoVo.getUserId());
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(applyBrokerInfoVo.getUserId())
+                            .andApplyTypeNotEqualTo(3);
             List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
             if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
@@ -558,7 +559,7 @@ public class UserSerivceImpl implements UserService {
         CommonResult commonResult = new CommonResult();
         if(userId != null){
             ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
-            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId);
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andApplyTypeNotEqualTo(3);
             List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
             if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
@@ -572,6 +573,30 @@ public class UserSerivceImpl implements UserService {
             commonResult.setMessage("参数不能为空");
         }
 
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult companyTeam(Long userId,Integer userType) {
+        CommonResult commonResult = new CommonResult();
+        List<SingleUserBrokerVo> singleUserBrokerVos = userInfoDao.findUserBrokerByUserId(userId,userType);
+        List<SingleUserInfoVo> singleUserInfoVos = new ArrayList<>();
+        if(userType == 2){
+            //经纪人
+            if(singleUserBrokerVos != null && singleUserBrokerVos.size() > 0){
+                for(SingleUserBrokerVo singleUserBrokerVo:singleUserBrokerVos){
+                    SingleUserInfoVo singleUserInfoVo = new SingleUserInfoVo();
+                    BeanUtils.copyProperties(singleUserBrokerVo,singleUserInfoVo);
+                    singleUserInfoVos.add(singleUserInfoVo);
+                }
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(singleUserInfoVos);
+        }
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(singleUserBrokerVos);
         return commonResult;
     }
 

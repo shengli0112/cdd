@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -92,6 +93,14 @@ public class UserController {
         logger.info("UserController inviteUserToCompany companyId -{}，userId - {}",companyId,userId);
         CommonResult result = companyService.inviteUserToCompany(companyId,userId);
         return result;
+    }
+
+    /**
+     * 公司团队
+     */
+    @RequestMapping("companyTeam")
+    public CommonResult companyTeam(@RequestParam("userId") Long userId,@RequestParam("userType") Integer userType){
+        return userService.companyTeam(userId,userType);
     }
 
     @RequestMapping("findUserByPhone")

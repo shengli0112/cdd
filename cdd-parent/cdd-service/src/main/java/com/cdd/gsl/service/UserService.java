@@ -44,4 +44,6 @@ public interface UserService {
 
     CommonResult findApplyBroker(Long userId);
 
+    CommonResult companyTeam(Long userId,Integer userType);
+
 }
