@@ -580,20 +580,6 @@ public class UserSerivceImpl implements UserService {
     public CommonResult companyTeam(Long userId,Integer userType) {
         CommonResult commonResult = new CommonResult();
         List<SingleUserBrokerVo> singleUserBrokerVos = userInfoDao.findUserBrokerByUserId(userId,userType);
-        List<SingleUserInfoVo> singleUserInfoVos = new ArrayList<>();
-        if(userType == 2){
-            //经纪人
-            if(singleUserBrokerVos != null && singleUserBrokerVos.size() > 0){
-                for(SingleUserBrokerVo singleUserBrokerVo:singleUserBrokerVos){
-                    SingleUserInfoVo singleUserInfoVo = new SingleUserInfoVo();
-                    BeanUtils.copyProperties(singleUserBrokerVo,singleUserInfoVo);
-                    singleUserInfoVos.add(singleUserInfoVo);
-                }
-            }
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("查询成功");
-            commonResult.setData(singleUserInfoVos);
-        }
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(singleUserBrokerVos);

@@ -12,6 +12,8 @@ public class SingleUserBrokerVo {
 
     private Integer applyType;
 
+    private Long applyBrokerId;
+
     public Long getUserId() {
         return userId;
     }
@@ -50,5 +52,13 @@ public class SingleUserBrokerVo {
 
     public void setApplyType(Integer applyType) {
         this.applyType = applyType;
+    }
+
+    public Long getApplyBrokerId() {
+        return applyBrokerId;
+    }
+
+    public void setApplyBrokerId(Long applyBrokerId) {
+        this.applyBrokerId = applyBrokerId;
     }
 }

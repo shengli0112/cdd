@@ -87,7 +87,8 @@ public interface UserInfoDao {
     @Select("select id as userId,username as username,phone as phone,portrait as portrait " +
             "from t_user_info where id=#{userId} and status=1")
     SingleUserInfoVo findUserInfoById(Long userId);
-    @Select("<script>select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait,b.apply_type as applyType" +
+    @Select("<script>select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait," +
+            "b.apply_type as applyType,b.id as applyBrokerId" +
             " from t_user_info u left join t_apply_broker_info b on u.id=b.user_id where b.companyName=" +
             "(select company_name from t_apply_broker_info where apply_type=2 and user_id=#{userId})" +
             "<if test=\"userType == 2\">" +
