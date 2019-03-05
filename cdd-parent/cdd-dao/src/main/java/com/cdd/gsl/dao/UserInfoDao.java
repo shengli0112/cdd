@@ -5,6 +5,7 @@ import com.cdd.gsl.vo.SingleUserBrokerVo;
 import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -95,5 +96,5 @@ public interface UserInfoDao {
             " and b.apply_type=2" +
             "</if>" +
             "</script>")
-    List<SingleUserBrokerVo> findUserBrokerByUserId(Long userId,Integer userType);
+    List<SingleUserBrokerVo> findUserBrokerByUserId(@Param("userId") Long userId, @Param("userType") Integer userType);
 }
