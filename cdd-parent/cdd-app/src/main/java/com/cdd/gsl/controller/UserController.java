@@ -70,6 +70,7 @@ public class UserController {
         return commonResult;
     }
 
+    @RequestMapping("updateUser")
     public CommonResult updateUser(@RequestBody UserParamVo userParamVo){
         return userService.updateUser(userParamVo);
     }
