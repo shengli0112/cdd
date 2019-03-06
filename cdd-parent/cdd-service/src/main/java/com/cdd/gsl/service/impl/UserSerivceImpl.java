@@ -458,6 +458,11 @@ public class UserSerivceImpl implements UserService {
             applyBrokerInfoDomain.setId(brokerId);
             applyBrokerInfoDomain.setApplyType(2);
             applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
+            ApplyBrokerInfoDomain applyBroker = applyBrokerInfoDomainMapper.selectByPrimaryKey(brokerId);
+            UserInfoDomain userInfoDomain = new UserInfoDomain();
+            userInfoDomain.setId(applyBroker.getUserId());
+            userInfoDomain.setUserType(2);
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(1);
             commonResult.setMessage("加入成功");
         }else{
