@@ -457,7 +457,7 @@ public class UserSerivceImpl implements UserService {
             ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
             applyBrokerInfoDomain.setId(brokerId);
             applyBrokerInfoDomain.setApplyType(2);
-            applyBrokerInfoDomainMapper.updateByPrimaryKey(applyBrokerInfoDomain);
+            applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
             commonResult.setFlag(1);
             commonResult.setMessage("加入成功");
         }else{
