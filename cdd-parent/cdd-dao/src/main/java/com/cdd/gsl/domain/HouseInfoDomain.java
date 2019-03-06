@@ -43,11 +43,19 @@ public class HouseInfoDomain {
 
     private Integer houseStatus;
 
-    private Integer coverArea;
+    private String coverArea;
 
     private String houseEdge;
 
     private Long userId;
+
+    private Integer singlePrice;
+
+    private String priceType;
+
+    private String areaType;
+
+    private String useArea;
 
     public Long getId() {
         return id;
@@ -209,12 +217,12 @@ public class HouseInfoDomain {
         this.houseStatus = houseStatus;
     }
 
-    public Integer getCoverArea() {
+    public String getCoverArea() {
         return coverArea;
     }
 
-    public void setCoverArea(Integer coverArea) {
-        this.coverArea = coverArea;
+    public void setCoverArea(String coverArea) {
+        this.coverArea = coverArea == null ? null : coverArea.trim();
     }
 
     public String getHouseEdge() {
@@ -231,5 +239,37 @@ public class HouseInfoDomain {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getSinglePrice() {
+        return singlePrice;
+    }
+
+    public void setSinglePrice(Integer singlePrice) {
+        this.singlePrice = singlePrice;
+    }
+
+    public String getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType == null ? null : priceType.trim();
+    }
+
+    public String getAreaType() {
+        return areaType;
+    }
+
+    public void setAreaType(String areaType) {
+        this.areaType = areaType == null ? null : areaType.trim();
+    }
+
+    public String getUseArea() {
+        return useArea;
+    }
+
+    public void setUseArea(String useArea) {
+        this.useArea = useArea == null ? null : useArea.trim();
     }
 }

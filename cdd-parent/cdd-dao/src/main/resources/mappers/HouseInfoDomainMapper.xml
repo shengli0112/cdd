@@ -22,9 +22,13 @@
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
     <result column="background" property="background" jdbcType="VARCHAR" />
     <result column="house_status" property="houseStatus" jdbcType="INTEGER" />
-    <result column="cover_area" property="coverArea" jdbcType="INTEGER" />
+    <result column="cover_area" property="coverArea" jdbcType="VARCHAR" />
     <result column="house_edge" property="houseEdge" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="single_price" property="singlePrice" jdbcType="INTEGER" />
+    <result column="price_type" property="priceType" jdbcType="VARCHAR" />
+    <result column="area_type" property="areaType" jdbcType="VARCHAR" />
+    <result column="use_area" property="useArea" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -87,7 +91,8 @@
   <sql id="Base_Column_List" >
     id, title, city, county, street, house_number, area, selling_price, electricity, 
     house_type, house_use_type, floor, fire_control, contacts, phone, status, create_ts, 
-    update_ts, background, house_status, cover_area, house_edge, user_id
+    update_ts, background, house_status, cover_area, house_edge, user_id, single_price, 
+    price_type, area_type, use_area
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
     select
@@ -127,15 +132,19 @@
       fire_control, contacts, phone, 
       status, create_ts, update_ts, 
       background, house_status, cover_area, 
-      house_edge, user_id)
+      house_edge, user_id, single_price, 
+      price_type, area_type, use_area
+      )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
       #{houseType,jdbcType=INTEGER}, #{houseUseType,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER}, 
       #{fireControl,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
-      #{background,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=INTEGER}, 
-      #{houseEdge,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT})
+      #{background,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=VARCHAR}, 
+      #{houseEdge,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=INTEGER}, 
+      #{priceType,jdbcType=VARCHAR}, #{areaType,jdbcType=VARCHAR}, #{useArea,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -209,6 +218,18 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="singlePrice != null" >
+        single_price,
+      </if>
+      <if test="priceType != null" >
+        price_type,
+      </if>
+      <if test="areaType != null" >
+        area_type,
+      </if>
+      <if test="useArea != null" >
+        use_area,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -272,13 +293,25 @@
         #{houseStatus,jdbcType=INTEGER},
       </if>
       <if test="coverArea != null" >
-        #{coverArea,jdbcType=INTEGER},
+        #{coverArea,jdbcType=VARCHAR},
       </if>
       <if test="houseEdge != null" >
         #{houseEdge,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="singlePrice != null" >
+        #{singlePrice,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaType != null" >
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="useArea != null" >
+        #{useArea,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -352,13 +385,25 @@
         house_status = #{record.houseStatus,jdbcType=INTEGER},
       </if>
       <if test="record.coverArea != null" >
-        cover_area = #{record.coverArea,jdbcType=INTEGER},
+        cover_area = #{record.coverArea,jdbcType=VARCHAR},
       </if>
       <if test="record.houseEdge != null" >
         house_edge = #{record.houseEdge,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.singlePrice != null" >
+        single_price = #{record.singlePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceType != null" >
+        price_type = #{record.priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaType != null" >
+        area_type = #{record.areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useArea != null" >
+        use_area = #{record.useArea,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -387,9 +432,13 @@
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       background = #{record.background,jdbcType=VARCHAR},
       house_status = #{record.houseStatus,jdbcType=INTEGER},
-      cover_area = #{record.coverArea,jdbcType=INTEGER},
+      cover_area = #{record.coverArea,jdbcType=VARCHAR},
       house_edge = #{record.houseEdge,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=BIGINT}
+      user_id = #{record.userId,jdbcType=BIGINT},
+      single_price = #{record.singlePrice,jdbcType=INTEGER},
+      price_type = #{record.priceType,jdbcType=VARCHAR},
+      area_type = #{record.areaType,jdbcType=VARCHAR},
+      use_area = #{record.useArea,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -455,13 +504,25 @@
         house_status = #{houseStatus,jdbcType=INTEGER},
       </if>
       <if test="coverArea != null" >
-        cover_area = #{coverArea,jdbcType=INTEGER},
+        cover_area = #{coverArea,jdbcType=VARCHAR},
       </if>
       <if test="houseEdge != null" >
         house_edge = #{houseEdge,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="singlePrice != null" >
+        single_price = #{singlePrice,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        price_type = #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="areaType != null" >
+        area_type = #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="useArea != null" >
+        use_area = #{useArea,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -487,9 +548,13 @@
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
       background = #{background,jdbcType=VARCHAR},
       house_status = #{houseStatus,jdbcType=INTEGER},
-      cover_area = #{coverArea,jdbcType=INTEGER},
+      cover_area = #{coverArea,jdbcType=VARCHAR},
       house_edge = #{houseEdge,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT}
+      user_id = #{userId,jdbcType=BIGINT},
+      single_price = #{singlePrice,jdbcType=INTEGER},
+      price_type = #{priceType,jdbcType=VARCHAR},
+      area_type = #{areaType,jdbcType=VARCHAR},
+      use_area = #{useArea,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
