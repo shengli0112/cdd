@@ -72,9 +72,9 @@ public interface HouseInfoDao {
             "</if><if test=\"county != null\">" +
             " and county=#{county}"+
             "</if><if test=\"houseType != null\">"+
-            " and houseType=#{houseType}"+
+            " and house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+
-            " and houseUseType=#{houseUseType}"+
+            " and house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and floor=#{floor}"+
             "</if><if test=\"areaFrom != null\">"+
