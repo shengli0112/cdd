@@ -9,7 +9,9 @@ import com.cdd.gsl.vo.HouseInfoDomainVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class HouseController {
     private Logger logger = LoggerFactory.getLogger(HouseController.class);
 
     @RequestMapping("addHouse")
-    public CommonResult addHouse(HouseInfoDomain houseInfoDomain){
+    public CommonResult addHouse(@RequestBody HouseInfoDomain houseInfoDomain){
         CommonResult commonResult = new CommonResult();
         if(houseInfoDomain != null){
             houseService.addHouse(houseInfoDomain);
@@ -42,7 +44,7 @@ public class HouseController {
     }
 
     @RequestMapping("updateHouse")
-    public CommonResult updateHouse(HouseInfoDomain houseInfoDomain){
+    public CommonResult updateHouse(@RequestBody HouseInfoDomain houseInfoDomain){
         CommonResult commonResult = new CommonResult();
         if(houseInfoDomain != null){
             houseService.updateHouse(houseInfoDomain);
