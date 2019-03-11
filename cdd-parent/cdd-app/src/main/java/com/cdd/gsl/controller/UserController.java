@@ -8,6 +8,7 @@ import com.cdd.gsl.service.*;
 import com.cdd.gsl.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -40,6 +42,10 @@ public class UserController {
 
     @Autowired
     private RecordInfoService recordInfoService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -325,6 +331,48 @@ public class UserController {
     @RequestMapping("homePage")
     public CommonResult homePage(){
         return null;
+    }
+
+    @RequestMapping("testMq")
+    public void testMq(){
+        HashMap<String, String> map = new HashMap<String, String>();
+        List<HashMap<String, String>> mapList = new ArrayList<>();
+        map.put("userAccount", "");
+        map.put("siteId", "123456700");
+        map.put("siteName", "ssdd");
+        map.put("siteMd5", "qw234");
+        map.put("source", "ddddd");
+        map.put("provinceId", "12");
+        map.put("provinceName", "山东");
+        map.put("cityId", "112");
+        map.put("cityName", "济南");
+        map.put("projectCode", "12");
+        map.put("projectName", "aa");
+        map.put("websiteCode", "12");
+        map.put("websiteName", "www.baidu.com");
+        map.put("advertiserCode", "12");
+        map.put("advertiserName", "今日头条");
+        map.put("promoteTypeCode", "12");
+        map.put("promoteTypeName", "大灯多");
+        map.put("deviceCode", "12");
+        map.put("deviceName", "ios");
+        map.put("flowCenterCode", "12");
+        map.put("flowCenterName", "12");
+        map.put("flowCorpCode", "12");
+        map.put("flowCorpName", "12");
+        map.put("callCorpCode", "12");
+        map.put("callCorpName", "12");
+        map.put("pmAccount", "12");
+        map.put("respAccount", "12");
+        map.put("cardTypeCode", "12");
+        map.put("cardTypeName", "12");
+        map.put("virtualGroupCode", "");
+        map.put("virtualGroupName", "");
+        map.put("comments", "12");
+        mapList.add(map);
+        //根据key发送到对应的队列
+        rabbitTemplate.convertAndSend("que_cat_key", mapList);
+
     }
 
 }

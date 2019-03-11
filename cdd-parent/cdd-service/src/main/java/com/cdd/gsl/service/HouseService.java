@@ -15,4 +15,6 @@ public interface HouseService {
     HouseInfoDetailVo findHouseInfoById(Long houseId);
 
     List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo);
+
+    List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 }

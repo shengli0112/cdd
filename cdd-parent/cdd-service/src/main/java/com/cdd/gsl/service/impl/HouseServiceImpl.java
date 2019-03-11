@@ -45,4 +45,10 @@ public class HouseServiceImpl implements HouseService{
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
         return houseInfoDomainList;
     }
+
+    @Override
+    public List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo) {
+        List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectUserHouseInfoListByCondition(houseConditionVo);
+        return houseInfoDomainList;
+    }
 }

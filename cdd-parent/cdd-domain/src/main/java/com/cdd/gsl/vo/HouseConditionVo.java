@@ -41,6 +41,8 @@ public class HouseConditionVo {
 
     private Integer from;
 
+    private Long userId;
+
     public String getCity() {
         return city;
     }
@@ -139,5 +141,29 @@ public class HouseConditionVo {
 
     public void setFrom(Integer from) {
         this.from = from;
+    }
+
+    public Integer getPriceFrom() {
+        return priceFrom;
+    }
+
+    public void setPriceFrom(Integer priceFrom) {
+        this.priceFrom = priceFrom;
+    }
+
+    public Integer getPriceTo() {
+        return priceTo;
+    }
+
+    public void setPriceTo(Integer priceTo) {
+        this.priceTo = priceTo;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
