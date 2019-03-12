@@ -11,22 +11,31 @@ import java.util.List;
 
 public interface HouseInfoDao {
     @Select("select id as id, title as title, city as city, " +
-            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,'万元') as sellingPrice,concat(electricity,'KV') as electricity," +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
             "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
             "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
-            "contacts as contacts,phone as phone, background as background, house_status as houseStatus,sign_contract as signContract " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             "from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
     @Select("<script> " +
             "select id as id, title as title, city as city, " +
-            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus,sign_contract as signContract " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             "from t_house_info where status=1 " +
             "<if test=\"city != null\">" +
             " and city=#{city}"+
@@ -62,11 +71,16 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select id as id, title as title, city as city, " +
-            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus,sign_contract as signContract " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             "from t_house_info where status=1 and user_id=#{userId} " +
             "<if test=\"city != null\">" +
             " and city=#{city}"+
@@ -102,11 +116,16 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select id as id, title as title, city as city, " +
-            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus,sign_contract as signContract " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             "from t_house_info where status=1 and user_id=#{userId} " +
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
@@ -144,11 +163,16 @@ public interface HouseInfoDao {
     public List<HouseInfoDomainVo> selectCompanyHouseInfoList(HouseCompanyVo houseConditionVo);
 
     @Select("select id as id, title as title, city as city, " +
-            "county as county, street as street, area as area,house_number as houseNumber, concat(selling_price,\"万元\") as sellingPrice, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
-            "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as floor, " +
-            " background as background, house_status as houseStatus,sign_contract as signContract " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             "from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
             "and status=1 limit 3")

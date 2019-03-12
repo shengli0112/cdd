@@ -1,5 +1,6 @@
 package com.cdd.gsl.vo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,27 +19,46 @@ public class HouseInfoDetailVo {
 
     private Integer area;
 
-    private String sellingPrice;
+    private Integer sellingPrice;
 
     private String electricity;
 
-    private String houseType;
+    private Integer houseType;
 
-    private String houseUseType;
+    private Integer houseUseType;
 
-    private String floor;
+    private Integer floor;
 
-    private String fireControl;
+    private Integer fireControl;
 
     private String contacts;
 
     private String phone;
 
+    private Integer status;
+
+    private Date createTs;
+
     private String background;
 
     private Integer houseStatus;
 
+    private String coverArea;
+
+    private String houseEdge;
+
+    private Long userId;
+
+    private BigDecimal singlePrice;
+
+    private Integer priceType;
+
+
+    private String useArea;
+
     private Integer signContract;
+
+    private String town;
 
     private List<HouseInfoDomainVo> likes;
 
@@ -55,7 +75,7 @@ public class HouseInfoDetailVo {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getCity() {
@@ -63,7 +83,7 @@ public class HouseInfoDetailVo {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
     public String getCounty() {
@@ -79,7 +99,7 @@ public class HouseInfoDetailVo {
     }
 
     public void setStreet(String street) {
-        this.street = street == null ? null : street.trim();
+        this.street = street;
     }
 
     public String getHouseNumber() {
@@ -87,7 +107,7 @@ public class HouseInfoDetailVo {
     }
 
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber == null ? null : houseNumber.trim();
+        this.houseNumber = houseNumber;
     }
 
     public Integer getArea() {
@@ -98,11 +118,11 @@ public class HouseInfoDetailVo {
         this.area = area;
     }
 
-    public String getSellingPrice() {
+    public Integer getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(String sellingPrice) {
+    public void setSellingPrice(Integer sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
@@ -111,38 +131,38 @@ public class HouseInfoDetailVo {
     }
 
     public void setElectricity(String electricity) {
-        this.electricity = electricity == null ? null : electricity.trim();
+        this.electricity = electricity;
     }
 
-    public String getHouseType() {
+    public Integer getHouseType() {
         return houseType;
     }
 
-    public void setHouseType(String houseType) {
+    public void setHouseType(Integer houseType) {
         this.houseType = houseType;
     }
 
-    public String getHouseUseType() {
+    public Integer getHouseUseType() {
         return houseUseType;
     }
 
-    public void setHouseUseType(String houseUseType) {
+    public void setHouseUseType(Integer houseUseType) {
         this.houseUseType = houseUseType;
     }
 
-    public String getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
-    public String getFireControl() {
+    public Integer getFireControl() {
         return fireControl;
     }
 
-    public void setFireControl(String fireControl) {
+    public void setFireControl(Integer fireControl) {
         this.fireControl = fireControl;
     }
 
@@ -151,7 +171,7 @@ public class HouseInfoDetailVo {
     }
 
     public void setContacts(String contacts) {
-        this.contacts = contacts == null ? null : contacts.trim();
+        this.contacts = contacts;
     }
 
     public String getPhone() {
@@ -159,15 +179,32 @@ public class HouseInfoDetailVo {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+        this.phone = phone;
     }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreateTs() {
+        return createTs;
+    }
+
+    public void setCreateTs(Date createTs) {
+        this.createTs = createTs;
+    }
+
 
     public String getBackground() {
         return background;
     }
 
     public void setBackground(String background) {
-        this.background = background == null ? null : background.trim();
+        this.background = background;
     }
 
     public Integer getHouseStatus() {
@@ -178,12 +215,52 @@ public class HouseInfoDetailVo {
         this.houseStatus = houseStatus;
     }
 
-    public List<HouseInfoDomainVo> getLikes() {
-        return likes;
+    public String getCoverArea() {
+        return coverArea;
     }
 
-    public void setLikes(List<HouseInfoDomainVo> likes) {
-        this.likes = likes;
+    public void setCoverArea(String coverArea) {
+        this.coverArea = coverArea;
+    }
+
+    public String getHouseEdge() {
+        return houseEdge;
+    }
+
+    public void setHouseEdge(String houseEdge) {
+        this.houseEdge = houseEdge;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public BigDecimal getSinglePrice() {
+        return singlePrice;
+    }
+
+    public void setSinglePrice(BigDecimal singlePrice) {
+        this.singlePrice = singlePrice;
+    }
+
+    public Integer getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(Integer priceType) {
+        this.priceType = priceType;
+    }
+
+    public String getUseArea() {
+        return useArea;
+    }
+
+    public void setUseArea(String useArea) {
+        this.useArea = useArea;
     }
 
     public Integer getSignContract() {
@@ -192,5 +269,21 @@ public class HouseInfoDetailVo {
 
     public void setSignContract(Integer signContract) {
         this.signContract = signContract;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public List<HouseInfoDomainVo> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<HouseInfoDomainVo> likes) {
+        this.likes = likes;
     }
 }

@@ -1,5 +1,6 @@
 package com.cdd.gsl.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class HouseInfoDomain {
@@ -49,15 +50,15 @@ public class HouseInfoDomain {
 
     private Long userId;
 
-    private Integer singlePrice;
+    private BigDecimal singlePrice;
 
-    private String priceType;
-
-    private String areaType;
+    private Integer priceType;
 
     private String useArea;
 
     private Integer signContract;
+
+    private String town;
 
     public Long getId() {
         return id;
@@ -243,28 +244,20 @@ public class HouseInfoDomain {
         this.userId = userId;
     }
 
-    public Integer getSinglePrice() {
+    public BigDecimal getSinglePrice() {
         return singlePrice;
     }
 
-    public void setSinglePrice(Integer singlePrice) {
+    public void setSinglePrice(BigDecimal singlePrice) {
         this.singlePrice = singlePrice;
     }
 
-    public String getPriceType() {
+    public Integer getPriceType() {
         return priceType;
     }
 
-    public void setPriceType(String priceType) {
-        this.priceType = priceType == null ? null : priceType.trim();
-    }
-
-    public String getAreaType() {
-        return areaType;
-    }
-
-    public void setAreaType(String areaType) {
-        this.areaType = areaType == null ? null : areaType.trim();
+    public void setPriceType(Integer priceType) {
+        this.priceType = priceType;
     }
 
     public String getUseArea() {
@@ -281,5 +274,13 @@ public class HouseInfoDomain {
 
     public void setSignContract(Integer signContract) {
         this.signContract = signContract;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
     }
 }
