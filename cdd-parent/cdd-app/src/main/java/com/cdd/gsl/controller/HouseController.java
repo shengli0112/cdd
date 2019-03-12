@@ -129,4 +129,22 @@ public class HouseController {
         return commonResult;
     }
 
+    @RequestMapping("findCompanyHouseList")
+    public CommonResult<List<HouseInfoDomainVo>> findCompanyHouseList(HouseConditionVo houseConditionVo){
+        logger.info("HouseController findHouseInfoList");
+        CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
+
+        if(houseConditionVo != null){
+            List<HouseInfoDomainVo> houseInfoDomainList = houseService.selectCompanyHouseInfoListByCondition(houseConditionVo);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(houseInfoDomainList);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
+        return commonResult;
+    }
+
 }
