@@ -57,6 +57,8 @@ public class HouseInfoDomain {
 
     private String useArea;
 
+    private Integer signContract;
+
     public Long getId() {
         return id;
     }
@@ -271,5 +273,13 @@ public class HouseInfoDomain {
 
     public void setUseArea(String useArea) {
         this.useArea = useArea == null ? null : useArea.trim();
+    }
+
+    public Integer getSignContract() {
+        return signContract;
+    }
+
+    public void setSignContract(Integer signContract) {
+        this.signContract = signContract;
     }
 }

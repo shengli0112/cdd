@@ -1864,6 +1864,66 @@ public class HouseInfoDomainExample {
             addCriterion("use_area not between", value1, value2, "useArea");
             return (Criteria) this;
         }
+
+        public Criteria andSignContractIsNull() {
+            addCriterion("sign_contract is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractIsNotNull() {
+            addCriterion("sign_contract is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractEqualTo(Integer value) {
+            addCriterion("sign_contract =", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractNotEqualTo(Integer value) {
+            addCriterion("sign_contract <>", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractGreaterThan(Integer value) {
+            addCriterion("sign_contract >", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sign_contract >=", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractLessThan(Integer value) {
+            addCriterion("sign_contract <", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractLessThanOrEqualTo(Integer value) {
+            addCriterion("sign_contract <=", value, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractIn(List<Integer> values) {
+            addCriterion("sign_contract in", values, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractNotIn(List<Integer> values) {
+            addCriterion("sign_contract not in", values, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractBetween(Integer value1, Integer value2) {
+            addCriterion("sign_contract between", value1, value2, "signContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignContractNotBetween(Integer value1, Integer value2) {
+            addCriterion("sign_contract not between", value1, value2, "signContract");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

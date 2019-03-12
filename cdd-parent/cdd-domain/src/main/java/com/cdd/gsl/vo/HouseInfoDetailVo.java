@@ -38,6 +38,8 @@ public class HouseInfoDetailVo {
 
     private Integer houseStatus;
 
+    private Integer signContract;
+
     private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
@@ -182,5 +184,13 @@ public class HouseInfoDetailVo {
 
     public void setLikes(List<HouseInfoDomainVo> likes) {
         this.likes = likes;
+    }
+
+    public Integer getSignContract() {
+        return signContract;
+    }
+
+    public void setSignContract(Integer signContract) {
+        this.signContract = signContract;
     }
 }

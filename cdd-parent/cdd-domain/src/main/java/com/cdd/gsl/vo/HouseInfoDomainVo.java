@@ -29,6 +29,8 @@ public class HouseInfoDomainVo {
 
     private Integer houseStatus;
 
+    private Integer signContract;
+
     public Long getId() {
         return id;
     }
@@ -133,5 +135,13 @@ public class HouseInfoDomainVo {
 
     public void setHouseStatus(Integer houseStatus) {
         this.houseStatus = houseStatus;
+    }
+
+    public Integer getSignContract() {
+        return signContract;
+    }
+
+    public void setSignContract(Integer signContract) {
+        this.signContract = signContract;
     }
 }

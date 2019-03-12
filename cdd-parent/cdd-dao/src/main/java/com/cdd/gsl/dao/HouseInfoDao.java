@@ -16,7 +16,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
             "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
-            "contacts as contacts,phone as phone, background as background, house_status as houseStatus " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus,sign_contract as signContract " +
             "from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
@@ -26,7 +26,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus " +
+            " background as background, house_status as houseStatus,sign_contract as signContract " +
             "from t_house_info where status=1 " +
             "<if test=\"city != null\">" +
             " and city=#{city}"+
@@ -66,7 +66,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus " +
+            " background as background, house_status as houseStatus,sign_contract as signContract " +
             "from t_house_info where status=1 and user_id=#{userId} " +
             "<if test=\"city != null\">" +
             " and city=#{city}"+
@@ -106,7 +106,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as houseUseType, " +
-            " background as background, house_status as houseStatus " +
+            " background as background, house_status as houseStatus,sign_contract as signContract " +
             "from t_house_info where status=1 and user_id=#{userId} " +
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
@@ -148,7 +148,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name=\"houseType\" and dict_code=house_type) as houseType, " +
             "(select dict_value from t_common_dict where dict_name=\"houseUseType\" and dict_code=house_use_type) as houseUseType, " +
             "(select dict_value from t_common_dict where dict_name=\"floor\" and dict_code=floor) as floor, " +
-            " background as background, house_status as houseStatus " +
+            " background as background, house_status as houseStatus,sign_contract as signContract " +
             "from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
             "and status=1 limit 3")
