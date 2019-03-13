@@ -22,13 +22,13 @@ public class HouseInfoDomainVo {
 
     private String electricity;
 
-    private Integer houseType;
+    private String houseType;
 
-    private Integer houseUseType;
+    private String houseUseType;
 
-    private Integer floor;
+    private String floor;
 
-    private Integer fireControl;
+    private String fireControl;
 
     private String contacts;
 
@@ -37,8 +37,6 @@ public class HouseInfoDomainVo {
     private Integer status;
 
     private Date createTs;
-
-    private Date updateTs;
 
     private String background;
 
@@ -52,7 +50,8 @@ public class HouseInfoDomainVo {
 
     private BigDecimal singlePrice;
 
-    private Integer priceType;
+    private String priceType;
+
 
     private String useArea;
 
@@ -132,35 +131,35 @@ public class HouseInfoDomainVo {
         this.electricity = electricity;
     }
 
-    public Integer getHouseType() {
+    public String getHouseType() {
         return houseType;
     }
 
-    public void setHouseType(Integer houseType) {
+    public void setHouseType(String houseType) {
         this.houseType = houseType;
     }
 
-    public Integer getHouseUseType() {
+    public String getHouseUseType() {
         return houseUseType;
     }
 
-    public void setHouseUseType(Integer houseUseType) {
+    public void setHouseUseType(String houseUseType) {
         this.houseUseType = houseUseType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getFireControl() {
+    public String getFireControl() {
         return fireControl;
     }
 
-    public void setFireControl(Integer fireControl) {
+    public void setFireControl(String fireControl) {
         this.fireControl = fireControl;
     }
 
@@ -194,14 +193,6 @@ public class HouseInfoDomainVo {
 
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
-    }
-
-    public Date getUpdateTs() {
-        return updateTs;
-    }
-
-    public void setUpdateTs(Date updateTs) {
-        this.updateTs = updateTs;
     }
 
     public String getBackground() {
@@ -252,11 +243,11 @@ public class HouseInfoDomainVo {
         this.singlePrice = singlePrice;
     }
 
-    public Integer getPriceType() {
+    public String getPriceType() {
         return priceType;
     }
 
-    public void setPriceType(Integer priceType) {
+    public void setPriceType(String priceType) {
         this.priceType = priceType;
     }
 

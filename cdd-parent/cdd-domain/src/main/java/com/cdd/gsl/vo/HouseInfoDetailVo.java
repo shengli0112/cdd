@@ -23,19 +23,17 @@ public class HouseInfoDetailVo {
 
     private String electricity;
 
-    private Integer houseType;
+    private String houseType;
 
-    private Integer houseUseType;
+    private String houseUseType;
 
-    private Integer floor;
+    private String floor;
 
-    private Integer fireControl;
+    private String fireControl;
 
     private String contacts;
 
     private String phone;
-
-    private Integer status;
 
     private Date createTs;
 
@@ -51,8 +49,7 @@ public class HouseInfoDetailVo {
 
     private BigDecimal singlePrice;
 
-    private Integer priceType;
-
+    private String priceType;
 
     private String useArea;
 
@@ -134,35 +131,35 @@ public class HouseInfoDetailVo {
         this.electricity = electricity;
     }
 
-    public Integer getHouseType() {
+    public String getHouseType() {
         return houseType;
     }
 
-    public void setHouseType(Integer houseType) {
+    public void setHouseType(String houseType) {
         this.houseType = houseType;
     }
 
-    public Integer getHouseUseType() {
+    public String getHouseUseType() {
         return houseUseType;
     }
 
-    public void setHouseUseType(Integer houseUseType) {
+    public void setHouseUseType(String houseUseType) {
         this.houseUseType = houseUseType;
     }
 
-    public Integer getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(Integer floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public Integer getFireControl() {
+    public String getFireControl() {
         return fireControl;
     }
 
-    public void setFireControl(Integer fireControl) {
+    public void setFireControl(String fireControl) {
         this.fireControl = fireControl;
     }
 
@@ -182,14 +179,6 @@ public class HouseInfoDetailVo {
         this.phone = phone;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public Date getCreateTs() {
         return createTs;
     }
@@ -197,7 +186,6 @@ public class HouseInfoDetailVo {
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
     }
-
 
     public String getBackground() {
         return background;
@@ -247,11 +235,11 @@ public class HouseInfoDetailVo {
         this.singlePrice = singlePrice;
     }
 
-    public Integer getPriceType() {
+    public String getPriceType() {
         return priceType;
     }
 
-    public void setPriceType(Integer priceType) {
+    public void setPriceType(String priceType) {
         this.priceType = priceType;
     }
 
