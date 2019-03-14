@@ -9,6 +9,8 @@ public class EntrustInfoDomain {
 
     private String county;
 
+    private String town;
+
     private Integer area;
 
     private String business;
@@ -121,5 +123,13 @@ public class EntrustInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 }

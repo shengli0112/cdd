@@ -22,6 +22,7 @@ public class EntrustController {
     @Autowired
     private EntrustService entrustService;
 
+    @RequestMapping("createEntrust")
     public CommonResult createEntrust(EntrustInfoDomain entrustInfoDomain){
         return entrustService.createEntrust(entrustInfoDomain);
     }
@@ -29,6 +30,7 @@ public class EntrustController {
     /**
      * 个人房源列表
      */
+    @RequestMapping("findEntrustInfoList")
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoList(EntrustConditionVo entrustConditionVo){
         //TODO 有问题条件没有判断清楚
         return entrustService.findEntrustInfoList(entrustConditionVo);
