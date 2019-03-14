@@ -13,8 +13,6 @@ public class SellParkInfoDomain {
 
     private String parkName;
 
-    private String title;
-
     private Integer totalArea;
 
     private Integer totalPrice;
@@ -42,6 +40,10 @@ public class SellParkInfoDomain {
     private Date updateTs;
 
     private Long userId;
+
+    private String town;
+
+    private String background;
 
     public Long getId() {
         return id;
@@ -81,14 +83,6 @@ public class SellParkInfoDomain {
 
     public void setParkName(String parkName) {
         this.parkName = parkName == null ? null : parkName.trim();
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
     }
 
     public Integer getTotalArea() {
@@ -201,5 +195,21 @@ public class SellParkInfoDomain {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background == null ? null : background.trim();
     }
 }

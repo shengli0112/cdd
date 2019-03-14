@@ -13,15 +13,11 @@ public class LeaseParkInfoDomain {
 
     private String parkName;
 
-    private String title;
-
     private Integer totalArea;
 
     private Integer singleArea;
 
     private Integer unitPrice;
-
-    private String fireControl;
 
     private String enterprise;
 
@@ -42,6 +38,10 @@ public class LeaseParkInfoDomain {
     private Date updateTs;
 
     private Long userId;
+
+    private String town;
+
+    private String background;
 
     public Long getId() {
         return id;
@@ -83,14 +83,6 @@ public class LeaseParkInfoDomain {
         this.parkName = parkName == null ? null : parkName.trim();
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
     public Integer getTotalArea() {
         return totalArea;
     }
@@ -113,14 +105,6 @@ public class LeaseParkInfoDomain {
 
     public void setUnitPrice(Integer unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    public String getFireControl() {
-        return fireControl;
-    }
-
-    public void setFireControl(String fireControl) {
-        this.fireControl = fireControl == null ? null : fireControl.trim();
     }
 
     public String getEnterprise() {
@@ -201,5 +185,21 @@ public class LeaseParkInfoDomain {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background == null ? null : background.trim();
     }
 }
