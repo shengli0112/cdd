@@ -59,6 +59,10 @@ public class HouseInfoDomainVo {
 
     private String town;
 
+    private String username;
+
+    private String portrait;
+
     public Long getId() {
         return id;
     }
@@ -273,5 +277,21 @@ public class HouseInfoDomainVo {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }
