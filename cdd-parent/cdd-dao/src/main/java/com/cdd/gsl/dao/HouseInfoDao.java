@@ -21,7 +21,7 @@ public interface HouseInfoDao {
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
             "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
-            "from t_house_info where status=1 and id=#{houseId}")
+            " from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
     @Select("<script> " +
@@ -36,7 +36,7 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
-            "from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
@@ -81,7 +81,7 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
-            "from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.user_id=#{userId} " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.user_id=#{userId} " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
@@ -126,7 +126,7 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
-            "from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.house_status=1"+
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.house_status=1"+
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
             "</foreach>"+
@@ -175,7 +175,7 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
-            "from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1"+
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1"+
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
             "</foreach>"+
@@ -222,7 +222,7 @@ public interface HouseInfoDao {
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
             "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
-            "from t_house_info where id >= " +
+            " from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
             "and status=1 limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
