@@ -36,7 +36,7 @@ public class HouseInfoDomainVo {
 
     private Integer status;
 
-    private Date createTs;
+    private String createTs;
 
     private String background;
 
@@ -191,11 +191,11 @@ public class HouseInfoDomainVo {
         this.status = status;
     }
 
-    public Date getCreateTs() {
+    public String getCreateTs() {
         return createTs;
     }
 
-    public void setCreateTs(Date createTs) {
+    public void setCreateTs(String createTs) {
         this.createTs = createTs;
     }
 

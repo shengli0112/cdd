@@ -35,7 +35,7 @@ public class HouseInfoDetailVo {
 
     private String phone;
 
-    private Date createTs;
+    private String createTs;
 
     private String background;
 
@@ -179,11 +179,11 @@ public class HouseInfoDetailVo {
         this.phone = phone;
     }
 
-    public Date getCreateTs() {
+    public String getCreateTs() {
         return createTs;
     }
 
-    public void setCreateTs(Date createTs) {
+    public void setCreateTs(String createTs) {
         this.createTs = createTs;
     }
 
