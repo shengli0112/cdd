@@ -84,7 +84,12 @@ public class HouseServiceImpl implements HouseService{
             HouseCompanyVo houseCompanyVo = new HouseCompanyVo();
             BeanUtils.copyProperties(houseConditionVo,houseCompanyVo);
             houseCompanyVo.setUserIds(userIds);
-            houseInfoDomainList = houseInfoDao.selectCompanyHouseInfoList(houseCompanyVo);
+            if(applyBrokerInfoDomain.getBrokerType() == CddConstant.COMMON_BROKER_TYPE){
+                houseInfoDomainList = houseInfoDao.selectCompanyHouseInfoList(houseCompanyVo);
+            }else if(applyBrokerInfoDomain.getBrokerType() == CddConstant.MANAGE_BROKER_TYPE){
+                houseInfoDomainList = houseInfoDao.selectCompanyAllHouseInfoList(houseCompanyVo);
+            }
+
         }
         return houseInfoDomainList;
     }
