@@ -1,10 +1,13 @@
 package com.cdd.gsl.controller;
 
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.dao.TrailInfoDomainMapper;
 import com.cdd.gsl.domain.BrowseHouseRecordDomain;
 import com.cdd.gsl.domain.BrowseRecordDomain;
 import com.cdd.gsl.domain.HouseInfoDomain;
+import com.cdd.gsl.domain.TrailInfoDomain;
 import com.cdd.gsl.service.HouseService;
+import com.cdd.gsl.service.TrailService;
 import com.cdd.gsl.vo.HouseConditionVo;
 import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.HouseInfoDomainVo;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +32,9 @@ public class HouseController {
 
     @Autowired
     private HouseService houseService;
+
+    @Autowired
+    private TrailService trailService;
 
     private Logger logger = LoggerFactory.getLogger(HouseController.class);
 
@@ -42,6 +49,30 @@ public class HouseController {
             commonResult.setFlag(0);
             commonResult.setMessage("添加失败");
         }
+        return commonResult;
+    }
+
+    @RequestMapping("addTrail")
+    public CommonResult addTrail(@RequestBody TrailInfoDomain trailInfoDomain){
+        CommonResult commonResult = new CommonResult();
+        if(trailInfoDomain != null){
+            commonResult = trailService.addTrail(trailInfoDomain);
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("添加失败");
+        }
+        return commonResult;
+    }
+
+    @RequestMapping("findTrailList")
+    public CommonResult addTrail(Long houseId){
+        CommonResult commonResult = new CommonResult();
+        /*if(trailInfoDomain != null){
+            commonResult = trailService.addTrail(trailInfoDomain);
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("添加失败");
+        }*/
         return commonResult;
     }
 
