@@ -48,4 +48,6 @@ public interface UserService {
 
     CommonResult updateUser(UserParamVo userParamVo);
 
+    CommonResult allBroker(Integer pageNo,Integer pageSize);
+
 }

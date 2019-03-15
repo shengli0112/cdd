@@ -288,6 +288,18 @@ public class UserController {
         return userService.authenticationBroker(applyBrokerInfoDomain);
     }
 
+    @RequestMapping("allBroker")
+    public CommonResult allBroker(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
+        if(pageNo == null){
+            pageNo = 1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
+
+        return userService.allBroker(pageNo,pageSize);
+    }
+
     @RequestMapping("findApplyBroker")
     public CommonResult findApplyBroker(Long userId){
         return userService.findApplyBroker(userId);

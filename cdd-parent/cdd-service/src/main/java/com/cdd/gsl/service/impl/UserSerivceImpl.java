@@ -53,6 +53,9 @@ public class UserSerivceImpl implements UserService {
     private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
 
     @Autowired
+    private ApplyBrokerInfoDao applyBrokerInfoDao;
+
+    @Autowired
     private VerifyPhoneDomainMapper verifyPhoneDomainMapper;
 
     @Autowired
@@ -60,6 +63,9 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private DeviceLoginDao deviceLoginDao;
+
+    @Autowired
+    private HouseInfoDao houseInfoDao;
 
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -606,6 +612,25 @@ public class UserSerivceImpl implements UserService {
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不正确");
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult allBroker(Integer pageNo, Integer pageSize) {
+        CommonResult commonResult = new CommonResult();
+        int from = (pageNo-1) * pageSize;
+        List<UserBrokerVo> userBrokerVos = applyBrokerInfoDao.userBrokerList(from,pageSize);
+        List<UserBrokerVo> userBrokerList = new ArrayList<>();
+        if(userBrokerVos != null && userBrokerVos.size() > 0){
+            for(UserBrokerVo userBrokerVo:userBrokerVos){
+                int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                userBrokerVo.setHouseCount(count);
+                userBrokerList.add(userBrokerVo);
+            }
+        }
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(userBrokerList);
         return commonResult;
     }
 

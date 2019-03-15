@@ -57,6 +57,10 @@ public class HouseInfoDetailVo {
 
     private String town;
 
+    private String description;
+
+    private int browseCount;
+
     private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
@@ -273,5 +277,21 @@ public class HouseInfoDetailVo {
 
     public void setLikes(List<HouseInfoDomainVo> likes) {
         this.likes = likes;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getBrowseCount() {
+        return browseCount;
+    }
+
+    public void setBrowseCount(int browseCount) {
+        this.browseCount = browseCount;
     }
 }

@@ -226,4 +226,7 @@ public interface HouseInfoDao {
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
             "and status=1 limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
+
+    @Select("select count(*) from t_house_info where user_id=#{userId}")
+    int selectHouseCountByUserId(Long userId);
 }

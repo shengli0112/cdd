@@ -60,6 +60,8 @@ public class HouseInfoDomain {
 
     private String town;
 
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -282,5 +284,13 @@ public class HouseInfoDomain {
 
     public void setTown(String town) {
         this.town = town == null ? null : town.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

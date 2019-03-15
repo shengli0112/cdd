@@ -1,10 +1,7 @@
 package com.cdd.gsl.service.impl;
 
 import com.cdd.gsl.common.constants.CddConstant;
-import com.cdd.gsl.dao.ApplyBrokerInfoDomainMapper;
-import com.cdd.gsl.dao.CompanyInfoDomainMapper;
-import com.cdd.gsl.dao.HouseInfoDao;
-import com.cdd.gsl.dao.HouseInfoDomainMapper;
+import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
 import com.cdd.gsl.vo.HouseCompanyVo;
@@ -32,6 +29,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
 
+    @Autowired
+    private BrowseHouseRecordDomainMapper browseHouseRecordDomainMapper;
+
     @Override
     public void addHouse(HouseInfoDomain houseInfoDomain) {
         houseInfoDomainMapper.insertSelective(houseInfoDomain);
@@ -47,6 +47,14 @@ public class HouseServiceImpl implements HouseService{
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
         houseInfoDetailVo.setLikes(houseInfoDomainVos);
+        BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
+        browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
+        browseHouseRecordDomain.setHouseId(houseId);
+        browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
+        BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
+        browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
+        List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
+        houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
         return houseInfoDetailVo;
     }
 
