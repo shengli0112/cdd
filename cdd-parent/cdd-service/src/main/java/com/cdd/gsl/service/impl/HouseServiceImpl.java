@@ -82,7 +82,7 @@ public class HouseServiceImpl implements HouseService{
             ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
             ApplyBrokerInfoDomainExample applyBrokerInfoExample = new ApplyBrokerInfoDomainExample();
             applyBrokerInfoExample.createCriteria().andCompanyNameEqualTo(applyBrokerInfoDomain.getCompanyName()).andApplyTypeEqualTo(2);
-            List<ApplyBrokerInfoDomain> applyBrokerInfos = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            List<ApplyBrokerInfoDomain> applyBrokerInfos = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoExample);
             List<Long> userIds = new ArrayList<>();
             if(applyBrokerInfos != null && applyBrokerInfos.size() > 0){
                 applyBrokerInfos.forEach(applyBrokerInfo -> {

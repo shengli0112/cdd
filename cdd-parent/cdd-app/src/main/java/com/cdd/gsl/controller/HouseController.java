@@ -65,15 +65,9 @@ public class HouseController {
     }
 
     @RequestMapping("findTrailList")
-    public CommonResult addTrail(Long houseId){
-        CommonResult commonResult = new CommonResult();
-        /*if(trailInfoDomain != null){
-            commonResult = trailService.addTrail(trailInfoDomain);
-        }else{
-            commonResult.setFlag(0);
-            commonResult.setMessage("添加失败");
-        }*/
-        return commonResult;
+    public CommonResult findTrailList(Long houseId){
+
+        return trailService.findTrailList(houseId);
     }
 
     @RequestMapping("updateHouse")
