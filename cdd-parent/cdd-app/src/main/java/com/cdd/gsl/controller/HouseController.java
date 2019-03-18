@@ -85,7 +85,7 @@ public class HouseController {
     }
 
     @RequestMapping("deleteHouse")
-    public CommonResult deleteHouse(@RequestBody Long houseId){
+    public CommonResult deleteHouse(@RequestParam("houseId") Long houseId){
         CommonResult commonResult = new CommonResult();
 
         if(houseId != null){
