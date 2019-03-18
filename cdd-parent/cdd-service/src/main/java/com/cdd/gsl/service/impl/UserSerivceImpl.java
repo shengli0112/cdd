@@ -344,6 +344,42 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult findFollow(FollowConditionVo followConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(followConditionVo != null){
+            Integer followType = followConditionVo.getFollowType();
+            if(followType != null && followType > 0){
+                if(followType == 1 || followType == 2 || followType == 3){
+                    List<FollowHouseVo> followHouseVos = followInfoDao.findFollowHouse(followConditionVo);
+                    commonResult.setData(followHouseVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 4){
+                    List<FollowSellParkVo> followSellParkVos = followInfoDao.findFollowSellPark(followConditionVo);
+                    commonResult.setData(followSellParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 5){
+                    List<FollowLeaseParkVo> followLeaseParkVos = followInfoDao.findFollowLeasePark(followConditionVo);
+                    commonResult.setData(followLeaseParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功，没有对应的关注类型");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("请输入对应的关注类型");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult followInfo(FollowInfoDomain followInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {

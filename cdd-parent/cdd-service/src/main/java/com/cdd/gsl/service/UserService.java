@@ -24,6 +24,8 @@ public interface UserService {
 
     CommonResult bindPhone(Long userId,String phone);
 
+    CommonResult findFollow(FollowConditionVo followConditionVo);
+
     CommonResult followInfo(FollowInfoDomain followInfoDomain);
 
     CommonResult cancelFollow(FollowInfoVo followInfoVo);

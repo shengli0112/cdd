@@ -214,9 +214,18 @@ public class UserController {
     }
 
     /**
+     * 我的关注
+     */
+    @RequestMapping("findFollow")
+    public CommonResult findFollow(FollowConditionVo followConditionVo){
+        CommonResult commonResult = userService.findFollow(followConditionVo);
+        return commonResult;
+    }
+
+    /**
      * 关注信息
      */
-    @RequestMapping("followInfo")
+    @RequestMapping("createFollow")
     public CommonResult followInfo(FollowInfoDomain followInfoDomain){
         CommonResult commonResult = userService.followInfo(followInfoDomain);
         return commonResult;
