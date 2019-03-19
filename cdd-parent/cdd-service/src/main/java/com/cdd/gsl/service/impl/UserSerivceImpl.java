@@ -385,9 +385,10 @@ public class UserSerivceImpl implements UserService {
         try {
             followInfoDomainMapper.insertSelective(followInfoDomain);
             JSONObject json = new JSONObject();
+            json.put("followId",followInfoDomain.getId());
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("关注成功");
-            commonResult.setData(json.put("followId",followInfoDomain.getId()));
+            commonResult.setData(json);
         }catch (Exception e){
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
