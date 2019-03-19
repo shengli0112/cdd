@@ -226,7 +226,7 @@ public class UserController {
      * 关注信息
      */
     @RequestMapping("createFollow")
-    public CommonResult followInfo(FollowInfoDomain followInfoDomain){
+    public CommonResult followInfo(@RequestBody FollowInfoDomain followInfoDomain){
         CommonResult commonResult = userService.followInfo(followInfoDomain);
         return commonResult;
     }

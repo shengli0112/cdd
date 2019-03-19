@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
       <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -46,8 +47,8 @@
       <file leaf-file-name="UserSerivceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="386" column="47" lean-forward="true" selection-start-line="386" selection-start-column="47" selection-end-line="386" selection-end-column="47" />
+            <state relative-caret-position="441">
+              <caret line="392" column="45" lean-forward="true" selection-start-line="392" selection-start-column="45" selection-end-line="392" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -66,8 +67,8 @@
       <file leaf-file-name="FollowInfoDomain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/FollowInfoDomain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
+            <state relative-caret-position="483">
+              <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -86,8 +87,8 @@
       <file leaf-file-name="FollowInfoDomainMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/FollowInfoDomainMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="102" column="47" lean-forward="false" selection-start-line="102" selection-start-column="47" selection-end-line="102" selection-end-column="47" />
+            <state relative-caret-position="83">
+              <caret line="101" column="2" lean-forward="false" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="2" />
               <folding>
                 <marker date="1552994773783" expanded="true" signature="3587:3695" ph="select from t_follow_info" />
                 <marker date="1552994773783" expanded="true" signature="3779:3841" ph="delete from t_follow_info... " />
@@ -132,8 +133,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="229" column="55" lean-forward="false" selection-start-line="229" selection-start-column="55" selection-end-line="229" selection-end-column="55" />
+            <state relative-caret-position="418">
+              <caret line="229" column="51" lean-forward="true" selection-start-line="229" selection-start-column="51" selection-end-line="229" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -254,11 +255,11 @@
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/HouseInfoDetailVo.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/IsFollowVo.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java" />
-        <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/HouseConditionVo.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/FollowInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/FollowInfoDomainMapper.java" />
+        <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
       </list>
     </option>
@@ -963,12 +964,12 @@
       <workItem from="1552356705578" duration="20000000" />
       <workItem from="1552536544666" duration="16102000" />
       <workItem from="1552628946682" duration="10617000" />
-      <workItem from="1552876157264" duration="19518000" />
+      <workItem from="1552876157264" duration="19981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="463355000" />
+    <option name="totallyTimeSpent" value="463818000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1455,22 +1456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/FollowInfoDomainExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/FollowInfoDomainMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/EntrustInfoDomainMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2277">
@@ -1506,8 +1491,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/FollowInfoDomainMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="102" column="47" lean-forward="false" selection-start-line="102" selection-start-column="47" selection-end-line="102" selection-end-column="47" />
+        <state relative-caret-position="83">
+          <caret line="101" column="2" lean-forward="false" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="2" />
           <folding>
             <marker date="1552994773783" expanded="true" signature="3587:3695" ph="select from t_follow_info" />
             <marker date="1552994773783" expanded="true" signature="3779:3841" ph="delete from t_follow_info... " />
@@ -1520,26 +1505,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/FollowInfoDomainMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/FollowInfoDomainExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/FollowInfoDomain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="483">
+          <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="229" column="55" lean-forward="false" selection-start-line="229" selection-start-column="55" selection-end-line="229" selection-end-column="55" />
+        <state relative-caret-position="418">
+          <caret line="229" column="51" lean-forward="true" selection-start-line="229" selection-start-column="51" selection-end-line="229" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="386" column="47" lean-forward="true" selection-start-line="386" selection-start-column="47" selection-end-line="386" selection-end-column="47" />
+        <state relative-caret-position="441">
+          <caret line="392" column="45" lean-forward="true" selection-start-line="392" selection-start-column="45" selection-end-line="392" selection-end-column="45" />
           <folding />
         </state>
       </provider>
