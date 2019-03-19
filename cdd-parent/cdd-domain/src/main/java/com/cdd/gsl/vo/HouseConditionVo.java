@@ -43,6 +43,8 @@ public class HouseConditionVo {
 
     private Long userId;
 
+    private String keyword;
+
     public String getCity() {
         return city;
     }
@@ -165,5 +167,13 @@ public class HouseConditionVo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

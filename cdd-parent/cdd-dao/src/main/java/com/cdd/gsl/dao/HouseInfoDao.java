@@ -56,6 +56,10 @@ public interface HouseInfoDao {
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
             "</if>"+
+            "<if test=\"keyword != null\">" +
+            " and (title like '%#{keyword}%' or city like '%#{keyword}%' or county like '%#{keyword}%' or town like '%#{keyword}%' or street like '%#{keyword}%'" +
+            " or house_number like '%#{keyword}%' or house_edge like '%#{keyword}%')"+
+            "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area</if>"+
