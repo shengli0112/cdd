@@ -30,6 +30,8 @@ public interface UserService {
 
     CommonResult cancelFollow(FollowInfoVo followInfoVo);
 
+    CommonResult isFollow(IsFollowVo isFollowVo);
+
     List<CommonDictDomain> findDictInfo(String dictName);
 
     CommonResult authenticationBroker(ApplyBrokerInfoVo applyBrokerInfoDomain);

@@ -1,9 +1,6 @@
 package com.cdd.gsl.dao;
 
-import com.cdd.gsl.vo.FollowConditionVo;
-import com.cdd.gsl.vo.FollowHouseVo;
-import com.cdd.gsl.vo.FollowLeaseParkVo;
-import com.cdd.gsl.vo.FollowSellParkVo;
+import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -46,4 +43,7 @@ public interface FollowInfoDao {
             " where s.status=1 and f.follow_type=#{followType} and f.user_id=#{userId}" +
             " order by f.create_ts desc limit #{from},#{pageSize} ")
     public List<FollowLeaseParkVo> findFollowLeasePark(FollowConditionVo followConditionVo);
+
+    @Select("select id from t_follow_info where user_id=#{userId} and follow_id=#{followId} and follow_type=#{followType}")
+    List<Long> isFollow(IsFollowVo isFollowVo);
 }

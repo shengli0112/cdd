@@ -415,6 +415,28 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult isFollow(IsFollowVo isFollowVo) {
+
+        CommonResult commonResult = new CommonResult();
+        if(isFollowVo != null){
+            List<Long> ids = followInfoDao.isFollow(isFollowVo);
+            JSONObject data = new JSONObject();
+            if(ids != null && ids.size() > 0){
+                data.put("isFollow",true);
+            }else{
+                data.put("isFollow",false);
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
+        }
+        return commonResult;
+    }
+
+    @Override
     public List<CommonDictDomain> findDictInfo(String dictName) {
         List<CommonDictDomain> commonDictDomainList = new ArrayList<>();
         CommonDictDomainExample commonDictDomainExample = new CommonDictDomainExample();

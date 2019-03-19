@@ -241,6 +241,15 @@ public class UserController {
     }
 
     /**
+     * 是否关注
+     */
+    @RequestMapping("isFollow")
+    public CommonResult isFollow(IsFollowVo isFollowVo){
+        CommonResult commonResult = userService.isFollow(isFollowVo);
+        return commonResult;
+    }
+
+    /**
      *  获取字典信息
      */
     @RequestMapping("findDictInfo")
