@@ -383,7 +383,7 @@ public class UserSerivceImpl implements UserService {
     public CommonResult followInfo(FollowInfoDomain followInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {
-            followInfoDomainMapper.insertSelective(followInfoDomain);
+            followInfoDomainMapper.insert(followInfoDomain);
             JSONObject json = new JSONObject();
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("关注成功");
