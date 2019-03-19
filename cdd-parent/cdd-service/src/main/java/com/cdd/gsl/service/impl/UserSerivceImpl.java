@@ -423,8 +423,10 @@ public class UserSerivceImpl implements UserService {
             JSONObject data = new JSONObject();
             if(ids != null && ids.size() > 0){
                 data.put("isFollow",true);
+                data.put("followId",ids.get(0));
             }else{
                 data.put("isFollow",false);
+                data.put("followId","");
             }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
