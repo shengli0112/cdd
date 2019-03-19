@@ -235,7 +235,7 @@ public class UserController {
      * 取消关注信息
      */
     @RequestMapping("cancelFollow")
-    public CommonResult cancelFollow(FollowInfoVo followInfoVo){
+    public CommonResult cancelFollow(@RequestBody FollowInfoVo followInfoVo){
         CommonResult commonResult = userService.cancelFollow(followInfoVo);
         return commonResult;
     }
