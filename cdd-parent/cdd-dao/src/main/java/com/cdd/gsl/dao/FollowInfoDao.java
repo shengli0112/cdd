@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface FollowInfoDao {
-    @Delete("delete from t_follow_info where user_id=#{userId} and follow_id in (#{followIds})")
+    @Delete("delete from t_follow_info where user_id=#{userId} and id in (#{followIds})")
     public void deleteFollowInfos(@Param("userId")Long userId,@Param("followIds")String followIds);
 
     @Select(
