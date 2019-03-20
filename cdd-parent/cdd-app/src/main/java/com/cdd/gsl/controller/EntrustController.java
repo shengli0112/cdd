@@ -6,6 +6,7 @@ import com.cdd.gsl.service.EntrustService;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class EntrustController {
     private EntrustService entrustService;
 
     @RequestMapping("createEntrust")
-    public CommonResult createEntrust(EntrustInfoDomain entrustInfoDomain){
+    public CommonResult createEntrust(@RequestBody EntrustInfoDomain entrustInfoDomain){
         return entrustService.createEntrust(entrustInfoDomain);
     }
 
