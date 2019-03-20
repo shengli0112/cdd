@@ -307,7 +307,7 @@ public class UserController {
     }
 
     @RequestMapping("allBroker")
-    public CommonResult allBroker(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize){
+    public CommonResult allBroker(Integer pageNo, Integer pageSize){
         if(pageNo == null){
             pageNo = 1;
         }
