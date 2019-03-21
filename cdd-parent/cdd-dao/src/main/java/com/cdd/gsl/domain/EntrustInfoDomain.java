@@ -53,6 +53,14 @@ public class EntrustInfoDomain {
         this.county = county == null ? null : county.trim();
     }
 
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
+    }
+
     public Integer getArea() {
         return area;
     }
@@ -123,13 +131,5 @@ public class EntrustInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
     }
 }

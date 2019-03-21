@@ -305,6 +305,76 @@ public class EntrustInfoDomainExample {
             return (Criteria) this;
         }
 
+        public Criteria andTownIsNull() {
+            addCriterion("town is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownIsNotNull() {
+            addCriterion("town is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownEqualTo(String value) {
+            addCriterion("town =", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownNotEqualTo(String value) {
+            addCriterion("town <>", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownGreaterThan(String value) {
+            addCriterion("town >", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownGreaterThanOrEqualTo(String value) {
+            addCriterion("town >=", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownLessThan(String value) {
+            addCriterion("town <", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownLessThanOrEqualTo(String value) {
+            addCriterion("town <=", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownLike(String value) {
+            addCriterion("town like", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownNotLike(String value) {
+            addCriterion("town not like", value, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownIn(List<String> values) {
+            addCriterion("town in", values, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownNotIn(List<String> values) {
+            addCriterion("town not in", values, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownBetween(String value1, String value2) {
+            addCriterion("town between", value1, value2, "town");
+            return (Criteria) this;
+        }
+
+        public Criteria andTownNotBetween(String value1, String value2) {
+            addCriterion("town not between", value1, value2, "town");
+            return (Criteria) this;
+        }
+
         public Criteria andAreaIsNull() {
             addCriterion("area is null");
             return (Criteria) this;
