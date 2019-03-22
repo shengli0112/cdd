@@ -97,4 +97,7 @@ public interface UserInfoDao {
             "</if>" +
             "</script>")
     List<SingleUserBrokerVo> findUserBrokerByUserId(@Param("userId") Long userId, @Param("userType") Integer userType);
+
+    @Select("select count(*) from t_user_info where status=1")
+    int selectAllUserCount();
 }

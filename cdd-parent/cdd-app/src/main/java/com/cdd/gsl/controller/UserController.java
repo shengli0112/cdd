@@ -360,7 +360,7 @@ public class UserController {
      */
     @RequestMapping("homePage")
     public CommonResult homePage(){
-        return null;
+        return userService.home();
     }
 
     @RequestMapping("testMq")
@@ -399,6 +399,8 @@ public class UserController {
         map.put("virtualGroupCode", "");
         map.put("virtualGroupName", "");
         map.put("comments", "12");
+        map.put("allProviceFlag", "2");
+        map.put("multiRegionInfo", "[{\"cityId\":\"360\",\"cityName\":\"北京\",\"provinceId\":\"2\",\"provinceName\":\"北京\"},{\"cityId\":\"76\",\"cityName\":\"唐山\",\"provinceId\":\"12\",\"provinceName\":\"河北\"},{\"cityId\":\"38\",\"cityName\":\"青岛\",\"provinceId\":\"9\",\"provinceName\":\"山东\"}]\n");
         mapList.add(map);
         //根据key发送到对应的队列
         rabbitTemplate.convertAndSend("que_cat_key", mapList);

@@ -54,4 +54,6 @@ public interface UserService {
 
     CommonResult allBroker(Integer pageNo,Integer pageSize);
 
+    CommonResult home();
+
 }

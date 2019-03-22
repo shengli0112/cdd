@@ -10,6 +10,8 @@ import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +26,7 @@ import java.util.*;
 @Service
 public class UserSerivceImpl implements UserService {
 
+    private Logger logger = LoggerFactory.getLogger(UserSerivceImpl.class);
 
     @Autowired
     private ThirdUserInfoDomainMapper thirdUserInfoDomainMapper;
@@ -67,6 +70,14 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private HouseInfoDao houseInfoDao;
 
+    @Autowired
+    private SellParkDao sellParkDao;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
+
+    @Autowired
+    private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -697,9 +708,43 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult home() {
+        logger.info("UserServiceImpl home start");
+        CommonResult commonResult = new CommonResult();
+        try {
+            HomePageVo homePageVo = new HomePageVo();
+            //所有房源的数量
+            int allHouseCount = houseInfoDao.selectAllHouseCount();
+            homePageVo.setHouseCount(allHouseCount);
+            int allUserCount = userInfoDao.selectAllUserCount();
+            homePageVo.setClientCount(allUserCount);
+
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            homePageVo.setHouseInfoDomainVos(houseInfoDomainVos);
+
+            List<EnterpriseInfoVo> enterpriseInfoVos = enterpriseInfoDao.selectEnterpriseInfoListRand();
+            homePageVo.setEnterpriseInfoDomains(enterpriseInfoVos);
+            List<ParkInfoVo> parkInfoVos = sellParkDao.selectSellParkInfoRand();
+            homePageVo.setParkInfoVos(parkInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(homePageVo);
+        }catch (Exception e){
+            logger.error("UserServiceImpl home exception");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询失败");
+        }
+
+        return commonResult;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);
         return salt+","+hashed;
     }
+
+
 }

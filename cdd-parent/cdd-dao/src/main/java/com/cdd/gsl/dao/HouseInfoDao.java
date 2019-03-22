@@ -42,9 +42,9 @@ public interface HouseInfoDao {
             "</if><if test=\"county != null\">" +
             " and h.county=#{county}"+
             "</if><if test=\"houseType != null\">"+
-            " and h.houseType=#{houseType}"+
+            " and h.house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+
-            " and h.houseUseType=#{houseUseType}"+
+            " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
             "</if><if test=\"areaFrom != null\">"+
@@ -228,9 +228,12 @@ public interface HouseInfoDao {
             "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
             " from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
-            "and status=1 limit 3")
+            "and status=1 order by rand() limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
 
-    @Select("select count(*) from t_house_info where user_id=#{userId}")
+    @Select("select count(*) from t_house_info where user_id=#{userId} and status=1")
     int selectHouseCountByUserId(Long userId);
+
+    @Select("select count(*) from t_house_info where status=1")
+    int selectAllHouseCount();
 }
