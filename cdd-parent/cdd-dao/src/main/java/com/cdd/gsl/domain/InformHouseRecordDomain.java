@@ -11,7 +11,7 @@ public class InformHouseRecordDomain {
 
     private String informInfo;
 
-    private String explain;
+    private String description;
 
     private String image;
 
@@ -49,12 +49,12 @@ public class InformHouseRecordDomain {
         this.informInfo = informInfo == null ? null : informInfo.trim();
     }
 
-    public String getExplain() {
-        return explain;
+    public String getDescription() {
+        return description;
     }
 
-    public void setExplain(String explain) {
-        this.explain = explain == null ? null : explain.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getImage() {

@@ -6,7 +6,7 @@
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="house_id" property="houseId" jdbcType="BIGINT" />
     <result column="inform_info" property="informInfo" jdbcType="VARCHAR" />
-    <result column="explain" property="explain" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, house_id, inform_info, explain, image, create_ts
+    id, user_id, house_id, inform_info, description, image, create_ts
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.InformHouseRecordDomainExample" >
     select
@@ -103,10 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.InformHouseRecordDomain" >
     insert into t_inform_house_record (id, user_id, house_id, 
-      inform_info, explain, image, 
+      inform_info, description, image, 
       create_ts)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, 
-      #{informInfo,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{informInfo,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{createTs,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.InformHouseRecordDomain" >
@@ -124,8 +124,8 @@
       <if test="informInfo != null" >
         inform_info,
       </if>
-      <if test="explain != null" >
-        explain,
+      <if test="description != null" >
+        description,
       </if>
       <if test="image != null" >
         image,
@@ -147,8 +147,8 @@
       <if test="informInfo != null" >
         #{informInfo,jdbcType=VARCHAR},
       </if>
-      <if test="explain != null" >
-        #{explain,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="image != null" >
         #{image,jdbcType=VARCHAR},
@@ -179,8 +179,8 @@
       <if test="record.informInfo != null" >
         inform_info = #{record.informInfo,jdbcType=VARCHAR},
       </if>
-      <if test="record.explain != null" >
-        explain = #{record.explain,jdbcType=VARCHAR},
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.image != null" >
         image = #{record.image,jdbcType=VARCHAR},
@@ -199,7 +199,7 @@
       user_id = #{record.userId,jdbcType=BIGINT},
       house_id = #{record.houseId,jdbcType=BIGINT},
       inform_info = #{record.informInfo,jdbcType=VARCHAR},
-      explain = #{record.explain,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -218,8 +218,8 @@
       <if test="informInfo != null" >
         inform_info = #{informInfo,jdbcType=VARCHAR},
       </if>
-      <if test="explain != null" >
-        explain = #{explain,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="image != null" >
         image = #{image,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
     set user_id = #{userId,jdbcType=BIGINT},
       house_id = #{houseId,jdbcType=BIGINT},
       inform_info = #{informInfo,jdbcType=VARCHAR},
-      explain = #{explain,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       create_ts = #{createTs,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

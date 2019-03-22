@@ -7,7 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomain.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomain.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomainExample.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomainExample.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/InformHouseRecordDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/InformHouseRecordDomainMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -83,21 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HouseServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="125" column="87" lean-forward="false" selection-start-line="125" selection-start-column="87" selection-end-line="125" selection-end-column="87" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InformHouseRecordDomain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="26" />
+            <state relative-caret-position="257">
+              <caret line="120" column="121" lean-forward="false" selection-start-line="120" selection-start-column="121" selection-end-line="120" selection-end-column="121" />
               <folding />
             </state>
           </provider>
@@ -113,6 +105,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="InformHouseRecordDomain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="InformHouseRecordDomainMapper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/InformHouseRecordDomainMapper.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -123,20 +125,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformHouseRecordDomainMapper.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InformHouseRecordDomainMapper.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/InformHouseRecordDomainMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="19" column="48" lean-forward="true" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+            <state relative-caret-position="483">
+              <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
               <folding>
-                <marker date="1553245851938" expanded="true" signature="3765:3881" ph="select from t_inform_house_record" />
-                <marker date="1553245851938" expanded="true" signature="3965:4035" ph="delete from t_inform_house_record... " />
-                <marker date="1553245851938" expanded="true" signature="4151:4184" ph="delete from t_inform_house_record... " />
-                <marker date="1553245851938" expanded="true" signature="4377:4712" ph="insert into t_inform_house_record... " />
-                <marker date="1553245851938" expanded="true" signature="6162:6204" ph="select count... t_inform_house_record" />
-                <marker date="1553245851938" expanded="true" signature="7346:7734" ph="update t_inform_house_record... " />
-                <marker date="1553245851938" expanded="true" signature="7958:8616" ph="update t_inform_house_record... " />
-                <marker date="1553245851938" expanded="true" signature="8728:9070" ph="update t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="3777:3893" ph="select from t_inform_house_record" />
+                <marker date="1553246762105" expanded="true" signature="3977:4047" ph="delete from t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="4163:4196" ph="delete from t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="4389:4732" ph="insert into t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="6198:6240" ph="select count... t_inform_house_record" />
+                <marker date="1553246762105" expanded="true" signature="7394:7790" ph="update t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="8014:8684" ph="update t_inform_house_record... " />
+                <marker date="1553246762105" expanded="true" signature="8796:9146" ph="update t_inform_house_record... " />
               </folding>
             </state>
           </provider>
@@ -261,8 +263,8 @@
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/HouseService.java" />
         <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java" />
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/InformHouseRecordDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/InformHouseRecordDomainMapper.java" />
       </list>
     </option>
   </component>
@@ -429,16 +431,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gsl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gsl" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -771,12 +763,12 @@
       <workItem from="1552536544666" duration="16102000" />
       <workItem from="1552628946682" duration="10617000" />
       <workItem from="1552876157264" duration="26809000" />
-      <workItem from="1553134764851" duration="20314000" />
+      <workItem from="1553134764851" duration="20791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490960000" />
+    <option name="totallyTimeSpent" value="491437000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1380,28 +1372,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/InformHouseRecordDomainMapper.java">
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="462">
+          <caret line="175" column="67" lean-forward="false" selection-start-line="175" selection-start-column="67" selection-end-line="175" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/InformHouseRecordDomainMapper.xml">
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="48" lean-forward="true" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding>
-            <marker date="1553245851938" expanded="true" signature="3765:3881" ph="select from t_inform_house_record" />
-            <marker date="1553245851938" expanded="true" signature="3965:4035" ph="delete from t_inform_house_record... " />
-            <marker date="1553245851938" expanded="true" signature="4151:4184" ph="delete from t_inform_house_record... " />
-            <marker date="1553245851938" expanded="true" signature="4377:4712" ph="insert into t_inform_house_record... " />
-            <marker date="1553245851938" expanded="true" signature="6162:6204" ph="select count... t_inform_house_record" />
-            <marker date="1553245851938" expanded="true" signature="7346:7734" ph="update t_inform_house_record... " />
-            <marker date="1553245851938" expanded="true" signature="7958:8616" ph="update t_inform_house_record... " />
-            <marker date="1553245851938" expanded="true" signature="8728:9070" ph="update t_inform_house_record... " />
-          </folding>
+        <state relative-caret-position="257">
+          <caret line="120" column="121" lean-forward="false" selection-start-line="120" selection-start-column="121" selection-end-line="120" selection-end-column="121" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,27 +1396,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="175" column="67" lean-forward="false" selection-start-line="175" selection-start-column="67" selection-end-line="175" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/InformHouseRecordDomain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="92">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/InformHouseRecordDomainMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="125" column="87" lean-forward="false" selection-start-line="125" selection-start-column="87" selection-end-line="125" selection-end-column="87" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/InformHouseRecordDomainMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="51" column="46" lean-forward="false" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+          <folding>
+            <marker date="1553246762105" expanded="true" signature="3777:3893" ph="select from t_inform_house_record" />
+            <marker date="1553246762105" expanded="true" signature="3977:4047" ph="delete from t_inform_house_record... " />
+            <marker date="1553246762105" expanded="true" signature="4163:4196" ph="delete from t_inform_house_record... " />
+            <marker date="1553246762105" expanded="true" signature="4389:4732" ph="insert into t_inform_house_record... " />
+            <marker date="1553246762105" expanded="true" signature="6198:6240" ph="select count... t_inform_house_record" />
+            <marker date="1553246762105" expanded="true" signature="7394:7790" ph="update t_inform_house_record... " />
+            <marker date="1553246762105" expanded="true" signature="8014:8684" ph="update t_inform_house_record... " />
+            <marker date="1553246762105" expanded="true" signature="8796:9146" ph="update t_inform_house_record... " />
+          </folding>
         </state>
       </provider>
     </entry>
