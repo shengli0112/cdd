@@ -1,6 +1,7 @@
 package com.cdd.gsl.service.impl;
 
 import com.cdd.gsl.common.constants.CddConstant;
+import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
@@ -31,6 +32,9 @@ public class HouseServiceImpl implements HouseService{
 
     @Autowired
     private BrowseHouseRecordDomainMapper browseHouseRecordDomainMapper;
+
+    @Autowired
+    private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
 
     @Override
     public void addHouse(HouseInfoDomain houseInfoDomain) {
@@ -106,5 +110,27 @@ public class HouseServiceImpl implements HouseService{
 
         }
         return houseInfoDomainList;
+    }
+
+    @Override
+    public CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(informHouseRecordDomain != null){
+            InformHouseRecordDomainExample informHouseRecordDomainExample = new InformHouseRecordDomainExample();
+            informHouseRecordDomainExample.createCriteria().andUserIdEqualTo(informHouseRecordDomain.getUserId()).andHouseIdEqualTo(informHouseRecordDomain.getHouseId());
+            List<InformHouseRecordDomain> informHouseRecordDomains = informHouseRecordDomainMapper.selectByExample(informHouseRecordDomainExample);
+            if(informHouseRecordDomains != null && informHouseRecordDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("已经举报");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("举报成功");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数为空");
+        }
+
+        return commonResult;
     }
 }

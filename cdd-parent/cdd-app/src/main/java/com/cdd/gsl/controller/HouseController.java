@@ -2,10 +2,7 @@ package com.cdd.gsl.controller;
 
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.TrailInfoDomainMapper;
-import com.cdd.gsl.domain.BrowseHouseRecordDomain;
-import com.cdd.gsl.domain.BrowseRecordDomain;
-import com.cdd.gsl.domain.HouseInfoDomain;
-import com.cdd.gsl.domain.TrailInfoDomain;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
 import com.cdd.gsl.service.TrailService;
 import com.cdd.gsl.vo.HouseConditionVo;
@@ -173,6 +170,11 @@ public class HouseController {
             commonResult.setMessage("查询失败，参数不能为空");
         }
         return commonResult;
+    }
+
+    @RequestMapping("informHouseInfo")
+    public CommonResult informHouseInfo(@RequestBody InformHouseRecordDomain informHouseRecordDomain){
+       return houseService.informHouseInfo(informHouseRecordDomain);
     }
 
 }

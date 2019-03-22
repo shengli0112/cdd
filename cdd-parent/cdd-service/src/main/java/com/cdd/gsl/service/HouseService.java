@@ -1,6 +1,8 @@
 package com.cdd.gsl.service;
 
+import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.HouseInfoDomain;
+import com.cdd.gsl.domain.InformHouseRecordDomain;
 import com.cdd.gsl.vo.HouseConditionVo;
 import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.HouseInfoDomainVo;
@@ -19,4 +21,6 @@ public interface HouseService {
     List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     List<HouseInfoDomainVo> selectCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo);
+
+    CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain);
 }
