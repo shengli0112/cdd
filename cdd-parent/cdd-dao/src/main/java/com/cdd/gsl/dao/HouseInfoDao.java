@@ -41,7 +41,11 @@ public interface HouseInfoDao {
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
             " and h.county=#{county}"+
-            "</if><if test=\"houseType != null\">"+
+            "</if>" +
+            "<if test=\"town != null\">" +
+            " and h.town=#{town}"+
+            "</if>" +
+            "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+
             " and h.house_use_type=#{houseUseType}"+
@@ -90,7 +94,11 @@ public interface HouseInfoDao {
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
             " and h.county=#{county}"+
-            "</if><if test=\"houseType != null\">"+
+            "</if>" +
+            "<if test=\"town != null\">" +
+            " and h.town=#{town}"+
+            "</if>" +
+            "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+
             " and h.house_use_type=#{houseUseType}"+

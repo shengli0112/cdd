@@ -6,6 +6,8 @@ public class HouseConditionVo {
 
     private String county;
 
+    private String town;
+
     //房源类型 1 厂房 2 仓库 3 土地
     private Integer houseType;
 
@@ -175,5 +177,13 @@ public class HouseConditionVo {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 }
