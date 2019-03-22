@@ -123,6 +123,7 @@ public class HouseServiceImpl implements HouseService{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("已经举报");
             }else{
+                informHouseRecordDomainMapper.insertSelective(informHouseRecordDomain);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("举报成功");
             }
