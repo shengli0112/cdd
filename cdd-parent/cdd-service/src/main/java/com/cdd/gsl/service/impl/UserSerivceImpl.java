@@ -394,12 +394,22 @@ public class UserSerivceImpl implements UserService {
     public CommonResult followInfo(FollowInfoDomain followInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {
-            followInfoDomainMapper.insertSelective(followInfoDomain);
-            JSONObject json = new JSONObject();
-            json.put("followId",followInfoDomain.getId());
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("关注成功");
-            commonResult.setData(json);
+            FollowInfoDomainExample followInfoDomainExample = new FollowInfoDomainExample();
+            followInfoDomainExample.createCriteria().andFollowIdEqualTo(followInfoDomain.getFollowId())
+                    .andUserIdEqualTo(followInfoDomain.getUserId()).andFollowTypeEqualTo(followInfoDomain.getFollowType());
+            List<FollowInfoDomain> followInfoDomains = followInfoDomainMapper.selectByExample(followInfoDomainExample);
+            if(followInfoDomains != null && followInfoDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("已关注");
+            }else{
+                followInfoDomainMapper.insertSelective(followInfoDomain);
+                JSONObject json = new JSONObject();
+                json.put("followId",followInfoDomain.getId());
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("关注成功");
+                commonResult.setData(json);
+            }
+
         }catch (Exception e){
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
