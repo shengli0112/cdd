@@ -107,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
-              <caret line="212" column="72" lean-forward="false" selection-start-line="212" selection-start-column="72" selection-end-line="212" selection-end-column="72" />
+              <caret line="212" column="83" lean-forward="false" selection-start-line="212" selection-start-column="83" selection-end-line="212" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -838,12 +838,12 @@
       <workItem from="1552876157264" duration="26809000" />
       <workItem from="1553134764851" duration="21620000" />
       <workItem from="1553481262359" duration="1224000" />
-      <workItem from="1553492657355" duration="5073000" />
+      <workItem from="1553492657355" duration="5306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="498563000" />
+    <option name="totallyTimeSpent" value="498796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1330,7 +1330,7 @@
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="212" column="72" lean-forward="false" selection-start-line="212" selection-start-column="72" selection-end-line="212" selection-end-column="72" />
+          <caret line="212" column="83" lean-forward="false" selection-start-line="212" selection-start-column="83" selection-end-line="212" selection-end-column="83" />
           <folding />
         </state>
       </provider>

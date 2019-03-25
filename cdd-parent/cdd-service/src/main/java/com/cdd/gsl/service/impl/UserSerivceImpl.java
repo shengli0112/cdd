@@ -210,7 +210,7 @@ public class UserSerivceImpl implements UserService {
 
     @Override
     public CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo) {
-        logger.info("UserSerivceImpl login loginUserVo --{}",loginUserVo);
+        logger.info("UserSerivceImpl login loginUserVo --{}",loginUserVo.toString());
         CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
         if(loginUserVo != null){
 
