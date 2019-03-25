@@ -275,9 +275,8 @@ public class UserSerivceImpl implements UserService {
         }else{
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
                 UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                String authPasswd = createPassword(loginUserVo.getPassword());
-                String[] passwd = authPasswd.split(",");
-                if(passwd[0].equals(userInfoDomain.getSalt()) && passwd[1].equals(userInfoDomain.getPassword())){
+                String hashed = BCrypt.hashpw(loginUserVo.getPassword(), userInfoDomain.getSalt());
+                if(hashed.equals(userInfoDomain.getPassword())){
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
                     LoginTokenVo loginTokenVo = new LoginTokenVo();
