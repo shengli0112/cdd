@@ -1,5 +1,7 @@
 package com.cdd.gsl.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.RecordInfoDomainMapper;
@@ -399,11 +401,56 @@ public class UserController {
         map.put("virtualGroupCode", "");
         map.put("virtualGroupName", "");
         map.put("comments", "12");
-        map.put("allProviceFlag", "2");
+        map.put("allProvinceFlag", "2");
         map.put("multiRegionInfo", "[{\"cityId\":\"360\",\"cityName\":\"北京\",\"provinceId\":\"2\",\"provinceName\":\"北京\"},{\"cityId\":\"76\",\"cityName\":\"唐山\",\"provinceId\":\"12\",\"provinceName\":\"河北\"},{\"cityId\":\"38\",\"cityName\":\"青岛\",\"provinceId\":\"9\",\"provinceName\":\"山东\"}]\n");
         mapList.add(map);
+
+        String str = "[{\n" +
+                "\t\"advertiserCode\": \"360\",\n" +
+                "\t\"advertiserName\": \"360搜索\",\n" +
+                "\t\"allProvinceFlag\": \"2\",\n" +
+                "\t\"callCorpCode\": \"2021075\",\n" +
+                "\t\"callCorpName\": \"第九军团\",\n" +
+                "\t\"cardTypeCode\": \"ISMOBILE\",\n" +
+                "\t\"cardTypeName\": \"手机\",\n" +
+                "\t\"cityId\": \"52\",\n" +
+                "\t\"cityName\": \"长春\",\n" +
+                "\t\"comments\": \"备注\",\n" +
+                "\t\"createTime\": \"2019-03-25 14:03:15\",\n" +
+                "\t\"deviceCode\": \"pc\",\n" +
+                "\t\"deviceName\": \"PC端\",\n" +
+                "\t\"flowCenterCode\": \"101\",\n" +
+                "\t\"flowCenterName\": \"lizhifeng\",\n" +
+                "\t\"flowCorpCode\": \"123\",\n" +
+                "\t\"flowCorpName\": \"123\",\n" +
+                "\t\"multiRegionInfo\": \"[{\\\"cityId\\\":\\\"52\\\",\\\"cityName\\\":\\\"长春\\\",\\\"provinceId\\\":\\\"6\\\",\\\"provinceName\\\":\\\"吉林\\\"},{\\\"cityId\\\":\\\"38\\\",\\\"cityName\\\":\\\"沈阳\\\",\\\"provinceId\\\":\\\"29\\\",\\\"provinceName\\\":\\\"辽宁\\\"}]\",\n" +
+                "\t\"mutilProvinceId\": \"6,29\",\n" +
+                "\t\"mutilProvinceName\": \"吉林,辽宁\",\n" +
+                "\t\"pmAccount\": \"wangyazhou\",\n" +
+                "\t\"projectCode\": \"12\",\n" +
+                "\t\"projectName\": \"会计证\",\n" +
+                "\t\"promoteTypeCode\": \"wm\",\n" +
+                "\t\"promoteTypeName\": \"网盟\",\n" +
+                "\t\"propertyCheck\": 1,\n" +
+                "\t\"provinceId\": \"6\",\n" +
+                "\t\"provinceIds\": \"7,8\",\n" +
+                "\t\"provinceName\": \"吉林\",\n" +
+                "\t\"quantumId\": \"2030009\",\n" +
+                "\t\"respAccount\": \"wangyazhou\",\n" +
+                "\t\"siteId\": \"7000050780\",\n" +
+                "\t\"siteMd5\": \"18e9f80e6ee11987b480e3fc4d3d8bfd\",\n" +
+                "\t\"siteName\": \"测试MQ7\",\n" +
+                "\t\"source\": \"360搜索网盟\",\n" +
+                "\t\"state\": \"\",\n" +
+                "\t\"userAccount\": \"wangzhen06@sunlands.com\",\n" +
+                "\t\"virtualGroupCode\": \"2\",\n" +
+                "\t\"virtualGroupName\": \"MBA组\",\n" +
+                "\t\"websiteCode\": \"sunlandscom\",\n" +
+                "\t\"websiteName\": \"sunlandscom\"\n" +
+                "}]";
+        JSONArray arr = JSONArray.parseArray(str);
         //根据key发送到对应的队列
-        rabbitTemplate.convertAndSend("que_cat_key", mapList);
+        rabbitTemplate.convertAndSend("que_cat_key", arr);
 
     }
 
