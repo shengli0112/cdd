@@ -148,7 +148,7 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(h.id) " +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.user_id=#{userId} " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
@@ -181,15 +181,6 @@ public interface HouseInfoDao {
             " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
-            " order by h.create_ts desc " +
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
-            "</if>"+
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
             "</if>"+
             "</script>")
     int countUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
