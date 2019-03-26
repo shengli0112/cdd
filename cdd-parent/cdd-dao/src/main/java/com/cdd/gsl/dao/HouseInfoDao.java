@@ -20,7 +20,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
-            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description " +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade " +
             " from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
@@ -35,7 +35,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
@@ -88,7 +88,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.user_id=#{userId} " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
@@ -127,6 +127,44 @@ public interface HouseInfoDao {
     public List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     @Select("<script> " +
+            "select count(h.id) " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.user_id=#{userId} " +
+            "<if test=\"city != null\">" +
+            " and h.city=#{city}"+
+            "</if><if test=\"county != null\">" +
+            " and h.county=#{county}"+
+            "</if>" +
+            "<if test=\"town != null\">" +
+            " and h.town=#{town}"+
+            "</if>" +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if><if test=\"houseUseType != null\">"+
+            " and h.house_use_type=#{houseUseType}"+
+            "</if><if test=\"floor != null\">"+
+            " and h.floor=#{floor}"+
+            "</if><if test=\"areaFrom != null\">"+
+            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
+            "</if><if test=\"areaTo != null\">"+
+            " and h.area <![CDATA[<= ]]> #{areaTo}"+
+            "</if><if test=\"priceFrom != null\">"+
+            " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
+            "</if><if test=\"priceTo != null\">"+
+            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
+            "</if>"+
+            " order by h.create_ts desc " +
+            "<if test=\"areaOrder != null\">"+
+            "<if test=\"areaOrder == 1\">,h.area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "</if>"+
+            "<if test=\"priceOrder != null\">"+
+            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
+            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
+            "</if>"+
+            "</script>")
+    int countUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
+
+    @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +
             "h.county as county,h.town as town, h.street as street, h.area as area," +
             "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
@@ -137,7 +175,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.house_status=1"+
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
@@ -186,7 +224,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait" +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1"+
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
@@ -233,7 +271,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
-            "single_price as singlePrice,use_area as useArea,create_ts as createTs " +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
             " from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
             "and status=1 order by rand() limit 3")

@@ -61,6 +61,8 @@ public class HouseInfoDetailVo {
 
     private int browseCount;
 
+    private String trade;
+
     private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
@@ -293,5 +295,13 @@ public class HouseInfoDetailVo {
 
     public void setBrowseCount(int browseCount) {
         this.browseCount = browseCount;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
     }
 }

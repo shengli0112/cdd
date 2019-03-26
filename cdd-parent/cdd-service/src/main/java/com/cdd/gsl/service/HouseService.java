@@ -1,5 +1,6 @@
 package com.cdd.gsl.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.domain.InformHouseRecordDomain;
@@ -16,7 +17,7 @@ public interface HouseService {
 
     HouseInfoDetailVo findHouseInfoById(Long houseId);
 
-    List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo);
+    JSONObject findHouseInfoList(HouseConditionVo houseConditionVo);
 
     List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 

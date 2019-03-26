@@ -1,5 +1,6 @@
 package com.cdd.gsl.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.TrailInfoDomainMapper;
 import com.cdd.gsl.domain.*;
@@ -119,15 +120,15 @@ public class HouseController {
     }
 
     @RequestMapping("findHouseInfoList")
-    public CommonResult<List<HouseInfoDomainVo>> findHouseInfoList(HouseConditionVo houseConditionVo){
+    public CommonResult findHouseInfoList(HouseConditionVo houseConditionVo){
         logger.info("HouseController findHouseInfoList");
-        CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
+        CommonResult commonResult = new CommonResult();
 
         if(houseConditionVo != null){
-            List<HouseInfoDomainVo> houseInfoDomainList = houseService.findHouseInfoList(houseConditionVo);
+            JSONObject data = houseService.findHouseInfoList(houseConditionVo);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
-            commonResult.setData(houseInfoDomainList);
+            commonResult.setData(data);
 
         }else{
             commonResult.setFlag(0);
@@ -142,10 +143,10 @@ public class HouseController {
         CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
         if(houseConditionVo != null){
-            List<HouseInfoDomainVo> houseInfoDomainList = houseService.selectUserHouseInfoListByCondition(houseConditionVo);
+            List<HouseInfoDomainVo> data = houseService.selectUserHouseInfoListByCondition(houseConditionVo);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
-            commonResult.setData(houseInfoDomainList);
+            commonResult.setData(data);
 
         }else{
             commonResult.setFlag(0);

@@ -1,5 +1,6 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
@@ -69,10 +70,14 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo) {
+    public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
 
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
-        return houseInfoDomainList;
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        JSONObject data = new JSONObject();
+        data.put("houseCount",houseCount);
+        data.put("houseList",houseInfoDomainList);
+        return data;
     }
 
     @Override
