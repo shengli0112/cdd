@@ -137,6 +137,12 @@ public class UserSerivceImpl implements UserService {
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
+                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    LoginTokenVo loginTokenVo = new LoginTokenVo();
+                    loginTokenVo.setUserId(userInfoDomain.getId());
+                    loginTokenVo.setUserType(userInfoDomain.getUserType());
+                    loginTokenVo.setToken(token);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
 
