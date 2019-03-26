@@ -51,11 +51,21 @@ public interface HouseInfoDao {
             " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
-            "</if><if test=\"areaFrom != null\">"+
-            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
-            "</if><if test=\"areaTo != null\">"+
-            " and h.area <![CDATA[<= ]]> #{areaTo}"+
-            "</if><if test=\"priceFrom != null\">"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<if test=\"priceFrom != null\">"+
             " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
@@ -66,8 +76,8 @@ public interface HouseInfoDao {
             "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
@@ -104,19 +114,29 @@ public interface HouseInfoDao {
             " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
-            "</if><if test=\"areaFrom != null\">"+
-            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
-            "</if><if test=\"areaTo != null\">"+
-            " and h.area <![CDATA[<= ]]> #{areaTo}"+
-            "</if><if test=\"priceFrom != null\">"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<if test=\"priceFrom != null\">"+
             " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
             "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
@@ -143,19 +163,29 @@ public interface HouseInfoDao {
             " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
-            "</if><if test=\"areaFrom != null\">"+
-            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
-            "</if><if test=\"areaTo != null\">"+
-            " and h.area <![CDATA[<= ]]> #{areaTo}"+
-            "</if><if test=\"priceFrom != null\">"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<if test=\"priceFrom != null\">"+
             " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
             "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
@@ -190,19 +220,29 @@ public interface HouseInfoDao {
             " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
-            "</if><if test=\"areaFrom != null\">"+
-            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
-            "</if><if test=\"areaTo != null\">"+
-            " and h.area <![CDATA[<= ]]> #{areaTo}"+
-            "</if><if test=\"priceFrom != null\">"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<if test=\"priceFrom != null\">"+
             " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
             "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
@@ -239,19 +279,29 @@ public interface HouseInfoDao {
             " and h.house_use_type=#{houseUseType}"+
             "</if><if test=\"floor != null\">"+
             " and h.floor=#{floor}"+
-            "</if><if test=\"areaFrom != null\">"+
-            " and h.area <![CDATA[>= ]]> #{areaFrom}"+
-            "</if><if test=\"areaTo != null\">"+
-            " and h.area <![CDATA[<= ]]> #{areaTo}"+
-            "</if><if test=\"priceFrom != null\">"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<if test=\"priceFrom != null\">"+
             " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
             "</if><if test=\"priceTo != null\">"+
             " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
             "</if>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
