@@ -145,7 +145,7 @@ public class UserSerivceImpl implements UserService {
                     loginTokenVo.setToken(token);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
-
+                    commonResult.setData(loginTokenVo);
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("验证码错误");
