@@ -1985,6 +1985,76 @@ public class HouseInfoDomainExample {
             addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
+
+        public Criteria andTradeIsNull() {
+            addCriterion("trade is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeIsNotNull() {
+            addCriterion("trade is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeEqualTo(String value) {
+            addCriterion("trade =", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNotEqualTo(String value) {
+            addCriterion("trade <>", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeGreaterThan(String value) {
+            addCriterion("trade >", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeGreaterThanOrEqualTo(String value) {
+            addCriterion("trade >=", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeLessThan(String value) {
+            addCriterion("trade <", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeLessThanOrEqualTo(String value) {
+            addCriterion("trade <=", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeLike(String value) {
+            addCriterion("trade like", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNotLike(String value) {
+            addCriterion("trade not like", value, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeIn(List<String> values) {
+            addCriterion("trade in", values, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNotIn(List<String> values) {
+            addCriterion("trade not in", values, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeBetween(String value1, String value2) {
+            addCriterion("trade between", value1, value2, "trade");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeNotBetween(String value1, String value2) {
+            addCriterion("trade not between", value1, value2, "trade");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

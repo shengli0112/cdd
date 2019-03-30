@@ -1,9 +1,13 @@
 package com.cdd.gsl.vo;
 
-public class ParkInfoVo {
-    private Long id;
+public class FollowSellParkVo {
+    private Long followId;
+
+    private Long sellParkId;
 
     private String parkName;
+
+    private String title;
 
     private String tag;
 
@@ -13,15 +17,20 @@ public class ParkInfoVo {
 
     private String address;
 
-    //园区类型
-    private String parkType;
-
-    public Long getId() {
-        return id;
+    public Long getFollowId() {
+        return followId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFollowId(Long followId) {
+        this.followId = followId;
+    }
+
+    public Long getSellParkId() {
+        return sellParkId;
+    }
+
+    public void setSellParkId(Long sellParkId) {
+        this.sellParkId = sellParkId;
     }
 
     public String getParkName() {
@@ -30,6 +39,14 @@ public class ParkInfoVo {
 
     public void setParkName(String parkName) {
         this.parkName = parkName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTag() {
@@ -62,13 +79,5 @@ public class ParkInfoVo {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getParkType() {
-        return parkType;
-    }
-
-    public void setParkType(String parkType) {
-        this.parkType = parkType;
     }
 }

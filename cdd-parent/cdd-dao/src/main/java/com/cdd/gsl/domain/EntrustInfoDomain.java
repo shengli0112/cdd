@@ -29,6 +29,8 @@ public class EntrustInfoDomain {
 
     private Date updateTs;
 
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -51,6 +53,14 @@ public class EntrustInfoDomain {
 
     public void setCounty(String county) {
         this.county = county == null ? null : county.trim();
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
     }
 
     public Integer getArea() {
@@ -125,11 +135,11 @@ public class EntrustInfoDomain {
         this.updateTs = updateTs;
     }
 
-    public String getTown() {
-        return town;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setTown(String town) {
-        this.town = town;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

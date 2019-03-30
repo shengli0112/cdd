@@ -57,13 +57,16 @@ public class EntrustServiceImpl implements EntrustService {
                     .andCityEqualTo(entrustInfoDomain.getCity()).andCountyEqualTo(entrustInfoDomain.getCounty())
                     .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
-            for(int i=0;i<3;i++){
-                HouseInfoDomain houseInfoDomain = houseInfoDomainList.get((int)Math.random() * houseInfoDomainList.size());
-                EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
-                entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
-                entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
-                entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+            if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                for(int i=0;i<3;i++){
+                    HouseInfoDomain houseInfoDomain = houseInfoDomainList.get((int)Math.random() * houseInfoDomainList.size());
+                    EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
+                    entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
+                    entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
+                    entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+                }
             }
+
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
         }else{

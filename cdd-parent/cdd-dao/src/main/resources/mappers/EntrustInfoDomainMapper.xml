@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
     <result column="area" property="area" jdbcType="INTEGER" />
     <result column="business" property="business" jdbcType="VARCHAR" />
     <result column="pay_tax" property="payTax" jdbcType="INTEGER" />
@@ -14,6 +15,7 @@
     <result column="entrust_use_type" property="entrustUseType" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, city, county, area, business, pay_tax, contacts, phone, entrust_type, entrust_use_type, 
-    create_ts, update_ts
+    id, city, county, town, area, business, pay_tax, contacts, phone, entrust_type, entrust_use_type, 
+    create_ts, update_ts, user_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" >
     select
@@ -111,14 +113,16 @@
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into t_entrust_info (city, county, area, 
-      business, pay_tax, contacts, 
-      phone, entrust_type, entrust_use_type, 
-      create_ts, update_ts)
-    values (#{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{area,jdbcType=INTEGER}, 
-      #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, #{entrustUseType,jdbcType=INTEGER}, 
-      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP})
+    insert into t_entrust_info (city, county, town, 
+      area, business, pay_tax, 
+      contacts, phone, entrust_type, 
+      entrust_use_type, create_ts, update_ts, 
+      user_id)
+    values (#{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{area,jdbcType=INTEGER}, #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, 
+      #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, 
+      #{entrustUseType,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -131,6 +135,9 @@
       </if>
       <if test="county != null" >
         county,
+      </if>
+      <if test="town != null" >
+        town,
       </if>
       <if test="area != null" >
         area,
@@ -159,6 +166,9 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="city != null" >
@@ -166,6 +176,9 @@
       </if>
       <if test="county != null" >
         #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         #{area,jdbcType=INTEGER},
@@ -194,6 +207,9 @@
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" resultType="java.lang.Integer" >
@@ -213,6 +229,9 @@
       </if>
       <if test="record.county != null" >
         county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
       </if>
       <if test="record.area != null" >
         area = #{record.area,jdbcType=INTEGER},
@@ -241,6 +260,9 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,6 +273,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       city = #{record.city,jdbcType=VARCHAR},
       county = #{record.county,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=INTEGER},
       business = #{record.business,jdbcType=VARCHAR},
       pay_tax = #{record.payTax,jdbcType=INTEGER},
@@ -259,7 +282,8 @@
       entrust_type = #{record.entrustType,jdbcType=INTEGER},
       entrust_use_type = #{record.entrustUseType,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +296,9 @@
       </if>
       <if test="county != null" >
         county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
       </if>
       <if test="area != null" >
         area = #{area,jdbcType=INTEGER},
@@ -300,6 +327,9 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -307,6 +337,7 @@
     update t_entrust_info
     set city = #{city,jdbcType=VARCHAR},
       county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
       area = #{area,jdbcType=INTEGER},
       business = #{business,jdbcType=VARCHAR},
       pay_tax = #{payTax,jdbcType=INTEGER},
@@ -315,7 +346,8 @@
       entrust_type = #{entrustType,jdbcType=INTEGER},
       entrust_use_type = #{entrustUseType,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

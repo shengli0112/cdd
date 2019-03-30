@@ -1,11 +1,9 @@
 package com.cdd.gsl.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.TrailInfoDomainMapper;
-import com.cdd.gsl.domain.BrowseHouseRecordDomain;
-import com.cdd.gsl.domain.BrowseRecordDomain;
-import com.cdd.gsl.domain.HouseInfoDomain;
-import com.cdd.gsl.domain.TrailInfoDomain;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
 import com.cdd.gsl.service.TrailService;
 import com.cdd.gsl.vo.HouseConditionVo;
@@ -85,7 +83,7 @@ public class HouseController {
     }
 
     @RequestMapping("deleteHouse")
-    public CommonResult deleteHouse(Long houseId){
+    public CommonResult deleteHouse(@RequestParam("houseId") Long houseId){
         CommonResult commonResult = new CommonResult();
 
         if(houseId != null){
@@ -122,15 +120,15 @@ public class HouseController {
     }
 
     @RequestMapping("findHouseInfoList")
-    public CommonResult<List<HouseInfoDomainVo>> findHouseInfoList(HouseConditionVo houseConditionVo){
+    public CommonResult findHouseInfoList(HouseConditionVo houseConditionVo){
         logger.info("HouseController findHouseInfoList");
-        CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
+        CommonResult commonResult = new CommonResult();
 
         if(houseConditionVo != null){
-            List<HouseInfoDomainVo> houseInfoDomainList = houseService.findHouseInfoList(houseConditionVo);
+            JSONObject data = houseService.findHouseInfoList(houseConditionVo);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
-            commonResult.setData(houseInfoDomainList);
+            commonResult.setData(data);
 
         }else{
             commonResult.setFlag(0);
@@ -145,10 +143,10 @@ public class HouseController {
         CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
         if(houseConditionVo != null){
-            List<HouseInfoDomainVo> houseInfoDomainList = houseService.selectUserHouseInfoListByCondition(houseConditionVo);
+            List<HouseInfoDomainVo> data = houseService.selectUserHouseInfoListByCondition(houseConditionVo);
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
-            commonResult.setData(houseInfoDomainList);
+            commonResult.setData(data);
 
         }else{
             commonResult.setFlag(0);
@@ -173,6 +171,11 @@ public class HouseController {
             commonResult.setMessage("查询失败，参数不能为空");
         }
         return commonResult;
+    }
+
+    @RequestMapping("informHouseInfo")
+    public CommonResult informHouseInfo(@RequestBody InformHouseRecordDomain informHouseRecordDomain){
+       return houseService.informHouseInfo(informHouseRecordDomain);
     }
 
 }

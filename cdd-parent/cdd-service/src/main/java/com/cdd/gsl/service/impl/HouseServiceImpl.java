@@ -1,6 +1,8 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
+import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
@@ -32,6 +34,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private BrowseHouseRecordDomainMapper browseHouseRecordDomainMapper;
 
+    @Autowired
+    private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
+
     @Override
     public void addHouse(HouseInfoDomain houseInfoDomain) {
         houseInfoDomainMapper.insertSelective(houseInfoDomain);
@@ -39,7 +44,13 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public void updateHouse(HouseInfoDomain houseInfoDomain) {
-        houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+        HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+        houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+        List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+        if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+        }
+
     }
 
     @Override
@@ -59,10 +70,14 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo) {
+    public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
 
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
-        return houseInfoDomainList;
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        JSONObject data = new JSONObject();
+        data.put("houseCount",houseCount);
+        data.put("houseList",houseInfoDomainList);
+        return data;
     }
 
     @Override
@@ -100,5 +115,28 @@ public class HouseServiceImpl implements HouseService{
 
         }
         return houseInfoDomainList;
+    }
+
+    @Override
+    public CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(informHouseRecordDomain != null){
+            InformHouseRecordDomainExample informHouseRecordDomainExample = new InformHouseRecordDomainExample();
+            informHouseRecordDomainExample.createCriteria().andUserIdEqualTo(informHouseRecordDomain.getUserId()).andHouseIdEqualTo(informHouseRecordDomain.getHouseId());
+            List<InformHouseRecordDomain> informHouseRecordDomains = informHouseRecordDomainMapper.selectByExample(informHouseRecordDomainExample);
+            if(informHouseRecordDomains != null && informHouseRecordDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("已经举报");
+            }else{
+                informHouseRecordDomainMapper.insertSelective(informHouseRecordDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("举报成功");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数为空");
+        }
+
+        return commonResult;
     }
 }

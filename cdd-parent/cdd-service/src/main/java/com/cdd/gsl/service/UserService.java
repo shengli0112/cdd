@@ -24,9 +24,13 @@ public interface UserService {
 
     CommonResult bindPhone(Long userId,String phone);
 
+    CommonResult findFollow(FollowConditionVo followConditionVo);
+
     CommonResult followInfo(FollowInfoDomain followInfoDomain);
 
     CommonResult cancelFollow(FollowInfoVo followInfoVo);
+
+    CommonResult isFollow(IsFollowVo isFollowVo);
 
     List<CommonDictDomain> findDictInfo(String dictName);
 
@@ -49,5 +53,7 @@ public interface UserService {
     CommonResult updateUser(UserParamVo userParamVo);
 
     CommonResult allBroker(Integer pageNo,Integer pageSize);
+
+    CommonResult home();
 
 }

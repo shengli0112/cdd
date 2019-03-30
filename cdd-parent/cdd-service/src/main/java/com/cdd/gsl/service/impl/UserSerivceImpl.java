@@ -10,6 +10,8 @@ import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +26,7 @@ import java.util.*;
 @Service
 public class UserSerivceImpl implements UserService {
 
+    private Logger logger = LoggerFactory.getLogger(UserSerivceImpl.class);
 
     @Autowired
     private ThirdUserInfoDomainMapper thirdUserInfoDomainMapper;
@@ -67,6 +70,14 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private HouseInfoDao houseInfoDao;
 
+    @Autowired
+    private SellParkDao sellParkDao;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
+
+    @Autowired
+    private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -126,9 +137,15 @@ public class UserSerivceImpl implements UserService {
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
+                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    LoginTokenVo loginTokenVo = new LoginTokenVo();
+                    loginTokenVo.setUserId(userInfoDomain.getId());
+                    loginTokenVo.setUserType(userInfoDomain.getUserType());
+                    loginTokenVo.setToken(token);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
-
+                    commonResult.setData(loginTokenVo);
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("验证码错误");
@@ -199,7 +216,8 @@ public class UserSerivceImpl implements UserService {
 
     @Override
     public CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo) {
-
+        logger.info("UserSerivceImpl login loginUserVo deviceId--{} passwod --{} phone--{}",
+                loginUserVo.getDeviceId(),loginUserVo.getPassword(),loginUserVo.getPhone());
         CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
         if(loginUserVo != null){
 
@@ -263,8 +281,8 @@ public class UserSerivceImpl implements UserService {
         }else{
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
                 UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                String dataPassword = BCrypt.hashpw(loginUserVo.getPassword(),userInfoDomain.getSalt());
-                if(dataPassword.equals(userInfoDomain.getPassword())){
+                String hashed = BCrypt.hashpw(loginUserVo.getPassword(), userInfoDomain.getSalt());
+                if(hashed.equals(userInfoDomain.getPassword())){
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
                     LoginTokenVo loginTokenVo = new LoginTokenVo();
@@ -344,12 +362,61 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult findFollow(FollowConditionVo followConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(followConditionVo != null){
+            Integer followType = followConditionVo.getFollowType();
+            if(followType != null && followType > 0){
+                if(followType == 1 || followType == 2 || followType == 3){
+                    List<FollowHouseVo> followHouseVos = followInfoDao.findFollowHouse(followConditionVo);
+                    commonResult.setData(followHouseVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 4){
+                    List<FollowSellParkVo> followSellParkVos = followInfoDao.findFollowSellPark(followConditionVo);
+                    commonResult.setData(followSellParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 5){
+                    List<FollowLeaseParkVo> followLeaseParkVos = followInfoDao.findFollowLeasePark(followConditionVo);
+                    commonResult.setData(followLeaseParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功，没有对应的关注类型");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("请输入对应的关注类型");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult followInfo(FollowInfoDomain followInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {
-            followInfoDomainMapper.insertSelective(followInfoDomain);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("关注成功");
+            FollowInfoDomainExample followInfoDomainExample = new FollowInfoDomainExample();
+            followInfoDomainExample.createCriteria().andFollowIdEqualTo(followInfoDomain.getFollowId())
+                    .andUserIdEqualTo(followInfoDomain.getUserId()).andFollowTypeEqualTo(followInfoDomain.getFollowType());
+            List<FollowInfoDomain> followInfoDomains = followInfoDomainMapper.selectByExample(followInfoDomainExample);
+            if(followInfoDomains != null && followInfoDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("已关注");
+            }else{
+                followInfoDomainMapper.insertSelective(followInfoDomain);
+                JSONObject json = new JSONObject();
+                json.put("followId",followInfoDomain.getId());
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("关注成功");
+                commonResult.setData(json);
+            }
+
         }catch (Exception e){
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
@@ -374,6 +441,30 @@ public class UserSerivceImpl implements UserService {
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult isFollow(IsFollowVo isFollowVo) {
+
+        CommonResult commonResult = new CommonResult();
+        if(isFollowVo != null){
+            List<Long> ids = followInfoDao.isFollow(isFollowVo);
+            JSONObject data = new JSONObject();
+            if(ids != null && ids.size() > 0){
+                data.put("isFollow",true);
+                data.put("followId",ids.get(0));
+            }else{
+                data.put("isFollow",false);
+                data.put("followId","");
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
         }
         return commonResult;
     }
@@ -634,9 +725,43 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult home() {
+        logger.info("UserServiceImpl home start");
+        CommonResult commonResult = new CommonResult();
+        try {
+            HomePageVo homePageVo = new HomePageVo();
+            //所有房源的数量
+            int allHouseCount = houseInfoDao.selectAllHouseCount();
+            homePageVo.setHouseCount(allHouseCount);
+            int allUserCount = userInfoDao.selectAllUserCount();
+            homePageVo.setClientCount(allUserCount);
+
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            homePageVo.setHouseInfoDomainVos(houseInfoDomainVos);
+
+            List<EnterpriseInfoVo> enterpriseInfoVos = enterpriseInfoDao.selectEnterpriseInfoListRand();
+            homePageVo.setEnterpriseInfoDomains(enterpriseInfoVos);
+            List<ParkInfoVo> parkInfoVos = sellParkDao.selectSellParkInfoRand();
+            homePageVo.setParkInfoVos(parkInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(homePageVo);
+        }catch (Exception e){
+            logger.error("UserServiceImpl home exception");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询失败");
+        }
+
+        return commonResult;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);
         return salt+","+hashed;
     }
+
+
 }

@@ -62,6 +62,8 @@ public class HouseInfoDomain {
 
     private String description;
 
+    private String trade;
+
     public Long getId() {
         return id;
     }
@@ -292,5 +294,13 @@ public class HouseInfoDomain {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade == null ? null : trade.trim();
     }
 }
