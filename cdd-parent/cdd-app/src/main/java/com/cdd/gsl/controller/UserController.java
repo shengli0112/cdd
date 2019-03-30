@@ -365,6 +365,15 @@ public class UserController {
         return userService.home();
     }
 
+    /**
+     * 经纪人详情页
+     * @return
+     */
+    @RequestMapping("brokerDetail")
+    public CommonResult brokerDetail(Long userId){
+        return userService.brokerDetail(userId);
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

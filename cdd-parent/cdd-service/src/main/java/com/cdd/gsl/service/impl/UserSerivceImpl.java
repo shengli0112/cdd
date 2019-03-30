@@ -763,5 +763,27 @@ public class UserSerivceImpl implements UserService {
         return salt+","+hashed;
     }
 
+    @Override
+    public CommonResult brokerDetail(Long userId) {
+        logger.info("UserSerivceImpl brokerDetail userId:{}",userId);
+        if(userId != null){
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
+            BrokerHouseInfoVo brokerHouseInfoVo = new BrokerHouseInfoVo();
+            BeanUtils.copyProperties(singleUserInfoVo,brokerHouseInfoVo);
+            //厂房数量
+            int plantCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,1);
+            //仓库数量
+            int storageCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,2);
+            //土地数量
+            int landCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,3);
+            brokerHouseInfoVo.setPlantCount(plantCount);
+            brokerHouseInfoVo.setStorageCount(storageCount);
+            brokerHouseInfoVo.setLandCount(landCount);
+            //TODO 等设计图
+//            houseInfoDao.select
+        }
 
+
+        return null;
+    }
 }

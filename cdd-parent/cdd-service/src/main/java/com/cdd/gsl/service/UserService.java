@@ -56,4 +56,8 @@ public interface UserService {
 
     CommonResult home();
 
+    CommonResult brokerDetail(Long userId);
+
+
+
 }

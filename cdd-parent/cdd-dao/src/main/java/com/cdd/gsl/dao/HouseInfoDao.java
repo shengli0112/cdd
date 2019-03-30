@@ -5,6 +5,7 @@ import com.cdd.gsl.vo.HouseCompanyVo;
 import com.cdd.gsl.vo.HouseConditionVo;
 import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.HouseInfoDomainVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -65,11 +66,21 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            "<if test=\"priceFrom != null\">"+
-            " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
-            "</if><if test=\"priceTo != null\">"+
-            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"
+           +
             "<if test=\"keyword != null\">" +
             " and (title like concat('%','${keyword}','%') or city like concat('%','${keyword}','%') or county like concat('%','${keyword}','%') or town like concat('%','${keyword}','%') or street like concat('%','${keyword}','%')" +
             " or house_number like concat('%','${keyword}','%') or house_edge like concat('%','${keyword}','%'))"+
@@ -86,6 +97,8 @@ public interface HouseInfoDao {
             " limit #{from},#{pageSize}"+
             "</script>")
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
+
+
 
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +
@@ -128,11 +141,19 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            "<if test=\"priceFrom != null\">"+
-            " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
-            "</if><if test=\"priceTo != null\">"+
-            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
@@ -177,11 +198,19 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            "<if test=\"priceFrom != null\">"+
-            " and selling_price <![CDATA[>= ]]> #{priceFrom}"+
-            "</if><if test=\"priceTo != null\">"+
-            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
             "</script>")
     int countUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
@@ -225,11 +254,19 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            "<if test=\"priceFrom != null\">"+
-            " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
-            "</if><if test=\"priceTo != null\">"+
-            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
@@ -284,11 +321,19 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            "<if test=\"priceFrom != null\">"+
-            " and h.selling_price <![CDATA[>= ]]> #{priceFrom}"+
-            "</if><if test=\"priceTo != null\">"+
-            " and h.selling_price <![CDATA[<= ]]> #{priceTo}"+
-            "</if>"+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
             " order by h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
@@ -318,9 +363,12 @@ public interface HouseInfoDao {
             "and status=1 order by rand() limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
 
-    @Select("select count(*) from t_house_info where user_id=#{userId} and status=1")
+    @Select("select count(id) from t_house_info where user_id=#{userId} and status=1")
     int selectHouseCountByUserId(Long userId);
 
-    @Select("select count(*) from t_house_info where status=1")
+    @Select("select count(id) from t_house_info where user_id=#{userId} and house_type=#{houseType} and status=1")
+    int selectHouseCountByUserIdAndHouseUseType(@Param("userId") Long userId,@Param("houseType") Integer houseType);
+
+    @Select("select count(id) from t_house_info where status=1")
     int selectAllHouseCount();
 }
