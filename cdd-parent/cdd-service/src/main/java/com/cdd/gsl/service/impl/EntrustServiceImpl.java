@@ -93,7 +93,8 @@ public class EntrustServiceImpl implements EntrustService {
     @Override
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoList(EntrustConditionVo entrustConditionVo) {
         CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
-        if(entrustConditionVo.getUserId() != null && entrustConditionVo.getEntrustType() != null){
+        // && entrustConditionVo.getEntrustType() != null
+        if(entrustConditionVo.getUserId() != null){
             List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoByUserId(entrustConditionVo);
             commonResult.setData(entrustInfoVos);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
