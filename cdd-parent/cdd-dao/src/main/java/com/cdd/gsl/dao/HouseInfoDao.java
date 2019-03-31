@@ -37,7 +37,10 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1" +
+            "<if test='userId != null'>" +
+            "  and h.user_id=#{userId}" +
+            "</if> " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
@@ -371,4 +374,19 @@ public interface HouseInfoDao {
 
     @Select("select count(id) from t_house_info where status=1")
     int selectAllHouseCount();
+
+    @Select("select id as id, title as title, city as city, " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
+            " from t_house_info where user_id=#{userId}" +
+            "and status=1 order by rand() limit 3")
+    List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 }

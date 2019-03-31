@@ -766,6 +766,7 @@ public class UserSerivceImpl implements UserService {
     @Override
     public CommonResult brokerDetail(Long userId) {
         logger.info("UserSerivceImpl brokerDetail userId:{}",userId);
+        CommonResult commonResult = new CommonResult();
         if(userId != null){
             SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
             BrokerHouseInfoVo brokerHouseInfoVo = new BrokerHouseInfoVo();
@@ -780,10 +781,17 @@ public class UserSerivceImpl implements UserService {
             brokerHouseInfoVo.setStorageCount(storageCount);
             brokerHouseInfoVo.setLandCount(landCount);
             //TODO 等设计图
-//            houseInfoDao.select
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByRecommend(userId);
+            brokerHouseInfoVo.setHouseList(houseInfoDomainVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(brokerHouseInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询成功");
         }
 
 
-        return null;
+        return commonResult;
     }
 }
