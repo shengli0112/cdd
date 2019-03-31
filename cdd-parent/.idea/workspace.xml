@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EntrustInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EntrustInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EntrustInfoVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EntrustInfoVo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -84,11 +83,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntrustInfoDao.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EntrustInfoDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EntrustInfoDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="360">
+              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntrustInfoVo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EntrustInfoVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="97" column="33" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+              <folding>
+                <element signature="e#1851#1852#0" expanded="true" />
+                <element signature="e#1899#1900#0" expanded="true" />
+                <element signature="e#1939#1940#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,15 +135,6 @@
                 <element signature="e#10744#10745#0" expanded="true" />
                 <element signature="e#10799#10800#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserSerivceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17503">
-              <caret line="782" column="33" selection-start-line="782" selection-start-column="33" selection-end-line="782" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -199,7 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cdd-app/src/main/env-dev/reds.properties" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserInfoVo.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserCompanyInfoVo.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SingleUserInfoVo.java" />
@@ -250,6 +253,7 @@
         <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EntrustInfoDao.java" />
+        <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EntrustInfoVo.java" />
       </list>
     </option>
   </component>
@@ -716,12 +720,12 @@
       <workItem from="1553492657355" duration="16774000" />
       <workItem from="1553663181335" duration="644000" />
       <workItem from="1553925941123" duration="5794000" />
-      <workItem from="1554019749989" duration="1095000" />
+      <workItem from="1554019749989" duration="1882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="517797000" />
+    <option name="totallyTimeSpent" value="518584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -798,13 +802,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EnterpriseInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -1114,8 +1111,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EntrustInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+        <state relative-caret-position="360">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EntrustInfoVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="97" column="33" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+          <folding>
+            <element signature="e#1851#1852#0" expanded="true" />
+            <element signature="e#1899#1900#0" expanded="true" />
+            <element signature="e#1939#1940#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
