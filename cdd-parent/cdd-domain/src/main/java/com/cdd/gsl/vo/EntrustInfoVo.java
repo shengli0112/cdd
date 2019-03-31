@@ -24,6 +24,8 @@ public class EntrustInfoVo {
 
     private String phone;
 
+    private String business;
+
     private String createTs;
 
     public Long getEntrustId() {
@@ -109,6 +111,14 @@ public class EntrustInfoVo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
     }
 
     public Integer getType() {
