@@ -386,7 +386,7 @@ public interface HouseInfoDao {
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
             "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
-            " from t_house_info where user_id=#{userId}" +
-            "and status=1 order by rand() limit 3")
+            " from t_house_info where user_id=#{userId} " +
+            "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 }
