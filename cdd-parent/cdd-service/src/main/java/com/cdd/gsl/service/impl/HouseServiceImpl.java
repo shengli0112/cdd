@@ -6,10 +6,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
-import com.cdd.gsl.vo.HouseCompanyVo;
-import com.cdd.gsl.vo.HouseConditionVo;
-import com.cdd.gsl.vo.HouseInfoDetailVo;
-import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +34,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
     @Override
     public void addHouse(HouseInfoDomain houseInfoDomain) {
         houseInfoDomainMapper.insertSelective(houseInfoDomain);
@@ -56,6 +56,8 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+        houseInfoDetailVo.setUser(singleUserInfoVo);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
         houseInfoDetailVo.setLikes(houseInfoDomainVos);
         BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
