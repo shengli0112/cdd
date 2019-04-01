@@ -763,5 +763,35 @@ public class UserSerivceImpl implements UserService {
         return salt+","+hashed;
     }
 
+    @Override
+    public CommonResult brokerDetail(Long userId) {
+        logger.info("UserSerivceImpl brokerDetail userId:{}",userId);
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
+            BrokerHouseInfoVo brokerHouseInfoVo = new BrokerHouseInfoVo();
+            BeanUtils.copyProperties(singleUserInfoVo,brokerHouseInfoVo);
+            //厂房数量
+            int plantCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,1);
+            //仓库数量
+            int storageCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,2);
+            //土地数量
+            int landCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,3);
+            brokerHouseInfoVo.setPlantCount(plantCount);
+            brokerHouseInfoVo.setStorageCount(storageCount);
+            brokerHouseInfoVo.setLandCount(landCount);
+            //TODO 等设计图
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByRecommend(userId);
+            brokerHouseInfoVo.setHouseList(houseInfoDomainVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(brokerHouseInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询成功");
+        }
 
+
+        return commonResult;
+    }
 }

@@ -11,11 +11,12 @@ public interface EntrustInfoDao {
             "select e.id as entrustId, u.username as username,e.entrust_type as type, " +
             "(select dict_value from t_common_dict where dict_name='entrustType' and dict_code=e.entrust_type) as entrustType, " +
             "(select dict_value from t_common_dict where dict_name='entrustUseType' and dict_code=e.entrust_use_type) as entrustUseType, " +
-            "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, " +
-            " e.contacts as contacts,e.phone as phone"  +
+            "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
+            " e.contacts as contacts,e.phone as phone,e.business as business"   +
             " from t_entrust_info e " +
-             "left join t_user_info u on e.user_id=u.id " +
-             "where e.user_id=#{userId} " +
+            " left join t_entrust_user_mapping um on e.id=um.entrust_id "+
+             "left join t_user_info u on um.user_id=u.id " +
+             "where um.user_id=#{userId} " +
             "<if test='entrustType != null'>" +
             " and e.entrust_type=#{entrustType} "+
             "</if>"+
