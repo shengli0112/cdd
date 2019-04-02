@@ -10,6 +10,7 @@ import com.cdd.gsl.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +38,31 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private UserInfoDao userInfoDao;
 
+    @Autowired
+    private ApplyBrokerInfoDao applyBrokerInfoDao;
+
     @Override
-    public void addHouse(HouseInfoDomain houseInfoDomain) {
-        houseInfoDomainMapper.insertSelective(houseInfoDomain);
+    public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        Long userId = houseInfoDomain.getUserId();
+        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+        if(!CollectionUtils.isEmpty(userIds)){
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
+            if(CollectionUtils.isEmpty(ids)){
+                houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                commonResult.setFlag(1);
+                commonResult.setMessage("添加成功");
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("同公司已有咨询师发布，不能重复发布");
+            }
+        }else{
+            houseInfoDomainMapper.insertSelective(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("添加成功");
+        }
+        return commonResult;
+
     }
 
     @Override
@@ -56,8 +79,9 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
-        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
-        houseInfoDetailVo.setUser(singleUserInfoVo);
+        List<SingleUserInfoVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+
+        houseInfoDetailVo.setUser(userList);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
         houseInfoDetailVo.setLikes(houseInfoDomainVos);
         BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();

@@ -1,10 +1,7 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.HouseInfoDomain;
-import com.cdd.gsl.vo.HouseCompanyVo;
-import com.cdd.gsl.vo.HouseConditionVo;
-import com.cdd.gsl.vo.HouseInfoDetailVo;
-import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -392,4 +389,20 @@ public interface HouseInfoDao {
             " from t_house_info where user_id=#{userId} " +
             "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
+
+    //<foreach collection="userIds" index="index" item="item" open=" and h.user_id in (" close=")" separator=",">
+    //判断是否有发布同区域的房源
+    @Select("<script>" +
+            "select id from t_house_info where status=1 and city=#{houseInfoDomain.city} and county=#{houseInfoDomain.county}" +
+            " and street=#{houseInfoDomain.street} and house_number=#{houseInfoDomain.houseNumber} " +
+            "<foreach collection='userIds' item='userId' index='index' open=' and user_id in (' close=')' separator=','>" +
+            "#{userId}" +
+            "</foreach>"+
+            "</script>")
+    List<Long> selectHouseByRegionAndUserId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
+
+    @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait from t_user_info u left join t_house_info h on u.id=h.user_id " +
+            "where h.city=#{city} and h.county=#{county} " +
+            " and h.street=#{street} and h.house_number=#{houseNumber} and status=1 order by id limit 3")
+    List<SingleUserInfoVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
 }

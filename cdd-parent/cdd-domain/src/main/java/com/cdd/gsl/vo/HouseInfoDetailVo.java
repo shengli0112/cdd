@@ -47,7 +47,7 @@ public class HouseInfoDetailVo {
 
     private Long userId;
 
-    private SingleUserInfoVo user;
+    private List<SingleUserInfoVo> user;
 
     private BigDecimal singlePrice;
 
@@ -227,11 +227,11 @@ public class HouseInfoDetailVo {
         this.houseEdge = houseEdge;
     }
 
-    public SingleUserInfoVo getUser() {
+    public List<SingleUserInfoVo> getUser() {
         return user;
     }
 
-    public void setUser(SingleUserInfoVo user) {
+    public void setUser(List<SingleUserInfoVo> user) {
         this.user = user;
     }
 
