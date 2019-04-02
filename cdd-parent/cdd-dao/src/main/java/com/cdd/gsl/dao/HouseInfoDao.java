@@ -403,6 +403,6 @@ public interface HouseInfoDao {
 
     @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait from t_user_info u left join t_house_info h on u.id=h.user_id " +
             "where h.city=#{city} and h.county=#{county} " +
-            " and h.street=#{street} and h.house_number=#{houseNumber} and status=1 order by id limit 3")
+            " and h.street=#{street} and h.house_number=#{houseNumber} and h.status=1 and u.status=1 order by id limit 3")
     List<SingleUserInfoVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
 }
