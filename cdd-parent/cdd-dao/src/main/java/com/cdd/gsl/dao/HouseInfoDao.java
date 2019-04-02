@@ -390,7 +390,6 @@ public interface HouseInfoDao {
             "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 
-    //<foreach collection="userIds" index="index" item="item" open=" and h.user_id in (" close=")" separator=",">
     //判断是否有发布同区域的房源
     @Select("<script>" +
             "select id from t_house_info where status=1 and city=#{houseInfoDomain.city} and county=#{houseInfoDomain.county}" +

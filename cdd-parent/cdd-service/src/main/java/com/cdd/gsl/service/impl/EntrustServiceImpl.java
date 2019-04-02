@@ -58,13 +58,39 @@ public class EntrustServiceImpl implements EntrustService {
                     .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
             if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
-                for(int i=0;i<3;i++){
-                    HouseInfoDomain houseInfoDomain = houseInfoDomainList.get((int)Math.random() * houseInfoDomainList.size());
-                    EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
-                    entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
-                    entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
-                    entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+                int size = 0;
+                if(houseInfoDomainList.size() >= 3){
+                    size = 3;
+                }else if (houseInfoDomainList.size() < 3){
+                    size = houseInfoDomainList.size();
+                }else{
+                    size = 3;
                 }
+                if(size == 3){
+                    for(int i=0;i<size;i++){
+                        HouseInfoDomain houseInfoDomain = null;
+                        if(houseInfoDomainList.size() > 3){
+                            houseInfoDomain = houseInfoDomainList.get((int)(Math.random() * 3));
+                       }else{
+                           houseInfoDomain = houseInfoDomainList.get(i);
+                       }
+                        EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
+                        entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
+                        entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
+                        entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+
+                    }
+                }else{
+                    for(int i=0;i<size;i++){
+                        HouseInfoDomain  houseInfoDomain = houseInfoDomainList.get(i);
+                        EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
+                        entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
+                        entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
+                        entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+                    }
+
+                }
+
             }
 
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
@@ -105,5 +131,26 @@ public class EntrustServiceImpl implements EntrustService {
         }
 
         return commonResult;
+    }
+
+    @Override
+    public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo) {
+        CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
+        // && entrustConditionVo.getEntrustType() != null
+        if(entrustConditionVo.getUserId() != null){
+            List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfo(entrustConditionVo);
+            commonResult.setData(entrustInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
+        return commonResult;
+    }
+
+    public static void main(String[] args){
+        System.out.println((int)(Math.random() * 3));
     }
 }

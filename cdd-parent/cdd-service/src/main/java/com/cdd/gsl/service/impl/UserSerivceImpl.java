@@ -794,4 +794,18 @@ public class UserSerivceImpl implements UserService {
 
         return commonResult;
     }
+
+    @Override
+    public CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(applyBrokerInfoDomain != null){
+            applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("修改成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
 }

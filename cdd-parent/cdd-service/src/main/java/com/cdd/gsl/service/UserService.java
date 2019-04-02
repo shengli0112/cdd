@@ -58,6 +58,7 @@ public interface UserService {
 
     CommonResult brokerDetail(Long userId);
 
+    CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 
 
 }

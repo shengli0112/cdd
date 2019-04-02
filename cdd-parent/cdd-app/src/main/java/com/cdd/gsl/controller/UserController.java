@@ -308,6 +308,11 @@ public class UserController {
         return userService.authenticationBroker(applyBrokerInfoDomain);
     }
 
+    @RequestMapping("updateBroker")
+    public CommonResult updateBroker(@RequestBody ApplyBrokerInfoDomain applyBrokerInfoDomain){
+        return userService.updateBroker(applyBrokerInfoDomain);
+    }
+
     @RequestMapping("allBroker")
     public CommonResult allBroker(Integer pageNo, Integer pageSize){
         if(pageNo == null){
