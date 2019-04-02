@@ -172,7 +172,10 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(h.id) " +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
+            " from t_house_info h where h.status=1 " +
+            "<if test='userId != null'>" +
+            "  and h.user_id=#{userId}" +
+            "</if> " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
