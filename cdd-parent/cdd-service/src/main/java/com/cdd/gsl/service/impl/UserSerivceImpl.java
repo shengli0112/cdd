@@ -845,9 +845,30 @@ public class UserSerivceImpl implements UserService {
             EntrustInfoVo entrustInfoVo = entrustInfoDao.findEntrustInfoById(messageInfoDomain.getEntrustId());
             messageInfoVo.setHouseInfo(houseInfoDemainVo);
             messageInfoVo.setEntrustInfo(entrustInfoVo);
+            if(messageInfoDomain.getIsRead() == 0){
+                messageInfoDao.updateMessageRead(messageInfoDomain.getId());
+            }
+
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(messageInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageUnreadCount(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            int unreadCount = messageInfoDao.countUnReadMessageCount(userId);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unreadCount",unreadCount);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(jsonObject);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");

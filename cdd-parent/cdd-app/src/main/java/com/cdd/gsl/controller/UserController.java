@@ -398,6 +398,15 @@ public class UserController {
     }
 
     /**
+     * 消息未读数
+     * @return
+     */
+    @RequestMapping("messageUnreadCount")
+    public CommonResult messageUnreadCount(Long userId){
+        return userService.messageUnreadCount(userId);
+    }
+
+    /**
      * 添加足迹
      * @return
      */

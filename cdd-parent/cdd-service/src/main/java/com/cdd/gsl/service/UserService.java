@@ -64,4 +64,6 @@ public interface UserService {
 
     CommonResult messageDetail(Long messageId);
 
+    CommonResult messageUnreadCount(Long userId);
+
 }
