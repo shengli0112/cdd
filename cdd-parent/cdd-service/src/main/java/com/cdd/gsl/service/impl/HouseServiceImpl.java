@@ -79,9 +79,11 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
         List<SingleUserInfoVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
 
-        houseInfoDetailVo.setUser(userList);
+        houseInfoDetailVo.setUser_list(userList);
+        houseInfoDetailVo.setUser(singleUserInfoVo);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
         houseInfoDetailVo.setLikes(houseInfoDomainVos);
         BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
