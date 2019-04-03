@@ -416,7 +416,7 @@ public interface HouseInfoDao {
     List<Long> selectHouseByRegionAndUserId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
 
     @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait,a.company_name as companyName " +
-            "from t_user_info u left join t_house_info h on u.id=h.user_id left join from t_apply_broker_info a on a.user_id=h.user_id" +
+            "from t_user_info u left join t_house_info h on u.id=h.user_id left join t_apply_broker_info a on a.user_id=h.user_id" +
             " where h.city=#{city} and h.county=#{county} " +
             " and h.street=#{street} and h.house_number=#{houseNumber} and h.status=1 and u.status=1 order by h.id limit 3")
     List<UserBrokerVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
