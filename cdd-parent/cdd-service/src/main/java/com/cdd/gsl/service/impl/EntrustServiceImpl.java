@@ -137,15 +137,10 @@ public class EntrustServiceImpl implements EntrustService {
     public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo) {
         CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
         // && entrustConditionVo.getEntrustType() != null
-        if(entrustConditionVo.getUserId() != null){
-            List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfo(entrustConditionVo);
-            commonResult.setData(entrustInfoVos);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("查询成功");
-        }else{
-            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-            commonResult.setMessage("参数不能为空");
-        }
+        List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfo(entrustConditionVo);
+        commonResult.setData(entrustInfoVos);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
 
         return commonResult;
     }
