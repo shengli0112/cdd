@@ -14,4 +14,5 @@ public interface ApplyBrokerInfoDao {
     //搜索同公司的人
     @Select("select user_id from t_apply_broker_info where apply_type=2 and company_name = (select company_name from t_apply_broker_info where user_id=#{userId})")
     List<Long> selectBrokerByUserId(Long userId);
+
 }

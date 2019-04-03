@@ -60,5 +60,8 @@ public interface UserService {
 
     CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 
+    CommonResult messageList(MessageConditionVo messageConditionVo);
+
+    CommonResult messageDetail(Long messageId);
 
 }

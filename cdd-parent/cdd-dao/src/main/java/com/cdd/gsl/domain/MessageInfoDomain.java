@@ -11,6 +11,14 @@ public class MessageInfoDomain {
 
     private Date createTs;
 
+    private Long entrustId;
+
+    private Long houseId;
+
+    private Integer isRead;
+
+    private Date updateTs;
+
     public Long getId() {
         return id;
     }
@@ -41,5 +49,37 @@ public class MessageInfoDomain {
 
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
+    }
+
+    public Long getEntrustId() {
+        return entrustId;
+    }
+
+    public void setEntrustId(Long entrustId) {
+        this.entrustId = entrustId;
+    }
+
+    public Long getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Long houseId) {
+        this.houseId = houseId;
+    }
+
+    public Integer getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(Integer isRead) {
+        this.isRead = isRead;
+    }
+
+    public Date getUpdateTs() {
+        return updateTs;
+    }
+
+    public void setUpdateTs(Date updateTs) {
+        this.updateTs = updateTs;
     }
 }

@@ -80,8 +80,13 @@ public class HouseServiceImpl implements HouseService{
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
         SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
-        List<SingleUserInfoVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
-
+        List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+        if(!CollectionUtils.isEmpty(userList)){
+            userList.forEach(userBrokerVo -> {
+                int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                userBrokerVo.setHouseCount(count);
+            });
+        }
         houseInfoDetailVo.setUser_list(userList);
         houseInfoDetailVo.setUser(singleUserInfoVo);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();

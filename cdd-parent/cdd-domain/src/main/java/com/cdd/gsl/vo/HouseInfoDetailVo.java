@@ -47,7 +47,7 @@ public class HouseInfoDetailVo {
 
     private Long userId;
 
-    private List<SingleUserInfoVo> user_list;
+    private List<UserBrokerVo> user_list;
 
     private SingleUserInfoVo user;
 
@@ -229,11 +229,11 @@ public class HouseInfoDetailVo {
         this.houseEdge = houseEdge;
     }
 
-    public List<SingleUserInfoVo> getUser_list() {
+    public List<UserBrokerVo> getUser_list() {
         return user_list;
     }
 
-    public void setUser_list(List<SingleUserInfoVo> user_list) {
+    public void setUser_list(List<UserBrokerVo> user_list) {
         this.user_list = user_list;
     }
 

@@ -379,6 +379,33 @@ public class UserController {
         return userService.brokerDetail(userId);
     }
 
+    /**
+     * 消息列表
+     * @return
+     */
+    @RequestMapping("messageList")
+    public CommonResult messageList(MessageConditionVo messageConditionVo){
+        return userService.messageList(messageConditionVo);
+    }
+
+    /**
+     * 消息详情
+     * @return
+     */
+    @RequestMapping("messageDetail")
+    public CommonResult messageDetail(Long messageId){
+        return userService.messageDetail(messageId);
+    }
+
+    /**
+     * 添加足迹
+     * @return
+     */
+    @RequestMapping("addFootprint")
+    public CommonResult addFootprint(@RequestBody BrowseRecordDomain browseRecordDomain){
+        return null;
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

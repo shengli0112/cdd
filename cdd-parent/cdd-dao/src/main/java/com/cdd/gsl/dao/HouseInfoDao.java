@@ -390,6 +390,21 @@ public interface HouseInfoDao {
             "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 
+    @Select("select id as id, title as title, city as city, " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
+            " from t_house_info where id=#{houseId} " +
+            "and status=1")
+    HouseInfoDomainVo selectHouseInfoListById(@Param("houseId") Long houseId);
+
     //判断是否有发布同区域的房源
     @Select("<script>" +
             "select id from t_house_info where status=1 and city=#{houseInfoDomain.city} and county=#{houseInfoDomain.county}" +
@@ -400,8 +415,9 @@ public interface HouseInfoDao {
             "</script>")
     List<Long> selectHouseByRegionAndUserId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
 
-    @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait from t_user_info u left join t_house_info h on u.id=h.user_id " +
+    @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait,a.company_name as companyName " +
+            "from t_user_info u left join t_house_info h on u.id=h.user_id left join from t_apply_broker_info a on a.user_id=h.user_id" +
             "where h.city=#{city} and h.county=#{county} " +
             " and h.street=#{street} and h.house_number=#{houseNumber} and h.status=1 and u.status=1 order by h.id limit 3")
-    List<SingleUserInfoVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
+    List<UserBrokerVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
 }
