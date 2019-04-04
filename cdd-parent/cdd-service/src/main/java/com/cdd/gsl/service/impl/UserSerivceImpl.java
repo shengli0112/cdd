@@ -822,7 +822,7 @@ public class UserSerivceImpl implements UserService {
     public CommonResult messageList(MessageConditionVo messageConditionVo) {
         CommonResult commonResult = new CommonResult();
         if(messageConditionVo.getUserId() != null){
-            List<MessageVo> messageInfoDomains = messageInfoDao.messageList(messageConditionVo.getUserId());
+            List<MessageVo> messageInfoDomains = messageInfoDao.messageList(messageConditionVo);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(messageInfoDomains);
