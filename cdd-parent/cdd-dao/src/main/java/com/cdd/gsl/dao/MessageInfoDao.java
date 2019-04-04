@@ -17,6 +17,6 @@ public interface MessageInfoDao {
     @Update("update t_message_info set is_read=1 where id=#{messageId}")
     void updateMessageRead(Long messageId);
 
-    @Select("select count(id) from t_message_info where user_id=#{userId} and is_read=1")
+    @Select("select count(id) from t_message_info where user_id=#{userId} and is_read=0")
     int countUnReadMessageCount(Long userId);
 }
