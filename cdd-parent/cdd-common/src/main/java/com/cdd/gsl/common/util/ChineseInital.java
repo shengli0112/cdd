@@ -1,5 +1,7 @@
 package com.cdd.gsl.common.util;
 
+import java.io.UnsupportedEncodingException;
+
 public class ChineseInital {
     private final static int[] areaCode = { 1601, 1637, 1833, 2078, 2274,
 
