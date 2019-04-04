@@ -99,8 +99,10 @@ public class RegionServiceImpl implements RegionService {
             }
 
         });
+
         Set<String> firstCodeSet = new HashSet<>();
         cityVos.forEach(cityVo -> {
+            cityVo.setFirstCode(PinyinUtils.ToPinyinAndGetFirstChar(cityVo.getCityName()).substring(0, 1));
             firstCodeSet.add(cityVo.getFirstCode());
         });
         List<CityVo> cityVoList = new ArrayList<>();
