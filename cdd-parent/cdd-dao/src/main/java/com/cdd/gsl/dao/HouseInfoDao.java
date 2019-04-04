@@ -401,8 +401,8 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,h.trade as trade,u.portrait as portrait " +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where id=#{houseId} " +
-            "and status=1")
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.id=#{houseId} " +
+            "and h.status=1")
     HouseInfoDomainVo selectHouseInfoListById(@Param("houseId") Long houseId);
 
     //判断是否有发布同区域的房源
