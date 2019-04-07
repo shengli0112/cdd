@@ -1,10 +1,7 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.HouseInfoDomain;
-import com.cdd.gsl.vo.HouseCompanyVo;
-import com.cdd.gsl.vo.HouseConditionVo;
-import com.cdd.gsl.vo.HouseInfoDetailVo;
-import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -172,7 +169,10 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(h.id) " +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 " +
+            " from t_house_info h where h.status=1 " +
+            "<if test='userId != null'>" +
+            "  and h.user_id=#{userId}" +
+            "</if> " +
             "<if test=\"city != null\">" +
             " and h.city=#{city}"+
             "</if><if test=\"county != null\">" +
@@ -386,7 +386,38 @@ public interface HouseInfoDao {
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
             "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
-            " from t_house_info where user_id=#{userId}" +
-            "and status=1 order by rand() limit 3")
+            " from t_house_info where user_id=#{userId} " +
+            "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
+
+    @Select("select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,h.trade as trade,u.portrait as portrait " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.id=#{houseId} " +
+            "and h.status=1")
+    HouseInfoDomainVo selectHouseInfoListById(@Param("houseId") Long houseId);
+
+    //判断是否有发布同区域的房源
+    @Select("<script>" +
+            "select id from t_house_info where status=1 and city=#{houseInfoDomain.city} and county=#{houseInfoDomain.county}" +
+            " and street=#{houseInfoDomain.street} and house_number=#{houseInfoDomain.houseNumber} " +
+            "<foreach collection='userIds' item='userId' index='index' open=' and user_id in (' close=')' separator=','>" +
+            "#{userId}" +
+            "</foreach>"+
+            "</script>")
+    List<Long> selectHouseByRegionAndUserId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
+
+    @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait,a.company_name as companyName " +
+            "from t_user_info u left join t_house_info h on u.id=h.user_id left join t_apply_broker_info a on a.user_id=h.user_id" +
+            " where h.city=#{city} and h.county=#{county} " +
+            " and h.street=#{street} and h.house_number=#{houseNumber} and h.status=1 and u.status=1 order by h.id limit 3")
+    List<UserBrokerVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
 }

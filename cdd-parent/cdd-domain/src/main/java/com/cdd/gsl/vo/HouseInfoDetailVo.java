@@ -47,6 +47,10 @@ public class HouseInfoDetailVo {
 
     private Long userId;
 
+    private List<UserBrokerVo> user_list;
+
+    private SingleUserInfoVo user;
+
     private BigDecimal singlePrice;
 
     private String priceType;
@@ -225,12 +229,20 @@ public class HouseInfoDetailVo {
         this.houseEdge = houseEdge;
     }
 
-    public Long getUserId() {
-        return userId;
+    public List<UserBrokerVo> getUser_list() {
+        return user_list;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser_list(List<UserBrokerVo> user_list) {
+        this.user_list = user_list;
+    }
+
+    public SingleUserInfoVo getUser() {
+        return user;
+    }
+
+    public void setUser(SingleUserInfoVo user) {
+        this.user = user;
     }
 
     public BigDecimal getSinglePrice() {
@@ -303,5 +315,13 @@ public class HouseInfoDetailVo {
 
     public void setTrade(String trade) {
         this.trade = trade;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -38,16 +38,7 @@ public class HouseController {
 
     @RequestMapping("addHouse")
     public CommonResult addHouse(@RequestBody HouseInfoDomain houseInfoDomain){
-        CommonResult commonResult = new CommonResult();
-        if(houseInfoDomain != null){
-            houseService.addHouse(houseInfoDomain);
-            commonResult.setFlag(1);
-            commonResult.setMessage("添加成功");
-        }else{
-            commonResult.setFlag(0);
-            commonResult.setMessage("添加失败");
-        }
-        return commonResult;
+        return houseService.addHouse(houseInfoDomain);
     }
 
     @RequestMapping("addTrail")

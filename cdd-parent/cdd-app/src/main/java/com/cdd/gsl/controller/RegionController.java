@@ -36,4 +36,10 @@ public class RegionController {
         CommonResult<List<String>> commonResult = regionService.findAllCity();
         return commonResult;
     }
+
+    @RequestMapping("findFirstCodeCity")
+    public CommonResult<List<String>> findFirstCodeCity(){
+        CommonResult<List<String>> commonResult = regionService.findFirstCodeCity();
+        return commonResult;
+    }
 }

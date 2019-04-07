@@ -31,6 +31,7 @@
     <result column="sign_contract" property="signContract" jdbcType="INTEGER" />
     <result column="town" property="town" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="trade" property="trade" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -94,7 +95,7 @@
     id, title, city, county, street, house_number, area, selling_price, electricity, 
     house_type, house_use_type, floor, fire_control, contacts, phone, status, create_ts, 
     update_ts, background, house_status, cover_area, house_edge, user_id, single_price, 
-    price_type, use_area, sign_contract, town, description
+    price_type, use_area, sign_contract, town, description, trade
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
     select
@@ -136,7 +137,8 @@
       background, house_status, cover_area, 
       house_edge, user_id, single_price, 
       price_type, use_area, sign_contract, 
-      town, description)
+      town, description, trade
+      )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
@@ -146,7 +148,8 @@
       #{background,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=VARCHAR}, 
       #{houseEdge,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=DECIMAL}, 
       #{priceType,jdbcType=INTEGER}, #{useArea,jdbcType=VARCHAR}, #{signContract,jdbcType=INTEGER}, 
-      #{town,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+      #{town,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -238,6 +241,9 @@
       <if test="description != null" >
         description,
       </if>
+      <if test="trade != null" >
+        trade,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -326,6 +332,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -425,6 +434,9 @@
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
+      <if test="record.trade != null" >
+        trade = #{record.trade,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -460,7 +472,8 @@
       use_area = #{record.useArea,jdbcType=VARCHAR},
       sign_contract = #{record.signContract,jdbcType=INTEGER},
       town = #{record.town,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR}
+      description = #{record.description,jdbcType=VARCHAR},
+      trade = #{record.trade,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -552,6 +565,9 @@
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="trade != null" >
+        trade = #{trade,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -584,7 +600,8 @@
       use_area = #{useArea,jdbcType=VARCHAR},
       sign_contract = #{signContract,jdbcType=INTEGER},
       town = #{town,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR},
+      trade = #{trade,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

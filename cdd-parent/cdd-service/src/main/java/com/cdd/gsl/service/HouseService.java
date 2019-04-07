@@ -11,7 +11,7 @@ import com.cdd.gsl.vo.HouseInfoDomainVo;
 import java.util.List;
 
 public interface HouseService {
-    void addHouse(HouseInfoDomain houseInfoDomain);
+    CommonResult addHouse(HouseInfoDomain houseInfoDomain);
 
     void updateHouse(HouseInfoDomain houseInfoDomain);
 

@@ -308,6 +308,11 @@ public class UserController {
         return userService.authenticationBroker(applyBrokerInfoDomain);
     }
 
+    @RequestMapping("updateBroker")
+    public CommonResult updateBroker(@RequestBody ApplyBrokerInfoDomain applyBrokerInfoDomain){
+        return userService.updateBroker(applyBrokerInfoDomain);
+    }
+
     @RequestMapping("allBroker")
     public CommonResult allBroker(Integer pageNo, Integer pageSize){
         if(pageNo == null){
@@ -372,6 +377,42 @@ public class UserController {
     @RequestMapping("brokerDetail")
     public CommonResult brokerDetail(Long userId){
         return userService.brokerDetail(userId);
+    }
+
+    /**
+     * 消息列表
+     * @return
+     */
+    @RequestMapping("messageList")
+    public CommonResult messageList(MessageConditionVo messageConditionVo){
+        return userService.messageList(messageConditionVo);
+    }
+
+    /**
+     * 消息详情
+     * @return
+     */
+    @RequestMapping("messageDetail")
+    public CommonResult messageDetail(Long messageId){
+        return userService.messageDetail(messageId);
+    }
+
+    /**
+     * 消息未读数
+     * @return
+     */
+    @RequestMapping("messageUnreadCount")
+    public CommonResult messageUnreadCount(Long userId){
+        return userService.messageUnreadCount(userId);
+    }
+
+    /**
+     * 添加足迹
+     * @return
+     */
+    @RequestMapping("addFootprint")
+    public CommonResult addFootprint(@RequestBody BrowseRecordDomain browseRecordDomain){
+        return null;
     }
 
     @RequestMapping("testMq")

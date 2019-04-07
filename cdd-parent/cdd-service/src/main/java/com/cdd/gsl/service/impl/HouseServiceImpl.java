@@ -6,13 +6,11 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
-import com.cdd.gsl.vo.HouseCompanyVo;
-import com.cdd.gsl.vo.HouseConditionVo;
-import com.cdd.gsl.vo.HouseInfoDetailVo;
-import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +35,34 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Autowired
+    private ApplyBrokerInfoDao applyBrokerInfoDao;
+
     @Override
-    public void addHouse(HouseInfoDomain houseInfoDomain) {
-        houseInfoDomainMapper.insertSelective(houseInfoDomain);
+    public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        Long userId = houseInfoDomain.getUserId();
+        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+        if(!CollectionUtils.isEmpty(userIds)){
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
+            if(CollectionUtils.isEmpty(ids)){
+                houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                commonResult.setFlag(1);
+                commonResult.setMessage("添加成功");
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("同公司已有咨询师发布，不能重复发布");
+            }
+        }else{
+            houseInfoDomainMapper.insertSelective(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("添加成功");
+        }
+        return commonResult;
+
     }
 
     @Override
@@ -56,6 +79,16 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+        List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+        if(!CollectionUtils.isEmpty(userList)){
+            userList.forEach(userBrokerVo -> {
+                int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                userBrokerVo.setHouseCount(count);
+            });
+        }
+        houseInfoDetailVo.setUser_list(userList);
+        houseInfoDetailVo.setUser(singleUserInfoVo);
         List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
         houseInfoDetailVo.setLikes(houseInfoDomainVos);
         BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();

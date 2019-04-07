@@ -77,6 +77,15 @@ public class UserSerivceImpl implements UserService {
     private LeaseParkDao leaseParkDao;
 
     @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
+    @Autowired
+    private MessageInfoDao messageInfoDao;
+
+    @Autowired
+    private EntrustInfoDao entrustInfoDao;
+
+    @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -792,6 +801,78 @@ public class UserSerivceImpl implements UserService {
         }
 
 
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(applyBrokerInfoDomain != null){
+            applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("修改成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageList(MessageConditionVo messageConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(messageConditionVo.getUserId() != null){
+            List<MessageVo> messageInfoDomains = messageInfoDao.messageList(messageConditionVo);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(messageInfoDomains);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageDetail(Long messageId) {
+
+        CommonResult commonResult = new CommonResult();
+        if(messageId != null){
+            MessageInfoDomain messageInfoDomain = messageInfoDomainMapper.selectByPrimaryKey(messageId);
+            MessageInfoVo messageInfoVo = new MessageInfoVo();
+
+            HouseInfoDomainVo houseInfoDemainVo = houseInfoDao.selectHouseInfoListById(messageInfoDomain.getHouseId());
+            EntrustInfoVo entrustInfoVo = entrustInfoDao.findEntrustInfoById(messageInfoDomain.getEntrustId());
+            messageInfoVo.setHouseInfo(houseInfoDemainVo);
+            messageInfoVo.setEntrustInfo(entrustInfoVo);
+            if(messageInfoDomain.getIsRead() == 0){
+                messageInfoDao.updateMessageRead(messageInfoDomain.getId());
+            }
+
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(messageInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageUnreadCount(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            int unreadCount = messageInfoDao.countUnReadMessageCount(userId);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unreadCount",unreadCount);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(jsonObject);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
         return commonResult;
     }
 }

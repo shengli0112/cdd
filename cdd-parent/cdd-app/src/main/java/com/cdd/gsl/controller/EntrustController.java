@@ -37,4 +37,13 @@ public class EntrustController {
         return entrustService.findEntrustInfoList(entrustConditionVo);
     }
 
+    /**
+     * 所有人都可以查看托管信息
+     */
+    @RequestMapping("findEntrustList")
+    public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo){
+        return entrustService.findEntrustList(entrustConditionVo);
+    }
+
+
 }
