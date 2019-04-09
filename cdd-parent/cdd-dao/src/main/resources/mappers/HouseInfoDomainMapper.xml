@@ -32,6 +32,7 @@
     <result column="town" property="town" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="trade" property="trade" jdbcType="VARCHAR" />
+    <result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,7 +96,7 @@
     id, title, city, county, street, house_number, area, selling_price, electricity, 
     house_type, house_use_type, floor, fire_control, contacts, phone, status, create_ts, 
     update_ts, background, house_status, cover_area, house_edge, user_id, single_price, 
-    price_type, use_area, sign_contract, town, description, trade
+    price_type, use_area, sign_contract, town, description, trade, expire_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
     select
@@ -137,8 +138,8 @@
       background, house_status, cover_area, 
       house_edge, user_id, single_price, 
       price_type, use_area, sign_contract, 
-      town, description, trade
-      )
+      town, description, trade, 
+      expire_date)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
@@ -148,8 +149,8 @@
       #{background,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=VARCHAR}, 
       #{houseEdge,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=DECIMAL}, 
       #{priceType,jdbcType=INTEGER}, #{useArea,jdbcType=VARCHAR}, #{signContract,jdbcType=INTEGER}, 
-      #{town,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}
-      )
+      #{town,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, 
+      #{expireDate,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -244,6 +245,9 @@
       <if test="trade != null" >
         trade,
       </if>
+      <if test="expireDate != null" >
+        expire_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -335,6 +339,9 @@
       </if>
       <if test="trade != null" >
         #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -437,6 +444,9 @@
       <if test="record.trade != null" >
         trade = #{record.trade,jdbcType=VARCHAR},
       </if>
+      <if test="record.expireDate != null" >
+        expire_date = #{record.expireDate,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -473,7 +483,8 @@
       sign_contract = #{record.signContract,jdbcType=INTEGER},
       town = #{record.town,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
-      trade = #{record.trade,jdbcType=VARCHAR}
+      trade = #{record.trade,jdbcType=VARCHAR},
+      expire_date = #{record.expireDate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -568,6 +579,9 @@
       <if test="trade != null" >
         trade = #{trade,jdbcType=VARCHAR},
       </if>
+      <if test="expireDate != null" >
+        expire_date = #{expireDate,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -601,7 +615,8 @@
       sign_contract = #{signContract,jdbcType=INTEGER},
       town = #{town,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      trade = #{trade,jdbcType=VARCHAR}
+      trade = #{trade,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

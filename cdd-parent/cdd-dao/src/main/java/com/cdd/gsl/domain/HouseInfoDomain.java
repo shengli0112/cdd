@@ -64,6 +64,8 @@ public class HouseInfoDomain {
 
     private String trade;
 
+    private String expireDate;
+
     public Long getId() {
         return id;
     }
@@ -302,5 +304,13 @@ public class HouseInfoDomain {
 
     public void setTrade(String trade) {
         this.trade = trade == null ? null : trade.trim();
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate == null ? null : expireDate.trim();
     }
 }

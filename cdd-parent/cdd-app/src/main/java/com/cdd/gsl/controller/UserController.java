@@ -313,6 +313,11 @@ public class UserController {
         return userService.updateBroker(applyBrokerInfoDomain);
     }
 
+    @RequestMapping("findBrokerDetail")
+    public CommonResult findBrokerDetail(Long userId){
+        return userService.findBrokerDetail(userId);
+    }
+
     @RequestMapping("allBroker")
     public CommonResult allBroker(Integer pageNo, Integer pageSize){
         if(pageNo == null){
