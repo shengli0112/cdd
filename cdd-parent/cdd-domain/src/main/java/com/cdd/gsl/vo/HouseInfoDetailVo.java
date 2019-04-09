@@ -67,6 +67,8 @@ public class HouseInfoDetailVo {
 
     private String trade;
 
+    private String expireDate;
+
     private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
@@ -323,5 +325,13 @@ public class HouseInfoDetailVo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
     }
 }

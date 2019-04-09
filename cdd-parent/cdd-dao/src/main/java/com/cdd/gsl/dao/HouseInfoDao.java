@@ -18,7 +18,7 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
-            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade " +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade,expire_date as expireDate " +
             " from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
