@@ -860,9 +860,9 @@ public class UserSerivceImpl implements UserService {
             MessageInfoVo messageInfoVo = new MessageInfoVo();
 
             HouseInfoDomainVo houseInfoDemainVo = houseInfoDao.selectHouseInfoListById(messageInfoDomain.getHouseId());
-            EntrustInfoVo entrustInfoVo = entrustInfoDao.findEntrustInfoById(messageInfoDomain.getEntrustId());
+            List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoById(messageInfoDomain.getEntrustId());
             messageInfoVo.setHouseInfo(houseInfoDemainVo);
-            messageInfoVo.setEntrustInfo(entrustInfoVo);
+            messageInfoVo.setEntrustInfo(entrustInfoVos.get(0));
             if(messageInfoDomain.getIsRead() == 0){
                 messageInfoDao.updateMessageRead(messageInfoDomain.getId());
             }

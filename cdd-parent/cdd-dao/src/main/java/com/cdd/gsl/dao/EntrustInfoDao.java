@@ -82,5 +82,5 @@ public interface EntrustInfoDao {
             " left join t_entrust_user_mapping um on e.id=um.entrust_id "+
             "left join t_user_info u on um.user_id=u.id " +
             "where 1=1 and e.id=#{id}")
-    EntrustInfoVo findEntrustInfoById(Long id);
+    List<EntrustInfoVo> findEntrustInfoById(Long id);
 }
