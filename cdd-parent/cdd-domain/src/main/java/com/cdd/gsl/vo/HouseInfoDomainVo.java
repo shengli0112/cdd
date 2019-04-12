@@ -306,4 +306,12 @@ public class HouseInfoDomainVo {
     public void setTrade(String trade) {
         this.trade = trade;
     }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
+    }
 }
