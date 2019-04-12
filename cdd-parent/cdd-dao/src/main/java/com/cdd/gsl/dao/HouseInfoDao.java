@@ -155,7 +155,7 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            " order by h.create_ts desc,h.house_status asc " +
+            " order by h.house_status asc,h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
@@ -272,7 +272,7 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            " order by h.create_ts desc,h.house_status asc " +
+            " order by h.house_status asc,h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
@@ -340,7 +340,7 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            " order by h.create_ts desc,h.house_status asc " +
+            " order by h.house_status asc,h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
