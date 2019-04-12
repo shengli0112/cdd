@@ -65,6 +65,8 @@ public class HouseInfoDomainVo {
 
     private String trade;
 
+    private String expireDate;
+
     public Long getId() {
         return id;
     }
