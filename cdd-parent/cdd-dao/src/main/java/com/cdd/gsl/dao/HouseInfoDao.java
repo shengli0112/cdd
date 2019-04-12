@@ -215,6 +215,10 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
+             "<if test=\"keyword != null\">" +
+            " and (title like concat('%','${keyword}','%') or city like concat('%','${keyword}','%') or county like concat('%','${keyword}','%') or town like concat('%','${keyword}','%') or street like concat('%','${keyword}','%')" +
+            " or house_number like concat('%','${keyword}','%') or house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
             "</script>")
     int countUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
