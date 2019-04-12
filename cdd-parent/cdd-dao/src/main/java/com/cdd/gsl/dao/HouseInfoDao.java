@@ -297,7 +297,8 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
+            "u.portrait as portrait,h.trade as trade,h.expire_date as expireDate" +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1"+
             "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
             "#{item}"+
@@ -339,7 +340,7 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
-            " order by h.create_ts desc " +
+            " order by h.create_ts desc,h.house_status " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
