@@ -397,6 +397,14 @@ public interface HouseInfoDao {
             "and status=1 order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 
+    @Select("select id as id, user_id as userId "+
+            " from t_house_info where (area between #{fromArea} and #{toArea}) " +
+            "or (city=#{city} and county=#{county} and town=#{town}) or house_type=#{houseType} " +
+            "or house_use_type=#{houseUseType} and status=1" )
+    List<HouseInfoDomainVo> selectHouseInfoListByMatch(@Param("fromArea") Integer fromArea,@Param("toArea") Integer toArea,
+                                                       @Param("city")String city,@Param("county")String county,@Param("town")String town,
+                                                       @Param("houseType")Integer houseType,@Param("houseUseType")Integer houseUseType);
+
     @Select("select h.id as id, h.title as title, h.city as city, " +
             "h.county as county,h.town as town, h.street as street, h.area as area," +
             "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +

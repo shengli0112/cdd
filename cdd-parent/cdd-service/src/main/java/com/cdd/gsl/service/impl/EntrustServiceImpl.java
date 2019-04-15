@@ -52,7 +52,8 @@ public class EntrustServiceImpl implements EntrustService {
                 houseUseType = 2;
             }
             HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
-            houseInfoDomainExample.createCriteria().andAreaBetween(fromArea.intValue(),toArea.intValue())
+            //.andAreaBetween(fromArea.intValue(),toArea.intValue())
+            houseInfoDomainExample.createCriteria()
                     .andCityEqualTo(entrustInfoDomain.getCity()).andCountyEqualTo(entrustInfoDomain.getCounty())
                     .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
