@@ -10,7 +10,9 @@ import com.cdd.gsl.vo.EntrustInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class EntrustServiceImpl implements EntrustService {
@@ -56,8 +58,10 @@ public class EntrustServiceImpl implements EntrustService {
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
             if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
                 int size = 0;
+                List<Integer> list = new ArrayList<>();
                 if(houseInfoDomainList.size() >= 3){
                     size = 3;
+                    list = getRandomNum(houseInfoDomainList.size());
                 }else if (houseInfoDomainList.size() < 3){
                     size = houseInfoDomainList.size();
                 }else{
@@ -67,7 +71,7 @@ public class EntrustServiceImpl implements EntrustService {
                     for(int i=0;i<size;i++){
                         HouseInfoDomain houseInfoDomain = null;
                         if(houseInfoDomainList.size() > 3){
-                            houseInfoDomain = houseInfoDomainList.get((int)(Math.random() * 3));
+                            houseInfoDomain = houseInfoDomainList.get(list.get(i));
                        }else{
                            houseInfoDomain = houseInfoDomainList.get(i);
                        }
@@ -152,7 +156,27 @@ public class EntrustServiceImpl implements EntrustService {
         return commonResult;
     }
 
+    public List<Integer> getRandomNum(int num){
+        List<Integer> list = new ArrayList<>();
+        Random random = new Random();
+        int i = random.nextInt(num);
+        int j = random.nextInt(num);
+        int k = random.nextInt(num);
+        while (i == j) {
+            j = random.nextInt(num);
+        }
+        while (k == j || k == i) {
+            k = random.nextInt(num);
+        }
+        list.add(i);
+        list.add(j);
+        list.add(k);
+        return list;
+    }
+
     public static void main(String[] args){
-        System.out.println((int)(Math.random() * 3));
+
+//        System.out.println(i + "," + j + "," + k);
+//        System.out.println((int)(Math.random() * 10));
     }
 }
