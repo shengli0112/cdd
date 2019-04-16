@@ -66,6 +66,13 @@ public class UserController {
 
     }
 
+    @RequestMapping("logout")
+    public CommonResult logout(String phone){
+        CommonResult commonResult = userService.logout(phone);
+        return commonResult;
+
+    }
+
     /**
      * 三方登录
      * @param thirdUserInfoDomain

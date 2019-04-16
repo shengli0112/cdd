@@ -20,6 +20,8 @@ public interface UserService {
 
     CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo);
 
+    CommonResult logout(String phone);
+
     CommonResult agreeCompany(Long userId,Long companyId);
 
     CommonResult bindPhone(Long userId,String phone);

@@ -231,7 +231,7 @@ public class UserSerivceImpl implements UserService {
         if(loginUserVo != null){
 
             //该手机号是否登录过
-            List<DeviceLoginDomain> deviceLoginDomains = deviceLoginDao.selectDeviceLoginByPhone(loginUserVo.getPhone());
+            /*List<DeviceLoginDomain> deviceLoginDomains = deviceLoginDao.selectDeviceLoginByPhone(loginUserVo.getPhone());
             if(CollectionUtils.isNotEmpty(deviceLoginDomains)){
                 DeviceLoginDomain deviceLoginDomain = deviceLoginDomains.get(0);
                 if(deviceLoginDomain.getDeviceId().equals(loginUserVo.getDeviceId())){
@@ -247,9 +247,27 @@ public class UserSerivceImpl implements UserService {
                 deviceLoginDomain.setDeviceId(loginUserVo.getDeviceId());
                 deviceLoginDomainMapper.insertSelective(deviceLoginDomain);
                 commonResult = phoneLogin(loginUserVo);
-            }
+            }*/
+            commonResult = phoneLogin(loginUserVo);
 
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult logout(String phone) {
+        CommonResult commonResult = new CommonResult();
+        if(!Strings.isNullOrEmpty(phone)){
+            DeviceLoginDomainExample deviceLoginDomainExample = new DeviceLoginDomainExample();
+            deviceLoginDomainExample.createCriteria().andPhoneEqualTo(phone);
+            deviceLoginDomainMapper.deleteByExample(deviceLoginDomainExample);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("退出成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
         return commonResult;
     }
 
