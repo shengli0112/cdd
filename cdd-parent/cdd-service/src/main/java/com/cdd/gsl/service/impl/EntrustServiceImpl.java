@@ -58,7 +58,20 @@ public class EntrustServiceImpl implements EntrustService {
                     .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
             if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
-                int size = 0;
+                for(HouseInfoDomain houseInfoDomain:houseInfoDomainList){
+                    EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
+                    entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
+                    entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
+                    entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                    messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                    messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
+                    messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                    messageInfoDomain.setMessage("匹配成功，点击查看");
+                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                }
+
+               /* int size = 0;
                 List<Integer> list = new ArrayList<>();
                 if(houseInfoDomainList.size() >= 3){
                     size = 3;
@@ -67,8 +80,8 @@ public class EntrustServiceImpl implements EntrustService {
                     size = houseInfoDomainList.size();
                 }else{
                     size = 3;
-                }
-                if(size == 3){
+                }*/
+               /* if(size == 3){
                     for(int i=0;i<size;i++){
                         HouseInfoDomain houseInfoDomain = null;
                         if(houseInfoDomainList.size() > 3){
@@ -101,7 +114,7 @@ public class EntrustServiceImpl implements EntrustService {
                         messageInfoDomainMapper.insertSelective(messageInfoDomain);
                     }
 
-                }
+                }*/
 
             }
 

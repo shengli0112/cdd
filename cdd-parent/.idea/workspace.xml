@@ -126,8 +126,8 @@
       <file leaf-file-name="EntrustServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="56" column="155" lean-forward="false" selection-start-line="56" selection-start-column="155" selection-end-line="56" selection-end-column="155" />
+            <state relative-caret-position="1150">
+              <caret line="83" column="32" lean-forward="true" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -924,12 +924,12 @@
       <workItem from="1554172270074" duration="40030000" />
       <workItem from="1554691315974" duration="12725000" />
       <workItem from="1554863492015" duration="11239000" />
-      <workItem from="1555294072270" duration="16971000" />
+      <workItem from="1555294072270" duration="17943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="605790000" />
+    <option name="totallyTimeSpent" value="606762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1401,8 +1401,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="56" column="155" lean-forward="false" selection-start-line="56" selection-start-column="155" selection-end-line="56" selection-end-column="155" />
+        <state relative-caret-position="1150">
+          <caret line="83" column="32" lean-forward="true" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
           <folding />
         </state>
       </provider>
