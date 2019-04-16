@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class EntrustServiceImpl implements EntrustService {
@@ -58,7 +60,9 @@ public class EntrustServiceImpl implements EntrustService {
                     .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
             List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
             if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
-                for(HouseInfoDomain houseInfoDomain:houseInfoDomainList){
+                Map<Long,List<HouseInfoDomain>> map = houseInfoDomainList.stream().collect(Collectors.groupingBy(HouseInfoDomain::getUserId));
+                for(Long userId:map.keySet()){
+                    HouseInfoDomain houseInfoDomain = map.get(userId).get(0);
                     EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
                     entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
                     entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
