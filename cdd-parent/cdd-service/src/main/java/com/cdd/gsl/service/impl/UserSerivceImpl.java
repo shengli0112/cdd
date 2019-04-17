@@ -316,6 +316,10 @@ public class UserSerivceImpl implements UserService {
                     loginTokenVo.setUserId(userInfoDomain.getId());
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
                     loginTokenVo.setToken(token);
+                    UserTicketDomain userTicketDomain = new UserTicketDomain();
+                    userTicketDomain.setUserId(userInfoDomain.getId());
+                    userTicketDomain.setToken(token);
+                    userTicketDomainMapper.insert(userTicketDomain);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("登录成功");
                     commonResult.setData(loginTokenVo);
