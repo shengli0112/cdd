@@ -79,26 +79,29 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
-        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
-        List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
-        if(!CollectionUtils.isEmpty(userList)){
-            userList.forEach(userBrokerVo -> {
-                int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
-                userBrokerVo.setHouseCount(count);
-            });
+        if(houseInfoDetailVo != null){
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+            List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+            if(!CollectionUtils.isEmpty(userList)){
+                userList.forEach(userBrokerVo -> {
+                    int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                    userBrokerVo.setHouseCount(count);
+                });
+            }
+            houseInfoDetailVo.setUser_list(userList);
+            houseInfoDetailVo.setUser(singleUserInfoVo);
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            houseInfoDetailVo.setLikes(houseInfoDomainVos);
+            BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
+            browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
+            browseHouseRecordDomain.setHouseId(houseId);
+            browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
+            BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
+            browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
+            List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
+            houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
         }
-        houseInfoDetailVo.setUser_list(userList);
-        houseInfoDetailVo.setUser(singleUserInfoVo);
-        List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
-        houseInfoDetailVo.setLikes(houseInfoDomainVos);
-        BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
-        browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
-        browseHouseRecordDomain.setHouseId(houseId);
-        browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
-        BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
-        browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
-        List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
-        houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
+
         return houseInfoDetailVo;
     }
 
