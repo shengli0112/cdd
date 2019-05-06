@@ -95,8 +95,9 @@ public class HouseController {
         CommonResult<HouseInfoDetailVo> commonResult = new CommonResult<>();
 
         if(houseId != null){
+            long start = System.currentTimeMillis();
             HouseInfoDetailVo houseInfoDomain = houseService.findHouseInfoById(houseId);
-
+            logger.info("HouseController findHouseInfoDetail ms --{}",(System.currentTimeMillis() - start));
             commonResult.setFlag(1);
             commonResult.setMessage("查询成功");
             commonResult.setData(houseInfoDomain);
