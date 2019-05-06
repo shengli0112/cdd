@@ -63,9 +63,7 @@ public class HouseController {
     public CommonResult updateHouse(@RequestBody HouseInfoDomain houseInfoDomain){
         CommonResult commonResult = new CommonResult();
         if(houseInfoDomain != null){
-            houseService.updateHouse(houseInfoDomain);
-            commonResult.setFlag(1);
-            commonResult.setMessage("更新成功");
+            commonResult = houseService.updateHouse(houseInfoDomain);
         }else{
             commonResult.setFlag(0);
             commonResult.setMessage("更新失败");
@@ -81,7 +79,7 @@ public class HouseController {
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
             houseInfoDomain.setId(houseId);
             houseInfoDomain.setStatus(0);
-            houseService.updateHouse(houseInfoDomain);
+            houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
             commonResult.setMessage("删除成功");
         }else{

@@ -13,7 +13,9 @@ import java.util.List;
 public interface HouseService {
     CommonResult addHouse(HouseInfoDomain houseInfoDomain);
 
-    void updateHouse(HouseInfoDomain houseInfoDomain);
+    CommonResult updateHouse(HouseInfoDomain houseInfoDomain);
+
+    void deleteHouse(HouseInfoDomain houseInfoDomain);
 
     HouseInfoDetailVo findHouseInfoById(Long houseId);
 

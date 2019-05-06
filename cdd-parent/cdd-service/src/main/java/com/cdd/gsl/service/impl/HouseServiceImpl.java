@@ -66,14 +66,53 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public void updateHouse(HouseInfoDomain houseInfoDomain) {
+    public CommonResult updateHouse(HouseInfoDomain houseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        Long userId = houseInfoDomain.getUserId();
+        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+        if(!CollectionUtils.isEmpty(userIds)) {
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain, userIds);
+            if(CollectionUtils.isEmpty(ids)){
+                HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+                houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+                List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+                if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                    houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+                    commonResult.setFlag(1);
+                    commonResult.setMessage("更新成功");
+                }else{
+                    commonResult.setFlag(0);
+                    commonResult.setMessage("没有对应的房源");
+                }
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("同公司已有咨询师发布，不能更新为相同的房源");
+            }
+        }else{
+            HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+            houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+            List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+            if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+                commonResult.setFlag(1);
+                commonResult.setMessage("更新成功");
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("没有对应的房源");
+            }
+        }
+        return commonResult;
+
+    }
+
+    @Override
+    public void deleteHouse(HouseInfoDomain houseInfoDomain) {
         HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
         houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
         List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
         if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
             houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
         }
-
     }
 
     @Override
