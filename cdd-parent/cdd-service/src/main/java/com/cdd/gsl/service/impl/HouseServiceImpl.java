@@ -7,6 +7,8 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
 import com.cdd.gsl.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Service
 public class HouseServiceImpl implements HouseService{
+    private Logger logger = LoggerFactory.getLogger(HouseServiceImpl.class);
     @Autowired
     private HouseInfoDomainMapper houseInfoDomainMapper;
 
@@ -117,10 +120,16 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
+        long start = System.currentTimeMillis();
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        logger.info("HouseServiceImpl selectHouseInfoById ms --{}",(System.currentTimeMillis() - start));
         if(houseInfoDetailVo != null){
+            long start1 = System.currentTimeMillis();
             SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+            logger.info("HouseServiceImpl findUserInfoById ms --{}",(System.currentTimeMillis() - start1));
+            long start2 = System.currentTimeMillis();
             List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start2));
             if(!CollectionUtils.isEmpty(userList)){
                 userList.forEach(userBrokerVo -> {
                     int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
@@ -129,15 +138,21 @@ public class HouseServiceImpl implements HouseService{
             }
             houseInfoDetailVo.setUser_list(userList);
             houseInfoDetailVo.setUser(singleUserInfoVo);
+            long start3 = System.currentTimeMillis();
             List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start3));
             houseInfoDetailVo.setLikes(houseInfoDomainVos);
             BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
             browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
             browseHouseRecordDomain.setHouseId(houseId);
+            long start4 = System.currentTimeMillis();
             browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start4));
             BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
             browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
+            long start5 = System.currentTimeMillis();
             List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start5));
             houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
         }
 
