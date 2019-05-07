@@ -63,6 +63,7 @@ public class RegionServiceImpl implements RegionService {
     @Override
     public CommonResult findTownByCounty(String county) {
         CommonResult<List<String>> commonResult = new CommonResult<List<String>>();
+        county = "昆山市";
         List<String> countyList = regionTownInfoDao.findTownNameByCountyName(county);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
