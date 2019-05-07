@@ -1,9 +1,10 @@
 package com.cdd.gsl.dao;
 
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface RegionCountyInfoDao {
 
     @Select("select county_name as countyName from t_region_city_info city " +

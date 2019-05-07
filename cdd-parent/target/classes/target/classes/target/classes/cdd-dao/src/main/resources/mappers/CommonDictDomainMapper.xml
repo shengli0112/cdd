@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdd.gsl.dao.CommonDictDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.CommonDictDomain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="dict_code" property="dictCode" jdbcType="INTEGER" />
+    <result column="dict_value" property="dictValue" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
+    <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, dict_name, dict_code, dict_value, seq, status, remark, create_ts, update_ts
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.CommonDictDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_common_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_common_dict
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_common_dict
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.CommonDictDomainExample" >
+    delete from t_common_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdd.gsl.domain.CommonDictDomain" >
+    insert into t_common_dict (id, dict_name, dict_code, 
+      dict_value, seq, status, 
+      remark, create_ts, update_ts
+      )
+    values (#{id,jdbcType=BIGINT}, #{dictName,jdbcType=VARCHAR}, #{dictCode,jdbcType=INTEGER}, 
+      #{dictValue,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.CommonDictDomain" >
+    insert into t_common_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="dictCode != null" >
+        dict_code,
+      </if>
+      <if test="dictValue != null" >
+        dict_value,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTs != null" >
+        create_ts,
+      </if>
+      <if test="updateTs != null" >
+        update_ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        #{dictCode,jdbcType=INTEGER},
+      </if>
+      <if test="dictValue != null" >
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTs != null" >
+        #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.CommonDictDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_common_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_common_dict
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.dictName != null" >
+        dict_name = #{record.dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCode != null" >
+        dict_code = #{record.dictCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictValue != null" >
+        dict_value = #{record.dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seq != null" >
+        seq = #{record.seq,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTs != null" >
+        create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTs != null" >
+        update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_common_dict
+    set id = #{record.id,jdbcType=BIGINT},
+      dict_name = #{record.dictName,jdbcType=VARCHAR},
+      dict_code = #{record.dictCode,jdbcType=INTEGER},
+      dict_value = #{record.dictValue,jdbcType=VARCHAR},
+      seq = #{record.seq,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.CommonDictDomain" >
+    update t_common_dict
+    <set >
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        dict_code = #{dictCode,jdbcType=INTEGER},
+      </if>
+      <if test="dictValue != null" >
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTs != null" >
+        create_ts = #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.CommonDictDomain" >
+    update t_common_dict
+    set dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=INTEGER},
+      dict_value = #{dictValue,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

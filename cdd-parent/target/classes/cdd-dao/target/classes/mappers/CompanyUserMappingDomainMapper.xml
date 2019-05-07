@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdd.gsl.dao.CompanyUserMappingDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.CompanyUserMappingDomain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="agree" property="agree" jdbcType="INTEGER" />
+    <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
+    <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, user_id, agree, create_ts, update_ts
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_company_user_mapping
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_company_user_mapping
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_company_user_mapping
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomainExample" >
+    delete from t_company_user_mapping
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomain" >
+    insert into t_company_user_mapping (id, company_id, user_id, 
+      agree, create_ts, update_ts
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{agree,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomain" >
+    insert into t_company_user_mapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="agree != null" >
+        agree,
+      </if>
+      <if test="createTs != null" >
+        create_ts,
+      </if>
+      <if test="updateTs != null" >
+        update_ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="agree != null" >
+        #{agree,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_company_user_mapping
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_company_user_mapping
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.agree != null" >
+        agree = #{record.agree,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTs != null" >
+        create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTs != null" >
+        update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_company_user_mapping
+    set id = #{record.id,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      agree = #{record.agree,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomain" >
+    update t_company_user_mapping
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="agree != null" >
+        agree = #{agree,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        create_ts = #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.CompanyUserMappingDomain" >
+    update t_company_user_mapping
+    set company_id = #{companyId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      agree = #{agree,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

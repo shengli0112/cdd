@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdd.gsl.dao.EntrustInfoDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.EntrustInfoDomain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="pay_tax" property="payTax" jdbcType="INTEGER" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="entrust_type" property="entrustType" jdbcType="INTEGER" />
+    <result column="entrust_use_type" property="entrustUseType" jdbcType="INTEGER" />
+    <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
+    <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, city, county, town, area, business, pay_tax, contacts, phone, entrust_type, entrust_use_type, 
+    create_ts, update_ts, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_entrust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_entrust_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_entrust_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" >
+    delete from t_entrust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_entrust_info (city, county, town, 
+      area, business, pay_tax, 
+      contacts, phone, entrust_type, 
+      entrust_use_type, create_ts, update_ts, 
+      user_id)
+    values (#{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{area,jdbcType=INTEGER}, #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, 
+      #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, 
+      #{entrustUseType,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_entrust_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="payTax != null" >
+        pay_tax,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="entrustType != null" >
+        entrust_type,
+      </if>
+      <if test="entrustUseType != null" >
+        entrust_use_type,
+      </if>
+      <if test="createTs != null" >
+        create_ts,
+      </if>
+      <if test="updateTs != null" >
+        update_ts,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="payTax != null" >
+        #{payTax,jdbcType=INTEGER},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustType != null" >
+        #{entrustType,jdbcType=INTEGER},
+      </if>
+      <if test="entrustUseType != null" >
+        #{entrustUseType,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_entrust_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_entrust_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=INTEGER},
+      </if>
+      <if test="record.business != null" >
+        business = #{record.business,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTax != null" >
+        pay_tax = #{record.payTax,jdbcType=INTEGER},
+      </if>
+      <if test="record.contacts != null" >
+        contacts = #{record.contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrustType != null" >
+        entrust_type = #{record.entrustType,jdbcType=INTEGER},
+      </if>
+      <if test="record.entrustUseType != null" >
+        entrust_use_type = #{record.entrustUseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTs != null" >
+        create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTs != null" >
+        update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_entrust_info
+    set id = #{record.id,jdbcType=BIGINT},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=INTEGER},
+      business = #{record.business,jdbcType=VARCHAR},
+      pay_tax = #{record.payTax,jdbcType=INTEGER},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      entrust_type = #{record.entrustType,jdbcType=INTEGER},
+      entrust_use_type = #{record.entrustUseType,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
+    update t_entrust_info
+    <set >
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="payTax != null" >
+        pay_tax = #{payTax,jdbcType=INTEGER},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustType != null" >
+        entrust_type = #{entrustType,jdbcType=INTEGER},
+      </if>
+      <if test="entrustUseType != null" >
+        entrust_use_type = #{entrustUseType,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        create_ts = #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
+    update t_entrust_info
+    set city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      business = #{business,jdbcType=VARCHAR},
+      pay_tax = #{payTax,jdbcType=INTEGER},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      entrust_type = #{entrustType,jdbcType=INTEGER},
+      entrust_use_type = #{entrustUseType,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
