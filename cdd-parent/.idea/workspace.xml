@@ -7,21 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/EntrustController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/EntrustController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/HouseController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/HouseController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/RegionController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/RegionController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/filter/ClientRequestFilter.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/filter/ClientRequestFilter.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/common.properties" afterPath="$PROJECT_DIR$/cdd-app/target/classes/common.properties" />
       <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCountyInfoDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCountyInfoDao.java" />
       <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionTownInfoDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionTownInfoDao.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/HouseInfoDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/HouseInfoDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/HouseService.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/HouseService.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/UserService.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/UserService.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/EntrustServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/EntrustServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/UserSerivceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/UserSerivceImpl.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -57,21 +44,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HouseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
+      <file leaf-file-name="RegionController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="168" column="25" lean-forward="true" selection-start-line="168" selection-start-column="25" selection-end-line="168" selection-end-column="25" />
+            <state relative-caret-position="322">
+              <caret line="23" column="76" lean-forward="true" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="35" column="72" lean-forward="false" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+            <state relative-caret-position="-514">
+              <caret line="63" column="66" lean-forward="false" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -80,8 +67,8 @@
       <file leaf-file-name="RegionServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/RegionServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="74" column="17" lean-forward="false" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+            <state relative-caret-position="250">
+              <caret line="55" column="74" lean-forward="false" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
               <folding>
                 <element signature="e#2038#2052#0" expanded="true" />
               </folding>
@@ -89,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionTownInfoDao.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegionTownInfoDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionTownInfoDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
-              <caret line="11" column="68" lean-forward="true" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+              <caret line="12" column="67" lean-forward="false" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -102,8 +89,8 @@
       <file leaf-file-name="RegionCountyInfoDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCountyInfoDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+            <state relative-caret-position="207">
+              <caret line="13" column="65" lean-forward="false" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -119,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionCityInfoDao.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RegionCityInfoDao.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCityInfoDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="115">
+              <caret line="8" column="67" lean-forward="true" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -1016,12 +1003,12 @@
       <workItem from="1556269999947" duration="5339000" />
       <workItem from="1556445962396" duration="1511000" />
       <workItem from="1557143966986" duration="3786000" />
-      <workItem from="1557193877907" duration="5168000" />
+      <workItem from="1557193877907" duration="5799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="629889000" />
+    <option name="totallyTimeSpent" value="630520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1083,19 +1070,13 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java</url>
-          <line>122</line>
+          <url>file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java</url>
+          <line>23</line>
           <properties />
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/RegionServiceImpl.java</url>
-          <line>75</line>
-          <properties />
-          <option name="timeStamp" value="42" />
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="43" />
+      <option name="time" value="44" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1251,14 +1232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="63" column="66" lean-forward="false" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1450,44 +1423,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-514">
+          <caret line="63" column="66" lean-forward="false" selection-start-line="63" selection-start-column="66" selection-end-line="63" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/RegionController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="35" column="72" lean-forward="false" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCountyInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCityInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="322">
+          <caret line="23" column="76" lean-forward="true" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/RegionServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="74" column="17" lean-forward="false" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+        <state relative-caret-position="250">
+          <caret line="55" column="74" lean-forward="false" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
           <folding>
             <element signature="e#2038#2052#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCountyInfoDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="13" column="65" lean-forward="false" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionTownInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="11" column="68" lean-forward="true" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+          <caret line="12" column="67" lean-forward="false" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/RegionCityInfoDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="8" column="67" lean-forward="true" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
           <folding />
         </state>
       </provider>
