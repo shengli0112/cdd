@@ -430,6 +430,16 @@ public interface HouseInfoDao {
             "</script>")
     List<Long> selectHouseByRegionAndUserId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
 
+    //修改判断是否有发布同区域的房源
+    @Select("<script>" +
+            "select id from t_house_info where status=1 and city=#{houseInfoDomain.city} and county=#{houseInfoDomain.county}" +
+            " and street=#{houseInfoDomain.street} and house_number=#{houseInfoDomain.houseNumber} and id != #{houseInfoDomain.id}" +
+            "<foreach collection='userIds' item='userId' index='index' open=' and user_id in (' close=')' separator=','>" +
+            "#{userId}" +
+            "</foreach>"+
+            "</script>")
+    List<Long> selectHouseByRegionAndUserIdAndHouseId(@Param("houseInfoDomain") HouseInfoDomain houseInfoDomain,@Param("userIds") List<Long> userIds);
+
     @Select("select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait,a.company_name as companyName " +
             "from t_user_info u left join t_house_info h on u.id=h.user_id left join t_apply_broker_info a on a.user_id=h.user_id" +
             " where h.city=#{city} and h.county=#{county} " +

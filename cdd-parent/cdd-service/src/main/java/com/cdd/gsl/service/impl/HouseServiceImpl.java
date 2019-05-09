@@ -74,7 +74,7 @@ public class HouseServiceImpl implements HouseService{
         Long userId = houseInfoDomain.getUserId();
         List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
         if(!CollectionUtils.isEmpty(userIds)) {
-            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain, userIds);
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserIdAndHouseId(houseInfoDomain, userIds);
             if(CollectionUtils.isEmpty(ids)){
                 HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
                 houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
