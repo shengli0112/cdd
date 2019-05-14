@@ -12,6 +12,8 @@ public class UserBrokerVo {
     private String companyName;
 
     private int houseCount;
+    //服务区域
+    private String serviceArea;
 
     public Long getUserId() {
         return userId;
@@ -59,5 +61,13 @@ public class UserBrokerVo {
 
     public void setHouseCount(int houseCount) {
         this.houseCount = houseCount;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

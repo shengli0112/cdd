@@ -370,7 +370,7 @@ public interface HouseInfoDao {
             "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
             " from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
-            "and status=1 order by rand() limit 3")
+            " and (house_use_type=3 or house_use_type=4) and status=1 order by rand() limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
 
     @Select("select count(id) from t_house_info where user_id=#{userId} and status=1")
@@ -445,4 +445,7 @@ public interface HouseInfoDao {
             " where h.city=#{city} and h.county=#{county} " +
             " and h.street=#{street} and h.house_number=#{houseNumber} and h.status=1 and u.status=1 order by h.id limit 3")
     List<UserBrokerVo> selectUserByHouseInfo(HouseInfoDetailVo houseInfoDetailVo);
+
+    @Select("select concact(city,county,town) from t_house_info limit 1")
+    String selectRegionFromHouseByUserId(Long userId);
 }

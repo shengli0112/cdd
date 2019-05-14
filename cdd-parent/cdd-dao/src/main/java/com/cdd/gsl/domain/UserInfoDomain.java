@@ -25,6 +25,8 @@ public class UserInfoDomain {
 
     private Date updateTs;
 
+    private String serviceArea;
+
     public Long getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class UserInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea == null ? null : serviceArea.trim();
     }
 }

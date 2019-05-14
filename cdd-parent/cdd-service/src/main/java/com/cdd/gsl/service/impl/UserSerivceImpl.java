@@ -148,6 +148,10 @@ public class UserSerivceImpl implements UserService {
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    UserTicketDomain userTicketDomain = new UserTicketDomain();
+                    userTicketDomain.setUserId(userInfoDomain.getId());
+                    userTicketDomain.setToken(token);
+                    userTicketDomainMapper.insert(userTicketDomain);
                     LoginTokenVo loginTokenVo = new LoginTokenVo();
                     loginTokenVo.setUserId(userInfoDomain.getId());
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
@@ -745,6 +749,7 @@ public class UserSerivceImpl implements UserService {
             userInfoDomain.setId(userParamVo.getUserId());
             userInfoDomain.setUsername(userParamVo.getUsername());
             userInfoDomain.setPortrait(userParamVo.getPortrait());
+            userInfoDomain.setServiceArea(userParamVo.getServiceArea());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("修改成功");
@@ -764,6 +769,8 @@ public class UserSerivceImpl implements UserService {
         if(userBrokerVos != null && userBrokerVos.size() > 0){
             for(UserBrokerVo userBrokerVo:userBrokerVos){
                 int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                String serviceArea = houseInfoDao.selectRegionFromHouseByUserId(userBrokerVo.getUserId());
+                userBrokerVo.setServiceArea(serviceArea);
                 userBrokerVo.setHouseCount(count);
                 userBrokerList.add(userBrokerVo);
             }
