@@ -769,8 +769,6 @@ public class UserSerivceImpl implements UserService {
         if(userBrokerVos != null && userBrokerVos.size() > 0){
             for(UserBrokerVo userBrokerVo:userBrokerVos){
                 int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
-                String serviceArea = houseInfoDao.selectRegionFromHouseByUserId(userBrokerVo.getUserId());
-                userBrokerVo.setServiceArea(serviceArea);
                 userBrokerVo.setHouseCount(count);
                 userBrokerList.add(userBrokerVo);
             }
