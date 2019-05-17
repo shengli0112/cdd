@@ -274,8 +274,13 @@ public interface HouseInfoDao {
             "<if test='priceTo != null'>" +
             " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
             "</if>" +
+
             "</otherwise>"+
             "</choose>"+
+            "<if test='keyword != null'>"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
@@ -285,6 +290,7 @@ public interface HouseInfoDao {
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
             "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
             "</if>"+
+
             " limit #{from},#{pageSize}"+
             "</script>")
     public List<HouseInfoDomainVo> selectCompanyHouseInfoList(HouseCompanyVo houseConditionVo);
@@ -344,6 +350,10 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
+            "<if test='keyword != null'>"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
@@ -394,7 +404,7 @@ public interface HouseInfoDao {
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
             "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
             " from t_house_info where user_id=#{userId} " +
-            "and status=1 order by rand() limit 5")
+            "and status=1 and (house_use_type =3 or house_use_type =4) order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
 
     @Select("select id as id, user_id as userId "+

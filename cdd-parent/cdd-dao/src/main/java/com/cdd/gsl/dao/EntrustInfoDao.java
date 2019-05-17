@@ -31,6 +31,9 @@ public interface EntrustInfoDao {
             "<if test='entrustUseType != null'>" +
             " and e.entrust_use_type=#{entrustUseType} "+
             "</if>"+
+            "<if test='keyword != null'>"+
+            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') or e.phone like concat('%','${keyword}','%') ）" +
+            "</if>"+
             " order by e.create_ts desc " +
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,area</if>"+
