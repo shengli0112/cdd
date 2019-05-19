@@ -427,6 +427,14 @@ public class UserController {
         return null;
     }
 
+    /**
+     * 查看号码
+     */
+    @RequestMapping("checkPhone")
+    public CommonResult checkPhone(@RequestBody CheckPhoneDomain checkPhoneDomain){
+        return null;
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

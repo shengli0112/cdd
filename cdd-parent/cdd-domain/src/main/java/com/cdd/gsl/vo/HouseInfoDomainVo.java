@@ -67,6 +67,9 @@ public class HouseInfoDomainVo {
 
     private String expireDate;
 
+    //是否查看过手机号
+    private boolean checkPhone;
+
     public Long getId() {
         return id;
     }
@@ -313,5 +316,13 @@ public class HouseInfoDomainVo {
 
     public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public boolean isCheckPhone() {
+        return checkPhone;
+    }
+
+    public void setCheckPhone(boolean checkPhone) {
+        this.checkPhone = checkPhone;
     }
 }

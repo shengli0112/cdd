@@ -44,6 +44,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private ApplyBrokerInfoDao applyBrokerInfoDao;
 
+    @Autowired
+    private CheckPhoneDomainMapper checkPhoneDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -173,7 +176,22 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo) {
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectUserHouseInfoListByCondition(houseConditionVo);
-        return houseInfoDomainList;
+        List<HouseInfoDomainVo> houseInfoDomains = new ArrayList<>();
+        if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            for(HouseInfoDomainVo houseInfoDomainVo:houseInfoDomainList){
+                CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                checkPhoneDomainExample.createCriteria().andUserIdEqualTo(houseInfoDomainVo.getUserId())
+                        .andInfoIdEqualTo(houseInfoDomainVo.getId()).andTypeEqualTo("house");
+                List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                    houseInfoDomainVo.setCheckPhone(true);
+                }else{
+                    houseInfoDomainVo.setCheckPhone(false);
+                }
+                houseInfoDomains.add(houseInfoDomainVo);
+            }
+        }
+        return houseInfoDomains;
     }
 
     @Override
@@ -204,7 +222,24 @@ public class HouseServiceImpl implements HouseService{
             }
 
         }
-        return houseInfoDomainList;
+
+        List<HouseInfoDomainVo> houseInfoDomains = new ArrayList<>();
+        if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            for(HouseInfoDomainVo houseInfoDomainVo:houseInfoDomainList){
+                CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                checkPhoneDomainExample.createCriteria().andUserIdEqualTo(houseConditionVo.getUserId())
+                        .andInfoIdEqualTo(houseInfoDomainVo.getId()).andTypeEqualTo("house");
+                List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                    houseInfoDomainVo.setCheckPhone(true);
+                }else{
+                    houseInfoDomainVo.setCheckPhone(false);
+                }
+                houseInfoDomains.add(houseInfoDomainVo);
+            }
+        }
+
+        return houseInfoDomains;
     }
 
     @Override
