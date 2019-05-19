@@ -6,6 +6,7 @@ import com.cdd.gsl.service.EntrustService;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class EntrustController {
     private EntrustService entrustService;
 
     @RequestMapping("createEntrust")
-    public CommonResult createEntrust(EntrustInfoDomain entrustInfoDomain){
+    public CommonResult createEntrust(@RequestBody EntrustInfoDomain entrustInfoDomain){
         return entrustService.createEntrust(entrustInfoDomain);
     }
 
@@ -35,5 +36,14 @@ public class EntrustController {
         //TODO 有问题条件没有判断清楚
         return entrustService.findEntrustInfoList(entrustConditionVo);
     }
+
+    /**
+     * 所有人都可以查看托管信息
+     */
+    @RequestMapping("findEntrustList")
+    public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo){
+        return entrustService.findEntrustList(entrustConditionVo);
+    }
+
 
 }

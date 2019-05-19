@@ -5,6 +5,9 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="house_id" property="houseId" jdbcType="BIGINT" />
+    <result column="inform_info" property="informInfo" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, house_id, create_ts
+    id, user_id, house_id, inform_info, description, image, create_ts
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.InformHouseRecordDomainExample" >
     select
@@ -100,8 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.InformHouseRecordDomain" >
     insert into t_inform_house_record (id, user_id, house_id, 
+      inform_info, description, image, 
       create_ts)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, 
+      #{informInfo,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{createTs,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.InformHouseRecordDomain" >
@@ -116,6 +121,15 @@
       <if test="houseId != null" >
         house_id,
       </if>
+      <if test="informInfo != null" >
+        inform_info,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
       <if test="createTs != null" >
         create_ts,
       </if>
@@ -129,6 +143,15 @@
       </if>
       <if test="houseId != null" >
         #{houseId,jdbcType=BIGINT},
+      </if>
+      <if test="informInfo != null" >
+        #{informInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
       </if>
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
@@ -153,6 +176,15 @@
       <if test="record.houseId != null" >
         house_id = #{record.houseId,jdbcType=BIGINT},
       </if>
+      <if test="record.informInfo != null" >
+        inform_info = #{record.informInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       </if>
@@ -166,6 +198,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=BIGINT},
       house_id = #{record.houseId,jdbcType=BIGINT},
+      inform_info = #{record.informInfo,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,6 +215,15 @@
       <if test="houseId != null" >
         house_id = #{houseId,jdbcType=BIGINT},
       </if>
+      <if test="informInfo != null" >
+        inform_info = #{informInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
       </if>
@@ -190,6 +234,9 @@
     update t_inform_house_record
     set user_id = #{userId,jdbcType=BIGINT},
       house_id = #{houseId,jdbcType=BIGINT},
+      inform_info = #{informInfo,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
       create_ts = #{createTs,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

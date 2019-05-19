@@ -14,6 +14,8 @@ public class SingleUserBrokerVo {
 
     private Long applyBrokerId;
 
+    private String serviceArea;
+
     public Long getUserId() {
         return userId;
     }
@@ -60,5 +62,13 @@ public class SingleUserBrokerVo {
 
     public void setApplyBrokerId(Long applyBrokerId) {
         this.applyBrokerId = applyBrokerId;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

@@ -354,6 +354,246 @@ public class MessageInfoDomainExample {
             addCriterion("create_ts not between", value1, value2, "createTs");
             return (Criteria) this;
         }
+
+        public Criteria andEntrustIdIsNull() {
+            addCriterion("entrust_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdIsNotNull() {
+            addCriterion("entrust_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdEqualTo(Long value) {
+            addCriterion("entrust_id =", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdNotEqualTo(Long value) {
+            addCriterion("entrust_id <>", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdGreaterThan(Long value) {
+            addCriterion("entrust_id >", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("entrust_id >=", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdLessThan(Long value) {
+            addCriterion("entrust_id <", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdLessThanOrEqualTo(Long value) {
+            addCriterion("entrust_id <=", value, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdIn(List<Long> values) {
+            addCriterion("entrust_id in", values, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdNotIn(List<Long> values) {
+            addCriterion("entrust_id not in", values, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdBetween(Long value1, Long value2) {
+            addCriterion("entrust_id between", value1, value2, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andEntrustIdNotBetween(Long value1, Long value2) {
+            addCriterion("entrust_id not between", value1, value2, "entrustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdIsNull() {
+            addCriterion("house_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdIsNotNull() {
+            addCriterion("house_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdEqualTo(Long value) {
+            addCriterion("house_id =", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdNotEqualTo(Long value) {
+            addCriterion("house_id <>", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdGreaterThan(Long value) {
+            addCriterion("house_id >", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("house_id >=", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdLessThan(Long value) {
+            addCriterion("house_id <", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdLessThanOrEqualTo(Long value) {
+            addCriterion("house_id <=", value, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdIn(List<Long> values) {
+            addCriterion("house_id in", values, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdNotIn(List<Long> values) {
+            addCriterion("house_id not in", values, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdBetween(Long value1, Long value2) {
+            addCriterion("house_id between", value1, value2, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHouseIdNotBetween(Long value1, Long value2) {
+            addCriterion("house_id not between", value1, value2, "houseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIsNull() {
+            addCriterion("is_read is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIsNotNull() {
+            addCriterion("is_read is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadEqualTo(Integer value) {
+            addCriterion("is_read =", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotEqualTo(Integer value) {
+            addCriterion("is_read <>", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadGreaterThan(Integer value) {
+            addCriterion("is_read >", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_read >=", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadLessThan(Integer value) {
+            addCriterion("is_read <", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadLessThanOrEqualTo(Integer value) {
+            addCriterion("is_read <=", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIn(List<Integer> values) {
+            addCriterion("is_read in", values, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotIn(List<Integer> values) {
+            addCriterion("is_read not in", values, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadBetween(Integer value1, Integer value2) {
+            addCriterion("is_read between", value1, value2, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_read not between", value1, value2, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNull() {
+            addCriterion("update_ts is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNotNull() {
+            addCriterion("update_ts is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsEqualTo(Date value) {
+            addCriterion("update_ts =", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotEqualTo(Date value) {
+            addCriterion("update_ts <>", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThan(Date value) {
+            addCriterion("update_ts >", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_ts >=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThan(Date value) {
+            addCriterion("update_ts <", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThanOrEqualTo(Date value) {
+            addCriterion("update_ts <=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIn(List<Date> values) {
+            addCriterion("update_ts in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotIn(List<Date> values) {
+            addCriterion("update_ts not in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsBetween(Date value1, Date value2) {
+            addCriterion("update_ts between", value1, value2, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotBetween(Date value1, Date value2) {
+            addCriterion("update_ts not between", value1, value2, "updateTs");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

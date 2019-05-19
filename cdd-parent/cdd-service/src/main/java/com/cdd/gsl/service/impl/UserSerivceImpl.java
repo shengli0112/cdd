@@ -10,6 +10,8 @@ import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +26,7 @@ import java.util.*;
 @Service
 public class UserSerivceImpl implements UserService {
 
+    private Logger logger = LoggerFactory.getLogger(UserSerivceImpl.class);
 
     @Autowired
     private ThirdUserInfoDomainMapper thirdUserInfoDomainMapper;
@@ -67,6 +70,23 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private HouseInfoDao houseInfoDao;
 
+    @Autowired
+    private SellParkDao sellParkDao;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
+
+    @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
+    @Autowired
+    private MessageInfoDao messageInfoDao;
+
+    @Autowired
+    private EntrustInfoDao entrustInfoDao;
+
+    @Autowired
+    private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -126,9 +146,19 @@ public class UserSerivceImpl implements UserService {
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
+                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                    UserTicketDomain userTicketDomain = new UserTicketDomain();
+                    userTicketDomain.setUserId(userInfoDomain.getId());
+                    userTicketDomain.setToken(token);
+                    userTicketDomainMapper.insert(userTicketDomain);
+                    LoginTokenVo loginTokenVo = new LoginTokenVo();
+                    loginTokenVo.setUserId(userInfoDomain.getId());
+                    loginTokenVo.setUserType(userInfoDomain.getUserType());
+                    loginTokenVo.setToken(token);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
-
+                    commonResult.setData(loginTokenVo);
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("验证码错误");
@@ -199,12 +229,13 @@ public class UserSerivceImpl implements UserService {
 
     @Override
     public CommonResult<LoginTokenVo> login(LoginUserVo loginUserVo) {
-
+        logger.info("UserSerivceImpl login loginUserVo deviceId--{} passwod --{} phone--{}",
+                loginUserVo.getDeviceId(),loginUserVo.getPassword(),loginUserVo.getPhone());
         CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
         if(loginUserVo != null){
 
             //该手机号是否登录过
-            List<DeviceLoginDomain> deviceLoginDomains = deviceLoginDao.selectDeviceLoginByPhone(loginUserVo.getPhone());
+            /*List<DeviceLoginDomain> deviceLoginDomains = deviceLoginDao.selectDeviceLoginByPhone(loginUserVo.getPhone());
             if(CollectionUtils.isNotEmpty(deviceLoginDomains)){
                 DeviceLoginDomain deviceLoginDomain = deviceLoginDomains.get(0);
                 if(deviceLoginDomain.getDeviceId().equals(loginUserVo.getDeviceId())){
@@ -220,9 +251,27 @@ public class UserSerivceImpl implements UserService {
                 deviceLoginDomain.setDeviceId(loginUserVo.getDeviceId());
                 deviceLoginDomainMapper.insertSelective(deviceLoginDomain);
                 commonResult = phoneLogin(loginUserVo);
-            }
+            }*/
+            commonResult = phoneLogin(loginUserVo);
 
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult logout(String phone) {
+        CommonResult commonResult = new CommonResult();
+        if(!Strings.isNullOrEmpty(phone)){
+            DeviceLoginDomainExample deviceLoginDomainExample = new DeviceLoginDomainExample();
+            deviceLoginDomainExample.createCriteria().andPhoneEqualTo(phone);
+            deviceLoginDomainMapper.deleteByExample(deviceLoginDomainExample);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("退出成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
         return commonResult;
     }
 
@@ -263,14 +312,18 @@ public class UserSerivceImpl implements UserService {
         }else{
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
                 UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                String dataPassword = BCrypt.hashpw(loginUserVo.getPassword(),userInfoDomain.getSalt());
-                if(dataPassword.equals(userInfoDomain.getPassword())){
+                String hashed = BCrypt.hashpw(loginUserVo.getPassword(), userInfoDomain.getSalt());
+                if(hashed.equals(userInfoDomain.getPassword())){
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
                     LoginTokenVo loginTokenVo = new LoginTokenVo();
                     loginTokenVo.setUserId(userInfoDomain.getId());
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
                     loginTokenVo.setToken(token);
+                    UserTicketDomain userTicketDomain = new UserTicketDomain();
+                    userTicketDomain.setUserId(userInfoDomain.getId());
+                    userTicketDomain.setToken(token);
+                    userTicketDomainMapper.insert(userTicketDomain);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("登录成功");
                     commonResult.setData(loginTokenVo);
@@ -344,12 +397,61 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult findFollow(FollowConditionVo followConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(followConditionVo != null){
+            Integer followType = followConditionVo.getFollowType();
+            if(followType != null && followType > 0){
+                if(followType == 1 || followType == 2 || followType == 3){
+                    List<FollowHouseVo> followHouseVos = followInfoDao.findFollowHouse(followConditionVo);
+                    commonResult.setData(followHouseVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 4){
+                    List<FollowSellParkVo> followSellParkVos = followInfoDao.findFollowSellPark(followConditionVo);
+                    commonResult.setData(followSellParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else if(followType == 5){
+                    List<FollowLeaseParkVo> followLeaseParkVos = followInfoDao.findFollowLeasePark(followConditionVo);
+                    commonResult.setData(followLeaseParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功，没有对应的关注类型");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("请输入对应的关注类型");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult followInfo(FollowInfoDomain followInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {
-            followInfoDomainMapper.insertSelective(followInfoDomain);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("关注成功");
+            FollowInfoDomainExample followInfoDomainExample = new FollowInfoDomainExample();
+            followInfoDomainExample.createCriteria().andFollowIdEqualTo(followInfoDomain.getFollowId())
+                    .andUserIdEqualTo(followInfoDomain.getUserId()).andFollowTypeEqualTo(followInfoDomain.getFollowType());
+            List<FollowInfoDomain> followInfoDomains = followInfoDomainMapper.selectByExample(followInfoDomainExample);
+            if(followInfoDomains != null && followInfoDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("已关注");
+            }else{
+                followInfoDomainMapper.insertSelective(followInfoDomain);
+                JSONObject json = new JSONObject();
+                json.put("followId",followInfoDomain.getId());
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("关注成功");
+                commonResult.setData(json);
+            }
+
         }catch (Exception e){
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
@@ -374,6 +476,30 @@ public class UserSerivceImpl implements UserService {
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult isFollow(IsFollowVo isFollowVo) {
+
+        CommonResult commonResult = new CommonResult();
+        if(isFollowVo != null){
+            List<Long> ids = followInfoDao.isFollow(isFollowVo);
+            JSONObject data = new JSONObject();
+            if(ids != null && ids.size() > 0){
+                data.put("isFollow",true);
+                data.put("followId",ids.get(0));
+            }else{
+                data.put("isFollow",false);
+                data.put("followId","");
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("请输入对应的参数");
         }
         return commonResult;
     }
@@ -453,6 +579,24 @@ public class UserSerivceImpl implements UserService {
             commonResult.setFlag(0);
             commonResult.setMessage("查询失败");
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findBrokerDetail(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+        applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andStatusEqualTo(1).andApplyTypeEqualTo(1);
+        applyBrokerInfoDomainExample.setOrderByClause("create_ts desc");
+        List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+        ApplyBrokerInfoDomain applyBrokerInfoDomain = null;
+        if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
+            applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
+        }
+
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(applyBrokerInfoDomain);
         return commonResult;
     }
 
@@ -605,6 +749,7 @@ public class UserSerivceImpl implements UserService {
             userInfoDomain.setId(userParamVo.getUserId());
             userInfoDomain.setUsername(userParamVo.getUsername());
             userInfoDomain.setPortrait(userParamVo.getPortrait());
+            userInfoDomain.setServiceArea(userParamVo.getServiceArea());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("修改成功");
@@ -634,9 +779,145 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult home() {
+        logger.info("UserServiceImpl home start");
+        CommonResult commonResult = new CommonResult();
+        try {
+            HomePageVo homePageVo = new HomePageVo();
+            //所有房源的数量
+            int allHouseCount = houseInfoDao.selectAllHouseCount();
+            homePageVo.setHouseCount(allHouseCount);
+            int allUserCount = userInfoDao.selectAllUserCount();
+            homePageVo.setClientCount(allUserCount);
+
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            homePageVo.setHouseInfoDomainVos(houseInfoDomainVos);
+
+            List<EnterpriseInfoVo> enterpriseInfoVos = enterpriseInfoDao.selectEnterpriseInfoListRand();
+            homePageVo.setEnterpriseInfoDomains(enterpriseInfoVos);
+            List<ParkInfoVo> parkInfoVos = sellParkDao.selectSellParkInfoRand();
+            homePageVo.setParkInfoVos(parkInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(homePageVo);
+        }catch (Exception e){
+            logger.error("UserServiceImpl home exception");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询失败");
+        }
+
+        return commonResult;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);
         return salt+","+hashed;
+    }
+
+    @Override
+    public CommonResult brokerDetail(Long userId) {
+        logger.info("UserSerivceImpl brokerDetail userId:{}",userId);
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
+            BrokerHouseInfoVo brokerHouseInfoVo = new BrokerHouseInfoVo();
+            BeanUtils.copyProperties(singleUserInfoVo,brokerHouseInfoVo);
+            //厂房数量
+            int plantCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,1);
+            //仓库数量
+            int storageCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,2);
+            //土地数量
+            int landCount = houseInfoDao.selectHouseCountByUserIdAndHouseUseType(userId,3);
+            brokerHouseInfoVo.setPlantCount(plantCount);
+            brokerHouseInfoVo.setStorageCount(storageCount);
+            brokerHouseInfoVo.setLandCount(landCount);
+            //TODO 等设计图
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByRecommend(userId);
+            brokerHouseInfoVo.setHouseList(houseInfoDomainVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(brokerHouseInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("查询成功");
+        }
+
+
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(applyBrokerInfoDomain != null){
+            applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("修改成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageList(MessageConditionVo messageConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(messageConditionVo.getUserId() != null){
+            List<MessageVo> messageInfoDomains = messageInfoDao.messageList(messageConditionVo);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(messageInfoDomains);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageDetail(Long messageId) {
+
+        CommonResult commonResult = new CommonResult();
+        if(messageId != null){
+            MessageInfoDomain messageInfoDomain = messageInfoDomainMapper.selectByPrimaryKey(messageId);
+            MessageInfoVo messageInfoVo = new MessageInfoVo();
+
+            HouseInfoDomainVo houseInfoDemainVo = houseInfoDao.selectHouseInfoListById(messageInfoDomain.getHouseId());
+            List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoById(messageInfoDomain.getEntrustId());
+            messageInfoVo.setHouseInfo(houseInfoDemainVo);
+            messageInfoVo.setEntrustInfo(entrustInfoVos.get(0));
+            if(messageInfoDomain.getIsRead() == 0){
+                messageInfoDao.updateMessageRead(messageInfoDomain.getId());
+            }
+
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(messageInfoVo);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult messageUnreadCount(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            int unreadCount = messageInfoDao.countUnReadMessageCount(userId);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unreadCount",unreadCount);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(jsonObject);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
     }
 }

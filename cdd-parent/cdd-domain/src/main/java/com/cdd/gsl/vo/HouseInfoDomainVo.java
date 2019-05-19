@@ -63,6 +63,10 @@ public class HouseInfoDomainVo {
 
     private String portrait;
 
+    private String trade;
+
+    private String expireDate;
+
     public Long getId() {
         return id;
     }
@@ -293,5 +297,21 @@ public class HouseInfoDomainVo {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
     }
 }

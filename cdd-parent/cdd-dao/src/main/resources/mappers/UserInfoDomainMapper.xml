@@ -13,6 +13,7 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="service_area" property="serviceArea" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, username, phone, user_type, integral, portrait, password, salt, status, create_ts, 
-    update_ts
+    update_ts, service_area
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
     select
@@ -110,11 +111,13 @@
     insert into t_user_info (id, username, phone, 
       user_type, integral, portrait, 
       password, salt, status, 
-      create_ts, update_ts)
+      create_ts, update_ts, service_area
+      )
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{userType,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP})
+      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
     insert into t_user_info
@@ -152,6 +155,9 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="serviceArea != null" >
+        service_area,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -186,6 +192,9 @@
       </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceArea != null" >
+        #{serviceArea,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -231,6 +240,9 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.serviceArea != null" >
+        service_area = #{record.serviceArea,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +260,8 @@
       salt = #{record.salt,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      service_area = #{record.serviceArea,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -286,6 +299,9 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="serviceArea != null" >
+        service_area = #{serviceArea,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -300,7 +316,8 @@
       salt = #{salt,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      service_area = #{serviceArea,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

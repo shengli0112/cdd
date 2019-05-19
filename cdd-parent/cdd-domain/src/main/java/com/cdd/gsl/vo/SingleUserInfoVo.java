@@ -10,6 +10,8 @@ public class SingleUserInfoVo {
     //头像
     private String portrait;
 
+    private String serviceArea;
+
     public Long getUserId() {
         return userId;
     }
@@ -40,5 +42,13 @@ public class SingleUserInfoVo {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

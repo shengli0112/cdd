@@ -3,6 +3,12 @@ package com.cdd.gsl.vo;
 public class EntrustConditionVo {
     private Long userId;
 
+    private String city;
+
+    private String county;
+
+    private String town;
+
     //厂房 土地 仓库
     private Integer entrustType;
 
@@ -19,7 +25,7 @@ public class EntrustConditionVo {
     private Integer areaOrder;
 
     //第几页
-    private Integer pageNo;
+    private Integer pageNo=1;
 
     //每页多少条记录
     private Integer pageSize = 10;
@@ -96,5 +102,29 @@ public class EntrustConditionVo {
 
     public void setAreaOrder(Integer areaOrder) {
         this.areaOrder = areaOrder;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 }

@@ -1,22 +1,25 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
+import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
-import com.cdd.gsl.vo.HouseCompanyVo;
-import com.cdd.gsl.vo.HouseConditionVo;
-import com.cdd.gsl.vo.HouseInfoDetailVo;
-import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class HouseServiceImpl implements HouseService{
+    private Logger logger = LoggerFactory.getLogger(HouseServiceImpl.class);
     @Autowired
     private HouseInfoDomainMapper houseInfoDomainMapper;
 
@@ -32,37 +35,139 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private BrowseHouseRecordDomainMapper browseHouseRecordDomainMapper;
 
+    @Autowired
+    private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
+
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Autowired
+    private ApplyBrokerInfoDao applyBrokerInfoDao;
+
     @Override
-    public void addHouse(HouseInfoDomain houseInfoDomain) {
-        houseInfoDomainMapper.insertSelective(houseInfoDomain);
+    public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        Long userId = houseInfoDomain.getUserId();
+        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+        if(!CollectionUtils.isEmpty(userIds)){
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
+            if(CollectionUtils.isEmpty(ids)){
+                houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                commonResult.setFlag(1);
+                commonResult.setMessage("添加成功");
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("同公司已有咨询师发布，不能重复发布");
+            }
+        }else{
+            houseInfoDomainMapper.insertSelective(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("添加成功");
+        }
+        return commonResult;
+
     }
 
     @Override
-    public void updateHouse(HouseInfoDomain houseInfoDomain) {
-        houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+    public CommonResult updateHouse(HouseInfoDomain houseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        Long userId = houseInfoDomain.getUserId();
+        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+        if(!CollectionUtils.isEmpty(userIds)) {
+            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserIdAndHouseId(houseInfoDomain, userIds);
+            if(CollectionUtils.isEmpty(ids)){
+                HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+                houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+                List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+                if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                    houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+                    commonResult.setFlag(1);
+                    commonResult.setMessage("更新成功");
+                }else{
+                    commonResult.setFlag(0);
+                    commonResult.setMessage("没有对应的房源");
+                }
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("同公司已有咨询师发布，不能更新为相同的房源");
+            }
+        }else{
+            HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+            houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+            List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+            if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+                commonResult.setFlag(1);
+                commonResult.setMessage("更新成功");
+            }else{
+                commonResult.setFlag(0);
+                commonResult.setMessage("没有对应的房源");
+            }
+        }
+        return commonResult;
+
+    }
+
+    @Override
+    public void deleteHouse(HouseInfoDomain houseInfoDomain) {
+        HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+        houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+        List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+        if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+        }
     }
 
     @Override
     public HouseInfoDetailVo findHouseInfoById(Long houseId) {
+        long start = System.currentTimeMillis();
         HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
-        List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
-        houseInfoDetailVo.setLikes(houseInfoDomainVos);
-        BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
-        browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
-        browseHouseRecordDomain.setHouseId(houseId);
-        browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
-        BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
-        browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
-        List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
-        houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
+        logger.info("HouseServiceImpl selectHouseInfoById ms --{}",(System.currentTimeMillis() - start));
+        if(houseInfoDetailVo != null){
+            long start1 = System.currentTimeMillis();
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+            logger.info("HouseServiceImpl findUserInfoById ms --{}",(System.currentTimeMillis() - start1));
+            long start2 = System.currentTimeMillis();
+            List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start2));
+            if(!CollectionUtils.isEmpty(userList)){
+                userList.forEach(userBrokerVo -> {
+                    int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                    userBrokerVo.setHouseCount(count);
+                });
+            }
+            houseInfoDetailVo.setUser_list(userList);
+            houseInfoDetailVo.setUser(singleUserInfoVo);
+            long start3 = System.currentTimeMillis();
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start3));
+            houseInfoDetailVo.setLikes(houseInfoDomainVos);
+            BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
+            browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
+            browseHouseRecordDomain.setHouseId(houseId);
+            long start4 = System.currentTimeMillis();
+            browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start4));
+            BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
+            browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
+            long start5 = System.currentTimeMillis();
+            List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start5));
+            houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
+        }
+
         return houseInfoDetailVo;
     }
 
     @Override
-    public List<HouseInfoDomainVo> findHouseInfoList(HouseConditionVo houseConditionVo) {
+    public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
 
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
-        return houseInfoDomainList;
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        JSONObject data = new JSONObject();
+        data.put("houseCount",houseCount);
+        data.put("houseList",houseInfoDomainList);
+        return data;
     }
 
     @Override
@@ -82,7 +187,7 @@ public class HouseServiceImpl implements HouseService{
             ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
             ApplyBrokerInfoDomainExample applyBrokerInfoExample = new ApplyBrokerInfoDomainExample();
             applyBrokerInfoExample.createCriteria().andCompanyNameEqualTo(applyBrokerInfoDomain.getCompanyName()).andApplyTypeEqualTo(2);
-            List<ApplyBrokerInfoDomain> applyBrokerInfos = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            List<ApplyBrokerInfoDomain> applyBrokerInfos = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoExample);
             List<Long> userIds = new ArrayList<>();
             if(applyBrokerInfos != null && applyBrokerInfos.size() > 0){
                 applyBrokerInfos.forEach(applyBrokerInfo -> {
@@ -100,5 +205,28 @@ public class HouseServiceImpl implements HouseService{
 
         }
         return houseInfoDomainList;
+    }
+
+    @Override
+    public CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(informHouseRecordDomain != null){
+            InformHouseRecordDomainExample informHouseRecordDomainExample = new InformHouseRecordDomainExample();
+            informHouseRecordDomainExample.createCriteria().andUserIdEqualTo(informHouseRecordDomain.getUserId()).andHouseIdEqualTo(informHouseRecordDomain.getHouseId());
+            List<InformHouseRecordDomain> informHouseRecordDomains = informHouseRecordDomainMapper.selectByExample(informHouseRecordDomainExample);
+            if(informHouseRecordDomains != null && informHouseRecordDomains.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("已经举报");
+            }else{
+                informHouseRecordDomainMapper.insertSelective(informHouseRecordDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("举报成功");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数为空");
+        }
+
+        return commonResult;
     }
 }

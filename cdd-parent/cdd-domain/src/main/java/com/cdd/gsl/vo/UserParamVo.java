@@ -7,6 +7,8 @@ public class UserParamVo {
 
     private String portrait;
 
+    private String serviceArea;
+
     public Long getUserId() {
         return userId;
     }
@@ -29,5 +31,13 @@ public class UserParamVo {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 }

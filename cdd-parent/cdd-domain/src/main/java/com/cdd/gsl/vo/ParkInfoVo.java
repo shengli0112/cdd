@@ -5,8 +5,6 @@ public class ParkInfoVo {
 
     private String parkName;
 
-    private String title;
-
     private String tag;
 
     private String totalArea;
@@ -32,14 +30,6 @@ public class ParkInfoVo {
 
     public void setParkName(String parkName) {
         this.parkName = parkName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getTag() {

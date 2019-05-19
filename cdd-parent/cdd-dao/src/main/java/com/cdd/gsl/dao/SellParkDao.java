@@ -1,13 +1,14 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.SellParkInfoDomain;
+import com.cdd.gsl.vo.ParkInfoVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 public interface SellParkDao {
     @Select("<script>" +
-            "select id as id,city as city,county as county,address as address,park_name as parkName,title as title," +
+            "select id as id,city as city,county as county,address as address,park_name as parkName," +
             "total_area as totalArea,total_price as totalPrice," +
             "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag " +
             "from t_sell_park_info where status=1 " +
@@ -15,4 +16,10 @@ public interface SellParkDao {
 
             "</script>")
     public List<SellParkInfoDomain> selectSellParkInfoList(String region, String price, String area, Long sellParkId);
+
+    @Select("select id as id,address as address,park_name as parkName," +
+            "total_area as totalArea,total_price as totalPrice," +
+            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag" +
+            " from t_sell_park_info where status=1 order by rand() limit 3")
+    List<ParkInfoVo> selectSellParkInfoRand();
 }

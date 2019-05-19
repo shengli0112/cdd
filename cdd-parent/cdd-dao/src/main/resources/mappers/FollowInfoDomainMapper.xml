@@ -100,17 +100,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.FollowInfoDomain" >
-    insert into t_follow_info (id, follow_id, follow_type, 
-      user_id, create_ts)
-    values (#{id,jdbcType=BIGINT}, #{followId,jdbcType=BIGINT}, #{followType,jdbcType=INTEGER}, 
-      #{userId,jdbcType=BIGINT}, #{createTs,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_follow_info (follow_id, follow_type, user_id, 
+      create_ts)
+    values (#{followId,jdbcType=BIGINT}, #{followType,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, 
+      #{createTs,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.FollowInfoDomain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into t_follow_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="followId != null" >
         follow_id,
       </if>
@@ -125,9 +128,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="followId != null" >
         #{followId,jdbcType=BIGINT},
       </if>

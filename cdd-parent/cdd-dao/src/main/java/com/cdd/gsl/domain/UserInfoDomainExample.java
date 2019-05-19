@@ -814,6 +814,76 @@ public class UserInfoDomainExample {
             addCriterion("update_ts not between", value1, value2, "updateTs");
             return (Criteria) this;
         }
+
+        public Criteria andServiceAreaIsNull() {
+            addCriterion("service_area is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaIsNotNull() {
+            addCriterion("service_area is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaEqualTo(String value) {
+            addCriterion("service_area =", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaNotEqualTo(String value) {
+            addCriterion("service_area <>", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaGreaterThan(String value) {
+            addCriterion("service_area >", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("service_area >=", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaLessThan(String value) {
+            addCriterion("service_area <", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaLessThanOrEqualTo(String value) {
+            addCriterion("service_area <=", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaLike(String value) {
+            addCriterion("service_area like", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaNotLike(String value) {
+            addCriterion("service_area not like", value, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaIn(List<String> values) {
+            addCriterion("service_area in", values, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaNotIn(List<String> values) {
+            addCriterion("service_area not in", values, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaBetween(String value1, String value2) {
+            addCriterion("service_area between", value1, value2, "serviceArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andServiceAreaNotBetween(String value1, String value2) {
+            addCriterion("service_area not between", value1, value2, "serviceArea");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

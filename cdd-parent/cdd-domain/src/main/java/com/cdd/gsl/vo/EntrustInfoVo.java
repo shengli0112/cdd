@@ -20,9 +20,11 @@ public class EntrustInfoVo {
     private String portrait;
 
     //联系人
-    private String concacts;
+    private String contacts;
 
     private String phone;
+
+    private String business;
 
     private String createTs;
 
@@ -95,12 +97,12 @@ public class EntrustInfoVo {
         this.createTs = createTs;
     }
 
-    public String getConcacts() {
-        return concacts;
+    public String getContacts() {
+        return contacts;
     }
 
-    public void setConcacts(String concacts) {
-        this.concacts = concacts;
+    public void setContacts(String contacts) {
+        this.contacts = contacts;
     }
 
     public String getPhone() {
@@ -109,6 +111,14 @@ public class EntrustInfoVo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
     }
 
     public Integer getType() {

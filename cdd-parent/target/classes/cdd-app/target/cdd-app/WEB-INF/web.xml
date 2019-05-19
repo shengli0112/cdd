@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+
+  <!--1.从类路径下加载spring配置文件-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        classpath:spring/applicationContext-service.xml
+    </param-value>
+  </context-param>
+
+
+
+    <!--负责启动spring容器的监听器,将引用 1 处上下文参数获得的spring配置文件地址-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <!--springMVC的主控servlet-->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/springContext.xml</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>clientRequestFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>clientRequestFilter</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>clientRequestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--spring Web MVC框架提供了org.springframework.web.filter.CharacterEncodingFilter
+                                                    用于解决POST 方式造成的中文乱码问题-->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+    <!--sso单点登录 end-->
+
+
+    <!--session过滤器-->
+    <!--<filter>-->
+        <!--<filter-name>sessionFilter</filter-name>-->
+        <!--<filter-class>com.shangde.greatbear.filter.SessionFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>noFilterPath</param-name>-->
+            <!--<param-value>uploadImageForUser,getImageUrlForUser,addRecord,leaveRecord,addMessage,ws,addSeller,removeSeller,imExport,ad,judgeIsNewPattern,log,robotAnswer,robotTransfer,processEnd,postException,notifyAvailable,aiModifyMasterSwitch,aiModifyRobot,aiModifyRobotSwitch,aiRemoveRobot,insertStatisticTable,insertUserRatingInfo,tagInfo,robotCard,runningInfo,sendLog,kfgroupInfo</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>sessionFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--Web应用、URI监控、Session监控-->
+    <filter>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+        <init-param>
+            <param-name>exclusions</param-name>
+            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>profileEnable</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>principalCookieName</param-name>
+            <param-value>USER_COOKIE</param-value>
+        </init-param>
+        <init-param>
+            <param-name>principalSessionName</param-name>
+            <param-value>USER_SESSION</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- 设置session超时时间，单位：分钟 -->
+    <session-config>
+        <session-timeout>1440</session-timeout>
+    </session-config>
+
+</web-app>

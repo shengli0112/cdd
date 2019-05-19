@@ -47,6 +47,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		logger.info("ClientRequestFilter login info userId --{} ,token --{}",request.getHeader("X-Cdd-Request-Userid"),request.getHeader("X-Cdd-Request-Token"));
 		response.setCharacterEncoding("utf-8");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");

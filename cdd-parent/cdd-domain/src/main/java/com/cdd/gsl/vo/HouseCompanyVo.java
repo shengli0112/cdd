@@ -45,6 +45,8 @@ public class HouseCompanyVo {
 
     private List<Long> userIds;
 
+    private String keyword;
+
     public String getCity() {
         return city;
     }
@@ -167,5 +169,13 @@ public class HouseCompanyVo {
 
     public void setUserIds(List<Long> userIds) {
         this.userIds = userIds;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
