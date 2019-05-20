@@ -2,6 +2,7 @@ package com.cdd.gsl.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.cdd.gsl.service.ShiroService;
+import com.cdd.gsl.vo.AdminVo;
 import com.cdd.gsl.vo.ValidateLoginVo;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.shiro.SecurityUtils;
@@ -19,15 +20,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("admin")
-public class AdminController {
+@RequestMapping("user")
+public class UserController {
     @Autowired
     private ShiroService shiroService;
 
     @RequestMapping(value = "/login")
-    public String login(String username, String password){
+    public String login(AdminVo adminVo){
         try{
-            shiroService.doLogin(username,password);
+            shiroService.doLogin(adminVo.getUsername(),adminVo.getPassword());
         }catch (Exception e){
             return "error";
         }
