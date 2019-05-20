@@ -34,6 +34,9 @@ public class EntrustServiceImpl implements EntrustService {
     @Autowired
     private MessageInfoDomainMapper messageInfoDomainMapper;
 
+    @Autowired
+    private CheckPhoneDomainMapper checkPhoneDomainMapper;
+
     @Override
     public CommonResult createEntrust(EntrustInfoDomain entrustInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -151,7 +154,22 @@ public class EntrustServiceImpl implements EntrustService {
         // && entrustConditionVo.getEntrustType() != null
         if(entrustConditionVo.getUserId() != null){
             List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoByUserId(entrustConditionVo);
-            commonResult.setData(entrustInfoVos);
+            List<EntrustInfoVo> entrustInfoVoList = new ArrayList<>();
+            if(entrustInfoVos != null && entrustInfoVos.size() > 0){
+                for(EntrustInfoVo entrustInfoVo:entrustInfoVos){
+                    CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                    checkPhoneDomainExample.createCriteria().andUserIdEqualTo(entrustConditionVo.getUserId())
+                            .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
+                    List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                    if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                        entrustInfoVo.setCheckPhone(true);
+                    }else{
+                        entrustInfoVo.setCheckPhone(false);
+                    }
+                    entrustInfoVoList.add(entrustInfoVo);
+                }
+            }
+            commonResult.setData(entrustInfoVoList);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
         }else{

@@ -1,10 +1,7 @@
 package com.cdd.gsl.service;
 
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
-import com.cdd.gsl.domain.CommonDictDomain;
-import com.cdd.gsl.domain.FollowInfoDomain;
-import com.cdd.gsl.domain.ThirdUserInfoDomain;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.vo.*;
 
 import java.util.List;
@@ -69,5 +66,7 @@ public interface UserService {
     CommonResult messageDetail(Long messageId);
 
     CommonResult messageUnreadCount(Long userId);
+
+    CommonResult checkPhone(CheckPhoneDomain checkPhoneDomain);
 
 }

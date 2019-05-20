@@ -86,6 +86,9 @@ public class UserSerivceImpl implements UserService {
     private EntrustInfoDao entrustInfoDao;
 
     @Autowired
+    private CheckPhoneDomainMapper checkPhoneDomainMapper;
+
+    @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -917,6 +920,20 @@ public class UserSerivceImpl implements UserService {
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult checkPhone(CheckPhoneDomain checkPhoneDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(checkPhoneDomain != null){
+            checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("添加成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("添加失败");
         }
         return commonResult;
     }
