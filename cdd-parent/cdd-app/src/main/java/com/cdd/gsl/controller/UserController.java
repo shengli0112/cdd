@@ -430,9 +430,9 @@ public class UserController {
     /**
      * 查看号码
      */
-    @RequestMapping("checkPhone")
-    public CommonResult checkPhone(@RequestBody CheckPhoneDomain checkPhoneDomain){
-        return null;
+    @RequestMapping("checkMobile")
+    public CommonResult checkMobile(@RequestBody CheckPhoneDomain checkPhoneDomain){
+        return userService.checkMobile(checkPhoneDomain);
     }
 
     @RequestMapping("testMq")

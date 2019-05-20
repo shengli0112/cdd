@@ -67,6 +67,6 @@ public interface UserService {
 
     CommonResult messageUnreadCount(Long userId);
 
-    CommonResult checkPhone(CheckPhoneDomain checkPhoneDomain);
+    CommonResult checkMobile(CheckPhoneDomain checkPhoneDomain);
 
 }

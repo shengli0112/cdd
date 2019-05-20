@@ -925,7 +925,7 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult checkPhone(CheckPhoneDomain checkPhoneDomain) {
+    public CommonResult checkMobile(CheckPhoneDomain checkPhoneDomain) {
         CommonResult commonResult = new CommonResult();
         if(checkPhoneDomain != null){
             checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
