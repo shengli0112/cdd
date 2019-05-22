@@ -9,11 +9,17 @@ public class AdminInfoDomain {
 
     private String password;
 
-    private Long roleId;
-
     private Integer status;
 
+    private Long roleId;
+
+    private String slat;
+
+    private String portrait;
+
     private Date createTs;
+
+    private Date updateTs;
 
     public Long getId() {
         return id;
@@ -39,14 +45,6 @@ public class AdminInfoDomain {
         this.password = password == null ? null : password.trim();
     }
 
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -55,11 +53,43 @@ public class AdminInfoDomain {
         this.status = status;
     }
 
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getSlat() {
+        return slat;
+    }
+
+    public void setSlat(String slat) {
+        this.slat = slat == null ? null : slat.trim();
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait == null ? null : portrait.trim();
+    }
+
     public Date getCreateTs() {
         return createTs;
     }
 
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
+    }
+
+    public Date getUpdateTs() {
+        return updateTs;
+    }
+
+    public void setUpdateTs(Date updateTs) {
+        this.updateTs = updateTs;
     }
 }
