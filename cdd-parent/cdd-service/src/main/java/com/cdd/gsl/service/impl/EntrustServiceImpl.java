@@ -198,17 +198,17 @@ public class EntrustServiceImpl implements EntrustService {
                 if(entrustConditionVo.getUserId() != null){
                     checkPhoneDomainExample.createCriteria().andUserIdEqualTo(entrustConditionVo.getUserId())
                             .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
-                }else{
-                    checkPhoneDomainExample.createCriteria()
-                            .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
-                }
-
-                List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
-                if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
-                    entrustInfoVo.setCheckPhone(1);
+                    List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                    if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                        entrustInfoVo.setCheckPhone(1);
+                    }else{
+                        entrustInfoVo.setCheckPhone(0);
+                    }
                 }else{
                     entrustInfoVo.setCheckPhone(0);
                 }
+
+
                 entrustInfoVoList.add(entrustInfoVo);
             }
         }
