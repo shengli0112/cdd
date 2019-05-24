@@ -61,12 +61,12 @@
 
 
     <!-- 定义无需controller的url <-> view直接映射 -->
-    <mvc:view-controller path="/" view-name="/pages/ok"/>
+    <!--<mvc:view-controller path="/" view-name="/pages/ok"/>
 
     <mvc:resources location="/" mapping="/**/*.html"/>
     <mvc:resources location="/" mapping="/**/*.js"/>
     <mvc:resources location="/" mapping="/**/*.css"/>
     <mvc:resources location="/" mapping="/**/*.png"/>
-    <mvc:resources location="/" mapping="/**/*.gif"/>
+    <mvc:resources location="/" mapping="/**/*.gif"/>-->
 
 </beans>

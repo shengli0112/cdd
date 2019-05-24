@@ -1,6 +1,8 @@
 package com.cdd.gsl.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.service.AdminService;
 import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.AdminVo;
 import com.cdd.gsl.vo.ValidateLoginVo;
@@ -8,6 +10,8 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,17 +23,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("user")
 public class UserController {
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
-    private ShiroService shiroService;
+    private AdminService adminService;
 
     @RequestMapping(value = "/login")
-    public String login(@RequestBody AdminVo adminVo){
-        try{
-            shiroService.doLogin(adminVo.getUsername(),adminVo.getPassword());
-        }catch (Exception e){
-            return "error";
-        }
-        return "success";
+    public CommonResult login(@RequestBody AdminVo adminVo) throws Exception {
+        logger.info("UserController login admin params username:{} password:{}",adminVo.getUsername(),adminVo.getPassword());
+        return adminService.doLogin(adminVo.getUsername(),adminVo.getPassword());
     }
 
     //菜单页

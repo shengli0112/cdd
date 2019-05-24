@@ -32,6 +32,8 @@ public class EntrustConditionVo {
 
     private Integer from;
 
+    private String keyword;
+
     public Long getUserId() {
         return userId;
     }
@@ -126,5 +128,13 @@ public class EntrustConditionVo {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
