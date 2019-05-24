@@ -3,7 +3,9 @@ package com.cdd.gsl.dao;
 import com.cdd.gsl.domain.EnterpriseInfoDomain;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -24,4 +26,7 @@ public interface EnterpriseInfoDao {
             "from t_enterprise_info where status=1 " +
             " order by rand() limit 3")
     public List<EnterpriseInfoVo> selectEnterpriseInfoListRand();
+
+    @Update("update t_enterprise_info set status=0 where id=#{enterpriseId} and user_id=#{userId}")
+    void deleteEnterpriseInfoByIdAndUserId(@Param("enterpriseId") Long enterpriseId,@Param("userId")Long userId);
 }

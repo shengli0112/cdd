@@ -168,9 +168,9 @@ public class EntrustServiceImpl implements EntrustService {
 
                     List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
                     if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
-                        entrustInfoVo.setCheckPhone(true);
+                        entrustInfoVo.setCheckPhone(1);
                     }else{
-                        entrustInfoVo.setCheckPhone(false);
+                        entrustInfoVo.setCheckPhone(0);
                     }
                     entrustInfoVoList.add(entrustInfoVo);
                 }

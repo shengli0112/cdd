@@ -9,5 +9,9 @@ import java.util.List;
 public interface EnterpriseService {
     public CommonResult createEnterprise(EnterpriseInfoDomain enterpriseInfoDomain);
 
+    public CommonResult updateEnterprise(EnterpriseInfoDomain enterpriseInfoDomain);
+
+    public CommonResult deleteEnterprise(Long enterpriseId,Long userId);
+
     public CommonResult<List<EnterpriseInfoDomain>> findEnterpriseInfoList(EnterpriseConditionVo enterpriseConditionVo);
 }
