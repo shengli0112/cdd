@@ -1,13 +1,16 @@
 package com.cdd.gsl.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.AdminInfoDao;
 import com.cdd.gsl.dao.AdminTicketDomainMapper;
 import com.cdd.gsl.domain.AdminInfoDomain;
 import com.cdd.gsl.domain.AdminTicketDomain;
+import com.cdd.gsl.domain.AdminTicketDomainExample;
 import com.cdd.gsl.domain.UserTicketDomain;
 import com.cdd.gsl.service.AdminService;
+import com.cdd.gsl.vo.AdminRoleVo;
 import com.cdd.gsl.vo.MenuInfoVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -74,5 +77,32 @@ public class AdminServiceImpl implements AdminService {
             adminInfoDomain = adminInfoDomains.get(0);
         }
         return adminInfoDomain;
+    }
+
+    @Override
+    public CommonResult info(String token) {
+        CommonResult commonResult = new CommonResult();
+        if(!StringUtils.isEmpty(token)){
+            AdminTicketDomainExample adminTicketDomainExample = new AdminTicketDomainExample();
+            adminTicketDomainExample.createCriteria().andTokenEqualTo(token);
+            List<AdminTicketDomain> adminTicketDomainList = adminTicketDomainMapper.selectByExample(adminTicketDomainExample);
+
+            if(adminTicketDomainList != null && adminTicketDomainList.size() > 0){
+                AdminTicketDomain adminTicketDomain = adminTicketDomainList.get(0);
+                AdminRoleVo adminRoleVo = adminInfoDao.selectUserInfoByUserId(adminTicketDomain.getAdminId());
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("查询成功");
+                commonResult.setData(adminRoleVo);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("该token不合法");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("token不能为空");
+        }
+
+
+        return commonResult;
     }
 }

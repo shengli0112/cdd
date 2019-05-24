@@ -124,6 +124,11 @@ public class UserController {
         return JSONUtils.toJSONString(result);
     }
 
+    @RequestMapping(value="/info",method=RequestMethod.GET)
+    public CommonResult info(String token){
+        return adminService.info(token);
+    }
+
     /**
      * 退出登录
      */

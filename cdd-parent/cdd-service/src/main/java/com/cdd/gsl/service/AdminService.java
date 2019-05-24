@@ -14,4 +14,6 @@ public interface AdminService {
     public List<MenuInfoVo> getPermissionByUserName(String username);
 
     AdminInfoDomain getAdminByUsernameAndPassword(String username, String password);
+
+    CommonResult info(String token);
 }
