@@ -1,6 +1,7 @@
 package com.cdd.gsl.shiro;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.domain.AdminInfoDomain;
 import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.MenuInfoVo;
 import org.apache.shiro.SecurityUtils;
@@ -23,7 +24,7 @@ import java.util.List;
 public class MyRealm extends AuthorizingRealm {
     private Logger logger = LoggerFactory.getLogger(MyRealm.class);
 
-
+    @Autowired
     private ShiroService shiroService;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -118,7 +119,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) {
         //获取基于用户名和密码的令牌
 
         //实际上这个authcToken是从LoginController里面currentUser.login(token)传过来的
@@ -151,21 +152,25 @@ public class MyRealm extends AuthorizingRealm {
 
         //这样一来,在随后的登录页面上就只有这里指定的用户和密码才能通过验证
         String username = token.getUsername();
+        String password = new String(token.getPassword());
+        if(!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
 
-        if(!StringUtils.isEmpty(username)){
-
-            String password = shiroService.getPasswordByUserName(username);
-            if(!StringUtils.isEmpty(password)){
+            AdminInfoDomain adminInfoDomain = shiroService.getAdminByUsernameAndPassword(username,password);
+            if(adminInfoDomain != null){
                 return new SimpleAuthenticationInfo(username,password,getName());
+            }else {
+                throw new UnknownAccountException();
             }
 
-            return null;
 
+
+        }else{
+            throw new IncorrectCredentialsException();
         }
 
         //没有返回登录用户名对应的SimpleAuthenticationInfo对象时,就会在LoginController中抛出UnknownAccountException异常
 
-        return null;
+//        return null;
     }
 
     /**

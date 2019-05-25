@@ -28,6 +28,27 @@ public class EnterpriseController {
         return commonResult;
     }
 
+    /**
+     * 更新企业圈
+     * @param enterpriseInfoDomain
+     * @return
+     */
+    @RequestMapping("updateEnterprise")
+    public CommonResult updateEnterprise(EnterpriseInfoDomain enterpriseInfoDomain){
+        CommonResult commonResult = enterpriseService.createEnterprise(enterpriseInfoDomain);
+        return commonResult;
+    }
+
+    /**
+     * 删除企业
+     * @return
+     */
+    @RequestMapping("deleteEnterprise")
+    public CommonResult deleteEnterprise(Long enterpriseId,Long userId){
+        CommonResult commonResult = enterpriseService.deleteEnterprise(enterpriseId,userId);
+        return commonResult;
+    }
+
     @RequestMapping("findEnterpriseInfoList")
     public CommonResult findEnterpriseInfoList(EnterpriseConditionVo enterpriseConditionVo){
         CommonResult<List<EnterpriseInfoDomain>> commonResult = enterpriseService.findEnterpriseInfoList(enterpriseConditionVo);

@@ -305,66 +305,6 @@ public class AdminInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdIsNull() {
-            addCriterion("role_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIsNotNull() {
-            addCriterion("role_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdEqualTo(Long value) {
-            addCriterion("role_id =", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotEqualTo(Long value) {
-            addCriterion("role_id <>", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdGreaterThan(Long value) {
-            addCriterion("role_id >", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("role_id >=", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdLessThan(Long value) {
-            addCriterion("role_id <", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdLessThanOrEqualTo(Long value) {
-            addCriterion("role_id <=", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIn(List<Long> values) {
-            addCriterion("role_id in", values, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotIn(List<Long> values) {
-            addCriterion("role_id not in", values, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdBetween(Long value1, Long value2) {
-            addCriterion("role_id between", value1, value2, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotBetween(Long value1, Long value2) {
-            addCriterion("role_id not between", value1, value2, "roleId");
-            return (Criteria) this;
-        }
-
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -425,6 +365,206 @@ public class AdminInfoDomainExample {
             return (Criteria) this;
         }
 
+        public Criteria andRoleIdIsNull() {
+            addCriterion("role_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdIsNotNull() {
+            addCriterion("role_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdEqualTo(Long value) {
+            addCriterion("role_id =", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdNotEqualTo(Long value) {
+            addCriterion("role_id <>", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdGreaterThan(Long value) {
+            addCriterion("role_id >", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("role_id >=", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdLessThan(Long value) {
+            addCriterion("role_id <", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdLessThanOrEqualTo(Long value) {
+            addCriterion("role_id <=", value, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdIn(List<Long> values) {
+            addCriterion("role_id in", values, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdNotIn(List<Long> values) {
+            addCriterion("role_id not in", values, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdBetween(Long value1, Long value2) {
+            addCriterion("role_id between", value1, value2, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleIdNotBetween(Long value1, Long value2) {
+            addCriterion("role_id not between", value1, value2, "roleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatIsNull() {
+            addCriterion("slat is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatIsNotNull() {
+            addCriterion("slat is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatEqualTo(String value) {
+            addCriterion("slat =", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatNotEqualTo(String value) {
+            addCriterion("slat <>", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatGreaterThan(String value) {
+            addCriterion("slat >", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatGreaterThanOrEqualTo(String value) {
+            addCriterion("slat >=", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatLessThan(String value) {
+            addCriterion("slat <", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatLessThanOrEqualTo(String value) {
+            addCriterion("slat <=", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatLike(String value) {
+            addCriterion("slat like", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatNotLike(String value) {
+            addCriterion("slat not like", value, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatIn(List<String> values) {
+            addCriterion("slat in", values, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatNotIn(List<String> values) {
+            addCriterion("slat not in", values, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatBetween(String value1, String value2) {
+            addCriterion("slat between", value1, value2, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andSlatNotBetween(String value1, String value2) {
+            addCriterion("slat not between", value1, value2, "slat");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIsNull() {
+            addCriterion("portrait is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIsNotNull() {
+            addCriterion("portrait is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitEqualTo(String value) {
+            addCriterion("portrait =", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitNotEqualTo(String value) {
+            addCriterion("portrait <>", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitGreaterThan(String value) {
+            addCriterion("portrait >", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitGreaterThanOrEqualTo(String value) {
+            addCriterion("portrait >=", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitLessThan(String value) {
+            addCriterion("portrait <", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitLessThanOrEqualTo(String value) {
+            addCriterion("portrait <=", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitLike(String value) {
+            addCriterion("portrait like", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitNotLike(String value) {
+            addCriterion("portrait not like", value, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIn(List<String> values) {
+            addCriterion("portrait in", values, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitNotIn(List<String> values) {
+            addCriterion("portrait not in", values, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitBetween(String value1, String value2) {
+            addCriterion("portrait between", value1, value2, "portrait");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitNotBetween(String value1, String value2) {
+            addCriterion("portrait not between", value1, value2, "portrait");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTsIsNull() {
             addCriterion("create_ts is null");
             return (Criteria) this;
@@ -482,6 +622,66 @@ public class AdminInfoDomainExample {
 
         public Criteria andCreateTsNotBetween(Date value1, Date value2) {
             addCriterion("create_ts not between", value1, value2, "createTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNull() {
+            addCriterion("update_ts is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNotNull() {
+            addCriterion("update_ts is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsEqualTo(Date value) {
+            addCriterion("update_ts =", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotEqualTo(Date value) {
+            addCriterion("update_ts <>", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThan(Date value) {
+            addCriterion("update_ts >", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_ts >=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThan(Date value) {
+            addCriterion("update_ts <", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThanOrEqualTo(Date value) {
+            addCriterion("update_ts <=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIn(List<Date> values) {
+            addCriterion("update_ts in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotIn(List<Date> values) {
+            addCriterion("update_ts not in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsBetween(Date value1, Date value2) {
+            addCriterion("update_ts between", value1, value2, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotBetween(Date value1, Date value2) {
+            addCriterion("update_ts not between", value1, value2, "updateTs");
             return (Criteria) this;
         }
     }

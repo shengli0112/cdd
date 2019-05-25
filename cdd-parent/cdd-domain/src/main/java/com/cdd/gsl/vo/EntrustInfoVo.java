@@ -29,7 +29,7 @@ public class EntrustInfoVo {
     private String createTs;
 
     //是否查看手机号
-    private boolean checkPhone;
+    private Integer checkPhone;
 
     public Long getEntrustId() {
         return entrustId;
@@ -132,11 +132,11 @@ public class EntrustInfoVo {
         this.type = type;
     }
 
-    public boolean isCheckPhone() {
+    public Integer getCheckPhone() {
         return checkPhone;
     }
 
-    public void setCheckPhone(boolean checkPhone) {
+    public void setCheckPhone(Integer checkPhone) {
         this.checkPhone = checkPhone;
     }
 }

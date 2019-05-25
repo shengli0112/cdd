@@ -36,6 +36,34 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
+    public CommonResult updateEnterprise(EnterpriseInfoDomain enterpriseInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(enterpriseInfoDomain != null){
+            enterpriseInfoDomainMapper.updateByPrimaryKeySelective(enterpriseInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("更新企业成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult deleteEnterprise(Long enterpriseId, Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(enterpriseId != null && userId != null){
+            enterpriseInfoDao.deleteEnterpriseInfoByIdAndUserId(enterpriseId,userId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除企业成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult<List<EnterpriseInfoDomain>> findEnterpriseInfoList(EnterpriseConditionVo enterpriseConditionVo) {
         CommonResult<List<EnterpriseInfoDomain>> commonResult = new CommonResult<>();
         List<EnterpriseInfoDomain> enterpriseInfoDomainList = enterpriseInfoDao.selectEnterpriseInfoListByCondition(enterpriseConditionVo);

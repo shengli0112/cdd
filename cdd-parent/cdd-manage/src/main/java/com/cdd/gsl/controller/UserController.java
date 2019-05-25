@@ -1,6 +1,8 @@
 package com.cdd.gsl.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.service.AdminService;
 import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.AdminVo;
 import com.cdd.gsl.vo.ValidateLoginVo;
@@ -8,11 +10,10 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,17 +23,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("user")
 public class UserController {
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
-    private ShiroService shiroService;
+    private AdminService adminService;
 
     @RequestMapping(value = "/login")
-    public String login(AdminVo adminVo){
-        try{
-            shiroService.doLogin(adminVo.getUsername(),adminVo.getPassword());
-        }catch (Exception e){
-            return "error";
-        }
-        return "success";
+    public CommonResult login(@RequestBody AdminVo adminVo) throws Exception {
+        logger.info("UserController login admin params username:{} password:{}",adminVo.getUsername(),adminVo.getPassword());
+        return adminService.doLogin(adminVo.getUsername(),adminVo.getPassword());
     }
 
     //菜单页
@@ -124,6 +122,11 @@ public class UserController {
         }
         result.put("success", true);
         return JSONUtils.toJSONString(result);
+    }
+
+    @RequestMapping(value="/info",method=RequestMethod.GET)
+    public CommonResult info(String token){
+        return adminService.info(token);
     }
 
     /**

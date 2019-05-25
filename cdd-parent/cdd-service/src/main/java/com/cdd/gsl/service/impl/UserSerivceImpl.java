@@ -929,8 +929,22 @@ public class UserSerivceImpl implements UserService {
         CommonResult commonResult = new CommonResult();
         if(checkPhoneDomain != null){
             checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+            JSONObject jsonObject = new JSONObject();
+            String phone = "";
+            if(checkPhoneDomain.getType().equals("house")){
+                HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(checkPhoneDomain.getInfoId());
+                phone = houseInfoDetailVo.getPhone();
+            }else if(checkPhoneDomain.getType().equals("entrust")){
+                List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoById(checkPhoneDomain.getInfoId());
+                if(entrustInfoVos != null && entrustInfoVos.size() > 0){
+                    phone = entrustInfoVos.get(0).getPhone();
+                }
+            }
+
+            jsonObject.put("phone",phone);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
+            commonResult.setData(jsonObject);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("添加失败");
