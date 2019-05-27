@@ -88,8 +88,8 @@ public interface HouseInfoDao {
             " order by h.create_ts desc " +
 
             "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">h.area desc,h.cover_area desc</if>"+
+            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
+            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
             "</if>"+
 
             "<if test=\"priceOrder != null\">"+
