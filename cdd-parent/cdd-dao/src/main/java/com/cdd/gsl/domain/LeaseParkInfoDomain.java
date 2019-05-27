@@ -15,11 +15,7 @@ public class LeaseParkInfoDomain {
 
     private Integer totalArea;
 
-    private Integer singleArea;
-
     private Integer unitPrice;
-
-    private String enterprise;
 
     private String industry;
 
@@ -42,6 +38,8 @@ public class LeaseParkInfoDomain {
     private String town;
 
     private String background;
+
+    private Integer priceType;
 
     public Long getId() {
         return id;
@@ -91,28 +89,12 @@ public class LeaseParkInfoDomain {
         this.totalArea = totalArea;
     }
 
-    public Integer getSingleArea() {
-        return singleArea;
-    }
-
-    public void setSingleArea(Integer singleArea) {
-        this.singleArea = singleArea;
-    }
-
     public Integer getUnitPrice() {
         return unitPrice;
     }
 
     public void setUnitPrice(Integer unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    public String getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(String enterprise) {
-        this.enterprise = enterprise == null ? null : enterprise.trim();
     }
 
     public String getIndustry() {
@@ -201,5 +183,13 @@ public class LeaseParkInfoDomain {
 
     public void setBackground(String background) {
         this.background = background == null ? null : background.trim();
+    }
+
+    public Integer getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(Integer priceType) {
+        this.priceType = priceType;
     }
 }

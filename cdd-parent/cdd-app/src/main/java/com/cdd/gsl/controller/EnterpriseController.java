@@ -5,6 +5,7 @@ import com.cdd.gsl.domain.EnterpriseInfoDomain;
 import com.cdd.gsl.service.EnterpriseService;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class EnterpriseController {
      * @return
      */
     @RequestMapping("createEnterprise")
-    public CommonResult createEnterprise(EnterpriseInfoDomain enterpriseInfoDomain){
+    public CommonResult createEnterprise(@RequestBody EnterpriseInfoDomain enterpriseInfoDomain){
         CommonResult commonResult = enterpriseService.createEnterprise(enterpriseInfoDomain);
         return commonResult;
     }
@@ -34,8 +35,8 @@ public class EnterpriseController {
      * @return
      */
     @RequestMapping("updateEnterprise")
-    public CommonResult updateEnterprise(EnterpriseInfoDomain enterpriseInfoDomain){
-        CommonResult commonResult = enterpriseService.createEnterprise(enterpriseInfoDomain);
+    public CommonResult updateEnterprise(@RequestBody EnterpriseInfoDomain enterpriseInfoDomain){
+        CommonResult commonResult = enterpriseService.updateEnterprise(enterpriseInfoDomain);
         return commonResult;
     }
 
@@ -52,6 +53,12 @@ public class EnterpriseController {
     @RequestMapping("findEnterpriseInfoList")
     public CommonResult findEnterpriseInfoList(EnterpriseConditionVo enterpriseConditionVo){
         CommonResult<List<EnterpriseInfoDomain>> commonResult = enterpriseService.findEnterpriseInfoList(enterpriseConditionVo);
+        return commonResult;
+    }
+
+    @RequestMapping("findEnterpriseDetail")
+    public CommonResult findEnterpriseDetail(Long enterpriseId){
+        CommonResult commonResult = enterpriseService.findEnterpriseDetail(enterpriseId);
         return commonResult;
     }
 }

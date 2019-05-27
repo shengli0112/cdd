@@ -505,66 +505,6 @@ public class LeaseParkInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andSingleAreaIsNull() {
-            addCriterion("single_area is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaIsNotNull() {
-            addCriterion("single_area is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaEqualTo(Integer value) {
-            addCriterion("single_area =", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaNotEqualTo(Integer value) {
-            addCriterion("single_area <>", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaGreaterThan(Integer value) {
-            addCriterion("single_area >", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaGreaterThanOrEqualTo(Integer value) {
-            addCriterion("single_area >=", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaLessThan(Integer value) {
-            addCriterion("single_area <", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaLessThanOrEqualTo(Integer value) {
-            addCriterion("single_area <=", value, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaIn(List<Integer> values) {
-            addCriterion("single_area in", values, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaNotIn(List<Integer> values) {
-            addCriterion("single_area not in", values, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaBetween(Integer value1, Integer value2) {
-            addCriterion("single_area between", value1, value2, "singleArea");
-            return (Criteria) this;
-        }
-
-        public Criteria andSingleAreaNotBetween(Integer value1, Integer value2) {
-            addCriterion("single_area not between", value1, value2, "singleArea");
-            return (Criteria) this;
-        }
-
         public Criteria andUnitPriceIsNull() {
             addCriterion("unit_price is null");
             return (Criteria) this;
@@ -622,76 +562,6 @@ public class LeaseParkInfoDomainExample {
 
         public Criteria andUnitPriceNotBetween(Integer value1, Integer value2) {
             addCriterion("unit_price not between", value1, value2, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseIsNull() {
-            addCriterion("enterprise is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseIsNotNull() {
-            addCriterion("enterprise is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseEqualTo(String value) {
-            addCriterion("enterprise =", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseNotEqualTo(String value) {
-            addCriterion("enterprise <>", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseGreaterThan(String value) {
-            addCriterion("enterprise >", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseGreaterThanOrEqualTo(String value) {
-            addCriterion("enterprise >=", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseLessThan(String value) {
-            addCriterion("enterprise <", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseLessThanOrEqualTo(String value) {
-            addCriterion("enterprise <=", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseLike(String value) {
-            addCriterion("enterprise like", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseNotLike(String value) {
-            addCriterion("enterprise not like", value, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseIn(List<String> values) {
-            addCriterion("enterprise in", values, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseNotIn(List<String> values) {
-            addCriterion("enterprise not in", values, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseBetween(String value1, String value2) {
-            addCriterion("enterprise between", value1, value2, "enterprise");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterpriseNotBetween(String value1, String value2) {
-            addCriterion("enterprise not between", value1, value2, "enterprise");
             return (Criteria) this;
         }
 
@@ -1422,6 +1292,66 @@ public class LeaseParkInfoDomainExample {
 
         public Criteria andBackgroundNotBetween(String value1, String value2) {
             addCriterion("background not between", value1, value2, "background");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeIsNull() {
+            addCriterion("price_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeIsNotNull() {
+            addCriterion("price_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeEqualTo(Integer value) {
+            addCriterion("price_type =", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeNotEqualTo(Integer value) {
+            addCriterion("price_type <>", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeGreaterThan(Integer value) {
+            addCriterion("price_type >", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("price_type >=", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeLessThan(Integer value) {
+            addCriterion("price_type <", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("price_type <=", value, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeIn(List<Integer> values) {
+            addCriterion("price_type in", values, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeNotIn(List<Integer> values) {
+            addCriterion("price_type not in", values, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeBetween(Integer value1, Integer value2) {
+            addCriterion("price_type between", value1, value2, "priceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPriceTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("price_type not between", value1, value2, "priceType");
             return (Criteria) this;
         }
     }

@@ -13,7 +13,7 @@ public class EnterpriseInfoVo {
 
     private String registerDate;
 
-    private String productDetail;
+    private String trade;
 
     private String description;
 
@@ -30,6 +30,10 @@ public class EnterpriseInfoVo {
     private Long userId;
 
     private String image;
+
+    private String title;
+
+    private Float price;
 
     public Long getId() {
         return id;
@@ -71,13 +75,6 @@ public class EnterpriseInfoVo {
         this.registerDate = registerDate;
     }
 
-    public String getProductDetail() {
-        return productDetail;
-    }
-
-    public void setProductDetail(String productDetail) {
-        this.productDetail = productDetail;
-    }
 
     public String getDescription() {
         return description;
@@ -141,5 +138,29 @@ public class EnterpriseInfoVo {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }
