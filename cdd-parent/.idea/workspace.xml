@@ -7,40 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ApplyBrokerConditionVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/BrokerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml.orig" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml.orig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/cdd-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-app/cdd-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/cdd-common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-common/cdd-common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/cdd-dao.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/cdd-dao.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/AdminInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/AdminInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ApplyBrokerInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ApplyBrokerInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/AdminInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/AdminInfoDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/ApplyBrokerInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/ApplyBrokerInfoDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/cdd-domain.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-domain/cdd-domain.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/cdd-manage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/cdd-manage.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/src/main/env-dev/db-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/src/main/env-dev/db-config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/filter/ClientRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/filter/ClientRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/com/cdd/gsl/filter/ClientRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/com/cdd/gsl/filter/ClientRequestFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/db-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/db-config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/classes/com/cdd/gsl/filter/ClientRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/classes/com/cdd/gsl/filter/ClientRequestFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/classes/db-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-manage/target/classes/db-config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/cdd-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-service/cdd-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/AdminServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -113,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/AdminServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="709">
+              <caret line="128" column="14" lean-forward="true" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -306,7 +273,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -776,17 +743,17 @@
       <workItem from="1558769547355" duration="4114000" />
       <workItem from="1558791903649" duration="324000" />
       <workItem from="1558792470642" duration="276000" />
-      <workItem from="1558795412945" duration="14238000" />
+      <workItem from="1558795412945" duration="15215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="739937000" />
+    <option name="totallyTimeSpent" value="740914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46861926" visible="true" weight="0.2375189" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.46861926" visible="true" weight="0.2375189" />
       <window_info id="Structure" order="1" sideWeight="0.5313808" side_tool="true" weight="0.22068231" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -798,7 +765,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.20151679" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978678" visible="true" weight="0.37704918" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4978678" visible="true" weight="0.37704918" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1233,8 +1200,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/AdminServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        <state relative-caret-position="709">
+          <caret line="128" column="14" lean-forward="true" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
         </state>
       </provider>
     </entry>
