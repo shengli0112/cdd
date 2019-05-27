@@ -86,7 +86,7 @@ public interface HouseInfoDao {
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by " +
-            "<if test='areaOrder == null && priceOrder == null'>"+
+            "<if test='areaOrder == null and priceOrder == null'>"+
                 " h.create_ts desc "+
             "</if>"+
             "<if test=\"areaOrder != null\">"+

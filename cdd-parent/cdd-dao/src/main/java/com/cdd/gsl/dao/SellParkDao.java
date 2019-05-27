@@ -58,7 +58,7 @@ public interface SellParkDao {
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%')) or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by " +
-            "<if test='areaOrder == null && priceOrder == null'>"+
+            "<if test='areaOrder == null and priceOrder == null'>"+
             " h.create_ts desc "+
             "</if>"+
             "<if test=\"areaOrder != null\">"+
