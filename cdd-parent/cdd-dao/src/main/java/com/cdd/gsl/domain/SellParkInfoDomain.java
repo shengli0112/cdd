@@ -17,14 +17,6 @@ public class SellParkInfoDomain {
 
     private Integer totalPrice;
 
-    private Integer unitPrice;
-
-    private String interest;
-
-    private String decoration;
-
-    private String openTime;
-
     private String contacts;
 
     private String phone;
@@ -44,6 +36,8 @@ public class SellParkInfoDomain {
     private String town;
 
     private String background;
+
+    private String industry;
 
     public Long getId() {
         return id;
@@ -99,38 +93,6 @@ public class SellParkInfoDomain {
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public Integer getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Integer unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest == null ? null : interest.trim();
-    }
-
-    public String getDecoration() {
-        return decoration;
-    }
-
-    public void setDecoration(String decoration) {
-        this.decoration = decoration == null ? null : decoration.trim();
-    }
-
-    public String getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime == null ? null : openTime.trim();
     }
 
     public String getContacts() {
@@ -211,5 +173,13 @@ public class SellParkInfoDomain {
 
     public void setBackground(String background) {
         this.background = background == null ? null : background.trim();
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry == null ? null : industry.trim();
     }
 }

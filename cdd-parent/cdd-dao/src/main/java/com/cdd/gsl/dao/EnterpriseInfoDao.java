@@ -13,16 +13,23 @@ public interface EnterpriseInfoDao {
 
     @Select("<script> " +
             "select id as id, main_business as mainBusiness, enterprise_name as enterpriseName, " +
-            "address as address, register_date as registerDate, product_detail as productDetail,description as description, " +
-            " contacts as contacts,phone as phone,image as image" +
+            "address as address, register_date as registerDate,description as description, " +
+            " contacts as contacts,phone as phone,image as image,user_id as userId,title as title,trade as trade,price as price" +
             "from t_enterprise_info where status=1 " +
+            "<if test='keyword != null'>" +
+            " and (title like concat('%','${keyword}','%') or main_business like concat('%','${keyword}','%') or enterprise_name like concat('%','${keyword}','%') or address like concat('%','${keyword}','%') " +
+            " or description like concat('%','${keyword}','%') or trade like concat('%','${keyword}','%'))"+
+            "</if>"+
+            "<if test='userId != null'>"+
+            " and user_id = #{userId}"+
+            "</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")
     public List<EnterpriseInfoDomain> selectEnterpriseInfoListByCondition(EnterpriseConditionVo enterpriseConditionVo);
 
     @Select("select id as id, main_business as mainBusiness, enterprise_name as enterpriseName, " +
-            "address as address, register_date as registerDate, product_detail as productDetail,description as description, " +
-            " contacts as contacts,phone as phone,image as image" +
+            "address as address, register_date as registerDate, trade as trade,description as description, " +
+            " contacts as contacts,phone as phone,image as image,user_id as userId,title as title,price as price" +
             "from t_enterprise_info where status=1 " +
             " order by rand() limit 3")
     public List<EnterpriseInfoVo> selectEnterpriseInfoListRand();

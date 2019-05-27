@@ -1,5 +1,6 @@
 package com.cdd.gsl.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class EnterpriseInfoDomain {
@@ -12,8 +13,6 @@ public class EnterpriseInfoDomain {
     private String address;
 
     private String registerDate;
-
-    private String productDetail;
 
     private String description;
 
@@ -30,6 +29,12 @@ public class EnterpriseInfoDomain {
     private Long userId;
 
     private String image;
+
+    private String title;
+
+    private String trade;
+
+    private BigDecimal price;
 
     public Long getId() {
         return id;
@@ -69,14 +74,6 @@ public class EnterpriseInfoDomain {
 
     public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate == null ? null : registerDate.trim();
-    }
-
-    public String getProductDetail() {
-        return productDetail;
-    }
-
-    public void setProductDetail(String productDetail) {
-        this.productDetail = productDetail == null ? null : productDetail.trim();
     }
 
     public String getDescription() {
@@ -141,5 +138,29 @@ public class EnterpriseInfoDomain {
 
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade == null ? null : trade.trim();
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

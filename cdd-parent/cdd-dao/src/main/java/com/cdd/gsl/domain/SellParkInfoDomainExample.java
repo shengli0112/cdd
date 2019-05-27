@@ -565,276 +565,6 @@ public class SellParkInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceIsNull() {
-            addCriterion("unit_price is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceIsNotNull() {
-            addCriterion("unit_price is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceEqualTo(Integer value) {
-            addCriterion("unit_price =", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceNotEqualTo(Integer value) {
-            addCriterion("unit_price <>", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceGreaterThan(Integer value) {
-            addCriterion("unit_price >", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("unit_price >=", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceLessThan(Integer value) {
-            addCriterion("unit_price <", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceLessThanOrEqualTo(Integer value) {
-            addCriterion("unit_price <=", value, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceIn(List<Integer> values) {
-            addCriterion("unit_price in", values, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceNotIn(List<Integer> values) {
-            addCriterion("unit_price not in", values, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceBetween(Integer value1, Integer value2) {
-            addCriterion("unit_price between", value1, value2, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceNotBetween(Integer value1, Integer value2) {
-            addCriterion("unit_price not between", value1, value2, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestIsNull() {
-            addCriterion("interest is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestIsNotNull() {
-            addCriterion("interest is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestEqualTo(String value) {
-            addCriterion("interest =", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestNotEqualTo(String value) {
-            addCriterion("interest <>", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestGreaterThan(String value) {
-            addCriterion("interest >", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestGreaterThanOrEqualTo(String value) {
-            addCriterion("interest >=", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestLessThan(String value) {
-            addCriterion("interest <", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestLessThanOrEqualTo(String value) {
-            addCriterion("interest <=", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestLike(String value) {
-            addCriterion("interest like", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestNotLike(String value) {
-            addCriterion("interest not like", value, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestIn(List<String> values) {
-            addCriterion("interest in", values, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestNotIn(List<String> values) {
-            addCriterion("interest not in", values, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestBetween(String value1, String value2) {
-            addCriterion("interest between", value1, value2, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andInterestNotBetween(String value1, String value2) {
-            addCriterion("interest not between", value1, value2, "interest");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationIsNull() {
-            addCriterion("decoration is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationIsNotNull() {
-            addCriterion("decoration is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationEqualTo(String value) {
-            addCriterion("decoration =", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationNotEqualTo(String value) {
-            addCriterion("decoration <>", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationGreaterThan(String value) {
-            addCriterion("decoration >", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationGreaterThanOrEqualTo(String value) {
-            addCriterion("decoration >=", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationLessThan(String value) {
-            addCriterion("decoration <", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationLessThanOrEqualTo(String value) {
-            addCriterion("decoration <=", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationLike(String value) {
-            addCriterion("decoration like", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationNotLike(String value) {
-            addCriterion("decoration not like", value, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationIn(List<String> values) {
-            addCriterion("decoration in", values, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationNotIn(List<String> values) {
-            addCriterion("decoration not in", values, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationBetween(String value1, String value2) {
-            addCriterion("decoration between", value1, value2, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andDecorationNotBetween(String value1, String value2) {
-            addCriterion("decoration not between", value1, value2, "decoration");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeIsNull() {
-            addCriterion("open_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeIsNotNull() {
-            addCriterion("open_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeEqualTo(String value) {
-            addCriterion("open_time =", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeNotEqualTo(String value) {
-            addCriterion("open_time <>", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeGreaterThan(String value) {
-            addCriterion("open_time >", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeGreaterThanOrEqualTo(String value) {
-            addCriterion("open_time >=", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeLessThan(String value) {
-            addCriterion("open_time <", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeLessThanOrEqualTo(String value) {
-            addCriterion("open_time <=", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeLike(String value) {
-            addCriterion("open_time like", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeNotLike(String value) {
-            addCriterion("open_time not like", value, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeIn(List<String> values) {
-            addCriterion("open_time in", values, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeNotIn(List<String> values) {
-            addCriterion("open_time not in", values, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeBetween(String value1, String value2) {
-            addCriterion("open_time between", value1, value2, "openTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenTimeNotBetween(String value1, String value2) {
-            addCriterion("open_time not between", value1, value2, "openTime");
-            return (Criteria) this;
-        }
-
         public Criteria andContactsIsNull() {
             addCriterion("contacts is null");
             return (Criteria) this;
@@ -1492,6 +1222,76 @@ public class SellParkInfoDomainExample {
 
         public Criteria andBackgroundNotBetween(String value1, String value2) {
             addCriterion("background not between", value1, value2, "background");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIsNull() {
+            addCriterion("industry is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIsNotNull() {
+            addCriterion("industry is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryEqualTo(String value) {
+            addCriterion("industry =", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotEqualTo(String value) {
+            addCriterion("industry <>", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryGreaterThan(String value) {
+            addCriterion("industry >", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryGreaterThanOrEqualTo(String value) {
+            addCriterion("industry >=", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLessThan(String value) {
+            addCriterion("industry <", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLessThanOrEqualTo(String value) {
+            addCriterion("industry <=", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryLike(String value) {
+            addCriterion("industry like", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotLike(String value) {
+            addCriterion("industry not like", value, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryIn(List<String> values) {
+            addCriterion("industry in", values, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotIn(List<String> values) {
+            addCriterion("industry not in", values, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryBetween(String value1, String value2) {
+            addCriterion("industry between", value1, value2, "industry");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndustryNotBetween(String value1, String value2) {
+            addCriterion("industry not between", value1, value2, "industry");
             return (Criteria) this;
         }
     }
