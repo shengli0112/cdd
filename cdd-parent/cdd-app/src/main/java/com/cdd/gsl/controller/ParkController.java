@@ -5,10 +5,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
-import com.cdd.gsl.vo.CompanyVo;
-import com.cdd.gsl.vo.LeaseParkInfoVo;
-import com.cdd.gsl.vo.SellParkCondition;
-import com.cdd.gsl.vo.SellParkInfoVo;
+import com.cdd.gsl.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -157,10 +154,10 @@ public class ParkController {
      * @return
      */
     @RequestMapping("findLeaseParkList")
-    public CommonResult findLeaseParkList(String region,String price,String area,Long leaseParkId){
-        logger.info("ParkController findLeaseParkDetail leaseParkId -{}",leaseParkId);
+    public CommonResult findLeaseParkList(LeaseParkCondition leaseParkCondition){
+        logger.info("ParkController findLeaseParkDetail leaseParkId");
         CommonResult<List<LeaseParkInfoVo>> commonResult = new CommonResult();
-        List<LeaseParkInfoDomain> leaseParkInfoDomainList = parkService.findLeaseParkList(region,price,area,leaseParkId);
+        List<LeaseParkInfoDomain> leaseParkInfoDomainList = parkService.findLeaseParkList(leaseParkCondition);
         List<LeaseParkInfoVo> leaseParkInfoVos = new ArrayList<>();
         if(leaseParkInfoDomainList != null && leaseParkInfoDomainList.size() > 0){
             leaseParkInfoDomainList.forEach(leaseParkInfoDomain -> {

@@ -2,12 +2,14 @@ package com.cdd.gsl.service.impl;
 
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.dao.LeaseParkDao;
 import com.cdd.gsl.dao.LeaseParkInfoDomainMapper;
 import com.cdd.gsl.dao.SellParkDao;
 import com.cdd.gsl.dao.SellParkInfoDomainMapper;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
+import com.cdd.gsl.vo.LeaseParkCondition;
 import com.cdd.gsl.vo.SellParkCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class ParkServiceImpl implements ParkService {
 
     @Autowired
     private SellParkDao sellParkDao;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
 
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
@@ -119,7 +124,7 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public List<LeaseParkInfoDomain> findLeaseParkList(String region, String price, String area, Long leaseParkId) {
-        return null;
+    public List<LeaseParkInfoDomain> findLeaseParkList(LeaseParkCondition leaseParkCondition) {
+        return leaseParkDao.selectLeaseParkInfoList(leaseParkCondition);
     }
 }

@@ -57,7 +57,10 @@ public interface SellParkDao {
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%')) or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.create_ts desc " +
+            " order by " +
+            "<if test='areaOrder == null && priceOrder == null'>"+
+            " h.create_ts desc "+
+            "</if>"+
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+

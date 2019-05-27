@@ -3,6 +3,7 @@ package com.cdd.gsl.service;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
+import com.cdd.gsl.vo.LeaseParkCondition;
 import com.cdd.gsl.vo.SellParkCondition;
 
 import java.util.List;
@@ -22,5 +23,5 @@ public interface ParkService {
 
     List<SellParkInfoDomain> findSellParkList(SellParkCondition sellParkCondition);
 
-    List<LeaseParkInfoDomain> findLeaseParkList(String region,String price,String area,Long leaseParkId);
+    List<LeaseParkInfoDomain> findLeaseParkList(LeaseParkCondition leaseParkCondition);
 }
