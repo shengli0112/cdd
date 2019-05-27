@@ -55,4 +55,10 @@ public class EnterpriseController {
         CommonResult<List<EnterpriseInfoDomain>> commonResult = enterpriseService.findEnterpriseInfoList(enterpriseConditionVo);
         return commonResult;
     }
+
+    @RequestMapping("findEnterpriseDetail")
+    public CommonResult findEnterpriseDetail(Long enterpriseId){
+        CommonResult commonResult = enterpriseService.findEnterpriseDetail(enterpriseId);
+        return commonResult;
+    }
 }

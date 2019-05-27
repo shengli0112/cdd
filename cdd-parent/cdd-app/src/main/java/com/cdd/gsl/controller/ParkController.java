@@ -38,7 +38,7 @@ public class ParkController {
      * @return
      */
     @RequestMapping("createSellPark")
-    public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain){
+    public CommonResult createSellPark(@RequestBody SellParkInfoDomain sellParkInfoDomain){
         logger.info("ParkController createSellPark sellParkInfoDomain -{}",sellParkInfoDomain);
         CommonResult result = parkService.createSellPark(sellParkInfoDomain);
         return result;
@@ -50,7 +50,7 @@ public class ParkController {
      * @return
      */
     @RequestMapping("updateSellPark")
-    public CommonResult updateSellPark(SellParkInfoDomain sellParkInfoDomain){
+    public CommonResult updateSellPark(@RequestBody SellParkInfoDomain sellParkInfoDomain){
         logger.info("ParkController createSellPark sellParkInfoDomain -{}",sellParkInfoDomain);
         CommonResult result = parkService.updateSellPark(sellParkInfoDomain);
         return result;
@@ -80,7 +80,7 @@ public class ParkController {
      * @return
      */
     @RequestMapping("createLeasePark")
-    public CommonResult createLeasePark(LeaseParkInfoDomain leaseParkInfoDomain){
+    public CommonResult createLeasePark(@RequestBody LeaseParkInfoDomain leaseParkInfoDomain){
         logger.info("ParkController createLeasePark leaseParkInfoDomain -{}",leaseParkInfoDomain);
         CommonResult result = parkService.createLeasePark(leaseParkInfoDomain);
         return result;
@@ -92,7 +92,7 @@ public class ParkController {
      * @return
      */
     @RequestMapping("updateLeasePark")
-    public CommonResult updateLeasePark(LeaseParkInfoDomain leaseParkInfoDomain){
+    public CommonResult updateLeasePark(@RequestBody LeaseParkInfoDomain leaseParkInfoDomain){
         logger.info("ParkController createLeasePark leaseParkInfoDomain -{}",leaseParkInfoDomain);
         CommonResult result = parkService.updateLeasePark(leaseParkInfoDomain);
         return result;
@@ -100,14 +100,14 @@ public class ParkController {
 
     /**
      * 更新出租园区信息
-     * @param leaseParkId
      * @return
      */
     @RequestMapping("deleteLeasePark")
-    public CommonResult deleteLeasePark(Long leaseParkId){
-        logger.info("ParkController createLeasePark leaseParkId -{}",leaseParkId);
+    public CommonResult deleteLeasePark(@RequestBody LeaseParkInfoDomain leaseParkInfo){
+        logger.info("ParkController createLeasePark leaseParkId -{}",leaseParkInfo.getId());
         LeaseParkInfoDomain leaseParkInfoDomain = new LeaseParkInfoDomain();
-        leaseParkInfoDomain.setId(leaseParkId);
+        leaseParkInfoDomain.setId(leaseParkInfo.getId());
+        leaseParkInfoDomain.setUserId(leaseParkInfo.getUserId());
         leaseParkInfoDomain.setStatus(0);
         CommonResult result = parkService.updateLeasePark(leaseParkInfoDomain);
         if(result.getFlag() == CddConstant.RESULT_SUCCESS_CODE){

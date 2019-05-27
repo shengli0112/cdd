@@ -72,4 +72,19 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         commonResult.setData(enterpriseInfoDomainList);
         return commonResult;
     }
+
+    @Override
+    public CommonResult findEnterpriseDetail(Long enterpriseId) {
+        CommonResult commonResult = new CommonResult();
+        if(enterpriseId != null){
+            EnterpriseInfoDomain enterpriseInfoDomain = enterpriseInfoDomainMapper.selectByPrimaryKey(enterpriseId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(enterpriseInfoDomain);
+        }else{
+            commonResult.setMessage("参数异常");
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+        }
+        return commonResult;
+    }
 }

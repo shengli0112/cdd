@@ -14,4 +14,6 @@ public interface EnterpriseService {
     public CommonResult deleteEnterprise(Long enterpriseId,Long userId);
 
     public CommonResult<List<EnterpriseInfoDomain>> findEnterpriseInfoList(EnterpriseConditionVo enterpriseConditionVo);
+
+    CommonResult findEnterpriseDetail(Long enterpriseId);
 }
