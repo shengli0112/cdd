@@ -85,25 +85,16 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by " +
-            "<if test='areaOrder == null and priceOrder == null'>"+
-                " h.create_ts desc "+
-            "</if>"+
+            " order by h.create_ts desc " +
+
             "<if test=\"areaOrder != null\">"+
             "<if test=\"areaOrder == 1\">h.area,h.cover_area</if>"+
             "<if test=\"areaOrder == 2\">h.area desc,h.cover_area desc</if>"+
             "</if>"+
-            "<if test=\"areaOrder != null\">"+
+
             "<if test=\"priceOrder != null\">"+
             "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
             "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
-            "</if>"+
-            "</if>"+
-            "<if test=\"areaOrder == null\">"+
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">h.selling_price desc</if>"+
-            "</if>"+
             "</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")
