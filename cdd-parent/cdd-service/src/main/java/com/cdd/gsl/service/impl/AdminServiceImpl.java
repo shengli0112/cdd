@@ -1,16 +1,15 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.AdminInfoDao;
-import com.cdd.gsl.dao.AdminTicketDomainMapper;
-import com.cdd.gsl.domain.AdminInfoDomain;
-import com.cdd.gsl.domain.AdminTicketDomain;
-import com.cdd.gsl.domain.AdminTicketDomainExample;
-import com.cdd.gsl.domain.UserTicketDomain;
+import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.AdminService;
 import com.cdd.gsl.vo.AdminRoleVo;
+import com.cdd.gsl.vo.ApplyBrokerConditionVo;
+import com.cdd.gsl.vo.ApplyBrokerInfoVo;
 import com.cdd.gsl.vo.MenuInfoVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -28,6 +27,15 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminTicketDomainMapper adminTicketDomainMapper;
+
+    @Autowired
+    private ApplyBrokerInfoDao applyBrokerInfoDao;
+
+    @Autowired
+    private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
+
+    @Autowired
+    private UserInfoDomainMapper userInfoDomainMapper;
 
     @Override
     public CommonResult doLogin(String username, String password) throws Exception {
@@ -102,6 +110,44 @@ public class AdminServiceImpl implements AdminService {
             commonResult.setMessage("token不能为空");
         }
 
+
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult brokerList(ApplyBrokerConditionVo applyBrokerConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(applyBrokerConditionVo != null){
+            int count = applyBrokerInfoDao.managerBrokerCount();
+            List<ApplyBrokerInfoVo> applyBrokerInfoVos = applyBrokerInfoDao.managerBrokerList(applyBrokerConditionVo);
+            JSONObject data = new JSONObject();
+            data.put("total",count);
+            data.put("items",applyBrokerInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不完整");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult passAudit(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if( applyBrokerInfoDomain != null ){
+            applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
+            UserInfoDomain userInfoDomain = new UserInfoDomain();
+            userInfoDomain.setId(applyBrokerInfoDomain.getUserId());
+            userInfoDomain.setUserType(2);
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("审核通过");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("参数不完整");
+        }
 
         return commonResult;
     }

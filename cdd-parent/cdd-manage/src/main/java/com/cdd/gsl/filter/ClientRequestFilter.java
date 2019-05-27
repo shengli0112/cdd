@@ -44,8 +44,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 		response.setCharacterEncoding("utf-8");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-		response.setHeader("Access-Control-Allow-Headers",
-				"authorization, content-type");
+		response.setHeader("Access-Control-Allow-Headers","content-type,X-Token");
 		String uri = request.getRequestURI();
 		String regex = "[0-9]+";
 		String method = request.getMethod();
@@ -53,7 +52,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 		if ((uri.equals("/admin/user/login")) || "OPTIONS".equals(method)) {
 			filterChain.doFilter(request, response);
 		} else {
-			String token = request.getParameter("token");
+			String token = request.getHeader("X-Token");
 			/*if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(method)) {
 				filterChain.doFilter(request, response);
 			} else {

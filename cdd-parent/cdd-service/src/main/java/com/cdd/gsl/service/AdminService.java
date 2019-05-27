@@ -2,6 +2,8 @@ package com.cdd.gsl.service;
 
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.AdminInfoDomain;
+import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
+import com.cdd.gsl.vo.ApplyBrokerConditionVo;
 import com.cdd.gsl.vo.MenuInfoVo;
 
 import java.util.List;
@@ -16,4 +18,8 @@ public interface AdminService {
     AdminInfoDomain getAdminByUsernameAndPassword(String username, String password);
 
     CommonResult info(String token);
+
+    CommonResult brokerList(ApplyBrokerConditionVo applyBrokerConditionVo);
+
+    CommonResult passAudit(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 }
