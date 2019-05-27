@@ -36,7 +36,7 @@ public class EnterpriseController {
      */
     @RequestMapping("updateEnterprise")
     public CommonResult updateEnterprise(@RequestBody EnterpriseInfoDomain enterpriseInfoDomain){
-        CommonResult commonResult = enterpriseService.createEnterprise(enterpriseInfoDomain);
+        CommonResult commonResult = enterpriseService.updateEnterprise(enterpriseInfoDomain);
         return commonResult;
     }
 

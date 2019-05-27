@@ -8,6 +8,7 @@ import com.cdd.gsl.dao.SellParkInfoDomainMapper;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
+import com.cdd.gsl.vo.SellParkCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -112,8 +113,8 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public List<SellParkInfoDomain> findSellParkList(String region, String price, String area, Long sellParkId) {
-        List<SellParkInfoDomain> sellParkInfoDomainList = sellParkDao.selectSellParkInfoList(region,price,area,sellParkId);
+    public List<SellParkInfoDomain> findSellParkList(SellParkCondition sellParkCondition) {
+        List<SellParkInfoDomain> sellParkInfoDomainList = sellParkDao.selectSellParkInfoList(sellParkCondition);
         return sellParkInfoDomainList;
     }
 

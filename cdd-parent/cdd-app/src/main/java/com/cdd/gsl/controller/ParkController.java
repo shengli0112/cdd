@@ -7,6 +7,7 @@ import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.CompanyVo;
 import com.cdd.gsl.vo.LeaseParkInfoVo;
+import com.cdd.gsl.vo.SellParkCondition;
 import com.cdd.gsl.vo.SellParkInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,10 +122,10 @@ public class ParkController {
      * @return
      */
     @RequestMapping("findSellParkList")
-    public CommonResult<List<SellParkInfoVo>> findSellParkList(String region,String price,String area,Long sellParkId){
-        logger.info("ParkController findSellParkDetail sellParkId -{}",sellParkId);
+    public CommonResult<List<SellParkInfoVo>> findSellParkList(SellParkCondition sellParkCondition){
+        logger.info("ParkController findSellParkDetail sellParkId -{}");
         CommonResult<List<SellParkInfoVo>> commonResult = new CommonResult();
-        List<SellParkInfoDomain> sellParkInfoDomainList = parkService.findSellParkList(region,price,area,sellParkId);
+        List<SellParkInfoDomain> sellParkInfoDomainList = parkService.findSellParkList(sellParkCondition);
         List<SellParkInfoVo> sellParkInfoVos = new ArrayList<>();
         if(sellParkInfoDomainList != null && sellParkInfoDomainList.size() > 0){
             sellParkInfoDomainList.forEach(sellParkInfoDomain -> {
