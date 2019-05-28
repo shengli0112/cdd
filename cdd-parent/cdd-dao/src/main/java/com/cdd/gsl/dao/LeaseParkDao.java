@@ -14,7 +14,7 @@ public interface LeaseParkDao {
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.unit_price as unitPrice," +
             "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (h.tag) group by dict_name) as tag, " +
-            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType " +
             "from t_lease_park_info h where h.status=1 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +

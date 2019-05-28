@@ -12,7 +12,7 @@ public interface SellParkDao {
             "select h.id as id,h.city as city,h.county as county,h.town as town," +
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.total_price as totalPrice," +
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag " +
+            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (h.tag) group by dict_name) as tag " +
             "from t_sell_park_info h where h.status=1 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
