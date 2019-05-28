@@ -41,6 +41,8 @@ public class SellParkCondition {
 
     private Integer from;
 
+    private Long userId;
+
 
     public String getCity() {
         return city;
@@ -152,5 +154,13 @@ public class SellParkCondition {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
