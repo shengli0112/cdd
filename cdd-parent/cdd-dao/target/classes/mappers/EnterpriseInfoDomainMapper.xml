@@ -7,7 +7,6 @@
     <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="register_date" property="registerDate" jdbcType="VARCHAR" />
-    <result column="product_detail" property="productDetail" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -16,6 +15,9 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="trade" property="trade" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,8 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, main_business, enterprise_name, address, register_date, product_detail, description, 
-    contacts, phone, create_ts, update_ts, status, user_id, image
+    id, main_business, enterprise_name, address, register_date, description, contacts, 
+    phone, create_ts, update_ts, status, user_id, image, title, trade, price
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.EnterpriseInfoDomainExample" >
     select
@@ -111,15 +113,17 @@
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.EnterpriseInfoDomain" >
     insert into t_enterprise_info (id, main_business, enterprise_name, 
-      address, register_date, product_detail, 
-      description, contacts, phone, 
-      create_ts, update_ts, status, 
-      user_id, image)
+      address, register_date, description, 
+      contacts, phone, create_ts, 
+      update_ts, status, user_id, 
+      image, title, trade, 
+      price)
     values (#{id,jdbcType=BIGINT}, #{mainBusiness,jdbcType=VARCHAR}, #{enterpriseName,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, #{productDetail,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
-      #{userId,jdbcType=BIGINT}, #{image,jdbcType=VARCHAR})
+      #{address,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, 
+      #{image,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.EnterpriseInfoDomain" >
     insert into t_enterprise_info
@@ -138,9 +142,6 @@
       </if>
       <if test="registerDate != null" >
         register_date,
-      </if>
-      <if test="productDetail != null" >
-        product_detail,
       </if>
       <if test="description != null" >
         description,
@@ -166,6 +167,15 @@
       <if test="image != null" >
         image,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="trade != null" >
+        trade,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -182,9 +192,6 @@
       </if>
       <if test="registerDate != null" >
         #{registerDate,jdbcType=VARCHAR},
-      </if>
-      <if test="productDetail != null" >
-        #{productDetail,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -209,6 +216,15 @@
       </if>
       <if test="image != null" >
         #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -236,9 +252,6 @@
       <if test="record.registerDate != null" >
         register_date = #{record.registerDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.productDetail != null" >
-        product_detail = #{record.productDetail,jdbcType=VARCHAR},
-      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
@@ -263,6 +276,15 @@
       <if test="record.image != null" >
         image = #{record.image,jdbcType=VARCHAR},
       </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade != null" >
+        trade = #{record.trade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -275,7 +297,6 @@
       enterprise_name = #{record.enterpriseName,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       register_date = #{record.registerDate,jdbcType=VARCHAR},
-      product_detail = #{record.productDetail,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       contacts = #{record.contacts,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
@@ -283,7 +304,10 @@
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=BIGINT},
-      image = #{record.image,jdbcType=VARCHAR}
+      image = #{record.image,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      trade = #{record.trade,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -302,9 +326,6 @@
       </if>
       <if test="registerDate != null" >
         register_date = #{registerDate,jdbcType=VARCHAR},
-      </if>
-      <if test="productDetail != null" >
-        product_detail = #{productDetail,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -330,6 +351,15 @@
       <if test="image != null" >
         image = #{image,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        trade = #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -339,7 +369,6 @@
       enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       register_date = #{registerDate,jdbcType=VARCHAR},
-      product_detail = #{productDetail,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
@@ -347,7 +376,10 @@
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=BIGINT},
-      image = #{image,jdbcType=VARCHAR}
+      image = #{image,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      trade = #{trade,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
