@@ -41,6 +41,7 @@ public class LeaseParkCondition {
 
     private Integer from;
 
+    private Long userId;
 
     public String getCity() {
         return city;
@@ -152,5 +153,13 @@ public class LeaseParkCondition {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
