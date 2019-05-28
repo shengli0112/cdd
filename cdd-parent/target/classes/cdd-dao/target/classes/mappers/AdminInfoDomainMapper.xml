@@ -5,9 +5,12 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="slat" property="slat" jdbcType="VARCHAR" />
+    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
+    <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, account, password, role_id, status, create_ts
+    id, account, password, status, role_id, slat, portrait, create_ts, update_ts
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.AdminInfoDomainExample" >
     select
@@ -102,10 +105,12 @@
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.AdminInfoDomain" >
     insert into t_admin_info (id, account, password, 
-      role_id, status, create_ts
+      status, role_id, slat, 
+      portrait, create_ts, update_ts
       )
     values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{roleId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}
+      #{status,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT}, #{slat,jdbcType=VARCHAR}, 
+      #{portrait,jdbcType=VARCHAR}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.AdminInfoDomain" >
@@ -120,14 +125,23 @@
       <if test="password != null" >
         password,
       </if>
-      <if test="roleId != null" >
-        role_id,
-      </if>
       <if test="status != null" >
         status,
       </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="slat != null" >
+        slat,
+      </if>
+      <if test="portrait != null" >
+        portrait,
+      </if>
       <if test="createTs != null" >
         create_ts,
+      </if>
+      <if test="updateTs != null" >
+        update_ts,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -140,14 +154,23 @@
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        #{roleId,jdbcType=BIGINT},
-      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="slat != null" >
+        #{slat,jdbcType=VARCHAR},
+      </if>
+      <if test="portrait != null" >
+        #{portrait,jdbcType=VARCHAR},
+      </if>
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        #{updateTs,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -169,14 +192,23 @@
       <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleId != null" >
-        role_id = #{record.roleId,jdbcType=BIGINT},
-      </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.slat != null" >
+        slat = #{record.slat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portrait != null" >
+        portrait = #{record.portrait,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTs != null" >
+        update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -188,9 +220,12 @@
     set id = #{record.id,jdbcType=BIGINT},
       account = #{record.account,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      role_id = #{record.roleId,jdbcType=BIGINT},
       status = #{record.status,jdbcType=INTEGER},
-      create_ts = #{record.createTs,jdbcType=TIMESTAMP}
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      slat = #{record.slat,jdbcType=VARCHAR},
+      portrait = #{record.portrait,jdbcType=VARCHAR},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -204,14 +239,23 @@
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        role_id = #{roleId,jdbcType=BIGINT},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="slat != null" >
+        slat = #{slat,jdbcType=VARCHAR},
+      </if>
+      <if test="portrait != null" >
+        portrait = #{portrait,jdbcType=VARCHAR},
+      </if>
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -220,9 +264,12 @@
     update t_admin_info
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
-      create_ts = #{createTs,jdbcType=TIMESTAMP}
+      role_id = #{roleId,jdbcType=BIGINT},
+      slat = #{slat,jdbcType=VARCHAR},
+      portrait = #{portrait,jdbcType=VARCHAR},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

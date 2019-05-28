@@ -81,20 +81,20 @@ public interface HouseInfoDao {
             "</otherwise>"+
             "</choose>"
            +
-            "<if test=\"keyword != null\">" +
+            "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc " +
 
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
             "</if>"+
 
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
             "</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")
@@ -158,13 +158,13 @@ public interface HouseInfoDao {
             "</otherwise>"+
             "</choose>"+
             " order by h.house_status asc,h.create_ts desc " +
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
             "</if>"+
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
             "</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")
@@ -284,13 +284,13 @@ public interface HouseInfoDao {
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
             "</if>"+
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
             "</if>"+
 
             " limit #{from},#{pageSize}"+
@@ -357,13 +357,13 @@ public interface HouseInfoDao {
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,h.area,h.cover_area</if>"+
-            "<if test=\"areaOrder == 2\">,h.area desc,h.cover_area desc</if>"+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
             "</if>"+
-            "<if test=\"priceOrder != null\">"+
-            "<if test=\"priceOrder == 1\">,h.selling_price</if>"+
-            "<if test=\"priceOrder == 2\">,h.selling_price desc</if>"+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
             "</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")

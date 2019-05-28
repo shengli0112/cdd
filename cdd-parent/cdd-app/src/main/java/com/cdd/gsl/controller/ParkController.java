@@ -56,15 +56,15 @@ public class ParkController {
 
     /**
      * 删除出售园区信息
-     * @param sellParkId
      * @return
      */
     @RequestMapping("deleteSellPark")
-    public CommonResult deleteSellPark(Long sellParkId){
-        logger.info("ParkController createSellPark sellParkId -{}",sellParkId);
-        SellParkInfoDomain sellParkInfoDomain = new SellParkInfoDomain();
-        sellParkInfoDomain.setId(sellParkId);
-        sellParkInfoDomain.setStatus(0);
+    public CommonResult deleteSellPark(@RequestBody SellParkInfoDomain sellParkInfoDomain ){
+        logger.info("ParkController createSellPark sellParkId -{}");
+        SellParkInfoDomain sellParkInfo = new SellParkInfoDomain();
+        sellParkInfo.setId(sellParkInfoDomain.getId());
+        sellParkInfo.setUserId(sellParkInfoDomain.getUserId());
+        sellParkInfo.setStatus(0);
         CommonResult result = parkService.updateSellPark(sellParkInfoDomain);
         if(result.getFlag() == CddConstant.RESULT_SUCCESS_CODE){
             result.setMessage("删除成功");

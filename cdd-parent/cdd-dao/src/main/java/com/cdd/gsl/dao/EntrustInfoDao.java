@@ -35,10 +35,8 @@ public interface EntrustInfoDao {
             " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') or e.phone like concat('%','${keyword}','%') ）" +
             "</if>"+
             " order by e.create_ts desc " +
-            "<if test=\"areaOrder != null\">"+
-            "<if test=\"areaOrder == 1\">,area</if>"+
-            "<if test=\"areaOrder == 2\">,area desc</if>"+
-            "</if>"+
+            "<if test='areaOrder == 1'>,e.area</if>"+
+            "<if test='areaOrder == 2'>,e.area desc</if>"+
             " limit #{from},#{pageSize}"+
             "</script>")
     public List<EntrustInfoVo> findEntrustInfoByUserId(EntrustConditionVo entrustConditionVo);
