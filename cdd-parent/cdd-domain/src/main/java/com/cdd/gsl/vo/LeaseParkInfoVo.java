@@ -7,28 +7,17 @@ public class LeaseParkInfoVo {
 
     private String parkName;
 
-    private String title;
-
     private String tag;
 
     private String totalArea;
-
-    private String totalPrice;
 
     private String address;
 
     private String priceType;
 
-
-
-
-
     private String city;
 
     private String county;
-
-
-
 
     private Integer unitPrice;
 
@@ -65,14 +54,6 @@ public class LeaseParkInfoVo {
         this.parkName = parkName;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTag() {
         return tag;
     }
@@ -89,13 +70,6 @@ public class LeaseParkInfoVo {
         this.totalArea = totalArea;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
     public String getAddress() {
         return address;
