@@ -119,21 +119,21 @@ public class ParkController {
      * @return
      */
     @RequestMapping("findSellParkList")
-    public CommonResult<List<SellParkInfoVo>> findSellParkList(SellParkCondition sellParkCondition){
+    public CommonResult<List<SellParkInfoDomain>> findSellParkList(SellParkCondition sellParkCondition){
         logger.info("ParkController findSellParkDetail sellParkId -{}");
-        CommonResult<List<SellParkInfoVo>> commonResult = new CommonResult();
+        CommonResult<List<SellParkInfoDomain>> commonResult = new CommonResult();
         List<SellParkInfoDomain> sellParkInfoDomainList = parkService.findSellParkList(sellParkCondition);
-        List<SellParkInfoVo> sellParkInfoVos = new ArrayList<>();
+       /* List<SellParkInfoVo> sellParkInfoVos = new ArrayList<>();
         if(sellParkInfoDomainList != null && sellParkInfoDomainList.size() > 0){
             sellParkInfoDomainList.forEach(sellParkInfoDomain -> {
                 SellParkInfoVo sellParkInfoVo = new SellParkInfoVo();
                 BeanUtils.copyProperties(sellParkInfoDomain, sellParkInfoVo);
                 sellParkInfoVos.add(sellParkInfoVo);
             });
-        }
+        }*/
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(sellParkInfoVos);
+        commonResult.setData(sellParkInfoDomainList);
         return commonResult;
     }
 
