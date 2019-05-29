@@ -10,6 +10,7 @@ import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.LeaseParkCondition;
+import com.cdd.gsl.vo.LeaseParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -124,7 +125,7 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public List<LeaseParkInfoDomain> findLeaseParkList(LeaseParkCondition leaseParkCondition) {
+    public List<LeaseParkInfoVo> findLeaseParkList(LeaseParkCondition leaseParkCondition) {
         return leaseParkDao.selectLeaseParkInfoList(leaseParkCondition);
     }
 }

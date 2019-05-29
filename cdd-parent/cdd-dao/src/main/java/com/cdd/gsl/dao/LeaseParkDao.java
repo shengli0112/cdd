@@ -3,6 +3,7 @@ package com.cdd.gsl.dao;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.LeaseParkCondition;
+import com.cdd.gsl.vo.LeaseParkInfoVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -71,5 +72,5 @@ public interface LeaseParkDao {
             " limit #{from},#{pageSize}"+
 
             "</script>")
-    public List<LeaseParkInfoDomain> selectLeaseParkInfoList(LeaseParkCondition leaseParkCondition);
+    public List<LeaseParkInfoVo> selectLeaseParkInfoList(LeaseParkCondition leaseParkCondition);
 }
