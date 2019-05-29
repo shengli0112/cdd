@@ -57,7 +57,7 @@ public interface LeaseParkDao {
             +
             "<if test='keyword != null'>" +
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
-            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%')) or h.industry like concat('%','${keyword}','%'))"+
+            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc" +
             "<if test='areaOrder != null'>"+
