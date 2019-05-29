@@ -11,8 +11,8 @@ public interface SellParkDao {
     @Select("<script>" +
             "select h.id as id,h.city as city,h.county as county,h.town as town," +
             "h.address as address,h.park_name as parkName," +
-            "h.total_area as totalArea,h.total_price as totalPrice," +
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (h.tag) group by dict_name) as tag " +
+            "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description " +
             "from t_sell_park_info h where h.status=1 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
