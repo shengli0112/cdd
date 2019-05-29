@@ -65,7 +65,7 @@ public class ParkController {
         sellParkInfo.setId(sellParkInfoDomain.getId());
         sellParkInfo.setUserId(sellParkInfoDomain.getUserId());
         sellParkInfo.setStatus(0);
-        CommonResult result = parkService.updateSellPark(sellParkInfoDomain);
+        CommonResult result = parkService.updateSellPark(sellParkInfo);
         if(result.getFlag() == CddConstant.RESULT_SUCCESS_CODE){
             result.setMessage("删除成功");
         }

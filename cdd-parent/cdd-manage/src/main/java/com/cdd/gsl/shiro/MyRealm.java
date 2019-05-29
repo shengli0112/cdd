@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.domain.AdminInfoDomain;
 import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.MenuInfoVo;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -153,7 +154,7 @@ public class MyRealm extends AuthorizingRealm {
         //这样一来,在随后的登录页面上就只有这里指定的用户和密码才能通过验证
         String username = token.getUsername();
         String password = new String(token.getPassword());
-        if(!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
+        if(Strings.isNotEmpty(username) && Strings.isNotEmpty(password)){
 
             AdminInfoDomain adminInfoDomain = shiroService.getAdminByUsernameAndPassword(username,password);
             if(adminInfoDomain != null){
