@@ -104,13 +104,18 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public CommonResult<LeaseParkInfoDomain> findLeaseParkDetail(Long leaseParkId) {
-        CommonResult<LeaseParkInfoDomain>  commonResult = new CommonResult<>();
+    public CommonResult<LeaseParkInfoVo> findLeaseParkDetail(Long leaseParkId) {
+        CommonResult<LeaseParkInfoVo>  commonResult = new CommonResult<>();
         if(leaseParkId != null){
-            LeaseParkInfoDomain leaseParkInfoDomain = leaseParkInfoDomainMapper.selectByPrimaryKey(leaseParkId);
+            List<LeaseParkInfoVo> leaseParkInfos = leaseParkDao.selectLeaseParkInfoById(leaseParkId);
+            LeaseParkInfoVo leaseParkInfoVo = new LeaseParkInfoVo();
+            if(leaseParkInfos != null && leaseParkInfos.size() > 0){
+                leaseParkInfoVo = leaseParkInfos.get(0);
+            }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
-            commonResult.setData(leaseParkInfoDomain);
+            commonResult.setData(leaseParkInfoVo);
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
