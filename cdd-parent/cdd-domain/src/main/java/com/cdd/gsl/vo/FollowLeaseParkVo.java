@@ -3,19 +3,21 @@ package com.cdd.gsl.vo;
 public class FollowLeaseParkVo {
     private Long followId;
 
-    private Long sellParkId;
+    private Long leaseParkId;
 
     private String parkName;
-
-    private String title;
 
     private String tag;
 
     private String totalArea;
 
-    private String totalPrice;
+    private Integer unitPrice;
 
     private String address;
+
+    private String priceType;
+
+    private String background;
 
     public Long getFollowId() {
         return followId;
@@ -25,12 +27,12 @@ public class FollowLeaseParkVo {
         this.followId = followId;
     }
 
-    public Long getSellParkId() {
-        return sellParkId;
+    public Long getLeaseParkId() {
+        return leaseParkId;
     }
 
-    public void setSellParkId(Long sellParkId) {
-        this.sellParkId = sellParkId;
+    public void setLeaseParkId(Long leaseParkId) {
+        this.leaseParkId = leaseParkId;
     }
 
     public String getParkName() {
@@ -41,13 +43,6 @@ public class FollowLeaseParkVo {
         this.parkName = parkName;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getTag() {
         return tag;
@@ -65,12 +60,12 @@ public class FollowLeaseParkVo {
         this.totalArea = totalArea;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public Integer getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setUnitPrice(Integer unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public String getAddress() {
@@ -79,5 +74,21 @@ public class FollowLeaseParkVo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 }
