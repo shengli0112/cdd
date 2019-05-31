@@ -60,7 +60,7 @@ public class HouseServiceImpl implements HouseService{
                 commonResult.setMessage("添加成功");
             }else{
                 commonResult.setFlag(0);
-                commonResult.setMessage("同公司已有咨询师发布，不能重复发布");
+                commonResult.setMessage("重复房源,不能发布");
             }
         }else{
             houseInfoDomainMapper.insertSelective(houseInfoDomain);
@@ -92,7 +92,7 @@ public class HouseServiceImpl implements HouseService{
                 }
             }else{
                 commonResult.setFlag(0);
-                commonResult.setMessage("同公司已有咨询师发布，不能更新为相同的房源");
+                commonResult.setMessage("同公司已有经纪人发布，不能更新为相同的房源");
             }
         }else{
             HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
