@@ -1,0 +1,6 @@
+com\cdd\gsl\filter\ClientRequestFilter.class
+com\cdd\gsl\controller\ShiroController.class
+com\cdd\gsl\shiro\MyRealm.class
+com\cdd\gsl\controller\BrokerController.class
+com\cdd\gsl\shiro\filter\ShiroUserFilter.class
+com\cdd\gsl\controller\UserController.class

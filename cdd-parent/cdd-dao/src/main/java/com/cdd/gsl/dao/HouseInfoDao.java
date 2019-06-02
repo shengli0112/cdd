@@ -1,5 +1,6 @@
 package com.cdd.gsl.dao;
 
+import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.Param;
@@ -460,4 +461,40 @@ public interface HouseInfoDao {
 
     @Select("select concact(city,county,town) from t_house_info limit 1")
     String selectRegionFromHouseByUserId(Long userId);
+
+    /**************************管理员项目使用的房源********************************************/
+    @Select("<script> " +
+            "select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs," +
+            "h.trade as trade,h.expire_date as expireDate,h.status as status" +
+            " from t_house_info h  where (h.status=1 or h.status=0) "+
+            "<if test='keyword != null'>"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
+            " order by h.id" +
+            " limit #{from},#{limit}"+
+            "</script>")
+    public List<HouseInfoDomainVo> selectAdminHouseInfoList(HouseAdminConditionVo houseConditionVo);
+
+    @Select("<script>"+
+            "select count(h.id)" +
+            " from t_house_info h  where (h.status=1 or h.status=0) "+
+            "<if test='keyword != null'>"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if></script>")
+    public int countAdminHouseInfo(HouseAdminConditionVo houseConditionVo);
+
+    /*******************************************************************************************/
+
 }
