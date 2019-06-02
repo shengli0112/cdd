@@ -3,6 +3,7 @@ package com.cdd.gsl.dao;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.LeaseParkCondition;
+import com.cdd.gsl.vo.LeaseParkInfoVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -10,10 +11,9 @@ import java.util.List;
 public interface LeaseParkDao {
 
     @Select("<script>" +
-            "select h.id as id,h.city as city,h.county as county,h.town as town," +
-            "h.address as address,h.park_name as parkName," +
-            "h.total_area as totalArea,h.unit_price as unitPrice," +
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (h.tag) group by dict_name) as tag, " +
+            "select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
+            "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
+            "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType " +
             "from t_lease_park_info h where h.status=1 " +
             "<if test='userId != null'>" +
@@ -57,7 +57,7 @@ public interface LeaseParkDao {
             +
             "<if test='keyword != null'>" +
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
-            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%')) or h.industry like concat('%','${keyword}','%'))"+
+            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc" +
             "<if test='areaOrder != null'>"+
@@ -71,5 +71,12 @@ public interface LeaseParkDao {
             " limit #{from},#{pageSize}"+
 
             "</script>")
-    public List<LeaseParkInfoDomain> selectLeaseParkInfoList(LeaseParkCondition leaseParkCondition);
+    public List<LeaseParkInfoVo> selectLeaseParkInfoList(LeaseParkCondition leaseParkCondition);
+
+    @Select("select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
+            "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
+            "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType " +
+            "from t_lease_park_info h where h.status=1 and h.id=#{id}")
+    List<LeaseParkInfoVo> selectLeaseParkInfoById(Long id);
 }

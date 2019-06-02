@@ -7,8 +7,6 @@ public class FollowSellParkVo {
 
     private String parkName;
 
-    private String title;
-
     private String tag;
 
     private String totalArea;
@@ -16,6 +14,8 @@ public class FollowSellParkVo {
     private String totalPrice;
 
     private String address;
+
+    private String background;
 
     public Long getFollowId() {
         return followId;
@@ -39,14 +39,6 @@ public class FollowSellParkVo {
 
     public void setParkName(String parkName) {
         this.parkName = parkName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getTag() {
@@ -79,5 +71,13 @@ public class FollowSellParkVo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 }

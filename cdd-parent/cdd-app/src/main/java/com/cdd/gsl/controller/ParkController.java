@@ -65,7 +65,7 @@ public class ParkController {
         sellParkInfo.setId(sellParkInfoDomain.getId());
         sellParkInfo.setUserId(sellParkInfoDomain.getUserId());
         sellParkInfo.setStatus(0);
-        CommonResult result = parkService.updateSellPark(sellParkInfoDomain);
+        CommonResult result = parkService.updateSellPark(sellParkInfo);
         if(result.getFlag() == CddConstant.RESULT_SUCCESS_CODE){
             result.setMessage("删除成功");
         }
@@ -119,21 +119,21 @@ public class ParkController {
      * @return
      */
     @RequestMapping("findSellParkList")
-    public CommonResult<List<SellParkInfoVo>> findSellParkList(SellParkCondition sellParkCondition){
+    public CommonResult<List<SellParkInfoDomain>> findSellParkList(SellParkCondition sellParkCondition){
         logger.info("ParkController findSellParkDetail sellParkId -{}");
-        CommonResult<List<SellParkInfoVo>> commonResult = new CommonResult();
+        CommonResult<List<SellParkInfoDomain>> commonResult = new CommonResult();
         List<SellParkInfoDomain> sellParkInfoDomainList = parkService.findSellParkList(sellParkCondition);
-        List<SellParkInfoVo> sellParkInfoVos = new ArrayList<>();
+       /* List<SellParkInfoVo> sellParkInfoVos = new ArrayList<>();
         if(sellParkInfoDomainList != null && sellParkInfoDomainList.size() > 0){
             sellParkInfoDomainList.forEach(sellParkInfoDomain -> {
                 SellParkInfoVo sellParkInfoVo = new SellParkInfoVo();
                 BeanUtils.copyProperties(sellParkInfoDomain, sellParkInfoVo);
                 sellParkInfoVos.add(sellParkInfoVo);
             });
-        }
+        }*/
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(sellParkInfoVos);
+        commonResult.setData(sellParkInfoDomainList);
         return commonResult;
     }
 
@@ -157,18 +157,10 @@ public class ParkController {
     public CommonResult findLeaseParkList(LeaseParkCondition leaseParkCondition){
         logger.info("ParkController findLeaseParkDetail leaseParkId");
         CommonResult<List<LeaseParkInfoVo>> commonResult = new CommonResult();
-        List<LeaseParkInfoDomain> leaseParkInfoDomainList = parkService.findLeaseParkList(leaseParkCondition);
-        List<LeaseParkInfoVo> leaseParkInfoVos = new ArrayList<>();
-        if(leaseParkInfoDomainList != null && leaseParkInfoDomainList.size() > 0){
-            leaseParkInfoDomainList.forEach(leaseParkInfoDomain -> {
-                LeaseParkInfoVo leaseParkInfoVo = new LeaseParkInfoVo();
-                BeanUtils.copyProperties(leaseParkInfoDomain, leaseParkInfoVo);
-                leaseParkInfoVos.add(leaseParkInfoVo);
-            });
-        }
+        List<LeaseParkInfoVo> leaseParkInfoDomainList = parkService.findLeaseParkList(leaseParkCondition);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(leaseParkInfoVos);
+        commonResult.setData(leaseParkInfoDomainList);
         return commonResult;
     }
 

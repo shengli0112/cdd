@@ -28,18 +28,17 @@ public interface FollowInfoDao {
                     " order by f.create_ts desc limit #{from},#{pageSize} ")
     public List<FollowHouseVo> findFollowHouse(FollowConditionVo followConditionVo);
 
-    @Select("select f.id as followId,s.id as id,s.city as city,s.county as county,s.address as address,s.park_name as parkName," +
-            "s.total_area as totalArea,s.total_price as totalPrice,"+
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (s.tag) group by dict_name) as tag " +
+    @Select("select f.id as followId,s.id as sellParkId,s.city as city,s.county as county,s.address as address,s.park_name as parkName," +
+            "s.total_area as totalArea,s.total_price as totalPrice,s.tag as tag,s.background as background"+
             " from t_follow_info f left join t_sell_park_info s on f.follow_id=s.id" +
             " where s.status=1 and f.follow_type=#{followType} and f.user_id=#{userId}" +
             " order by f.create_ts desc limit #{from},#{pageSize} ")
     public List<FollowSellParkVo> findFollowSellPark(FollowConditionVo followConditionVo);
 
     @Select("select f.id as followId,s.id as id,s.city as city,s.county as county,s.address as address,s.park_name as parkName," +
-            "s.total_area as totalArea,s.total_price as totalPrice,"+
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (s.tag) group by dict_name) as tag " +
-            " from t_follow_info f left join t_sell_park_info s on f.follow_id=s.id" +
+            "s.total_area as totalArea,s.unit_price as unitPrice,"+
+            "s.tag as tag,(select dict_value from t_common_dict where dict_name='priceType' and dict_code=s.price_type) as priceType,s.background as background " +
+            " from t_follow_info f left join t_lease_park_info s on f.follow_id=s.id" +
             " where s.status=1 and f.follow_type=#{followType} and f.user_id=#{userId}" +
             " order by f.create_ts desc limit #{from},#{pageSize} ")
     public List<FollowLeaseParkVo> findFollowLeasePark(FollowConditionVo followConditionVo);
