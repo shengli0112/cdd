@@ -2,18 +2,18 @@ package com.cdd.gsl.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.AdminService;
-import com.cdd.gsl.vo.AdminRoleVo;
-import com.cdd.gsl.vo.ApplyBrokerConditionVo;
-import com.cdd.gsl.vo.ApplyBrokerInfoVo;
-import com.cdd.gsl.vo.MenuInfoVo;
+import com.cdd.gsl.vo.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -22,6 +22,9 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
+
+    private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+
     @Autowired
     private AdminInfoDao adminInfoDao;
 
@@ -36,6 +39,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private UserInfoDomainMapper userInfoDomainMapper;
+
+    @Autowired
+    private HouseInfoDao houseInfoDao;
 
     @Override
     public CommonResult doLogin(String username, String password) throws Exception {
@@ -149,6 +155,26 @@ public class AdminServiceImpl implements AdminService {
             commonResult.setMessage("参数不完整");
         }
 
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findHouseList(HouseAdminConditionVo houseConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        if(houseConditionVo != null){
+            int count = houseInfoDao.countAdminHouseInfo(houseConditionVo);
+            List<HouseInfoDomainVo> houseInfoDomainVoList = houseInfoDao.selectAdminHouseInfoList(houseConditionVo);
+            logger.info("AdminServiceImpl findHouseList count -{},houseInfoDomainVoList-{}",count,houseInfoDomainVoList.toString());
+            JSONObject data = new JSONObject();
+            data.put("total",count);
+            data.put("houseInfoList",houseInfoDomainVoList);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
         return commonResult;
     }
 }
