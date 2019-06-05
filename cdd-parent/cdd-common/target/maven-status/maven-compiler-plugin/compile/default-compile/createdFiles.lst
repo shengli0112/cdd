@@ -6,5 +6,6 @@ com\cdd\gsl\common\util\EncryptionUtil.class
 com\cdd\gsl\common\result\CommonResult.class
 com\cdd\gsl\common\util\PinyinUtils.class
 com\cdd\gsl\common\constants\CddConstant.class
+com\cdd\gsl\common\util\DateUtil.class
 com\cdd\gsl\common\util\BeanUtils.class
 com\cdd\gsl\common\Test.class

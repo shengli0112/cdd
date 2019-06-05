@@ -53,4 +53,46 @@ public class AdminHomeController {
         }
         return commonResult;
     }
+
+    /**
+     * 恢复房源
+     */
+    @RequestMapping("recoverHouse")
+    public CommonResult recoverHouse(@RequestParam("houseId") Long houseId){
+        CommonResult commonResult = new CommonResult();
+
+        if(houseId != null){
+            HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setStatus(1);
+            houseService.deleteHouse(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("恢复成功");
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("恢复失败，参数不正确");
+        }
+        return commonResult;
+    }
+
+    /**
+     * 置顶
+     */
+    @RequestMapping("topHouse")
+    public CommonResult topHouse(@RequestParam("houseId") Long houseId){
+        CommonResult commonResult = new CommonResult();
+
+        if(houseId != null){
+            HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setStatus(1);
+            houseService.deleteHouse(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("恢复成功");
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("恢复失败，参数不正确");
+        }
+        return commonResult;
+    }
 }

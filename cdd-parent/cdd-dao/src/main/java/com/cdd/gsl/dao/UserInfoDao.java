@@ -3,10 +3,7 @@ package com.cdd.gsl.dao;
 import com.cdd.gsl.domain.UserInfoDomain;
 import com.cdd.gsl.vo.SingleUserBrokerVo;
 import com.cdd.gsl.vo.SingleUserInfoVo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -100,4 +97,7 @@ public interface UserInfoDao {
 
     @Select("select count(*) from t_user_info where status=1")
     int selectAllUserCount();
+
+    @Update("update t_user_info set integral=integral+10 where id=#{userId}")
+    void updateUserintegralById(Long userId);
 }

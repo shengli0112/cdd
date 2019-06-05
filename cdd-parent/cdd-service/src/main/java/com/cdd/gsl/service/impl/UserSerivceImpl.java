@@ -89,6 +89,12 @@ public class UserSerivceImpl implements UserService {
     private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
     @Autowired
+    private CurrencyInfoDomainMapper currencyInfoDomainMapper;
+
+    @Autowired
+    private  UserCurrencyMappingDomainMapper userCurrencyMappingDomainMapper;
+
+    @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -951,4 +957,42 @@ public class UserSerivceImpl implements UserService {
         }
         return commonResult;
     }
+
+    @Override
+    public CommonResult buyCurrency(UserCurrencyMappingDomain userCurrencyMappingDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(userCurrencyMappingDomain != null){
+            UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
+            userInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(userCurrencyMappingDomain.getUserId());
+            List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
+            CurrencyInfoDomainExample currencyInfoDomainExample = new CurrencyInfoDomainExample();
+            currencyInfoDomainExample.createCriteria().andIdEqualTo(userCurrencyMappingDomain.getCurrencyId()).andStatusEqualTo(1);
+            List<CurrencyInfoDomain> currencyInfoDomainList = currencyInfoDomainMapper.selectByExample(currencyInfoDomainExample);
+            if(CollectionUtils.isNotEmpty(userInfoDomainList) && CollectionUtils.isNotEmpty(currencyInfoDomainList)){
+                UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
+                CurrencyInfoDomain currencyInfoDomain = currencyInfoDomainList.get(0);
+                if(userInfoDomain.getIntegral() < currencyInfoDomain.getIntegral()){
+                    commonResult.setFlag(2);
+                    commonResult.setMessage("您的币余额不足，请充值");
+                }else{
+                    UserInfoDomain userInfo = new UserInfoDomain();
+                    userInfo.setId(userInfoDomain.getId());
+                    userInfo.setIntegral(userInfoDomain.getIntegral()-currencyInfoDomain.getIntegral());
+                    userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
+                    userCurrencyMappingDomainMapper.insertSelective(userCurrencyMappingDomain);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("购买成功");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("没有对应的数据");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+
 }

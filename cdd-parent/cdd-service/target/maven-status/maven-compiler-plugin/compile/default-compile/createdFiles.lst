@@ -1,5 +1,6 @@
 com\cdd\gsl\service\impl\LandServiceImpl.class
 com\cdd\gsl\service\AdminService.class
+com\cdd\gsl\service\CurrencyService.class
 com\cdd\gsl\service\impl\AdminServiceImpl.class
 com\cdd\gsl\service\impl\EntrustServiceImpl.class
 com\cdd\gsl\service\impl\HouseServiceImpl.class
@@ -9,13 +10,16 @@ com\cdd\gsl\service\impl\EnterpriseServiceImpl.class
 com\cdd\gsl\service\impl\RecordInfoServiceImpl.class
 com\cdd\gsl\service\impl\UserSerivceImpl.class
 com\cdd\gsl\service\impl\RegionServiceImpl.class
+com\cdd\gsl\service\ChatMessageService.class
 com\cdd\gsl\service\ShiroService.class
 com\cdd\gsl\service\impl\TrailServiceImpl.class
 com\cdd\gsl\service\TrailService.class
 com\cdd\gsl\service\CompanyService.class
 com\cdd\gsl\service\impl\CompanyServiceImpl.class
 com\cdd\gsl\service\RegionService.class
+com\cdd\gsl\service\impl\CurrencyServiceImpl.class
 com\cdd\gsl\service\impl\ParkServiceImpl.class
+com\cdd\gsl\service\impl\ChatMessageServiceImpl.class
 com\cdd\gsl\service\impl\StorageServiceImpl.class
 com\cdd\gsl\service\EnterpriseService.class
 com\cdd\gsl\service\impl\PlantServiceImpl.class
