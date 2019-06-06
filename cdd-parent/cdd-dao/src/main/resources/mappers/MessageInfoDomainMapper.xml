@@ -10,6 +10,9 @@
     <result column="house_id" property="houseId" jdbcType="BIGINT" />
     <result column="is_read" property="isRead" jdbcType="INTEGER" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="message_type" property="messageType" jdbcType="VARCHAR" />
+    <result column="obj_id" property="objId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, message, user_id, create_ts, entrust_id, house_id, is_read, update_ts
+    id, message, user_id, create_ts, entrust_id, house_id, is_read, update_ts, message_type, 
+    obj_id, type
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.MessageInfoDomainExample" >
     select
@@ -105,10 +109,12 @@
   <insert id="insert" parameterType="com.cdd.gsl.domain.MessageInfoDomain" >
     insert into t_message_info (id, message, user_id, 
       create_ts, entrust_id, house_id, 
-      is_read, update_ts)
+      is_read, update_ts, message_type, 
+      obj_id, type)
     values (#{id,jdbcType=BIGINT}, #{message,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
       #{createTs,jdbcType=TIMESTAMP}, #{entrustId,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, 
-      #{isRead,jdbcType=INTEGER}, #{updateTs,jdbcType=TIMESTAMP})
+      #{isRead,jdbcType=INTEGER}, #{updateTs,jdbcType=TIMESTAMP}, #{messageType,jdbcType=VARCHAR}, 
+      #{objId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.MessageInfoDomain" >
     insert into t_message_info
@@ -137,6 +143,15 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="messageType != null" >
+        message_type,
+      </if>
+      <if test="objId != null" >
+        obj_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +177,15 @@
       </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +222,15 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.messageType != null" >
+        message_type = #{record.messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objId != null" >
+        obj_id = #{record.objId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +245,10 @@
       entrust_id = #{record.entrustId,jdbcType=BIGINT},
       house_id = #{record.houseId,jdbcType=BIGINT},
       is_read = #{record.isRead,jdbcType=INTEGER},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      message_type = #{record.messageType,jdbcType=VARCHAR},
+      obj_id = #{record.objId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +277,15 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="messageType != null" >
+        message_type = #{messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="objId != null" >
+        obj_id = #{objId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -252,7 +297,10 @@
       entrust_id = #{entrustId,jdbcType=BIGINT},
       house_id = #{houseId,jdbcType=BIGINT},
       is_read = #{isRead,jdbcType=INTEGER},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      message_type = #{messageType,jdbcType=VARCHAR},
+      obj_id = #{objId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

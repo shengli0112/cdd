@@ -7,93 +7,193 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/CurrencyController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/util/DateUtil.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/CurrencyDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/CurrencyInfoDomainMapper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserCurrencyDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserCurrencyMappingDomainMapper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/CurrencyInfoDomain.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/CurrencyInfoDomainExample.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/UserCurrencyMappingDomain.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/UserCurrencyMappingDomainExample.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/CurrencyInfoDomainMapper.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/UserCurrencyMappingDomainMapper.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/CurrencyVo.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserCurrencyVo.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/CurrencyService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/CurrencyServiceImpl.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDao.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserConditionVo.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminUserController.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_app_war_exploded.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cdd_manage_war_exploded2.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/env-dev/db-config.properties" afterPath="$PROJECT_DIR$/cdd-app/src/main/env-dev/db-config.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app-sources.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app.war" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app.war" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/META-INF/MANIFEST.MF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/ParkController.class" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/ParkController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/UserController.class" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/db-config.properties" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/db-config.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/ParkController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/ParkController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" afterPath="$PROJECT_DIR$/cdd-app/target/classes/com/cdd/gsl/controller/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/classes/db-config.properties" afterPath="$PROJECT_DIR$/cdd-app/target/classes/db-config.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-app/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-app/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-app/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-app/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/target/instantMessaging-sources.jar" afterPath="$PROJECT_DIR$/cdd-common/target/instantMessaging-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/target/instantMessaging.jar" afterPath="$PROJECT_DIR$/cdd-common/target/instantMessaging.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-common/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/FollowInfoDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/FollowInfoDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/LeaseParkDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/LeaseParkDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/SellParkDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/SellParkDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/UserInfoDao.class" afterPath="$PROJECT_DIR$/cdd-dao/target/classes/com/cdd/gsl/dao/UserInfoDao.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/instantMessaging-sources.jar" afterPath="$PROJECT_DIR$/cdd-dao/target/instantMessaging-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/instantMessaging.jar" afterPath="$PROJECT_DIR$/cdd-dao/target/instantMessaging.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-dao/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/vo/FollowLeaseParkVo.class" afterPath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/vo/FollowLeaseParkVo.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/vo/FollowSellParkVo.class" afterPath="$PROJECT_DIR$/cdd-domain/target/classes/com/cdd/gsl/vo/FollowSellParkVo.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/instantMessaging-sources.jar" afterPath="$PROJECT_DIR$/cdd-domain/target/instantMessaging-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/instantMessaging.jar" afterPath="$PROJECT_DIR$/cdd-domain/target/instantMessaging.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-domain/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-domain/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-domain/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-domain/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/ChatMessageController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/CurrencyController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/EnterpriseController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/EntrustController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/HouseController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/ParkController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/RegionController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/controller/UserController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/com/cdd/gsl/filter/ClientRequestFilter.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/common.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/db-config.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/log4j2.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/reds.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-db.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-rabbitmq-send.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-service.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/applicationContext-shiro.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/mybatis.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/classes/spring/springContext.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/HdrHistogram-2.1.9.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/activation-1.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/amqp-client-3.5.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/animal-sniffer-annotations-1.14.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/aspectjrt-1.8.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/aspectjweaver-1.8.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/c3p0-0.9.1.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-codec-1.10.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-collections4-4.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-fileupload-1.3.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-io-2.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-lang3-3.3.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-logging-1.1.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/commons-pool2-2.4.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/compiler-0.9.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/curvesapi-1.04.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/dom4j-2.1.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/druid-1.1.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/elasticsearch-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/error_prone_annotations-2.0.18.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/fastjson-1.2.35.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/guava-22.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/guava-jdk5-17.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/hppc-0.7.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/httpasyncclient-4.1.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/httpclient-4.3.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/httpcore-4.3.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/httpcore-nio-4.4.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/httpmime-4.3.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/j2objc-annotations-1.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-annotations-2.9.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-core-2.9.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-databind-2.9.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-dataformat-cbor-2.8.6.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-dataformat-smile-2.8.6.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jackson-dataformat-yaml-2.8.6.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/javax.mail-1.5.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/javax.servlet-api-3.1.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jaxen-1.1.6.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jcl-over-slf4j-1.7.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jedis-2.9.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jna-4.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/joda-time-2.9.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jopt-simple-5.0.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jsqlparser-0.9.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jsr305-1.3.9.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/jul-to-slf4j-1.7.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lang-mustache-client-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lettuce-core-5.0.5.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/log4j-api-2.8.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/log4j-core-2.8.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/log4j-over-slf4j-1.7.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/log4j-slf4j-impl-2.8.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/logback-classic-1.1.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/logback-core-1.1.5.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-analyzers-common-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-backward-codecs-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-core-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-grouping-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-highlighter-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-join-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-memory-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-misc-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-queries-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-queryparser-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-sandbox-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-spatial-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-spatial-extras-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-spatial3d-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/lucene-suggest-6.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/mybatis-3.4.4.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/mybatis-spring-1.3.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/mysql-connector-java-6.0.6.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-3.10.6.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-all-4.1.13.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-buffer-4.1.9.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-codec-4.1.9.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-codec-http-4.1.9.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-common-4.1.24.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-handler-4.1.24.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-resolver-4.1.9.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/netty-transport-4.1.24.Final.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/okhttp-3.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/okio-1.11.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/pagehelper-4.2.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/percolator-client-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/pinyin4j-2.5.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/poi-3.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/poi-ooxml-3.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/poi-ooxml-schemas-3.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/quartz-2.2.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/reactive-streams-1.0.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/reactor-core-3.1.6.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/reindex-client-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/rest-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/securesm-1.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/shiro-core-1.3.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/shiro-spring-1.3.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/shiro-web-1.3.2.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/slf4j-api-1.7.25.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/snakeyaml-1.16.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-amqp-1.4.6.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-aop-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-beans-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-boot-1.3.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-boot-autoconfigure-1.3.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-boot-starter-1.3.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-boot-starter-logging-1.3.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-boot-starter-mail-1.3.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-context-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-context-support-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-core-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-data-commons-2.0.4.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-data-keyvalue-2.0.4.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-data-redis-2.0.4.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-expression-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-jcl-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-jdbc-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-jms-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-messaging-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-oxm-5.0.4.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-rabbit-1.4.6.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-retry-1.1.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-security-acl-4.2.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-security-config-4.2.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-security-core-4.2.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-security-taglibs-4.2.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-security-web-4.2.3.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-session-core-2.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-session-data-redis-2.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-test-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-tx-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-web-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-webmvc-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/spring-websocket-5.0.2.RELEASE.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/stax-api-1.0.1.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/t-digest-3.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/transport-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/transport-netty3-client-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/transport-netty4-client-5.4.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/lib/xmlbeans-2.6.0.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-app/target/cdd-app/WEB-INF/web.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/constants/CddConstant.java" afterPath="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/constants/CddConstant.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml" />
       <change beforePath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java" afterPath="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage-sources.jar" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage.war" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage.war" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/META-INF/MANIFEST.MF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/com/cdd/gsl/shiro/MyRealm.class" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/com/cdd/gsl/shiro/MyRealm.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/db-config.properties" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/classes/db-config.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-common-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-dao-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-domain-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/cdd-service-1.0-SNAPSHOT.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/jcl-over-slf4j-1.7.16.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/logback-classic-1.1.5.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/cdd-manage/WEB-INF/lib/logback-core-1.1.5.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/classes/com/cdd/gsl/controller/AdminHomeController.class" afterPath="$PROJECT_DIR$/cdd-manage/target/classes/com/cdd/gsl/controller/AdminHomeController.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-manage/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java" />
       <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/ParkService.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/ParkService.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/UserService.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/UserService.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/HouseServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/ParkServiceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/ParkServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/UserSerivceImpl.class" afterPath="$PROJECT_DIR$/cdd-service/target/classes/com/cdd/gsl/service/impl/UserSerivceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/instantMessaging-sources.jar" afterPath="$PROJECT_DIR$/cdd-service/target/instantMessaging-sources.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/instantMessaging.jar" afterPath="$PROJECT_DIR$/cdd-service/target/instantMessaging.jar" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/cdd-service/target/maven-archiver/pom.properties" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/cdd-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/cdd-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -133,11 +233,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CurrencyServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/CurrencyServiceImpl.java">
+      <file leaf-file-name="AdminUserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="44" column="66" lean-forward="false" selection-start-line="44" selection-start-column="66" selection-end-line="44" selection-end-column="66" />
+            <state relative-caret-position="962">
+              <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#735#736#0" expanded="true" />
+                <element signature="e#795#796#0" expanded="true" />
+                <element signature="e#909#910#0" expanded="true" />
+                <element signature="e#962#963#0" expanded="true" />
+                <element signature="e#1131#1132#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserConditionVo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserConditionVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatMessageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatMessageService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatMessageServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="755">
+              <caret line="67" column="9" lean-forward="false" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatMessageDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,126 +302,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
+      <file leaf-file-name="ChatMessageVo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ChatMessageVo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+            <state relative-caret-position="46">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/util/DateUtil.java">
+      <file leaf-file-name="UserSerivceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+            <state relative-caret-position="-2157">
+              <caret line="895" column="44" lean-forward="false" selection-start-line="895" selection-start-column="44" selection-end-line="895" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="896">
-              <caret line="172" column="42" lean-forward="false" selection-start-line="172" selection-start-column="42" selection-end-line="172" selection-end-column="42" />
+            <state relative-caret-position="526">
+              <caret line="408" column="32" lean-forward="false" selection-start-line="408" selection-start-column="32" selection-end-line="408" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db-config.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/env-dev/db-config.properties">
+      <file leaf-file-name="EntrustServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+            <state relative-caret-position="520">
+              <caret line="78" column="49" lean-forward="false" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserInfoDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="101" column="31" lean-forward="false" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserInfoDomain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/UserInfoDomain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurrencyVo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/CurrencyVo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-              <folding>
-                <element signature="e#186#187#0" expanded="true" />
-                <element signature="e#211#212#0" expanded="true" />
-                <element signature="e#245#246#0" expanded="true" />
-                <element signature="e#273#274#0" expanded="true" />
-                <element signature="e#309#310#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#389#390#0" expanded="true" />
-                <element signature="e#429#430#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
-                <element signature="e#495#496#0" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#583#584#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-                <element signature="e#687#688#0" expanded="true" />
-                <element signature="e#721#722#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserCurrencyDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserCurrencyDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserCurrencyVo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserCurrencyVo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-              <folding>
-                <element signature="e#209#210#0" expanded="true" />
-                <element signature="e#234#235#0" expanded="true" />
-                <element signature="e#268#269#0" expanded="true" />
-                <element signature="e#296#297#0" expanded="true" />
-                <element signature="e#327#328#0" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
-                <element signature="e#398#399#0" expanded="true" />
-                <element signature="e#434#435#0" expanded="true" />
-                <element signature="e#469#470#0" expanded="true" />
-                <element signature="e#502#503#0" expanded="true" />
-                <element signature="e#552#553#0" expanded="true" />
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#660#661#0" expanded="true" />
-                <element signature="e#706#707#0" expanded="true" />
-                <element signature="e#746#747#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -276,14 +349,13 @@
       <list>
         <option value="spring-beans.schema" />
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>regis</find>
       <find>forea</find>
       <find>orderByClause</find>
       <find>selectUserByHouseInfo</find>
@@ -313,6 +385,7 @@
       <find>env-dev</find>
       <find>\&quot;</find>
       <find>��ѯʦ</find>
+      <find>messageInfoDomainMapper.insertSelective</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -329,13 +402,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/AdminInfoDao.java" />
-        <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ManagerBrokerInfoVo.java" />
-        <option value="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/filter/ClientRequestFilter.java" />
-        <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ApplyBrokerConditionVo.java" />
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ApplyBrokerInfoDao.java" />
-        <option value="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/BrokerController.java" />
-        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/AdminService.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/AdminServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EnterpriseInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/EnterpriseService.java" />
@@ -359,15 +425,9 @@
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/FollowLeaseParkVo.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/FollowSellParkVo.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDomainMapper.java" />
-        <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" />
-        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ChatMessageVo.java" />
-        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserCurrencyMappingDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java" />
-        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/CurrencyInfoDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/CurrencyController.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/CurrencyService.java" />
@@ -380,6 +440,19 @@
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-app/src/main/env-dev/db-config.properties" />
+        <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java" />
+        <option value="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java" />
+        <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserConditionVo.java" />
+        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java" />
+        <option value="$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminUserController.java" />
+        <option value="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/constants/CddConstant.java" />
+        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java" />
+        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
+        <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" />
+        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDao.java" />
+        <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -443,6 +516,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -458,6 +535,46 @@
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
               <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -498,7 +615,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="constants" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -551,9 +668,16 @@
               <item name="cdd-dao" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gsl" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mappers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -603,6 +727,51 @@
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
               <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -648,51 +817,63 @@
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-compiler-plugin" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-compiler-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="compile" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-service" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-compiler-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="compile" type="462c0819:PsiDirectoryNode" />
-              <item name="default-compile" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd_manage_war_exploded2" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="constants" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -700,10 +881,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="F:/work/ee-workspace/generator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cdd-app/target/cdd-app.war" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -915,7 +1096,7 @@
         <option name="LOCAL" value="false" />
       </RunnerSettings>
     </configuration>
-    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.851" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
+    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.85" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8090/cdd" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -985,7 +1166,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="cdd-manage:war exploded2" />
+          <artifact name="cdd-app:war exploded" />
         </option>
       </method>
     </configuration>
@@ -1078,12 +1259,13 @@
       <workItem from="1559024555046" duration="5274000" />
       <workItem from="1559043163828" duration="15073000" />
       <workItem from="1559273652678" duration="1079000" />
-      <workItem from="1559528037304" duration="21607000" />
+      <workItem from="1559528037304" duration="23718000" />
+      <workItem from="1559790915658" duration="9109000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="793866000" />
+    <option name="totallyTimeSpent" value="805086000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1100,17 +1282,17 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37703142" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4810401" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31527627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31527627" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24786781" sideWeight="0.46861926" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25053304" sideWeight="0.46861926" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24786781" sideWeight="0.5124594" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24786781" sideWeight="0.51480263" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1120,9 +1302,9 @@
       <window_info id="Database Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4810401" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="FLOATING" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="856" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1161,156 +1343,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="59" column="20" lean-forward="true" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3657">
-          <caret line="174" column="53" lean-forward="false" selection-start-line="174" selection-start-column="53" selection-end-line="174" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ParkService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://F:/work/Java/jdk1.8.0_161/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="543" column="6" lean-forward="false" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2323">
-          <caret line="116" column="48" lean-forward="false" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/SellParkInfoDomainMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7774">
-          <caret line="338" column="2" lean-forward="false" selection-start-line="338" selection-start-column="2" selection-end-line="338" selection-end-column="2" />
-          <folding>
-            <marker date="1558947597961" expanded="true" signature="4629:4740" ph="select from t_sell_park_info" />
-            <marker date="1558947597961" expanded="true" signature="4824:4889" ph="delete from t_sell_park_info... " />
-            <marker date="1558947597961" expanded="true" signature="5000:5028" ph="delete from t_sell_park_info... " />
-            <marker date="1558947597961" expanded="true" signature="5216:6027" ph="insert into t_sell_park_info... " />
-            <marker date="1558947597961" expanded="true" signature="9099:9136" ph="select count... t_sell_park_info" />
-            <marker date="1558947597961" expanded="true" signature="11469:12431" ph="update t_sell_park_info... " />
-            <marker date="1558947597961" expanded="true" signature="12650:14345" ph="update t_sell_park_info... " />
-            <marker date="1558947597961" expanded="true" signature="14452:15291" ph="update t_sell_park_info... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="13" column="94" lean-forward="false" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/FollowInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="39" column="159" lean-forward="false" selection-start-line="39" selection-start-column="149" selection-end-line="39" selection-end-column="159" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/FollowLeaseParkVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="86" column="35" lean-forward="false" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
-          <folding>
-            <element signature="e#510#511#0" expanded="false" />
-            <element signature="e#544#545#0" expanded="false" />
-            <element signature="e#596#597#0" expanded="false" />
-            <element signature="e#642#643#0" expanded="false" />
-            <element signature="e#1118#1119#0" expanded="false" />
-            <element signature="e#1150#1151#0" expanded="false" />
-            <element signature="e#1201#1202#0" expanded="false" />
-            <element signature="e#1243#1244#0" expanded="false" />
-            <element signature="e#1427#1428#0" expanded="false" />
-            <element signature="e#1459#1460#0" expanded="false" />
-            <element signature="e#1509#1510#0" expanded="false" />
-            <element signature="e#1551#1552#0" expanded="false" />
-            <element signature="e#1621#1622#0" expanded="false" />
-            <element signature="e#1673#1674#0" expanded="false" />
-            <element signature="e#1717#1718#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/FollowSellParkVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="77" column="5" lean-forward="false" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding>
-            <element signature="e#1392#1393#0" expanded="false" />
-            <element signature="e#1425#1426#0" expanded="false" />
-            <element signature="e#1477#1478#0" expanded="false" />
-            <element signature="e#1521#1522#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/ChatMessageDomainMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1656">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1559561414105" expanded="true" signature="3778:3887" ph="select from t_chat_message" />
-            <marker date="1559561414105" expanded="true" signature="3971:4034" ph="delete from t_chat_message... " />
-            <marker date="1559561414105" expanded="true" signature="4144:4170" ph="delete from t_chat_message... " />
-            <marker date="1559561414105" expanded="true" signature="4357:4709" ph="insert into t_chat_message... " />
-            <marker date="1559561414105" expanded="true" signature="6186:6221" ph="select count... t_chat_message" />
-            <marker date="1559561414105" expanded="true" signature="7391:7796" ph="update t_chat_message... " />
-            <marker date="1559561414105" expanded="true" signature="8014:8700" ph="update t_chat_message... " />
-            <marker date="1559561414105" expanded="true" signature="8806:9165" ph="update t_chat_message... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDomainMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserInfoVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserParamVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/HouseInfoDetailVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-184">
@@ -1326,16 +1358,6 @@
           <folding>
             <element signature="e#410#411#0" expanded="false" />
             <element signature="e#460#461#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1356,76 +1378,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ChatMessageVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
-          <folding>
-            <element signature="e#300#301#0" expanded="false" />
-            <element signature="e#325#326#0" expanded="false" />
-            <element signature="e#359#360#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#463#464#0" expanded="false" />
-            <element signature="e#521#522#0" expanded="false" />
-            <element signature="e#561#562#0" expanded="false" />
-            <element signature="e#609#610#0" expanded="false" />
-            <element signature="e#643#644#0" expanded="false" />
-            <element signature="e#707#708#0" expanded="false" />
-            <element signature="e#753#754#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#811#812#0" expanded="false" />
-            <element signature="e#851#852#0" expanded="false" />
-            <element signature="e#885#886#0" expanded="false" />
-            <element signature="e#916#917#0" expanded="false" />
-            <element signature="e#943#944#0" expanded="false" />
-            <element signature="e#983#984#0" expanded="false" />
-            <element signature="e#1015#1016#0" expanded="false" />
-            <element signature="e#1056#1057#0" expanded="false" />
-            <element signature="e#1093#1094#0" expanded="false" />
-            <element signature="e#1153#1154#0" expanded="false" />
-            <element signature="e#1205#1206#0" expanded="false" />
-            <element signature="e#1240#1241#0" expanded="false" />
-            <element signature="e#1271#1272#0" expanded="false" />
-            <element signature="e#1319#1320#0" expanded="false" />
-            <element signature="e#1359#1360#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="81" column="72" lean-forward="true" selection-start-line="81" selection-start-column="72" selection-end-line="81" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/UserCurrencyMappingDomainExample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1433,7 +1389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1441,7 +1396,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1449,7 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1457,32 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="72" column="82" lean-forward="true" selection-start-line="72" selection-start-column="82" selection-end-line="72" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/UserInfoDomainMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="268" column="2" lean-forward="false" selection-start-line="268" selection-start-column="2" selection-end-line="268" selection-end-column="2" />
-          <folding>
-            <marker date="1557816846109" expanded="true" signature="4144:4250" ph="select from t_user_info" />
-            <marker date="1557816846109" expanded="true" signature="4334:4394" ph="delete from t_user_info... " />
-            <marker date="1557816846109" expanded="true" signature="4501:4524" ph="delete from t_user_info... " />
-            <marker date="1557816846109" expanded="true" signature="4708:5263" ph="insert into t_user_info... " />
-            <marker date="1557816846109" expanded="true" signature="7445:7477" ph="select count... t_user_info" />
-            <marker date="1557816846109" expanded="true" signature="9165:9815" ph="update t_user_info... " />
-            <marker date="1557816846109" expanded="true" signature="10030:11164" ph="update t_user_info... " />
-            <marker date="1557816846109" expanded="true" signature="11267:11836" ph="update t_user_info... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1498,9 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#433#434#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1525,7 +1449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1533,37 +1456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="443" column="15" lean-forward="false" selection-start-line="443" selection-start-column="15" selection-end-line="443" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2641">
-          <caret line="961" column="30" lean-forward="true" selection-start-line="961" selection-start-column="30" selection-end-line="961" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7318">
-          <caret line="448" column="10" lean-forward="false" selection-start-line="448" selection-start-column="9" selection-end-line="448" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/CurrencyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#528#529#0" expanded="false" />
-            <element signature="e#581#582#0" expanded="false" />
-            <element signature="e#708#709#0" expanded="false" />
-            <element signature="e#764#765#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1579,7 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1587,7 +1478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,30 +1485,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserCurrencyVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
+        <state relative-caret-position="575">
           <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding>
-            <element signature="e#209#210#0" expanded="true" />
-            <element signature="e#234#235#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="false" />
+            <element signature="e#234#235#0" expanded="false" />
+            <element signature="e#268#269#0" expanded="false" />
+            <element signature="e#296#297#0" expanded="false" />
+            <element signature="e#327#328#0" expanded="false" />
+            <element signature="e#356#357#0" expanded="false" />
+            <element signature="e#398#399#0" expanded="false" />
+            <element signature="e#434#435#0" expanded="false" />
+            <element signature="e#469#470#0" expanded="false" />
+            <element signature="e#502#503#0" expanded="false" />
+            <element signature="e#552#553#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="false" />
+            <element signature="e#706#707#0" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1628,50 +1517,8 @@
         <state relative-caret-position="230">
           <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/CurrencyVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-          <folding>
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#245#246#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#495#496#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#583#584#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/CurrencyServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="44" column="66" lean-forward="false" selection-start-line="44" selection-start-column="66" selection-end-line="44" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1685,24 +1532,286 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
+        <state relative-caret-position="2208">
           <caret line="101" column="31" lean-forward="false" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="896">
-          <caret line="172" column="42" lean-forward="false" selection-start-line="172" selection-start-column="42" selection-end-line="172" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/env-dev/db-config.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state relative-caret-position="483">
+          <caret line="21" column="69" lean-forward="false" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/CurrencyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/CurrencyServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/CurrencyVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="27" />
+          <folding>
+            <element signature="e#186#187#0" expanded="false" />
+            <element signature="e#211#212#0" expanded="false" />
+            <element signature="e#245#246#0" expanded="false" />
+            <element signature="e#273#274#0" expanded="false" />
+            <element signature="e#309#310#0" expanded="false" />
+            <element signature="e#340#341#0" expanded="false" />
+            <element signature="e#389#390#0" expanded="false" />
+            <element signature="e#429#430#0" expanded="false" />
+            <element signature="e#464#465#0" expanded="false" />
+            <element signature="e#495#496#0" expanded="false" />
+            <element signature="e#543#544#0" expanded="false" />
+            <element signature="e#583#584#0" expanded="false" />
+            <element signature="e#616#617#0" expanded="false" />
+            <element signature="e#644#645#0" expanded="false" />
+            <element signature="e#687#688#0" expanded="false" />
+            <element signature="e#721#722#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="87" column="80" lean-forward="false" selection-start-line="87" selection-start-column="80" selection-end-line="87" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="61" column="4" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="71" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminHomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/UserInfoDomainMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="79" column="2" lean-forward="false" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+          <folding>
+            <marker date="1557816846109" expanded="true" signature="4144:4250" ph="select from t_user_info" />
+            <marker date="1557816846109" expanded="true" signature="4334:4394" ph="delete from t_user_info... " />
+            <marker date="1557816846109" expanded="true" signature="4501:4524" ph="delete from t_user_info... " />
+            <marker date="1557816846109" expanded="true" signature="4708:5263" ph="insert into t_user_info... " />
+            <marker date="1557816846109" expanded="true" signature="7445:7477" ph="select count... t_user_info" />
+            <marker date="1557816846109" expanded="true" signature="9165:9815" ph="update t_user_info... " />
+            <marker date="1557816846109" expanded="true" signature="10030:11164" ph="update t_user_info... " />
+            <marker date="1557816846109" expanded="true" signature="11267:11836" ph="update t_user_info... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/UserInfoDomainMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/EnterpriseConditionVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="45" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserBrokerVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/HouseConditionVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-989">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="75" column="57" lean-forward="false" selection-start-line="75" selection-start-column="57" selection-end-line="75" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1559808490214" expanded="true" signature="4069:4178" ph="select from t_message_info" />
+            <marker date="1559808490214" expanded="true" signature="4262:4325" ph="delete from t_message_info... " />
+            <marker date="1559808490214" expanded="true" signature="4435:4461" ph="delete from t_message_info... " />
+            <marker date="1559808490214" expanded="true" signature="4648:5146" ph="insert into t_message_info... " />
+            <marker date="1559808490214" expanded="true" signature="7173:7208" ph="select count... t_message_info" />
+            <marker date="1559808490214" expanded="true" signature="8779:9372" ph="update t_message_info... " />
+            <marker date="1559808490214" expanded="true" signature="9590:10621" ph="update t_message_info... " />
+            <marker date="1559808490214" expanded="true" signature="10727:11246" ph="update t_message_info... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/cdd_manage_war_exploded2/WEB-INF/classes/com/cdd/gsl/common/constants/CddConstant.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/constants/CddConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="57" lean-forward="false" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="78" column="49" lean-forward="false" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="408" column="32" lean-forward="false" selection-start-line="408" selection-start-column="32" selection-end-line="408" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2157">
+          <caret line="895" column="44" lean-forward="false" selection-start-line="895" selection-start-column="44" selection-end-line="895" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-manage/src/main/java/com/cdd/gsl/controller/AdminUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="962">
+          <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#962#963#0" expanded="true" />
+            <element signature="e#1131#1132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/UserConditionVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/ChatMessageVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="755">
+          <caret line="67" column="9" lean-forward="false" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1714,17 +1823,17 @@
         <settings>
           <artifact-editor>
             <show-content>
+              <type id="jpa-descriptors" />
               <type id="javaee-facet-resources" />
               <type id="library" />
               <type id="artifact" />
-              <type id="jpa-descriptors" />
             </show-content>
           </artifact-editor>
-          <last-edited>cdd-manage:war</last-edited>
+          <last-edited>cdd-app:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.35517243" />
                 <option value="0.5" />
               </list>
             </option>

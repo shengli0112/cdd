@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -987,6 +988,51 @@ public class UserSerivceImpl implements UserService {
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("没有对应的数据");
             }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult userList(UserConditionVo userConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        UserInfoDomainExample userInfoDomainExample = null;
+        List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(userInfoDomainList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult deleteUser(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            UserInfoDomain userInfoDomain = new UserInfoDomain();
+            userInfoDomain.setId(userId);
+            userInfoDomain.setStatus(0);
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult recoverUser(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        if(userId != null){
+            UserInfoDomain userInfoDomain = new UserInfoDomain();
+            userInfoDomain.setId(userId);
+            userInfoDomain.setStatus(1);
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除成功");
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
