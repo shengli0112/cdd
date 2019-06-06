@@ -998,8 +998,7 @@ public class UserSerivceImpl implements UserService {
     @Override
     public CommonResult userList(UserConditionVo userConditionVo) {
         CommonResult commonResult = new CommonResult();
-        UserInfoDomainExample userInfoDomainExample = null;
-        List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
+        List<UserInfoDomain> userInfoDomainList = userInfoDao.userList(userConditionVo);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(userInfoDomainList);
