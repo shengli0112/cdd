@@ -12,4 +12,6 @@ public class CddConstant {
 
     //经纪人主管
     public static final int MANAGE_BROKER_TYPE = 2;
+
+    public static final String MESSAGE_CONTENT = "您有一条新消息";
 }

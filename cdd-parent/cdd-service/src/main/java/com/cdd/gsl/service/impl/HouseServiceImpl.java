@@ -56,6 +56,7 @@ public class HouseServiceImpl implements HouseService{
             List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
             if(CollectionUtils.isEmpty(ids)){
                 houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                userInfoDao.updateUserintegralById(houseInfoDomain.getUserId());
                 commonResult.setFlag(1);
                 commonResult.setMessage("添加成功");
             }else{
@@ -64,6 +65,7 @@ public class HouseServiceImpl implements HouseService{
             }
         }else{
             houseInfoDomainMapper.insertSelective(houseInfoDomain);
+            userInfoDao.updateUserintegralById(houseInfoDomain.getUserId());
             commonResult.setFlag(1);
             commonResult.setMessage("添加成功");
         }

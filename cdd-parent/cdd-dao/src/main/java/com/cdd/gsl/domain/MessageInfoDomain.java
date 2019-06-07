@@ -19,6 +19,12 @@ public class MessageInfoDomain {
 
     private Date updateTs;
 
+    private String messageType;
+
+    private Long objId;
+
+    private String type;
+
     public Long getId() {
         return id;
     }
@@ -81,5 +87,29 @@ public class MessageInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType == null ? null : messageType.trim();
+    }
+
+    public Long getObjId() {
+        return objId;
+    }
+
+    public void setObjId(Long objId) {
+        this.objId = objId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 }

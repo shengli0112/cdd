@@ -3,6 +3,7 @@ package com.cdd.gsl.service;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.vo.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -69,4 +70,12 @@ public interface UserService {
 
     CommonResult checkMobile(CheckPhoneDomain checkPhoneDomain);
 
+    CommonResult buyCurrency(UserCurrencyMappingDomain userCurrencyMappingDomain);
+
+    /****************************管理员**********************************/
+    CommonResult userList(UserConditionVo userConditionVo);
+
+    CommonResult deleteUser(Long userId);
+
+    CommonResult recoverUser(Long userId);
 }

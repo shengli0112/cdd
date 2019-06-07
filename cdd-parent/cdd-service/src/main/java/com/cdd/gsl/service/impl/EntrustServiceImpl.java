@@ -75,6 +75,7 @@ public class EntrustServiceImpl implements EntrustService {
                     messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
                     messageInfoDomain.setHouseId(houseInfoDomain.getId());
                     messageInfoDomain.setMessage("匹配成功，点击查看");
+                    messageInfoDomain.setMessageType("house");
                     messageInfoDomainMapper.insertSelective(messageInfoDomain);
                 }
 

@@ -594,6 +594,206 @@ public class MessageInfoDomainExample {
             addCriterion("update_ts not between", value1, value2, "updateTs");
             return (Criteria) this;
         }
+
+        public Criteria andMessageTypeIsNull() {
+            addCriterion("message_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeIsNotNull() {
+            addCriterion("message_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeEqualTo(String value) {
+            addCriterion("message_type =", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeNotEqualTo(String value) {
+            addCriterion("message_type <>", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeGreaterThan(String value) {
+            addCriterion("message_type >", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("message_type >=", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeLessThan(String value) {
+            addCriterion("message_type <", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeLessThanOrEqualTo(String value) {
+            addCriterion("message_type <=", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeLike(String value) {
+            addCriterion("message_type like", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeNotLike(String value) {
+            addCriterion("message_type not like", value, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeIn(List<String> values) {
+            addCriterion("message_type in", values, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeNotIn(List<String> values) {
+            addCriterion("message_type not in", values, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeBetween(String value1, String value2) {
+            addCriterion("message_type between", value1, value2, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMessageTypeNotBetween(String value1, String value2) {
+            addCriterion("message_type not between", value1, value2, "messageType");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdIsNull() {
+            addCriterion("obj_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdIsNotNull() {
+            addCriterion("obj_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdEqualTo(Long value) {
+            addCriterion("obj_id =", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdNotEqualTo(Long value) {
+            addCriterion("obj_id <>", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdGreaterThan(Long value) {
+            addCriterion("obj_id >", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("obj_id >=", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdLessThan(Long value) {
+            addCriterion("obj_id <", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdLessThanOrEqualTo(Long value) {
+            addCriterion("obj_id <=", value, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdIn(List<Long> values) {
+            addCriterion("obj_id in", values, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdNotIn(List<Long> values) {
+            addCriterion("obj_id not in", values, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdBetween(Long value1, Long value2) {
+            addCriterion("obj_id between", value1, value2, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andObjIdNotBetween(Long value1, Long value2) {
+            addCriterion("obj_id not between", value1, value2, "objId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLike(String value) {
+            addCriterion("type like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("type not like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

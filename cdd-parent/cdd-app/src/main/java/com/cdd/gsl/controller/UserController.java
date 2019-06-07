@@ -435,6 +435,14 @@ public class UserController {
         return userService.checkMobile(checkPhoneDomain);
     }
 
+    /**
+     * 买币
+     */
+    @RequestMapping("buyCurrency")
+    public CommonResult buyCurrency(@RequestBody UserCurrencyMappingDomain userCurrencyMappingDomain){
+        return userService.buyCurrency(userCurrencyMappingDomain);
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

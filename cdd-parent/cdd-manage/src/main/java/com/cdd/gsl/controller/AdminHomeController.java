@@ -9,6 +9,7 @@ import com.cdd.gsl.vo.ApplyBrokerConditionVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +51,63 @@ public class AdminHomeController {
         }else{
             commonResult.setFlag(0);
             commonResult.setMessage("删除失败，参数不正确");
+        }
+        return commonResult;
+    }
+
+    /**
+     * 恢复房源
+     */
+    @RequestMapping("recoverHouse")
+    public CommonResult recoverHouse(@RequestParam("houseId") Long houseId){
+        CommonResult commonResult = new CommonResult();
+
+        if(houseId != null){
+            HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setStatus(1);
+            houseService.deleteHouse(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("恢复成功");
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("恢复失败，参数不正确");
+        }
+        return commonResult;
+    }
+
+    /**
+     * 修改房源
+     */
+    @RequestMapping("updateHouse")
+    public CommonResult updateHouse(@RequestBody HouseInfoDomain houseInfoDomain){
+        CommonResult commonResult = new CommonResult();
+        if(houseInfoDomain != null){
+            commonResult = houseService.updateHouse(houseInfoDomain);
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("更新失败");
+        }
+        return commonResult;
+    }
+
+    /**
+     * 置顶
+     */
+    @RequestMapping("topHouse")
+    public CommonResult topHouse(@RequestParam("houseId") Long houseId){
+        CommonResult commonResult = new CommonResult();
+
+        if(houseId != null){
+            HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setStatus(1);
+            houseService.deleteHouse(houseInfoDomain);
+            commonResult.setFlag(1);
+            commonResult.setMessage("恢复成功");
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("恢复失败，参数不正确");
         }
         return commonResult;
     }
