@@ -34,4 +34,9 @@ public interface AdminInfoDao {
             "join t_role_menu_mapping rm on r.id=rm.role_id " +
             "where a.id=#{userId} and a.status=1")
     public AdminRoleVo selectUserInfoByUserId(Long userId);
+
+    @Select("select a.id as adminId,a.account as account,a.portrait as portrait, r.role_name as role from t_role_info r " +
+            "left join t_admin_info a on r.id=a.role_id left " +
+            "join t_role_menu_mapping rm on r.id=rm.role_id ")
+    public List<AdminRoleVo> selectAdminInfo();
 }

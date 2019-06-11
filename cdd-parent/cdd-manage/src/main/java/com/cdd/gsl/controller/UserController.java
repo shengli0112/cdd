@@ -2,6 +2,7 @@ package com.cdd.gsl.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.domain.AdminInfoDomain;
 import com.cdd.gsl.service.AdminService;
 import com.cdd.gsl.service.ShiroService;
 import com.cdd.gsl.vo.AdminVo;
@@ -141,5 +142,21 @@ public class UserController {
         currentUser.logout();
         return JSONUtils.toJSONString(result);
     }
+
+    @RequestMapping(value="/createAdmin")
+    public CommonResult createAdmin(@RequestBody AdminInfoDomain adminInfoDomain){
+        return adminService.createAdmin(adminInfoDomain);
+    }
+
+    @RequestMapping(value="/roleList")
+    public CommonResult roleList(){
+        return adminService.roleList();
+    }
+
+    @RequestMapping(value="/adminList")
+    public CommonResult adminList(){
+        return adminService.adminList();
+    }
+
 
 }

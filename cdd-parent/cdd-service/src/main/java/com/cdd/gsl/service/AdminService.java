@@ -21,6 +21,12 @@ public interface AdminService {
 
     CommonResult info(String token);
 
+    CommonResult createAdmin(AdminInfoDomain adminInfoDomain);
+
+    CommonResult roleList();
+
+    CommonResult adminList();
+
     /*********************店长*****************************/
     CommonResult brokerList(ApplyBrokerConditionVo applyBrokerConditionVo);
 

@@ -78,4 +78,8 @@ public interface UserService {
     CommonResult deleteUser(Long userId);
 
     CommonResult recoverUser(Long userId);
+
+    CommonResult addUser(UserInfoDomain userInfoDomain);
+
+    CommonResult updateCurrency(UserInfoDomain userInfoDomain);
 }

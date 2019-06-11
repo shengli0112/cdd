@@ -1,5 +1,6 @@
 package com.cdd.gsl.service.impl;
 
+import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.LeaseParkDao;
@@ -132,5 +133,25 @@ public class ParkServiceImpl implements ParkService {
     @Override
     public List<LeaseParkInfoVo> findLeaseParkList(LeaseParkCondition leaseParkCondition) {
         return leaseParkDao.selectLeaseParkInfoList(leaseParkCondition);
+    }
+
+    @Override
+    public CommonResult findAdminSellParkList(ParkAdminConditionVo parkAdminConditionVo) {
+        return null;
+    }
+
+    @Override
+    public CommonResult findAdminLeaseParkList(ParkAdminConditionVo parkAdminConditionVo) {
+        return null;
+    }
+
+    @Override
+    public CommonResult deleteSellPark(Long sellParkId) {
+        return null;
+    }
+
+    @Override
+    public CommonResult deleteLeasePark(Long leaseParkId) {
+        return null;
     }
 }

@@ -99,8 +99,8 @@ public interface UserInfoDao {
     @Select("select count(*) from t_user_info where status=1")
     int selectAllUserCount();
 
-    @Update("update t_user_info set integral=integral+10 where id=#{userId}")
-    void updateUserintegralById(Long userId);
+    @Update("update t_user_info set integral=integral+#{integral} where id=#{userId}")
+    void updateUserintegralById(@Param("userId")Long userId,@Param("integral")Integer integral);
 
     @Select("select id as id,username as username,phone as phone,user_type as userType,integral as integral,portrait as portrait," +
             "status as status,create_ts as createTs,update_ts as updateTs,service_area as serviceArea" +
