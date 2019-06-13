@@ -17,6 +17,12 @@ public class MessageVo {
 
     private Integer isRead;
 
+    private String messageType;
+
+    private Long objId;
+
+    private String type;
+
     public Long getMessageId() {
         return messageId;
     }
@@ -71,5 +77,29 @@ public class MessageVo {
 
     public void setIsRead(Integer isRead) {
         this.isRead = isRead;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
+    public Long getObjId() {
+        return objId;
+    }
+
+    public void setObjId(Long objId) {
+        this.objId = objId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
