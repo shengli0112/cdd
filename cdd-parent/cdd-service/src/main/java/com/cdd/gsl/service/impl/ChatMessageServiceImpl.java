@@ -119,7 +119,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
                 }
             }
             data.put("chatMessageList",chatMessageVos);
-            messageInfoDao.updateMessageRead(objId, type, sendUserId, receiveUserId);
+            messageInfoDao.updateMessageIsRead(objId, type, sendUserId, receiveUserId);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(data);
