@@ -14,7 +14,7 @@
     <result column="obj_id" property="objId" jdbcType="BIGINT" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="send_user_id" property="sendUserId" jdbcType="BIGINT" />
-    <result column="reveice_user_id" property="reveiceUserId" jdbcType="BIGINT" />
+    <result column="receive_user_id" property="receiveUserId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, message, user_id, create_ts, entrust_id, house_id, is_read, update_ts, message_type, 
-    obj_id, type, send_user_id, reveice_user_id
+    obj_id, type, send_user_id, receive_user_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.MessageInfoDomainExample" >
     select
@@ -113,12 +113,12 @@
       create_ts, entrust_id, house_id, 
       is_read, update_ts, message_type, 
       obj_id, type, send_user_id, 
-      reveice_user_id)
+      receive_user_id)
     values (#{id,jdbcType=BIGINT}, #{message,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
       #{createTs,jdbcType=TIMESTAMP}, #{entrustId,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, 
       #{isRead,jdbcType=INTEGER}, #{updateTs,jdbcType=TIMESTAMP}, #{messageType,jdbcType=VARCHAR}, 
       #{objId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{sendUserId,jdbcType=BIGINT}, 
-      #{reveiceUserId,jdbcType=BIGINT})
+      #{receiveUserId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.MessageInfoDomain" >
     insert into t_message_info
@@ -159,8 +159,8 @@
       <if test="sendUserId != null" >
         send_user_id,
       </if>
-      <if test="reveiceUserId != null" >
-        reveice_user_id,
+      <if test="receiveUserId != null" >
+        receive_user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -200,8 +200,8 @@
       <if test="sendUserId != null" >
         #{sendUserId,jdbcType=BIGINT},
       </if>
-      <if test="reveiceUserId != null" >
-        #{reveiceUserId,jdbcType=BIGINT},
+      <if test="receiveUserId != null" >
+        #{receiveUserId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -250,8 +250,8 @@
       <if test="record.sendUserId != null" >
         send_user_id = #{record.sendUserId,jdbcType=BIGINT},
       </if>
-      <if test="record.reveiceUserId != null" >
-        reveice_user_id = #{record.reveiceUserId,jdbcType=BIGINT},
+      <if test="record.receiveUserId != null" >
+        receive_user_id = #{record.receiveUserId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -272,7 +272,7 @@
       obj_id = #{record.objId,jdbcType=BIGINT},
       type = #{record.type,jdbcType=VARCHAR},
       send_user_id = #{record.sendUserId,jdbcType=BIGINT},
-      reveice_user_id = #{record.reveiceUserId,jdbcType=BIGINT}
+      receive_user_id = #{record.receiveUserId,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -313,8 +313,8 @@
       <if test="sendUserId != null" >
         send_user_id = #{sendUserId,jdbcType=BIGINT},
       </if>
-      <if test="reveiceUserId != null" >
-        reveice_user_id = #{reveiceUserId,jdbcType=BIGINT},
+      <if test="receiveUserId != null" >
+        receive_user_id = #{receiveUserId,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -332,7 +332,7 @@
       obj_id = #{objId,jdbcType=BIGINT},
       type = #{type,jdbcType=VARCHAR},
       send_user_id = #{sendUserId,jdbcType=BIGINT},
-      reveice_user_id = #{reveiceUserId,jdbcType=BIGINT}
+      receive_user_id = #{receiveUserId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

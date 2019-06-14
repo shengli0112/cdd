@@ -7,7 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" afterPath="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml" afterPath="$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,12 +50,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChatMessageController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChatMessageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="460">
+              <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageInfoDomainExample.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-207">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageInfoDomain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageInfoDomainMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="19" column="78" lean-forward="true" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageInfoDomainMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-782">
+              <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+              <folding>
+                <marker date="1560495699421" expanded="true" signature="4260:4369" ph="select from t_message_info" />
+                <marker date="1560495699421" expanded="true" signature="4453:4516" ph="delete from t_message_info... " />
+                <marker date="1560495699421" expanded="true" signature="4626:4652" ph="delete from t_message_info... " />
+                <marker date="1560495699421" expanded="true" signature="4839:5447" ph="insert into t_message_info... " />
+                <marker date="1560495699421" expanded="true" signature="7808:7843" ph="select count... t_message_info" />
+                <marker date="1560495699421" expanded="true" signature="9659:10376" ph="update t_message_info... " />
+                <marker date="1560495699421" expanded="true" signature="10594:11842" ph="update t_message_info... " />
+                <marker date="1560495699421" expanded="true" signature="11948:12577" ph="update t_message_info... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,36 +114,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="433">
               <caret line="99" column="60" lean-forward="true" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParkService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ParkService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParkServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="92" column="44" lean-forward="false" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HouseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="163" column="24" lean-forward="true" selection-start-line="163" selection-start-column="24" selection-end-line="163" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -132,16 +154,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="14" column="98" lean-forward="false" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatMessageService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="8" column="94" lean-forward="false" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -252,12 +264,12 @@
         <option value="$PROJECT_DIR$/cdd-common/src/main/java/com/cdd/gsl/common/constants/CddConstant.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EntrustServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/MessageVo.java" />
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/ChatMessageService.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/ChatMessageDao.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java" />
       </list>
     </option>
   </component>
@@ -379,51 +391,6 @@
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
-              <item name="cdd-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="constants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
               <item name="cdd-dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -464,7 +431,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gsl" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -473,6 +440,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-dao" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mappers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -1084,12 +1060,12 @@
       <workItem from="1559528037304" duration="23718000" />
       <workItem from="1559790915658" duration="36651000" />
       <workItem from="1560396046871" duration="8339000" />
-      <workItem from="1560481200823" duration="5999000" />
+      <workItem from="1560481200823" duration="6678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="846966000" />
+    <option name="totallyTimeSpent" value="847645000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1439,51 +1415,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1560491502686" expanded="true" signature="4260:4369" ph="select from t_message_info" />
-            <marker date="1560491502686" expanded="true" signature="4453:4516" ph="delete from t_message_info... " />
-            <marker date="1560491502686" expanded="true" signature="4626:4652" ph="delete from t_message_info... " />
-            <marker date="1560491502686" expanded="true" signature="4839:5447" ph="insert into t_message_info... " />
-            <marker date="1560491502686" expanded="true" signature="7808:7843" ph="select count... t_message_info" />
-            <marker date="1560491502686" expanded="true" signature="9659:10376" ph="update t_message_info... " />
-            <marker date="1560491502686" expanded="true" signature="10594:11842" ph="update t_message_info... " />
-            <marker date="1560491502686" expanded="true" signature="11948:12577" ph="update t_message_info... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/cdd_app_war_exploded/WEB-INF/classes/com/cdd/gsl/controller/ChatMessageController.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="19" column="78" lean-forward="true" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
           <folding />
         </state>
       </provider>
@@ -1578,8 +1513,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ChatMessageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="460">
+          <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDomainMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="19" column="78" lean-forward="true" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/MessageInfoDomainMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-782">
+          <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+          <folding>
+            <marker date="1560495699421" expanded="true" signature="4260:4369" ph="select from t_message_info" />
+            <marker date="1560495699421" expanded="true" signature="4453:4516" ph="delete from t_message_info... " />
+            <marker date="1560495699421" expanded="true" signature="4626:4652" ph="delete from t_message_info... " />
+            <marker date="1560495699421" expanded="true" signature="4839:5447" ph="insert into t_message_info... " />
+            <marker date="1560495699421" expanded="true" signature="7808:7843" ph="select count... t_message_info" />
+            <marker date="1560495699421" expanded="true" signature="9659:10376" ph="update t_message_info... " />
+            <marker date="1560495699421" expanded="true" signature="10594:11842" ph="update t_message_info... " />
+            <marker date="1560495699421" expanded="true" signature="11948:12577" ph="update t_message_info... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/MessageInfoDomainExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

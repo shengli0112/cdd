@@ -27,7 +27,7 @@ public class MessageInfoDomain {
 
     private Long sendUserId;
 
-    private Long reveiceUserId;
+    private Long receiveUserId;
 
     public Long getId() {
         return id;
@@ -125,11 +125,11 @@ public class MessageInfoDomain {
         this.sendUserId = sendUserId;
     }
 
-    public Long getReveiceUserId() {
-        return reveiceUserId;
+    public Long getReceiveUserId() {
+        return receiveUserId;
     }
 
-    public void setReveiceUserId(Long reveiceUserId) {
-        this.reveiceUserId = reveiceUserId;
+    public void setReceiveUserId(Long receiveUserId) {
+        this.receiveUserId = receiveUserId;
     }
 }
