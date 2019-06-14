@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminUserController {
 
     @Autowired
-    private UserInfoDomainMapper userInfoDomainMapper;
-
-    @Autowired
     private UserService userService;
 
     /**
