@@ -76,7 +76,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
             messageInfoDomain.setType(chatMessageDomain.getType());
             messageInfoDomain.setObjId(chatMessageDomain.getObjId());
             messageInfoDomain.setSendUserId(chatMessageDomain.getSendUserId());
-            messageInfoDomain.setReveiceUserId(chatMessageDomain.getReceiveUserId());
+            messageInfoDomain.setReceiveUserId(chatMessageDomain.getReceiveUserId());
             messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
