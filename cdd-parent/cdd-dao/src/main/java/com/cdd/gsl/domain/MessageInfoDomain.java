@@ -25,6 +25,10 @@ public class MessageInfoDomain {
 
     private String type;
 
+    private Long sendUserId;
+
+    private Long reveiceUserId;
+
     public Long getId() {
         return id;
     }
@@ -111,5 +115,21 @@ public class MessageInfoDomain {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public Long getSendUserId() {
+        return sendUserId;
+    }
+
+    public void setSendUserId(Long sendUserId) {
+        this.sendUserId = sendUserId;
+    }
+
+    public Long getReveiceUserId() {
+        return reveiceUserId;
+    }
+
+    public void setReveiceUserId(Long reveiceUserId) {
+        this.reveiceUserId = reveiceUserId;
     }
 }

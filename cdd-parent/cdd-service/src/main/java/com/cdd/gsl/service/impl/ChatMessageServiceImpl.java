@@ -1,16 +1,16 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.ChatMessageDao;
-import com.cdd.gsl.dao.ChatMessageDomainMapper;
-import com.cdd.gsl.dao.MessageInfoDomainMapper;
-import com.cdd.gsl.dao.UserInfoDao;
-import com.cdd.gsl.domain.ChatMessageDomain;
-import com.cdd.gsl.domain.ChatMessageDomainExample;
-import com.cdd.gsl.domain.MessageInfoDomain;
+import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.ChatMessageService;
+import com.cdd.gsl.service.EnterpriseService;
+import com.cdd.gsl.service.HouseService;
+import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.ChatMessageVo;
+import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,35 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     private UserInfoDao userInfoDao;
 
     @Autowired
+    private HouseInfoDao houseInfoDao;
+
+    @Autowired
+    private EnterpriseInfoDao enterpriseInfoDao;
+
+    @Autowired
+    private EnterpriseInfoDomainMapper enterpriseInfoDomainMapper;
+
+    @Autowired
     private MessageInfoDomainMapper messageInfoDomainMapper;
+
+    @Autowired
+    private SellParkDao sellParkDao;
+
+    @Autowired
+    private SellParkInfoDomainMapper sellParkInfoDomainMapper;
+
+    @Autowired
+    private LeaseParkInfoDomainMapper leaseParkInfoDomainMapper;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
+
+    @Autowired
+    private HouseService houseService;
+
+    @Autowired
+    private EnterpriseService enterpriseService;
+
 
     @Override
     public CommonResult addChat(ChatMessageDomain chatMessageDomain) {
@@ -47,6 +75,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
             messageInfoDomain.setMessageType("chat");
             messageInfoDomain.setType(chatMessageDomain.getType());
             messageInfoDomain.setObjId(chatMessageDomain.getObjId());
+            messageInfoDomain.setSendUserId(chatMessageDomain.getSendUserId());
+            messageInfoDomain.setReveiceUserId(chatMessageDomain.getReceiveUserId());
             messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
@@ -58,11 +88,24 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     }
 
     @Override
-    public CommonResult findChatList(Long objId, String type,Long userId) {
+    public CommonResult findChatList(Long objId, String type,Long sendUserId,Long receiveUserId) {
         CommonResult commonResult = new CommonResult();
-        if(objId != null && !StringUtils.isEmpty(type) && userId != null){
-
-            List<ChatMessageVo> chatMessageVoList = chatMessageDao.chatMessageList(objId,type,userId);
+        if(objId != null && !StringUtils.isEmpty(type) && sendUserId != null && receiveUserId != null){
+            JSONObject data = new JSONObject();
+            if(type.equals("house")){
+                HouseInfoDetailVo houseInfoDetailVo = houseService.findHouseInfoById(objId);
+                data.put("item",houseInfoDetailVo);
+            }else if(type.equals("enterprise")){
+                CommonResult enterpriseCommon = enterpriseService.findEnterpriseDetail(objId);
+                data.put("item",enterpriseCommon.getData());
+            }else if(type.equals("sellPark")){
+                SellParkInfoDomain sellParkInfoDomain = sellParkInfoDomainMapper.selectByPrimaryKey(objId);
+                data.put("item",sellParkInfoDomain);
+            }else if(type.equals("leasePark")){
+                LeaseParkInfoDomain leaseParkInfoDomain = leaseParkInfoDomainMapper.selectByPrimaryKey(objId);
+                data.put("item",leaseParkInfoDomain);
+            }
+            List<ChatMessageVo> chatMessageVoList = chatMessageDao.chatMessageList(objId,type,sendUserId,receiveUserId);
             List<ChatMessageVo> chatMessageVos = new ArrayList<>();
             if(!CollectionUtils.isEmpty(chatMessageVoList)){
                 for(ChatMessageVo chatMessageVo:chatMessageVoList){
@@ -73,10 +116,10 @@ public class ChatMessageServiceImpl implements ChatMessageService {
                     chatMessageVos.add(chatMessageVo);
                 }
             }
-
+            data.put("chatMessageList",chatMessageVos);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
-            commonResult.setData(chatMessageVos);
+            commonResult.setData(data);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");

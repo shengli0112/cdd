@@ -23,6 +23,10 @@ public class MessageVo {
 
     private String type;
 
+    private Long sendUserId;
+
+    private Long reveiveUserId;
+
     public Long getMessageId() {
         return messageId;
     }
@@ -101,5 +105,21 @@ public class MessageVo {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getSendUserId() {
+        return sendUserId;
+    }
+
+    public void setSendUserId(Long sendUserId) {
+        this.sendUserId = sendUserId;
+    }
+
+    public Long getReveiveUserId() {
+        return reveiveUserId;
+    }
+
+    public void setReveiveUserId(Long reveiveUserId) {
+        this.reveiveUserId = reveiveUserId;
     }
 }
