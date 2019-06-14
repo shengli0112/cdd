@@ -3,7 +3,11 @@ package com.cdd.gsl.vo;
 public class ChatMessageVo {
     private Long id;
 
+    private Long sendUserId;
+
     private SingleUserInfoVo sendUser;
+
+    private Long receiveUserId;
 
     private SingleUserInfoVo receiveUser;
 
@@ -69,5 +73,21 @@ public class ChatMessageVo {
 
     public void setCreateTs(String createTs) {
         this.createTs = createTs;
+    }
+
+    public Long getSendUserId() {
+        return sendUserId;
+    }
+
+    public void setSendUserId(Long sendUserId) {
+        this.sendUserId = sendUserId;
+    }
+
+    public Long getReceiveUserId() {
+        return receiveUserId;
+    }
+
+    public void setReceiveUserId(Long receiveUserId) {
+        this.receiveUserId = receiveUserId;
     }
 }

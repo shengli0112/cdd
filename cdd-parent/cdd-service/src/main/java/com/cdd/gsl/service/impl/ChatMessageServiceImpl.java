@@ -14,6 +14,7 @@ import com.cdd.gsl.vo.ChatMessageVo;
 import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -62,10 +63,20 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         if(objId != null && !StringUtils.isEmpty(type) && userId != null){
 
             List<ChatMessageVo> chatMessageVoList = chatMessageDao.chatMessageList(objId,type,userId);
+            List<ChatMessageVo> chatMessageVos = new ArrayList<>();
+            if(!CollectionUtils.isEmpty(chatMessageVoList)){
+                for(ChatMessageVo chatMessageVo:chatMessageVoList){
+                    SingleUserInfoVo sendUser = userInfoDao.findUserInfoById(chatMessageVo.getSendUserId());
+                    SingleUserInfoVo receiveUser = userInfoDao.findUserInfoById(chatMessageVo.getReceiveUserId());
+                    chatMessageVo.setSendUser(sendUser);
+                    chatMessageVo.setReceiveUser(receiveUser);
+                    chatMessageVos.add(chatMessageVo);
+                }
+            }
 
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
-            commonResult.setData(chatMessageVoList);
+            commonResult.setData(chatMessageVos);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
