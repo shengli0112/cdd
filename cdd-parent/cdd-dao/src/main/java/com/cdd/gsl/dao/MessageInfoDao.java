@@ -3,6 +3,7 @@ package com.cdd.gsl.dao;
 import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.vo.MessageConditionVo;
 import com.cdd.gsl.vo.MessageVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -21,4 +22,8 @@ public interface MessageInfoDao {
 
     @Select("select count(id) from t_message_info where user_id=#{userId} and is_read=0")
     int countUnReadMessageCount(Long userId);
+
+    @Update("update t_message_info set is_read=1 where obj_id=#{objId} and type=#{type} " +
+            "and ((send_user_id=#{sendUserId} and receive_user_id=#{receiveUserId}) or (send_user_id=#{receiveUserId} and receive_user_id=#{sendUserId}))")
+    void updateMessageRead(@Param("objId") Long objId,@Param("type") String type,@Param("sendUserId") Long sendUserId,@Param("receiveUserId") Long receiveUserId);
 }
