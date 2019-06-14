@@ -23,8 +23,8 @@ public class ChatMessageController {
 
     @RequestMapping("findChatList")
     public CommonResult findChatList(@RequestParam("objId") Long objId,@RequestParam("type")String type,
-                                     @RequestParam("userId")Long userId){
-        CommonResult commonResult = chatMessageService.findChatList(objId,type,userId);
+                                     @RequestParam("sendUserId")Long sendUserId,@RequestParam("receiveUserId")Long receiveUserId){
+        CommonResult commonResult = chatMessageService.findChatList(objId,type,sendUserId,receiveUserId);
         return commonResult;
     }
 }

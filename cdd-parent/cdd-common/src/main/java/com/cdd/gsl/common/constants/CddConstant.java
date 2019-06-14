@@ -14,4 +14,6 @@ public class CddConstant {
     public static final int MANAGE_BROKER_TYPE = 2;
 
     public static final String MESSAGE_CONTENT = "您有一条新消息";
+
+    public static final String MESSAGE_CONTENT_MATCH = "您发布的信息匹配成功,点击查看";
 }

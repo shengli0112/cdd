@@ -48,8 +48,7 @@ public interface EntrustInfoDao {
             "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
             " e.contacts as contacts,e.phone as phone,e.business as business"   +
             " from t_entrust_info e " +
-            " left join t_entrust_user_mapping um on e.id=um.entrust_id "+
-            "left join t_user_info u on um.user_id=u.id " +
+            "left join t_user_info u on e.user_id=u.id " +
             "where 1=1 " +
             "<if test=\"city != null\">" +
             " and e.city=#{city}"+

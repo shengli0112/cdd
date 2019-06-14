@@ -794,6 +794,126 @@ public class MessageInfoDomainExample {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
+
+        public Criteria andSendUserIdIsNull() {
+            addCriterion("send_user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdIsNotNull() {
+            addCriterion("send_user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdEqualTo(Long value) {
+            addCriterion("send_user_id =", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdNotEqualTo(Long value) {
+            addCriterion("send_user_id <>", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdGreaterThan(Long value) {
+            addCriterion("send_user_id >", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("send_user_id >=", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdLessThan(Long value) {
+            addCriterion("send_user_id <", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("send_user_id <=", value, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdIn(List<Long> values) {
+            addCriterion("send_user_id in", values, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdNotIn(List<Long> values) {
+            addCriterion("send_user_id not in", values, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdBetween(Long value1, Long value2) {
+            addCriterion("send_user_id between", value1, value2, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSendUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("send_user_id not between", value1, value2, "sendUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdIsNull() {
+            addCriterion("receive_user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdIsNotNull() {
+            addCriterion("receive_user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdEqualTo(Long value) {
+            addCriterion("receive_user_id =", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdNotEqualTo(Long value) {
+            addCriterion("receive_user_id <>", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdGreaterThan(Long value) {
+            addCriterion("receive_user_id >", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("receive_user_id >=", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdLessThan(Long value) {
+            addCriterion("receive_user_id <", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("receive_user_id <=", value, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdIn(List<Long> values) {
+            addCriterion("receive_user_id in", values, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdNotIn(List<Long> values) {
+            addCriterion("receive_user_id not in", values, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdBetween(Long value1, Long value2) {
+            addCriterion("receive_user_id between", value1, value2, "receiveUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceiveUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("receive_user_id not between", value1, value2, "receiveUserId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

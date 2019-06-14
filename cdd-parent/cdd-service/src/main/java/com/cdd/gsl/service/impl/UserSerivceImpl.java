@@ -298,26 +298,35 @@ public class UserSerivceImpl implements UserService {
             List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
             if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
 
-                if(userInfoDomainList != null && userInfoDomainList.size() > 0){
-                    //token 待定
-                    UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
-                    String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
-                    String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
-                    UserTicketDomain userTicketDomain = new UserTicketDomain();
-                    userTicketDomain.setUserId(userInfoDomain.getId());
-                    userTicketDomain.setToken(token);
-                    userTicketDomainMapper.insert(userTicketDomain);
-                    LoginTokenVo loginTokenVo = new LoginTokenVo();
-                    loginTokenVo.setUserId(userInfoDomain.getId());
-                    loginTokenVo.setUserType(userInfoDomain.getUserType());
-                    loginTokenVo.setToken(token);
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setMessage("登录成功");
-                    commonResult.setData(loginTokenVo);
+                UserInfoDomain userInfoDomain = new UserInfoDomain();
+                if(CollectionUtils.isEmpty(userInfoDomainList)){
+
+                    userInfoDomain.setPhone(loginUserVo.getPhone());
+                    userInfoDomain.setUsername(loginUserVo.getPhone());
+                    userInfoDomain.setUserType(1);
+                    String saltPassword = createPassword("123456");
+                    String[] str = saltPassword.split(",");
+                    userInfoDomain.setSalt(str[0]);
+                    userInfoDomain.setPassword(str[1]);
+                    userInfoDomainMapper.insertSelective(userInfoDomain);
+
                 }else{
-                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                    commonResult.setMessage("登录失败，手机号不存在，请注册");
+                    userInfoDomain = userInfoDomainList.get(0);
                 }
+
+                String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
+                String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
+                UserTicketDomain userTicketDomain = new UserTicketDomain();
+                userTicketDomain.setUserId(userInfoDomain.getId());
+                userTicketDomain.setToken(token);
+                userTicketDomainMapper.insert(userTicketDomain);
+                LoginTokenVo loginTokenVo = new LoginTokenVo();
+                loginTokenVo.setUserId(userInfoDomain.getId());
+                loginTokenVo.setUserType(userInfoDomain.getUserType());
+                loginTokenVo.setToken(token);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("登录成功");
+                commonResult.setData(loginTokenVo);
             }
         }else{
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){
@@ -1032,6 +1041,34 @@ public class UserSerivceImpl implements UserService {
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("删除成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult addUser(UserInfoDomain userInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(userInfoDomain != null){
+            userInfoDomainMapper.insertSelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("添加成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult updateCurrency(UserInfoDomain userInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(userInfoDomain != null){
+            userInfoDao.updateUserintegralById(userInfoDomain.getId(),userInfoDomain.getIntegral());
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("成功");
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");

@@ -1,5 +1,6 @@
 package com.cdd.gsl.service;
 
+import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
@@ -25,4 +26,13 @@ public interface ParkService {
     List<SellParkInfoDomain> findSellParkList(SellParkCondition sellParkCondition);
 
     List<LeaseParkInfoVo> findLeaseParkList(LeaseParkCondition leaseParkCondition);
+
+    /******************************管理员****************************************/
+    CommonResult findAdminSellParkList(ParkAdminConditionVo parkAdminConditionVo);
+
+    CommonResult findAdminLeaseParkList(ParkAdminConditionVo parkAdminConditionVo);
+
+    CommonResult deleteSellPark(Long sellParkId);
+
+    CommonResult deleteLeasePark(Long leaseParkId);
 }

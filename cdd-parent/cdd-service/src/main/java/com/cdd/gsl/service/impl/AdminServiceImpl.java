@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.MailUtil;
+import com.cdd.gsl.common.util.PasswordUtil;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.AdminService;
@@ -15,10 +17,13 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -42,6 +47,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private HouseInfoDao houseInfoDao;
+
+    @Autowired
+    private RoleInfoDomainMapper roleInfoDomainMapper;
+
+    @Autowired
+    private AdminInfoDomainMapper adminInfoDomainMapper;
 
     @Override
     public CommonResult doLogin(String username, String password) throws Exception {
@@ -121,6 +132,59 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public CommonResult createAdmin(AdminInfoDomain adminInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(adminInfoDomain != null){
+            boolean isEmail = MailUtil.isEmail(adminInfoDomain.getAccount());
+            if(isEmail){
+                String password = PasswordUtil.randomPassword();
+                String pwdSalt = createPassword(password);
+                String[] str = pwdSalt.split(",");
+                adminInfoDomain.setPassword(str[0]);
+                adminInfoDomain.setSlat(str[1]);
+                adminInfoDomainMapper.insertSelective(adminInfoDomain);
+                try {
+                    MailUtil.sendMail(adminInfoDomain.getAccount(),"您的密码为："+password);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("添加成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("请输入正确的邮箱");
+            }
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult roleList() {
+        CommonResult commonResult = new CommonResult();
+        RoleInfoDomainExample roleInfoDomainExample = new RoleInfoDomainExample();
+        List<RoleInfoDomain> roleInfoDomainList = roleInfoDomainMapper.selectByExample(roleInfoDomainExample);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(roleInfoDomainList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult adminList() {
+        CommonResult commonResult = new CommonResult();
+        List<AdminRoleVo> adminRoleVoList = adminInfoDao.selectAdminInfo();
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(adminRoleVoList);
+        return commonResult;
+    }
+
+    @Override
     public CommonResult brokerList(ApplyBrokerConditionVo applyBrokerConditionVo) {
         CommonResult commonResult = new CommonResult();
         if(applyBrokerConditionVo != null){
@@ -177,4 +241,11 @@ public class AdminServiceImpl implements AdminService {
         }
         return commonResult;
     }
+
+    public String createPassword(String password){
+        String salt = BCrypt.gensalt();
+        String hashed = BCrypt.hashpw(password, salt);
+        return salt+","+hashed;
+    }
+
 }
