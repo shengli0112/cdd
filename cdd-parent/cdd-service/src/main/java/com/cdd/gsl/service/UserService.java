@@ -72,6 +72,8 @@ public interface UserService {
 
     CommonResult buyCurrency(UserCurrencyMappingDomain userCurrencyMappingDomain);
 
+    CommonResult slideList();
+
     /****************************管理员**********************************/
     CommonResult userList(UserConditionVo userConditionVo);
 

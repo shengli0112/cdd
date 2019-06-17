@@ -96,6 +96,9 @@ public class UserSerivceImpl implements UserService {
     private  UserCurrencyMappingDomainMapper userCurrencyMappingDomainMapper;
 
     @Autowired
+    private SlideInfoDao slideInfoDao;
+
+    @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -1001,6 +1004,16 @@ public class UserSerivceImpl implements UserService {
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult slideList() {
+        CommonResult commonResult = new CommonResult();
+        List<SlideInfoDomain> slideInfoDomainList = slideInfoDao.slideInfoList();
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(slideInfoDomainList);
         return commonResult;
     }
 
