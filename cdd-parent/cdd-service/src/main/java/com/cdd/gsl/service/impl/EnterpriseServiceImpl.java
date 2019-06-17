@@ -1,12 +1,15 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.EnterpriseInfoDao;
 import com.cdd.gsl.dao.EnterpriseInfoDomainMapper;
 import com.cdd.gsl.domain.EnterpriseInfoDomain;
 import com.cdd.gsl.service.EnterpriseService;
+import com.cdd.gsl.vo.EnterpriseAdminConditionVo;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
+import com.cdd.gsl.vo.EnterpriseInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,6 +88,21 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             commonResult.setMessage("参数异常");
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findEnterpriseAdminList(EnterpriseAdminConditionVo enterpriseAdminConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        List<EnterpriseInfoVo> enterpriseInfoVoList = enterpriseInfoDao.selectAdminEnterpriseInfoListByCondition(enterpriseAdminConditionVo);
+        int count = enterpriseInfoDao.enterpriseCount(enterpriseAdminConditionVo);
+        JSONObject json = new JSONObject();
+        json.put("total",count);
+        json.put("enterpriseList",enterpriseInfoVoList);
+
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(json);
         return commonResult;
     }
 }

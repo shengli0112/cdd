@@ -1,6 +1,6 @@
 package com.cdd.gsl.controller;
 
-import com.cdd.gsl.admin.EnterpriseAdminConditionVo;
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.EnterpriseInfoDomain;
@@ -8,6 +8,7 @@ import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.service.AdminService;
 import com.cdd.gsl.service.EnterpriseService;
 import com.cdd.gsl.service.HouseService;
+import com.cdd.gsl.vo.EnterpriseAdminConditionVo;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,18 +36,18 @@ public class AdminEnterpriseController {
      * @throws Exception
      */
     @RequestMapping(value = "/findEnterpriseList")
-    public CommonResult findEnterpriseList(EnterpriseConditionVo enterpriseConditionVo) throws Exception {
+    public CommonResult findEnterpriseList(EnterpriseAdminConditionVo enterpriseConditionVo) throws Exception {
         logger.info("AdminEnterpriseController findEnterpriseList start");
-        return enterpriseService.findEnterpriseInfoList(enterpriseConditionVo);
+        return enterpriseService.findEnterpriseAdminList(enterpriseConditionVo);
     }
 
     @RequestMapping("deleteEnterprise")
-    public CommonResult deleteHouse(@RequestParam("enterpriseId") Long enterpriseId){
+    public CommonResult deleteHouse(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(enterpriseId != null){
+        if(json != null){
             EnterpriseInfoDomain enterpriseInfoDomain = new EnterpriseInfoDomain();
-            enterpriseInfoDomain.setId(enterpriseId);
+            enterpriseInfoDomain.setId(json.getLong("enterpriseId"));
             enterpriseInfoDomain.setStatus(0);
             enterpriseService.updateEnterprise(enterpriseInfoDomain);
             commonResult.setFlag(1);
@@ -59,15 +60,15 @@ public class AdminEnterpriseController {
     }
 
     /**
-     * 恢复房源
+     * 恢复企业
      */
     @RequestMapping("recoverEnterprise")
-    public CommonResult recoverHouse(@RequestParam("enterpriseId") Long enterpriseId){
+    public CommonResult recoverHouse(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(enterpriseId != null){
+        if(json != null){
             EnterpriseInfoDomain enterpriseInfoDomain = new EnterpriseInfoDomain();
-            enterpriseInfoDomain.setId(enterpriseId);
+            enterpriseInfoDomain.setId(json.getLong("enterpriseId"));
             enterpriseInfoDomain.setStatus(1);
             enterpriseService.updateEnterprise(enterpriseInfoDomain);
             commonResult.setFlag(1);

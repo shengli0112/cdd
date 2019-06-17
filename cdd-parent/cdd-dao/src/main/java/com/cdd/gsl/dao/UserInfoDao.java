@@ -1,9 +1,7 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.UserInfoDomain;
-import com.cdd.gsl.vo.SingleUserBrokerVo;
-import com.cdd.gsl.vo.SingleUserInfoVo;
-import com.cdd.gsl.vo.UserConditionVo;
+import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -102,9 +100,21 @@ public interface UserInfoDao {
     @Update("update t_user_info set integral=integral+#{integral} where id=#{userId}")
     void updateUserintegralById(@Param("userId")Long userId,@Param("integral")Integer integral);
 
-    @Select("select id as id,username as username,phone as phone,user_type as userType,integral as integral,portrait as portrait," +
+    @Select("<script> select id as id,username as username,phone as phone,user_type as userType,integral as integral,portrait as portrait," +
             "status as status,create_ts as createTs,update_ts as updateTs,service_area as serviceArea" +
-            "from t_user_info" +
-            " where 1=1 limit #{from},#{pageSize}")
-    List<UserInfoDomain> userList(UserConditionVo userConditionVo);
+            " from t_user_info" +
+            " where 1=1 " +
+            "<if test='keyword != null'>" +
+            " and (username like concat('%','${keyword}','%')) " +
+            "</if>"+
+            " limit #{from},#{limit} </script>")
+    List<UserInfoDemainVo> userList(UserAdminConditionVo userConditionVo);
+
+    @Select("<script> select count(*)" +
+            " from t_user_info" +
+            " where 1=1 " +
+            "<if test='keyword != null'>" +
+            " and (username like concat('%','${keyword}','%')) " +
+            "</if> </script>")
+    int userCount(UserAdminConditionVo userConditionVo);
 }

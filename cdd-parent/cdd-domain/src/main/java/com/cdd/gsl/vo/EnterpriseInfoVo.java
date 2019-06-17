@@ -21,9 +21,9 @@ public class EnterpriseInfoVo {
 
     private String phone;
 
-    private Date createTs;
+    private String createTs;
 
-    private Date updateTs;
+    private String updateTs;
 
     private Integer status;
 
@@ -100,19 +100,19 @@ public class EnterpriseInfoVo {
         this.phone = phone;
     }
 
-    public Date getCreateTs() {
+    public String getCreateTs() {
         return createTs;
     }
 
-    public void setCreateTs(Date createTs) {
+    public void setCreateTs(String createTs) {
         this.createTs = createTs;
     }
 
-    public Date getUpdateTs() {
+    public String getUpdateTs() {
         return updateTs;
     }
 
-    public void setUpdateTs(Date updateTs) {
+    public void setUpdateTs(String updateTs) {
         this.updateTs = updateTs;
     }
 

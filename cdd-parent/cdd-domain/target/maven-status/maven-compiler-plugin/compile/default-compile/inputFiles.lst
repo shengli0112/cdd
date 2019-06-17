@@ -29,6 +29,7 @@ F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ParkInfoVo.j
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\FollowConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\CommonDictVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ThirdUserVo.java
+F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\admin\EnterpriseAdminConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ChatMessageVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\SingleUserInfoVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\IsFollowVo.java
@@ -37,6 +38,7 @@ F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ChangeDevice
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\EntrustConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\LoginTokenVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\UserParamVo.java
+F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\admin\ParkAdminConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\CompanyVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\LeaseParkInfoVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\UserCompanyInfoVo.java

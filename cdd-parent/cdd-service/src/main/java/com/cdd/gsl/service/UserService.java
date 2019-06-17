@@ -73,7 +73,7 @@ public interface UserService {
     CommonResult buyCurrency(UserCurrencyMappingDomain userCurrencyMappingDomain);
 
     /****************************管理员**********************************/
-    CommonResult userList(UserConditionVo userConditionVo);
+    CommonResult userList(UserAdminConditionVo userConditionVo);
 
     CommonResult deleteUser(Long userId);
 

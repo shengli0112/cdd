@@ -1,5 +1,6 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
@@ -137,12 +138,30 @@ public class ParkServiceImpl implements ParkService {
 
     @Override
     public CommonResult findAdminSellParkList(ParkAdminConditionVo parkAdminConditionVo) {
-        return null;
+        CommonResult commonResult = new CommonResult();
+        int total = sellParkDao.sellParkCount(parkAdminConditionVo);
+        List<SellParkInfoDomain> sellParkInfoDomainList = sellParkDao.selectAdminSellParkInfoList(parkAdminConditionVo);
+        JSONObject json = new JSONObject();
+        json.put("total",total);
+        json.put("sellParkList",sellParkInfoDomainList);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(json);
+        return commonResult;
     }
 
     @Override
     public CommonResult findAdminLeaseParkList(ParkAdminConditionVo parkAdminConditionVo) {
-        return null;
+        CommonResult commonResult = new CommonResult();
+        int total = leaseParkDao.leaseParkCount(parkAdminConditionVo);
+        List<LeaseParkInfoVo> leaseParkInfoVoList = leaseParkDao.selectAdminLeaseParkInfoList(parkAdminConditionVo);
+        JSONObject json = new JSONObject();
+        json.put("total",total);
+        json.put("leaseParkList",leaseParkInfoVoList);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(json);
+        return commonResult;
     }
 
     @Override

@@ -1005,12 +1005,16 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult userList(UserConditionVo userConditionVo) {
+    public CommonResult userList(UserAdminConditionVo userConditionVo) {
         CommonResult commonResult = new CommonResult();
-        List<UserInfoDomain> userInfoDomainList = userInfoDao.userList(userConditionVo);
+        JSONObject json = new JSONObject();
+        int count = userInfoDao.userCount(userConditionVo);
+        List<UserInfoDemainVo> userInfoDomainList = userInfoDao.userList(userConditionVo);
+        json.put("total",count);
+        json.put("userList",userInfoDomainList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(userInfoDomainList);
+        commonResult.setData(json);
         return commonResult;
     }
 
@@ -1040,7 +1044,7 @@ public class UserSerivceImpl implements UserService {
             userInfoDomain.setStatus(1);
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("删除成功");
+            commonResult.setMessage("恢复成功");
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
