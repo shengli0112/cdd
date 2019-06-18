@@ -116,7 +116,7 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public void deleteHouse(HouseInfoDomain houseInfoDomain) {
         HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
-        houseInfoDomainExample.createCriteria().andStatusEqualTo(1).andIdEqualTo(houseInfoDomain.getId());
+        houseInfoDomainExample.createCriteria().andIdEqualTo(houseInfoDomain.getId());
         List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
         if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
             houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);

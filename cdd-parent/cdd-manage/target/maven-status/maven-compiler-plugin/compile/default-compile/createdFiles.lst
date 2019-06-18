@@ -1,8 +1,11 @@
 com\cdd\gsl\controller\AdminHomeController.class
 com\cdd\gsl\filter\ClientRequestFilter.class
+com\cdd\gsl\controller\AdminUserController.class
 com\cdd\gsl\controller\ShiroController.class
 com\cdd\gsl\shiro\MyRealm.class
+com\cdd\gsl\controller\AdminParkController.class
 com\cdd\gsl\controller\BrokerController.class
 com\cdd\gsl\shiro\filter\ShiroUserFilter.class
-com\cdd\gsl\controller\Test.class
+com\cdd\gsl\controller\AdminEnterpriseController.class
+com\cdd\gsl\controller\RegionController.class
 com\cdd\gsl\controller\UserController.class

@@ -1,5 +1,6 @@
 package com.cdd.gsl.dao;
 
+import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.ParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
@@ -76,4 +77,30 @@ public interface SellParkDao {
             "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag" +
             " from t_sell_park_info where status=1 order by rand() limit 3")
     List<ParkInfoVo> selectSellParkInfoRand();
+
+
+    @Select("<script>" +
+            "select h.id as id,h.city as city,h.county as county,h.town as town," +
+            "h.address as address,h.park_name as parkName,h.status as status," +
+            "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description " +
+            "from t_sell_park_info h where 1=1 " +
+            "<if test=\"keyword != null\">" +
+            " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
+            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
+            "</if>"+
+            " limit #{from},#{limit}"+
+
+            "</script>")
+    public List<SellParkInfoDomain> selectAdminSellParkInfoList(ParkAdminConditionVo sellParkCondition);
+
+    @Select("<script>" +
+            "select count(*) " +
+            "from t_sell_park_info h where 1=1 " +
+            "<if test=\"keyword != null\">" +
+            " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
+            " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
+            "</if>"+
+            "</script>")
+    int sellParkCount(ParkAdminConditionVo sellParkCondition);
 }

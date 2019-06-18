@@ -1,5 +1,6 @@
 package com.cdd.gsl.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
@@ -52,13 +53,13 @@ public class AdminParkController {
         return parkService.findAdminLeaseParkList(parkConditionVo);
     }
 
-    @RequestMapping("deleteSellPark")
-    public CommonResult deleteSellPark(@RequestParam("sellParkId") Long sellParkId){
+    @RequestMapping("deleteSell")
+    public CommonResult deleteSellPark(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(sellParkId != null){
+        if(json != null){
             SellParkInfoDomain sellParkInfoDomain = new SellParkInfoDomain();
-            sellParkInfoDomain.setId(sellParkId);
+            sellParkInfoDomain.setId(json.getLong("sellParkId"));
             sellParkInfoDomain.setStatus(0);
             parkService.updateSellPark(sellParkInfoDomain);
             commonResult.setFlag(1);
@@ -70,13 +71,13 @@ public class AdminParkController {
         return commonResult;
     }
 
-    @RequestMapping("deleteLeasPark")
-    public CommonResult deleteLeasPark(@RequestParam("leaseParkId") Long leaseParkId){
+    @RequestMapping("deleteLease")
+    public CommonResult deleteLeasPark(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(leaseParkId != null){
+        if(json != null){
             LeaseParkInfoDomain leaseParkInfoDomain = new LeaseParkInfoDomain();
-            leaseParkInfoDomain.setId(leaseParkId);
+            leaseParkInfoDomain.setId(json.getLong("leaseParkId"));
             leaseParkInfoDomain.setStatus(0);
             parkService.updateLeasePark(leaseParkInfoDomain);
             commonResult.setFlag(1);
@@ -91,13 +92,13 @@ public class AdminParkController {
     /**
      * 恢复出售园区
      */
-    @RequestMapping("recoverSellPark")
-    public CommonResult recoverSellPark(@RequestParam("sellParkId") Long sellParkId){
+    @RequestMapping("recoverSell")
+    public CommonResult recoverSellPark(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(sellParkId != null){
+        if(json != null){
             SellParkInfoDomain sellParkInfoDomain = new SellParkInfoDomain();
-            sellParkInfoDomain.setId(sellParkId);
+            sellParkInfoDomain.setId(json.getLong("sellParkId"));
             sellParkInfoDomain.setStatus(1);
             parkService.updateSellPark(sellParkInfoDomain);
             commonResult.setFlag(1);
@@ -109,17 +110,17 @@ public class AdminParkController {
         return commonResult;
     }
 
-    @RequestMapping("recoverLeasPark")
-    public CommonResult recoverLeasPark(@RequestParam("leaseParkId") Long leaseParkId){
+    @RequestMapping("recoverLease")
+    public CommonResult recoverLeasPark(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(leaseParkId != null){
+        if(json != null){
             LeaseParkInfoDomain leaseParkInfoDomain = new LeaseParkInfoDomain();
-            leaseParkInfoDomain.setId(leaseParkId);
+            leaseParkInfoDomain.setId(json.getLong("leaseParkId"));
             leaseParkInfoDomain.setStatus(1);
             parkService.updateLeasePark(leaseParkInfoDomain);
             commonResult.setFlag(1);
-            commonResult.setMessage("删除成功");
+            commonResult.setMessage("恢复成功");
         }else{
             commonResult.setFlag(0);
             commonResult.setMessage("删除失败，参数不正确");

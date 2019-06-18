@@ -37,6 +37,7 @@ public class LeaseParkInfoVo {
 
     private String background;
 
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -165,5 +166,13 @@ public class LeaseParkInfoVo {
 
     public void setBackground(String background) {
         this.background = background;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

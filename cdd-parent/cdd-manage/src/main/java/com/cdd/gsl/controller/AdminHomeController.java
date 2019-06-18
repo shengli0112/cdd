@@ -1,5 +1,6 @@
 package com.cdd.gsl.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.HouseInfoDomain;
@@ -38,12 +39,12 @@ public class AdminHomeController {
     }
 
     @RequestMapping("deleteHouse")
-    public CommonResult deleteHouse(@RequestParam("houseId") Long houseId){
+    public CommonResult deleteHouse(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(houseId != null){
+        if(json != null){
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
-            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setId(json.getLong("houseId"));
             houseInfoDomain.setStatus(0);
             houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
@@ -59,12 +60,12 @@ public class AdminHomeController {
      * 恢复房源
      */
     @RequestMapping("recoverHouse")
-    public CommonResult recoverHouse(@RequestParam("houseId") Long houseId){
+    public CommonResult recoverHouse(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(houseId != null){
+        if(json != null){
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
-            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setId(json.getLong("houseId"));
             houseInfoDomain.setStatus(1);
             houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
@@ -95,12 +96,12 @@ public class AdminHomeController {
      * 置顶
      */
     @RequestMapping("topHouse")
-    public CommonResult topHouse(@RequestParam("houseId") Long houseId){
+    public CommonResult topHouse(@RequestBody JSONObject json){
         CommonResult commonResult = new CommonResult();
 
-        if(houseId != null){
+        if(json != null){
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
-            houseInfoDomain.setId(houseId);
+            houseInfoDomain.setId(json.getLong("houseId"));
             houseInfoDomain.setStatus(1);
             houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
