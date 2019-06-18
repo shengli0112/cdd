@@ -1018,7 +1018,7 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult userList(UserConditionVo userConditionVo) {
+    public CommonResult userList(UserAdminConditionVo userConditionVo) {
         CommonResult commonResult = new CommonResult();
         JSONObject json = new JSONObject();
         int count = userInfoDao.userCount(userConditionVo);
