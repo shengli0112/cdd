@@ -73,7 +73,7 @@ public class ChatMessageServiceImpl implements ChatMessageService {
             chatMessageDomainMapper.insertSelective(chatMessageDomain);
             MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
             messageInfoDomain.setUserId(chatMessageDomain.getReceiveUserId());
-            messageInfoDomain.setMessage(CddConstant.MESSAGE_CONTENT);
+            messageInfoDomain.setMessage(chatMessageDomain.getMessageContent());
             messageInfoDomain.setMessageType("chat");
             messageInfoDomain.setType(chatMessageDomain.getType());
             messageInfoDomain.setObjId(chatMessageDomain.getObjId());

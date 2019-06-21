@@ -890,6 +890,14 @@ public class UserSerivceImpl implements UserService {
         CommonResult commonResult = new CommonResult();
         if(messageConditionVo.getUserId() != null){
             List<MessageVo> messageInfoDomains = messageInfoDao.messageList(messageConditionVo);
+            if(CollectionUtils.isNotEmpty(messageInfoDomains)){
+                for(MessageVo messageVo:messageInfoDomains){
+                    if(messageVo.getMessageType().equals("chat")){
+                        SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(messageVo.getSendUserId());
+                        messageVo.setSendUser(singleUserInfoVo);
+                    }
+                }
+            }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(messageInfoDomains);
