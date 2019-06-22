@@ -443,6 +443,14 @@ public class UserController {
         return userService.buyCurrency(userCurrencyMappingDomain);
     }
 
+    /**
+     * 轮播图
+     */
+    @RequestMapping("slideList")
+    public CommonResult slideList(){
+        return userService.slideList();
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

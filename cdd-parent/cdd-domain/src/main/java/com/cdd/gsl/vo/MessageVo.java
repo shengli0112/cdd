@@ -27,6 +27,8 @@ public class MessageVo {
 
     private Long reveiveUserId;
 
+    private SingleUserInfoVo sendUser;
+
     public Long getMessageId() {
         return messageId;
     }
@@ -121,5 +123,13 @@ public class MessageVo {
 
     public void setReveiveUserId(Long reveiveUserId) {
         this.reveiveUserId = reveiveUserId;
+    }
+
+    public SingleUserInfoVo getSendUser() {
+        return sendUser;
+    }
+
+    public void setSendUser(SingleUserInfoVo sendUser) {
+        this.sendUser = sendUser;
     }
 }
