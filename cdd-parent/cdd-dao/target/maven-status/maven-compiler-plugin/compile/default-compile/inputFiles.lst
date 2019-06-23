@@ -41,6 +41,7 @@ F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\DeviceLoginDao
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\PlantInfoDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\SellParkInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\EntrustUserMappingDomain.java
+F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\SlideInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\ApplyBrokerInfoDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\BrowseHouseRecordDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\CurrencyInfoDomainExample.java
@@ -72,6 +73,7 @@ F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\InformHouseRec
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\TrailInfoDao.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\EntrustUserMappingDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\CompanyInfoDomainMapper.java
+F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\SlideInfoDomainExample.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\MenuInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\RegionVillageInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\ChatMessageDao.java
@@ -79,6 +81,7 @@ F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\InformLease
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\RecordInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\PlantInfoDomainExample.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\MessageInfoDao.java
+F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\SlideInfoDao.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\BrowseRecordDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\RegionCityInfoDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\StorageInfoDomainMapper.java
@@ -88,6 +91,7 @@ F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\MessageInfoDom
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\CheckPhoneDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\EnterpriseInfoDomain.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\RegionTownInfoDomainExample.java
+F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\dao\SlideInfoDomainMapper.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\UrlInfoDomainExample.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\datasource\DynamicDataSource.java
 F:\workspace\cdd\cdd-parent\cdd-dao\src\main\java\com\cdd\gsl\domain\TradeInfoDomain.java
