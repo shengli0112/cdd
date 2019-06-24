@@ -242,6 +242,11 @@ public class AdminServiceImpl implements AdminService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult findInformList(AdminInformInfoConditionVo adminInformInfoConditionVo) {
+        return null;
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);
