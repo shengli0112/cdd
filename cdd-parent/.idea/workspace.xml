@@ -6,11 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/MessageVo.java" afterPath="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/MessageVo.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ChatMessageServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
-    </list>
+    <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/cdd-domain/target/" />
@@ -72,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1303">
-              <caret line="399" column="34" lean-forward="true" selection-start-line="399" selection-start-column="34" selection-end-line="399" selection-end-column="34" />
+              <caret line="399" column="34" lean-forward="false" selection-start-line="399" selection-start-column="34" selection-end-line="399" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -92,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="574">
-              <caret line="220" column="64" lean-forward="true" selection-start-line="220" selection-start-column="64" selection-end-line="220" selection-end-column="64" />
+              <caret line="220" column="64" lean-forward="false" selection-start-line="220" selection-start-column="64" selection-end-line="220" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -102,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2391">
-              <caret line="293" column="66" lean-forward="true" selection-start-line="293" selection-start-column="66" selection-end-line="293" selection-end-column="66" />
+              <caret line="293" column="66" lean-forward="false" selection-start-line="293" selection-start-column="66" selection-end-line="293" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -121,8 +117,8 @@
       <file leaf-file-name="MessageVo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/MessageVo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="75" column="24" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+            <state relative-caret-position="709">
+              <caret line="75" column="24" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
               <folding>
                 <element signature="e#2318#2319#0" expanded="true" />
                 <element signature="e#2349#2350#0" expanded="true" />
@@ -137,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SingleUserInfoVo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="644">
-              <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+              <caret line="43" column="12" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -989,12 +985,12 @@
       <workItem from="1560396046871" duration="8339000" />
       <workItem from="1560481200823" duration="7391000" />
       <workItem from="1560511660587" duration="2067000" />
-      <workItem from="1560834260163" duration="4536000" />
+      <workItem from="1560834260163" duration="5719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="886892000" />
+    <option name="totallyTimeSpent" value="888075000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1468,7 +1464,7 @@
     <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SingleUserInfoVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
-          <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+          <caret line="43" column="12" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1476,7 +1472,7 @@
     <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1303">
-          <caret line="399" column="34" lean-forward="true" selection-start-line="399" selection-start-column="34" selection-end-line="399" selection-end-column="34" />
+          <caret line="399" column="34" lean-forward="false" selection-start-line="399" selection-start-column="34" selection-end-line="399" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1500,7 +1496,7 @@
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="574">
-          <caret line="220" column="64" lean-forward="true" selection-start-line="220" selection-start-column="64" selection-end-line="220" selection-end-column="64" />
+          <caret line="220" column="64" lean-forward="false" selection-start-line="220" selection-start-column="64" selection-end-line="220" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1508,15 +1504,15 @@
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2391">
-          <caret line="293" column="66" lean-forward="true" selection-start-line="293" selection-start-column="66" selection-end-line="293" selection-end-column="66" />
+          <caret line="293" column="66" lean-forward="false" selection-start-line="293" selection-start-column="66" selection-end-line="293" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/MessageVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="75" column="24" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+        <state relative-caret-position="709">
+          <caret line="75" column="24" lean-forward="false" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
           <folding>
             <element signature="e#2318#2319#0" expanded="true" />
             <element signature="e#2349#2350#0" expanded="true" />
