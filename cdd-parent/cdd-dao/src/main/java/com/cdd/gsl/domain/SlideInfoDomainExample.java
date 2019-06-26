@@ -484,6 +484,136 @@ public class SlideInfoDomainExample {
             addCriterion("create_ts not between", value1, value2, "createTs");
             return (Criteria) this;
         }
+
+        public Criteria andRedirectUrlIsNull() {
+            addCriterion("redirect_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlIsNotNull() {
+            addCriterion("redirect_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlEqualTo(String value) {
+            addCriterion("redirect_url =", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlNotEqualTo(String value) {
+            addCriterion("redirect_url <>", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlGreaterThan(String value) {
+            addCriterion("redirect_url >", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("redirect_url >=", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlLessThan(String value) {
+            addCriterion("redirect_url <", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlLessThanOrEqualTo(String value) {
+            addCriterion("redirect_url <=", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlLike(String value) {
+            addCriterion("redirect_url like", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlNotLike(String value) {
+            addCriterion("redirect_url not like", value, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlIn(List<String> values) {
+            addCriterion("redirect_url in", values, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlNotIn(List<String> values) {
+            addCriterion("redirect_url not in", values, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlBetween(String value1, String value2) {
+            addCriterion("redirect_url between", value1, value2, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andRedirectUrlNotBetween(String value1, String value2) {
+            addCriterion("redirect_url not between", value1, value2, "redirectUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNull() {
+            addCriterion("update_ts is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIsNotNull() {
+            addCriterion("update_ts is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsEqualTo(Date value) {
+            addCriterion("update_ts =", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotEqualTo(Date value) {
+            addCriterion("update_ts <>", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThan(Date value) {
+            addCriterion("update_ts >", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_ts >=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThan(Date value) {
+            addCriterion("update_ts <", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsLessThanOrEqualTo(Date value) {
+            addCriterion("update_ts <=", value, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsIn(List<Date> values) {
+            addCriterion("update_ts in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotIn(List<Date> values) {
+            addCriterion("update_ts not in", values, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsBetween(Date value1, Date value2) {
+            addCriterion("update_ts between", value1, value2, "updateTs");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTsNotBetween(Date value1, Date value2) {
+            addCriterion("update_ts not between", value1, value2, "updateTs");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

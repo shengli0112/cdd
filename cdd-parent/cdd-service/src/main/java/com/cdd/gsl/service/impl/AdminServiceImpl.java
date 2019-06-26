@@ -54,6 +54,12 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminInfoDomainMapper adminInfoDomainMapper;
 
+    @Autowired
+    private InformHouseRecordDomainMapper informHouseRecordDomainMapper;
+
+    @Autowired
+    private InformRecordDao informRecordDao;
+
     @Override
     public CommonResult doLogin(String username, String password) throws Exception {
         CommonResult commonResult = new CommonResult();
@@ -244,7 +250,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public CommonResult findInformList(AdminInformInfoConditionVo adminInformInfoConditionVo) {
-        return null;
+        int count = informRecordDao.informHouseCount(adminInformInfoConditionVo);
+        List<InformHouseRecordDomain> informHouseRecordDomainList = informRecordDao.informHouseList(adminInformInfoConditionVo);
+        JSONObject json = new JSONObject();
+        json.put("total",count);
+        json.put("informList",informHouseRecordDomainList);
+        CommonResult commonResult = new CommonResult();
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(json);
+        return commonResult;
     }
 
     public String createPassword(String password){
