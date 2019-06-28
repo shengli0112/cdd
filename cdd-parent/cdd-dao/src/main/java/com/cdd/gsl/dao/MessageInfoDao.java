@@ -14,8 +14,7 @@ public interface MessageInfoDao {
     @Select("select id as messageId,message as message,user_id as userId,entrust_id as entrustId," +
             "house_id as houseId,is_read as isRead,create_ts as createTs,message_type as messageType," +
             "obj_id as objId,type as type,send_user_id as sendUserId,receive_user_id as receiveUserId " +
-            "from t_message_info where user_id=#{userId} order by create_ts desc" +
-            " limit #{from},#{pageSize}")
+            "from t_message_info where user_id=#{userId} order by create_ts desc" )
     List<MessageVo> messageList(MessageConditionVo messageConditionVo);
     @Update("update t_message_info set is_read=1 where id=#{messageId}")
     void updateMessageRead(Long messageId);
