@@ -20,6 +20,7 @@ public interface MessageInfoDao {
             "house_id as houseId,is_read as isRead,create_ts as createTs,message_type as messageType," +
             "obj_id as objId,type as type,send_user_id as sendUserId,receive_user_id as receiveUserId " +
             "from t_message_info where user_id=#{userId} and message_type='chat' group by send_user_id order by create_ts desc)) t" +
+            " order by createTs desc " +
             " limit #{from},#{pageSize}" )
     List<MessageVo> messageList(MessageConditionVo messageConditionVo);
     @Update("update t_message_info set is_read=1 where id=#{messageId}")
