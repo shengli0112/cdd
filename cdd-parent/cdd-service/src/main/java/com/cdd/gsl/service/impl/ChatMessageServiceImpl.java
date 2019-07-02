@@ -130,4 +130,22 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
         return commonResult;
     }
+
+    @Override
+    public CommonResult findNewChatList(Long objId, String type,Long sendUserId,Long receiveUserId,int count) {
+        CommonResult commonResult = new CommonResult();
+        if(objId != null && !StringUtils.isEmpty(type) && sendUserId != null && receiveUserId != null){
+            List<ChatMessageVo> chatMessageVoList = chatMessageDao.newChatMessageList(objId,type,sendUserId,receiveUserId,count);
+
+            messageInfoDao.updateMessageIsRead(objId, type, sendUserId, receiveUserId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(chatMessageVoList);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
+        return commonResult;
+    }
 }
