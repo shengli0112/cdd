@@ -34,6 +34,12 @@ public class BrokerController {
         return adminService.brokerList(applyBrokerConditionVo);
     }
 
+    @RequestMapping(value = "/companyBrokerList")
+    public CommonResult companyBrokerList(String companyName) throws Exception {
+        logger.info("BrokerController companyBrokerList start");
+        return adminService.companyBrokerList(companyName);
+    }
+
     @RequestMapping(value = "/passAudit")
     public CommonResult passAudit(@RequestBody ApplyBrokerInfoDomain applyBrokerInfoDomain) throws Exception {
         logger.info("BrokerController brokerList start");

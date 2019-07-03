@@ -23,6 +23,13 @@ public interface ApplyBrokerInfoDao {
             " from t_apply_broker_info where broker_type=2 limit #{from},#{limit}")
     List<ApplyBrokerInfoVo> managerBrokerList(ApplyBrokerConditionVo applyBrokerConditionVo);
 
+    @Select("select id as id,company_name as companyName,user_id as userId,license as license,address as address," +
+            "line_business as lineBusiness,register_date as registerDate,description as description," +
+            "contacts as contacts,phone as phone,apply_type as applyType" +
+            " from t_apply_broker_info where broker_type != 2 and company_name=#{companyName}")
+    List<ApplyBrokerInfoVo> companyBrokerList(String companyName);
+
+
     @Select("select count(*)" +
             " from t_apply_broker_info where broker_type=2")
     Integer managerBrokerCount();

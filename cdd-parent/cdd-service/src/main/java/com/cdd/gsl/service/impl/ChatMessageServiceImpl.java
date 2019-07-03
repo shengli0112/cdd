@@ -135,6 +135,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     public CommonResult findNewChatList(Long objId, String type,Long sendUserId,Long receiveUserId,int count) {
         CommonResult commonResult = new CommonResult();
         if(objId != null && !StringUtils.isEmpty(type) && sendUserId != null && receiveUserId != null){
+            List<ChatMessageVo> allChatMessageList = chatMessageDao.chatMessageList(objId,type,sendUserId,receiveUserId);
+            count = allChatMessageList.size() - count;
             List<ChatMessageVo> chatMessageVoList = chatMessageDao.newChatMessageList(objId,type,sendUserId,receiveUserId,count);
             List<ChatMessageVo> chatMessageVos = new ArrayList<>();
             if(!CollectionUtils.isEmpty(chatMessageVoList)){

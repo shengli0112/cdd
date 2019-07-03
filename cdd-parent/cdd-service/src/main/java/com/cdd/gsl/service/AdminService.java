@@ -31,6 +31,8 @@ public interface AdminService {
     /*********************店长*****************************/
     CommonResult brokerList(ApplyBrokerConditionVo applyBrokerConditionVo);
 
+    CommonResult companyBrokerList(String companyName);
+
     CommonResult passAudit(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 
     /*******************房源******************************/
