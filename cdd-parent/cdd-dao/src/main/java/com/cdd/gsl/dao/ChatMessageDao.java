@@ -11,7 +11,7 @@ public interface ChatMessageDao {
             "type as type,message_content as messageContent,create_ts as createTs " +
             "from t_chat_message " +
             "where 1=1 and obj_id=#{objId} and type=#{type} and " +
-            "((receive_user_id=#{receiveUserId} and send_user_id=#{sendUserId}) or(receive_user_id=#{sendUserId} and send_user_id=#{receiveUserId}))" +
+            "((receive_user_id=#{receiveUserId} and send_user_id=#{sendUserId}) or (receive_user_id=#{sendUserId} and send_user_id=#{receiveUserId}))" +
             " order by create_ts")
     List<ChatMessageVo> chatMessageList(@Param("objId") Long objId, @Param("type") String type,
                                         @Param("sendUserId") Long sendUserId,@Param("receiveUserId") Long receiveUserId);
@@ -20,8 +20,8 @@ public interface ChatMessageDao {
             "type as type,message_content as messageContent,create_ts as createTs " +
             "from t_chat_message " +
             "where 1=1 and obj_id=#{objId} and type=#{type} and " +
-            "((receive_user_id=#{receiveUserId} and send_user_id=#{sendUserId}) or(receive_user_id=#{sendUserId} and send_user_id=#{receiveUserId}))" +
+            "((receive_user_id=#{receiveUserId} and send_user_id=#{sendUserId}) or (receive_user_id=#{sendUserId} and send_user_id=#{receiveUserId}))" +
             " order by create_ts desc limit #{count}")
     List<ChatMessageVo> newChatMessageList(@Param("objId") Long objId, @Param("type") String type,
-                                        @Param("sendUserId") Long sendUserId,@Param("receiveUserId") Long receiveUserId,int count);
+                                        @Param("sendUserId") Long sendUserId,@Param("receiveUserId") Long receiveUserId,@Param("count") int count);
 }
