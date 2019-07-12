@@ -13,6 +13,8 @@ import java.util.List;
 public interface HouseService {
     CommonResult addHouse(HouseInfoDomain houseInfoDomain);
 
+    CommonResult topHouse(Long houseId,Long userId);
+
     CommonResult updateHouse(HouseInfoDomain houseInfoDomain);
 
     void deleteHouse(HouseInfoDomain houseInfoDomain);

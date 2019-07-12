@@ -47,6 +47,12 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
+    @Autowired
+    private UserInfoDomainMapper userInfoDomainMapper;
+
+    @Autowired
+    private HouseTopDomainMapper houseTopDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -71,6 +77,28 @@ public class HouseServiceImpl implements HouseService{
         }
         return commonResult;
 
+    }
+
+    @Override
+    public CommonResult topHouse(Long houseId,Long userId) {
+        CommonResult commonResult = new CommonResult();
+        UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(userId);
+        if(userInfoDomain != null){
+            if(userInfoDomain.getIntegral()> CddConstant.PAY_INTERGAL_TOP){
+                HouseTopDomain houseTopDomain = new HouseTopDomain();
+                houseTopDomain.setHouseId(houseId);
+                houseTopDomain.setUserId(userId);
+                houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
+                houseTopDomain.setStatus(1);
+                houseTopDomainMapper.insert(houseTopDomain);
+                UserInfoDomain user = new UserInfoDomain();
+                user.setId(userInfoDomain.getId());
+                user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
+                userInfoDomainMapper.updateByPrimaryKeySelective(user);
+            }
+        }
+
+        return null;
     }
 
     @Override

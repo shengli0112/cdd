@@ -41,6 +41,11 @@ public class HouseController {
         return houseService.addHouse(houseInfoDomain);
     }
 
+    @RequestMapping("topHouse")
+    public CommonResult topHouse(@RequestParam("houseId") Long houseId,@RequestParam("userId") Long userId){
+        return houseService.topHouse(houseId,userId);
+    }
+
     @RequestMapping("addTrail")
     public CommonResult addTrail(@RequestBody TrailInfoDomain trailInfoDomain){
         CommonResult commonResult = new CommonResult();
