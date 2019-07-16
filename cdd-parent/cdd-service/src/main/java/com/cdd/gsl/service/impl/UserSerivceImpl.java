@@ -330,6 +330,9 @@ public class UserSerivceImpl implements UserService {
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("登录成功");
                 commonResult.setData(loginTokenVo);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("验证码不正确");
             }
         }else{
             if(userInfoDomainList != null && userInfoDomainList.size() > 0){

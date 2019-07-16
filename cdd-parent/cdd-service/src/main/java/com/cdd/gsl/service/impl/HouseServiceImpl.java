@@ -3,6 +3,8 @@ package com.cdd.gsl.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.DateUtil;
+import com.cdd.gsl.common.util.ResultPage;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -90,15 +93,21 @@ public class HouseServiceImpl implements HouseService{
                 houseTopDomain.setUserId(userId);
                 houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
                 houseTopDomain.setStatus(1);
+                houseTopDomain.setDay(CddConstant.TOP_DAY);
                 houseTopDomainMapper.insert(houseTopDomain);
                 UserInfoDomain user = new UserInfoDomain();
                 user.setId(userInfoDomain.getId());
                 user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
                 userInfoDomainMapper.updateByPrimaryKeySelective(user);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setData("置顶成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setData("多多币不足，请充值");
             }
         }
 
-        return null;
+        return commonResult;
     }
 
     @Override
@@ -194,12 +203,23 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
-
+        List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
-        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+//        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        List<HouseInfoDomainVo> allHouseList = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(topHouseDomainList)){
+            allHouseList.addAll(topHouseDomainList);
+        }
+
+        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
+            allHouseList.addAll(houseInfoDomainList);
+        }
+        int houseCount = topHouseDomainList.size() + houseInfoDomainList.size();
         JSONObject data = new JSONObject();
+
+        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,houseConditionVo.getPageSize(),houseConditionVo.getPageNo(),allHouseList);
         data.put("houseCount",houseCount);
-        data.put("houseList",houseInfoDomainList);
+        data.put("houseList",resultPage.getItems());
         return data;
     }
 
@@ -293,5 +313,25 @@ public class HouseServiceImpl implements HouseService{
         }
 
         return commonResult;
+    }
+
+    @Override
+    public void delayTopHouse() {
+        logger.info("HouseServiceImpl delayTopHouse start");
+        HouseTopDomainExample houseTopDomainExample = new HouseTopDomainExample();
+        houseTopDomainExample.createCriteria().andStatusEqualTo(1);
+        List<HouseTopDomain> houseTopDomainList = houseTopDomainMapper.selectByExample(houseTopDomainExample);
+        if(!CollectionUtils.isEmpty(houseTopDomainList)){
+            houseTopDomainList.forEach(houseTop ->{
+                int days = DateUtil.differentDaysByMillisecond(new Date(),houseTop.getCreateTs());
+                if(days > houseTop.getDay()){
+                    HouseTopDomain houseTopDomain = new HouseTopDomain();
+                    houseTopDomain.setId(houseTop.getId());
+                    houseTopDomain.setStatus(0);
+                    houseTopDomainMapper.updateByPrimaryKeySelective(houseTopDomain);
+                    logger.info("HouseServiceImpl delayTopHouse expire house id-{}",houseTop.getHouseId());
+                }
+            });
+        }
     }
 }

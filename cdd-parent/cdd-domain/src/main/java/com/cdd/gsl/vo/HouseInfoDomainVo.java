@@ -70,6 +70,9 @@ public class HouseInfoDomainVo {
     //是否查看过手机号
     private boolean checkPhone;
 
+    //是否置顶
+    private Integer top;
+
     public Long getId() {
         return id;
     }
@@ -324,5 +327,13 @@ public class HouseInfoDomainVo {
 
     public void setCheckPhone(boolean checkPhone) {
         this.checkPhone = checkPhone;
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
     }
 }

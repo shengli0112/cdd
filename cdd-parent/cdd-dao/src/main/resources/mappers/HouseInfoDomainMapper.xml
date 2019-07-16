@@ -20,7 +20,6 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
-    <result column="background" property="background" jdbcType="VARCHAR" />
     <result column="house_status" property="houseStatus" jdbcType="INTEGER" />
     <result column="cover_area" property="coverArea" jdbcType="VARCHAR" />
     <result column="house_edge" property="houseEdge" jdbcType="VARCHAR" />
@@ -33,6 +32,10 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="trade" property="trade" jdbcType="VARCHAR" />
     <result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
+    <result column="top" property="top" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.HouseInfoDomain" extends="BaseResultMap" >
+    <result column="background" property="background" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,9 +98,28 @@
   <sql id="Base_Column_List" >
     id, title, city, county, street, house_number, area, selling_price, electricity, 
     house_type, house_use_type, floor, fire_control, contacts, phone, status, create_ts, 
-    update_ts, background, house_status, cover_area, house_edge, user_id, single_price, 
-    price_type, use_area, sign_contract, town, description, trade, expire_date
+    update_ts, house_status, cover_area, house_edge, user_id, single_price, price_type, 
+    use_area, sign_contract, town, description, trade, expire_date, top
   </sql>
+  <sql id="Blob_Column_List" >
+    background
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_house_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseInfoDomainExample" >
     select
     <if test="distinct" >
@@ -112,9 +134,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from t_house_info
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -135,22 +159,22 @@
       house_type, house_use_type, floor, 
       fire_control, contacts, phone, 
       status, create_ts, update_ts, 
-      background, house_status, cover_area, 
-      house_edge, user_id, single_price, 
-      price_type, use_area, sign_contract, 
-      town, description, trade, 
-      expire_date)
+      house_status, cover_area, house_edge, 
+      user_id, single_price, price_type, 
+      use_area, sign_contract, town, 
+      description, trade, expire_date, 
+      top, background)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
       #{houseType,jdbcType=INTEGER}, #{houseUseType,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER}, 
       #{fireControl,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
-      #{background,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=VARCHAR}, 
-      #{houseEdge,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=DECIMAL}, 
-      #{priceType,jdbcType=INTEGER}, #{useArea,jdbcType=VARCHAR}, #{signContract,jdbcType=INTEGER}, 
-      #{town,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, 
-      #{expireDate,jdbcType=VARCHAR})
+      #{houseStatus,jdbcType=INTEGER}, #{coverArea,jdbcType=VARCHAR}, #{houseEdge,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=DECIMAL}, #{priceType,jdbcType=INTEGER}, 
+      #{useArea,jdbcType=VARCHAR}, #{signContract,jdbcType=INTEGER}, #{town,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, #{expireDate,jdbcType=VARCHAR}, 
+      #{top,jdbcType=INTEGER}, #{background,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -209,9 +233,6 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
-      <if test="background != null" >
-        background,
-      </if>
       <if test="houseStatus != null" >
         house_status,
       </if>
@@ -247,6 +268,12 @@
       </if>
       <if test="expireDate != null" >
         expire_date,
+      </if>
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="background != null" >
+        background,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -304,9 +331,6 @@
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="background != null" >
-        #{background,jdbcType=VARCHAR},
-      </if>
       <if test="houseStatus != null" >
         #{houseStatus,jdbcType=INTEGER},
       </if>
@@ -342,6 +366,12 @@
       </if>
       <if test="expireDate != null" >
         #{expireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null" >
+        #{top,jdbcType=INTEGER},
+      </if>
+      <if test="background != null" >
+        #{background,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -408,9 +438,6 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.background != null" >
-        background = #{record.background,jdbcType=VARCHAR},
-      </if>
       <if test="record.houseStatus != null" >
         house_status = #{record.houseStatus,jdbcType=INTEGER},
       </if>
@@ -447,7 +474,51 @@
       <if test="record.expireDate != null" >
         expire_date = #{record.expireDate,jdbcType=VARCHAR},
       </if>
+      <if test="record.top != null" >
+        top = #{record.top,jdbcType=INTEGER},
+      </if>
+      <if test="record.background != null" >
+        background = #{record.background,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_house_info
+    set id = #{record.id,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      street = #{record.street,jdbcType=VARCHAR},
+      house_number = #{record.houseNumber,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=INTEGER},
+      selling_price = #{record.sellingPrice,jdbcType=INTEGER},
+      electricity = #{record.electricity,jdbcType=VARCHAR},
+      house_type = #{record.houseType,jdbcType=INTEGER},
+      house_use_type = #{record.houseUseType,jdbcType=INTEGER},
+      floor = #{record.floor,jdbcType=INTEGER},
+      fire_control = #{record.fireControl,jdbcType=INTEGER},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      house_status = #{record.houseStatus,jdbcType=INTEGER},
+      cover_area = #{record.coverArea,jdbcType=VARCHAR},
+      house_edge = #{record.houseEdge,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      single_price = #{record.singlePrice,jdbcType=DECIMAL},
+      price_type = #{record.priceType,jdbcType=INTEGER},
+      use_area = #{record.useArea,jdbcType=VARCHAR},
+      sign_contract = #{record.signContract,jdbcType=INTEGER},
+      town = #{record.town,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      trade = #{record.trade,jdbcType=VARCHAR},
+      expire_date = #{record.expireDate,jdbcType=VARCHAR},
+      top = #{record.top,jdbcType=INTEGER},
+      background = #{record.background,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -472,7 +543,6 @@
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
-      background = #{record.background,jdbcType=VARCHAR},
       house_status = #{record.houseStatus,jdbcType=INTEGER},
       cover_area = #{record.coverArea,jdbcType=VARCHAR},
       house_edge = #{record.houseEdge,jdbcType=VARCHAR},
@@ -484,7 +554,8 @@
       town = #{record.town,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       trade = #{record.trade,jdbcType=VARCHAR},
-      expire_date = #{record.expireDate,jdbcType=VARCHAR}
+      expire_date = #{record.expireDate,jdbcType=VARCHAR},
+      top = #{record.top,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -543,9 +614,6 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="background != null" >
-        background = #{background,jdbcType=VARCHAR},
-      </if>
       <if test="houseStatus != null" >
         house_status = #{houseStatus,jdbcType=INTEGER},
       </if>
@@ -582,7 +650,48 @@
       <if test="expireDate != null" >
         expire_date = #{expireDate,jdbcType=VARCHAR},
       </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=INTEGER},
+      </if>
+      <if test="background != null" >
+        background = #{background,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
+    update t_house_info
+    set title = #{title,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      house_number = #{houseNumber,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      selling_price = #{sellingPrice,jdbcType=INTEGER},
+      electricity = #{electricity,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=INTEGER},
+      house_use_type = #{houseUseType,jdbcType=INTEGER},
+      floor = #{floor,jdbcType=INTEGER},
+      fire_control = #{fireControl,jdbcType=INTEGER},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      house_status = #{houseStatus,jdbcType=INTEGER},
+      cover_area = #{coverArea,jdbcType=VARCHAR},
+      house_edge = #{houseEdge,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      single_price = #{singlePrice,jdbcType=DECIMAL},
+      price_type = #{priceType,jdbcType=INTEGER},
+      use_area = #{useArea,jdbcType=VARCHAR},
+      sign_contract = #{signContract,jdbcType=INTEGER},
+      town = #{town,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      trade = #{trade,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR},
+      top = #{top,jdbcType=INTEGER},
+      background = #{background,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
@@ -604,7 +713,6 @@
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
-      background = #{background,jdbcType=VARCHAR},
       house_status = #{houseStatus,jdbcType=INTEGER},
       cover_area = #{coverArea,jdbcType=VARCHAR},
       house_edge = #{houseEdge,jdbcType=VARCHAR},
@@ -616,7 +724,8 @@
       town = #{town,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       trade = #{trade,jdbcType=VARCHAR},
-      expire_date = #{expireDate,jdbcType=VARCHAR}
+      expire_date = #{expireDate,jdbcType=VARCHAR},
+      top = #{top,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

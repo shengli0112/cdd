@@ -18,5 +18,8 @@ public class CddConstant {
     public static final String MESSAGE_CONTENT_MATCH = "您发布的信息匹配成功,点击查看";
 
     //置顶需要花费的币
-    public static final Integer PAY_INTERGAL_TOP = 10;
+    public static final Integer PAY_INTERGAL_TOP = 20;
+
+    //置顶的天数
+    public static final Integer TOP_DAY = 5;
 }

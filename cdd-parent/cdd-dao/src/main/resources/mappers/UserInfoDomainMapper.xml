@@ -108,23 +108,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    insert into t_user_info (id, username, phone, 
-      user_type, integral, portrait, 
-      password, salt, status, 
-      create_ts, update_ts, service_area
-      )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR}
-      )
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user_info (username, phone, user_type, 
+      integral, portrait, password, 
+      salt, status, create_ts, 
+      update_ts, service_area)
+    values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, 
+      #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into t_user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="username != null" >
         username,
       </if>
@@ -160,9 +161,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>

@@ -17,6 +17,8 @@ public class HouseTopDomain {
 
     private Integer status;
 
+    private Integer day;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class HouseTopDomain {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
     }
 }

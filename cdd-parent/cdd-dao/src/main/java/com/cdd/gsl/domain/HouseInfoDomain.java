@@ -40,8 +40,6 @@ public class HouseInfoDomain {
 
     private Date updateTs;
 
-    private String background;
-
     private Integer houseStatus;
 
     private String coverArea;
@@ -65,6 +63,10 @@ public class HouseInfoDomain {
     private String trade;
 
     private String expireDate;
+
+    private Integer top;
+
+    private String background;
 
     public Long getId() {
         return id;
@@ -210,14 +212,6 @@ public class HouseInfoDomain {
         this.updateTs = updateTs;
     }
 
-    public String getBackground() {
-        return background;
-    }
-
-    public void setBackground(String background) {
-        this.background = background == null ? null : background.trim();
-    }
-
     public Integer getHouseStatus() {
         return houseStatus;
     }
@@ -312,5 +306,21 @@ public class HouseInfoDomain {
 
     public void setExpireDate(String expireDate) {
         this.expireDate = expireDate == null ? null : expireDate.trim();
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background == null ? null : background.trim();
     }
 }
