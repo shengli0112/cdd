@@ -231,7 +231,7 @@ public class AdminServiceImpl implements AdminService {
             applyBrokerInfoDomainMapper.updateByPrimaryKeySelective(applyBrokerInfoDomain);
             UserInfoDomain userInfoDomain = new UserInfoDomain();
             userInfoDomain.setId(applyBrokerInfoDomain.getUserId());
-            userInfoDomain.setUserType(2);
+            userInfoDomain.setUserType(3);
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("审核通过");
