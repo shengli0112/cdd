@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
+import com.cdd.gsl.common.util.PageUtil;
 import com.cdd.gsl.common.util.ResultPage;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
@@ -18,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -203,6 +205,10 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
+        HashMap map = new HashMap();
+        map.put("page", houseConditionVo.getPageNo());
+        map.put("size", houseConditionVo.getPageSize());
+        map = PageUtil.getPageMap(map);
         List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
 //        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
@@ -217,7 +223,7 @@ public class HouseServiceImpl implements HouseService{
         int houseCount = topHouseDomainList.size() + houseInfoDomainList.size();
         JSONObject data = new JSONObject();
 
-        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,houseConditionVo.getPageSize(),houseConditionVo.getPageNo(),allHouseList);
+        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,(Integer) map.get("pageSize"), (Integer) map.get("pageNo"),allHouseList);
         data.put("houseCount",houseCount);
         data.put("houseList",resultPage.getItems());
         return data;
