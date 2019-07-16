@@ -98,7 +98,6 @@ public interface HouseInfoDao {
             "<if test='priceOrder == 1'>,h.selling_price</if>"+
             "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
             "</if>"+
-            " limit #{from},#{pageSize}"+
             "</script>")
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
@@ -200,7 +199,6 @@ public interface HouseInfoDao {
             " and h.house_type=#{houseType}"+
             "</if>"+
             " order by h.create_ts desc " +
-            " limit #{from},#{pageSize}"+
             "</script>")
     public List<HouseInfoDomainVo> selectHomeHouseListByCondition(HouseConditionVo houseConditionVo);
 
