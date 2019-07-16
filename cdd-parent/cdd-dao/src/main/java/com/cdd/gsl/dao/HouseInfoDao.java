@@ -180,6 +180,52 @@ public interface HouseInfoDao {
             "</script>")
     public List<HouseInfoDomainVo> selectTopHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
+
+    @Select("<script> " +
+            "select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
+            "u.portrait as portrait,h.trade as trade,top as top" +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and h.top=0 and (h.house_use_type=3 or h.house_use_type=4)" +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if>"+
+            " order by h.create_ts desc " +
+            " limit #{from},#{pageSize}"+
+            "</script>")
+    public List<HouseInfoDomainVo> selectHomeHouseListByCondition(HouseConditionVo houseConditionVo);
+
+    @Select("<script> " +
+            "select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top" +
+            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 " +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if>"+
+            " order by top.create_ts desc " +
+
+            "</script>")
+    public List<HouseInfoDomainVo> selectTopHomeHouseListByCondition(HouseConditionVo houseConditionVo);
+
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +
             "h.county as county,h.town as town, h.street as street, h.area as area," +

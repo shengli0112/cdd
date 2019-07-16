@@ -23,6 +23,8 @@ public interface HouseService {
 
     JSONObject findHouseInfoList(HouseConditionVo houseConditionVo);
 
+    JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo);
+
     List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     List<HouseInfoDomainVo> selectCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo);
@@ -30,4 +32,6 @@ public interface HouseService {
     CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain);
 
     void delayTopHouse();
+
+    CommonResult switchHouse(Long fromUserId,Long toUserId);
 }

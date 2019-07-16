@@ -224,6 +224,27 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
+    public JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo) {
+        List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHomeHouseListByCondition(houseConditionVo);
+        List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHomeHouseListByCondition(houseConditionVo);
+        List<HouseInfoDomainVo> allHouseList = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(topHouseDomainList)){
+            allHouseList.addAll(topHouseDomainList);
+        }
+
+        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
+            allHouseList.addAll(houseInfoDomainList);
+        }
+        int houseCount = topHouseDomainList.size() + houseInfoDomainList.size();
+        JSONObject data = new JSONObject();
+
+        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,houseConditionVo.getPageSize(),houseConditionVo.getPageNo(),allHouseList);
+        data.put("houseCount",houseCount);
+        data.put("houseList",resultPage.getItems());
+        return data;
+    }
+
+    @Override
     public List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo) {
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectUserHouseInfoListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomains = new ArrayList<>();
@@ -333,5 +354,25 @@ public class HouseServiceImpl implements HouseService{
                 }
             });
         }
+    }
+
+    @Override
+    public CommonResult switchHouse(Long fromUserId, Long toUserId) {
+        CommonResult commonResult = new CommonResult();
+        HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+        houseInfoDomainExample.createCriteria().andUserIdEqualTo(fromUserId);
+        List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
+            houseInfoDomainList.forEach(fromHouse ->{
+                HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+                houseInfoDomain.setId(fromHouse.getId());
+                houseInfoDomain.setUserId(toUserId);
+                houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+            });
+
+        }
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("切换成功");
+        return commonResult;
     }
 }
