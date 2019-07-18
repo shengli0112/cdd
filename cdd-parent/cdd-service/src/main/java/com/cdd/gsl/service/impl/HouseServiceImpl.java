@@ -209,23 +209,15 @@ public class HouseServiceImpl implements HouseService{
         map.put("page", houseConditionVo.getPageNo());
         map.put("size", houseConditionVo.getPageSize());
         map = PageUtil.getPageMap(map);
-        List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
-//        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
-        List<HouseInfoDomainVo> allHouseList = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(topHouseDomainList)){
-            allHouseList.addAll(topHouseDomainList);
-        }
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        int topHouseCount = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
 
-        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
-            allHouseList.addAll(houseInfoDomainList);
-        }
-        int houseCount = topHouseDomainList.size() + houseInfoDomainList.size();
+        houseCount = houseCount+topHouseCount;
         JSONObject data = new JSONObject();
 
-        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,(Integer) map.get("pageSize"), (Integer) map.get("pageNo"),allHouseList);
         data.put("houseCount",houseCount);
-        data.put("houseList",resultPage.getItems());
+        data.put("houseList",houseInfoDomainList);
         return data;
     }
 
@@ -233,20 +225,12 @@ public class HouseServiceImpl implements HouseService{
     public JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo) {
         List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHomeHouseListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHomeHouseListByCondition(houseConditionVo);
-        List<HouseInfoDomainVo> allHouseList = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(topHouseDomainList)){
-            allHouseList.addAll(topHouseDomainList);
-        }
-
-        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
-            allHouseList.addAll(houseInfoDomainList);
-        }
-        int houseCount = topHouseDomainList.size() + houseInfoDomainList.size();
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        houseCount = houseCount + topHouseDomainList.size();
         JSONObject data = new JSONObject();
 
-        ResultPage<HouseInfoDomainVo> resultPage = new ResultPage<>(houseCount,houseConditionVo.getPageSize(),houseConditionVo.getPageNo(),allHouseList);
         data.put("houseCount",houseCount);
-        data.put("houseList",resultPage.getItems());
+        data.put("houseList",houseInfoDomainList);
         return data;
     }
 
