@@ -38,7 +38,7 @@ public interface EnterpriseInfoDao {
             " and (title like concat('%','${keyword}','%') or main_business like concat('%','${keyword}','%') or enterprise_name like concat('%','${keyword}','%') or address like concat('%','${keyword}','%') " +
             " or description like concat('%','${keyword}','%') or trade like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by status desc "+
+            " order by status desc,id asc "+
             " limit #{from},#{limit}"+
             "</script>")
     public List<EnterpriseInfoVo> selectAdminEnterpriseInfoListByCondition(EnterpriseAdminConditionVo enterpriseConditionVo);

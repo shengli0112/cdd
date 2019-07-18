@@ -93,7 +93,7 @@ public interface LeaseParkDao {
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.status desc "+
+            " order by h.status desc,h.id asc "+
             " limit #{from},#{limit}"+
             "</script>")
     public List<LeaseParkInfoVo> selectAdminLeaseParkInfoList(ParkAdminConditionVo leaseParkCondition);
