@@ -66,6 +66,12 @@ public class HouseInfoDomain {
 
     private Integer top;
 
+    private String companyName;
+
+    private Integer staffNumber;
+
+    private Integer tax;
+
     private String background;
 
     public Long getId() {
@@ -314,6 +320,30 @@ public class HouseInfoDomain {
 
     public void setTop(Integer top) {
         this.top = top;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName == null ? null : companyName.trim();
+    }
+
+    public Integer getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(Integer staffNumber) {
+        this.staffNumber = staffNumber;
+    }
+
+    public Integer getTax() {
+        return tax;
+    }
+
+    public void setTax(Integer tax) {
+        this.tax = tax;
     }
 
     public String getBackground() {

@@ -73,6 +73,14 @@ public class HouseInfoDomainVo {
     //是否置顶
     private Integer top;
 
+    private String companyName;
+
+    //公司人数
+    private Integer staffNumber;
+
+    //纳税额 万元
+    private Integer tax;
+
     public Long getId() {
         return id;
     }
@@ -335,5 +343,29 @@ public class HouseInfoDomainVo {
 
     public void setTop(Integer top) {
         this.top = top;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Integer getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(Integer staffNumber) {
+        this.staffNumber = staffNumber;
+    }
+
+    public Integer getTax() {
+        return tax;
+    }
+
+    public void setTax(Integer tax) {
+        this.tax = tax;
     }
 }

@@ -33,6 +33,9 @@
     <result column="trade" property="trade" jdbcType="VARCHAR" />
     <result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
     <result column="top" property="top" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="staff_number" property="staffNumber" jdbcType="INTEGER" />
+    <result column="tax" property="tax" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.HouseInfoDomain" extends="BaseResultMap" >
     <result column="background" property="background" jdbcType="LONGVARCHAR" />
@@ -99,7 +102,8 @@
     id, title, city, county, street, house_number, area, selling_price, electricity, 
     house_type, house_use_type, floor, fire_control, contacts, phone, status, create_ts, 
     update_ts, house_status, cover_area, house_edge, user_id, single_price, price_type, 
-    use_area, sign_contract, town, description, trade, expire_date, top
+    use_area, sign_contract, town, description, trade, expire_date, top, company_name, 
+    staff_number, tax
   </sql>
   <sql id="Blob_Column_List" >
     background
@@ -163,7 +167,8 @@
       user_id, single_price, price_type, 
       use_area, sign_contract, town, 
       description, trade, expire_date, 
-      top, background)
+      top, company_name, staff_number, 
+      tax, background)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{county,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{houseNumber,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{sellingPrice,jdbcType=INTEGER}, #{electricity,jdbcType=VARCHAR}, 
@@ -174,7 +179,8 @@
       #{userId,jdbcType=BIGINT}, #{singlePrice,jdbcType=DECIMAL}, #{priceType,jdbcType=INTEGER}, 
       #{useArea,jdbcType=VARCHAR}, #{signContract,jdbcType=INTEGER}, #{town,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, #{expireDate,jdbcType=VARCHAR}, 
-      #{top,jdbcType=INTEGER}, #{background,jdbcType=LONGVARCHAR})
+      #{top,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{staffNumber,jdbcType=INTEGER}, 
+      #{tax,jdbcType=INTEGER}, #{background,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseInfoDomain" >
     insert into t_house_info
@@ -271,6 +277,15 @@
       </if>
       <if test="top != null" >
         top,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="staffNumber != null" >
+        staff_number,
+      </if>
+      <if test="tax != null" >
+        tax,
       </if>
       <if test="background != null" >
         background,
@@ -369,6 +384,15 @@
       </if>
       <if test="top != null" >
         #{top,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNumber != null" >
+        #{staffNumber,jdbcType=INTEGER},
+      </if>
+      <if test="tax != null" >
+        #{tax,jdbcType=INTEGER},
       </if>
       <if test="background != null" >
         #{background,jdbcType=LONGVARCHAR},
@@ -477,6 +501,15 @@
       <if test="record.top != null" >
         top = #{record.top,jdbcType=INTEGER},
       </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffNumber != null" >
+        staff_number = #{record.staffNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.tax != null" >
+        tax = #{record.tax,jdbcType=INTEGER},
+      </if>
       <if test="record.background != null" >
         background = #{record.background,jdbcType=LONGVARCHAR},
       </if>
@@ -518,6 +551,9 @@
       trade = #{record.trade,jdbcType=VARCHAR},
       expire_date = #{record.expireDate,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=INTEGER},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      staff_number = #{record.staffNumber,jdbcType=INTEGER},
+      tax = #{record.tax,jdbcType=INTEGER},
       background = #{record.background,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -555,7 +591,10 @@
       description = #{record.description,jdbcType=VARCHAR},
       trade = #{record.trade,jdbcType=VARCHAR},
       expire_date = #{record.expireDate,jdbcType=VARCHAR},
-      top = #{record.top,jdbcType=INTEGER}
+      top = #{record.top,jdbcType=INTEGER},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      staff_number = #{record.staffNumber,jdbcType=INTEGER},
+      tax = #{record.tax,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -653,6 +692,15 @@
       <if test="top != null" >
         top = #{top,jdbcType=INTEGER},
       </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNumber != null" >
+        staff_number = #{staffNumber,jdbcType=INTEGER},
+      </if>
+      <if test="tax != null" >
+        tax = #{tax,jdbcType=INTEGER},
+      </if>
       <if test="background != null" >
         background = #{background,jdbcType=LONGVARCHAR},
       </if>
@@ -691,6 +739,9 @@
       trade = #{trade,jdbcType=VARCHAR},
       expire_date = #{expireDate,jdbcType=VARCHAR},
       top = #{top,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      staff_number = #{staffNumber,jdbcType=INTEGER},
+      tax = #{tax,jdbcType=INTEGER},
       background = #{background,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -725,7 +776,10 @@
       description = #{description,jdbcType=VARCHAR},
       trade = #{trade,jdbcType=VARCHAR},
       expire_date = #{expireDate,jdbcType=VARCHAR},
-      top = #{top,jdbcType=INTEGER}
+      top = #{top,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      staff_number = #{staffNumber,jdbcType=INTEGER},
+      tax = #{tax,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

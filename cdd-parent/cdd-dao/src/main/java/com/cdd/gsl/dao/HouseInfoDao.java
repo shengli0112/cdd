@@ -19,7 +19,8 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
-            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade,expire_date as expireDate " +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade,expire_date as expireDate," +
+            "company_name as companyName,staff_number as staffNumber,tax as tax " +
             " from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
@@ -34,7 +35,8 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top" +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
             " where h.status=1 and top.status=1 " +
             "<if test='userId != null'>" +
@@ -110,7 +112,8 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
-            "u.portrait as portrait,h.trade as trade,top as top" +
+            "u.portrait as portrait,h.trade as trade,h.top as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.top=0" +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
@@ -257,7 +260,8 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top" +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
             " where h.status=1 and top.status=1 " +
             "<if test=\"houseType != null\">"+
@@ -276,7 +280,8 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
-            "u.portrait as portrait,h.trade as trade,top as top" +
+            "u.portrait as portrait,h.trade as trade,top as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_info h left join t_user_info u on h.user_id=u.id " +
             " where h.status=1 and h.top=0 and (h.house_use_type=3 or h.house_use_type=4)" +
             "<if test=\"houseType != null\">"+
@@ -298,7 +303,8 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top" +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
             " where h.status=1 and top.status=1 " +
             "<if test=\"houseType != null\">"+
@@ -681,7 +687,8 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs," +
-            "h.trade as trade,h.expire_date as expireDate,h.status as status" +
+            "h.trade as trade,h.expire_date as expireDate,h.status as status," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_info h  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
