@@ -14,6 +14,8 @@ import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.LeaseParkCondition;
 import com.cdd.gsl.vo.LeaseParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
+import com.cdd.gsl.vo.SellParkInfoVo;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,13 +93,23 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public CommonResult<SellParkInfoDomain> findSellParkDetail(Long sellParkId) {
-        CommonResult<SellParkInfoDomain>  commonResult = new CommonResult<>();
+    public CommonResult findSellParkDetail(Long sellParkId) {
+        CommonResult  commonResult = new CommonResult<>();
         if(sellParkId != null){
-            SellParkInfoDomain sellParkInfoDomain = sellParkInfoDomainMapper.selectByPrimaryKey(sellParkId);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("查询成功");
-            commonResult.setData(sellParkInfoDomain);
+            List<SellParkInfoVo> sellParkInfoVoList = sellParkDao.selectSellParkInfoById(sellParkId);
+            if(CollectionUtils.isNotEmpty(sellParkInfoVoList)){
+                SellParkInfoVo sellParkInfoVo = sellParkInfoVoList.get(0);
+                List<SellParkInfoVo> sellParkInfoVoRand = sellParkDao.selectSellParkRand();
+                sellParkInfoVo.setLikes(sellParkInfoVoRand);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("查询成功");
+                commonResult.setData(sellParkInfoVo);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("该出售园区不存在");
+            }
+
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
@@ -113,6 +125,8 @@ public class ParkServiceImpl implements ParkService {
             LeaseParkInfoVo leaseParkInfoVo = new LeaseParkInfoVo();
             if(leaseParkInfos != null && leaseParkInfos.size() > 0){
                 leaseParkInfoVo = leaseParkInfos.get(0);
+                List<LeaseParkInfoVo> randomLeaseParkList = leaseParkDao.selectLeaseParkInfoByRandom();
+                leaseParkInfoVo.setLikes(randomLeaseParkList);
             }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");

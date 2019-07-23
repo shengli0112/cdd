@@ -10,6 +10,7 @@
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="redirect_url" property="redirectUrl" jdbcType="VARCHAR" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, slide_url, sequence, status, create_ts, redirect_url, update_ts
+    id, title, slide_url, sequence, status, create_ts, redirect_url, update_ts, city
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.SlideInfoDomainExample" >
     select
@@ -105,10 +106,12 @@
   <insert id="insert" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
     insert into t_slide_info (id, title, slide_url, 
       sequence, status, create_ts, 
-      redirect_url, update_ts)
+      redirect_url, update_ts, city
+      )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, 
       #{sequence,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
-      #{redirectUrl,jdbcType=VARCHAR}, #{updateTs,jdbcType=TIMESTAMP})
+      #{redirectUrl,jdbcType=VARCHAR}, #{updateTs,jdbcType=TIMESTAMP}, #{city,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
     insert into t_slide_info
@@ -137,6 +140,9 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
+      <if test="city != null" >
+        city,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +168,9 @@
       </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +207,9 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +224,8 @@
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       redirect_url = #{record.redirectUrl,jdbcType=VARCHAR},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      city = #{record.city,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +254,9 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -252,7 +268,8 @@
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       redirect_url = #{redirectUrl,jdbcType=VARCHAR},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      city = #{city,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

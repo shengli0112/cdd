@@ -1019,9 +1019,9 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-  	public CommonResult slideList() {
+  	public CommonResult slideList(String city) {
         CommonResult commonResult = new CommonResult();
-        List<SlideInfoDomain> slideInfoDomainList = slideInfoDao.slideInfoList();
+        List<SlideInfoDomain> slideInfoDomainList = slideInfoDao.slideInfoList(city);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(slideInfoDomainList);
@@ -1049,6 +1049,7 @@ public class UserSerivceImpl implements UserService {
             UserInfoDomain userInfoDomain = new UserInfoDomain();
             userInfoDomain.setId(userId);
             userInfoDomain.setStatus(0);
+            userInfoDomain.setUpdateTs(new Date());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("删除成功");
@@ -1066,6 +1067,7 @@ public class UserSerivceImpl implements UserService {
             UserInfoDomain userInfoDomain = new UserInfoDomain();
             userInfoDomain.setId(userId);
             userInfoDomain.setStatus(1);
+            userInfoDomain.setUpdateTs(new Date());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
        

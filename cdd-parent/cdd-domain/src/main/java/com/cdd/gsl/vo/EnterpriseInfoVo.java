@@ -1,6 +1,7 @@
 package com.cdd.gsl.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class EnterpriseInfoVo {
     private Long id;
@@ -34,6 +35,8 @@ public class EnterpriseInfoVo {
     private String title;
 
     private Float price;
+
+    private List<EnterpriseInfoVo> likes;
 
     public Long getId() {
         return id;
@@ -162,5 +165,13 @@ public class EnterpriseInfoVo {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public List<EnterpriseInfoVo> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<EnterpriseInfoVo> likes) {
+        this.likes = likes;
     }
 }

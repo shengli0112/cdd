@@ -10,6 +10,7 @@ import com.cdd.gsl.service.EnterpriseService;
 import com.cdd.gsl.vo.EnterpriseAdminConditionVo;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,10 +81,19 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     public CommonResult findEnterpriseDetail(Long enterpriseId) {
         CommonResult commonResult = new CommonResult();
         if(enterpriseId != null){
-            EnterpriseInfoDomain enterpriseInfoDomain = enterpriseInfoDomainMapper.selectByPrimaryKey(enterpriseId);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("查询成功");
-            commonResult.setData(enterpriseInfoDomain);
+            List<EnterpriseInfoVo> enterpriseInfoVoList = enterpriseInfoDao.selectAdminEnterpriseInfoListById(enterpriseId);
+            if(CollectionUtils.isNotEmpty(enterpriseInfoVoList)){
+                EnterpriseInfoVo enterpriseInfoVo = enterpriseInfoVoList.get(0);
+                List<EnterpriseInfoVo> randEnterpriseList = enterpriseInfoDao.selectEnterpriseInfoListRand();
+                enterpriseInfoVo.setLikes(randEnterpriseList);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("查询成功");
+                commonResult.setData(enterpriseInfoVo);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("该企业被删除");
+            }
+
         }else{
             commonResult.setMessage("参数异常");
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);

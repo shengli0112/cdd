@@ -44,6 +44,15 @@ public interface EnterpriseInfoDao {
     public List<EnterpriseInfoVo> selectAdminEnterpriseInfoListByCondition(EnterpriseAdminConditionVo enterpriseConditionVo);
 
     @Select("<script> " +
+            "select id as id, main_business as mainBusiness, enterprise_name as enterpriseName, " +
+            "address as address, register_date as registerDate,description as description, " +
+            " contacts as contacts,phone as phone,image as image,user_id as userId,title as title,trade as trade,price as price," +
+            "create_ts as createTs,update_ts as updateTs,status as status"+
+            " from t_enterprise_info where 1=1 and id=#{id} and status=1" +
+            "</script>")
+    public List<EnterpriseInfoVo> selectAdminEnterpriseInfoListById(Long id);
+
+    @Select("<script> " +
             "select count(*)  " +
             " from t_enterprise_info where 1=1 " +
             "<if test='keyword != null'>" +

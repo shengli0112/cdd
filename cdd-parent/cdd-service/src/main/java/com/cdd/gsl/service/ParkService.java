@@ -19,7 +19,7 @@ public interface ParkService {
 
     CommonResult updateLeasePark(LeaseParkInfoDomain leaseParkInfoDomain);
 
-    CommonResult<SellParkInfoDomain> findSellParkDetail(Long sellParkId);
+    CommonResult findSellParkDetail(Long sellParkId);
 
     CommonResult<LeaseParkInfoVo> findLeaseParkDetail(Long leaseParkId);
 

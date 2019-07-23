@@ -206,9 +206,9 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
         HashMap map = new HashMap();
-        map.put("page", houseConditionVo.getPageNo());
+        /*map.put("page", houseConditionVo.getPageNo());
         map.put("size", houseConditionVo.getPageSize());
-        map = PageUtil.getPageMap(map);
+        map = PageUtil.getPageMap(map);*/
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
         int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
         int topHouseCount = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);

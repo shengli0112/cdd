@@ -72,7 +72,7 @@ public interface UserService {
 
     CommonResult buyCurrency(UserCurrencyMappingDomain userCurrencyMappingDomain);
 
-    CommonResult slideList();
+    CommonResult slideList(String city);
 
     /****************************管理员**********************************/
     CommonResult userList(UserAdminConditionVo userConditionVo);

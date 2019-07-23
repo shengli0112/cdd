@@ -4,6 +4,7 @@ import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.ParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
+import com.cdd.gsl.vo.SellParkInfoVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -72,11 +73,29 @@ public interface SellParkDao {
             "</script>")
     public List<SellParkInfoDomain> selectSellParkInfoList(SellParkCondition sellParkCondition);
 
+    @Select("<script>" +
+            "select h.id as id,h.city as city,h.county as county,h.town as town," +
+            "h.address as address,h.park_name as parkName," +
+            "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description," +
+            "h.create_ts as createTs " +
+            "from t_sell_park_info h where h.status=1 and h.id=#{id}" +
+            "</script>")
+    public List<SellParkInfoVo> selectSellParkInfoById(Long id);
+
     @Select("select id as id,address as address,park_name as parkName," +
             "total_area as totalArea,total_price as totalPrice," +
-            "(select group_concat(dict_value separator ' ') from t_common_dict where dict_name='tag' and dict_code in (tag) group by dict_name) as tag" +
+            "tag as tag" +
             " from t_sell_park_info where status=1 order by rand() limit 3")
     List<ParkInfoVo> selectSellParkInfoRand();
+
+    @Select("select h.id as id,h.city as city,h.county as county,h.town as town," +
+            "h.address as address,h.park_name as parkName," +
+            "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description," +
+            "h.create_ts as createTs " +
+            " from t_sell_park_info where status=1 order by rand() limit 3")
+    List<SellParkInfoVo> selectSellParkRand();
 
 
     @Select("<script>" +

@@ -447,8 +447,8 @@ public class UserController {
      * 轮播图
      */
     @RequestMapping("slideList")
-    public CommonResult slideList(){
-        return userService.slideList();
+    public CommonResult slideList(@RequestParam("city")String city){
+        return userService.slideList(city);
     }
 
     @RequestMapping("testMq")

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.common.util.MailUtil;
 import com.cdd.gsl.common.util.PasswordUtil;
 import com.cdd.gsl.dao.*;
@@ -14,9 +15,11 @@ import com.cdd.gsl.vo.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
+import org.elasticsearch.common.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -24,6 +27,7 @@ import org.springframework.util.StringUtils;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -59,6 +63,15 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private InformRecordDao informRecordDao;
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${pass.broker.code.id}")
+    private String passBrokerCodeId;
 
     @Override
     public CommonResult doLogin(String username, String password) throws Exception {
@@ -232,7 +245,12 @@ public class AdminServiceImpl implements AdminService {
             UserInfoDomain userInfoDomain = new UserInfoDomain();
             userInfoDomain.setId(applyBrokerInfoDomain.getUserId());
             userInfoDomain.setUserType(3);
+            userInfoDomain.setUpdateTs(new Date());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                    .append("?mobile=").append(applyBrokerInfoDomain.getPhone()).append("&tpl_id=").append(passBrokerCodeId)
+                    .append("&tpl_value=").append("").append("&key=").append(verifyCodeKey);
+            HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("审核通过");
         }else{
