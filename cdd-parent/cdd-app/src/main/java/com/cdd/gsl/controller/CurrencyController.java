@@ -26,4 +26,12 @@ public class CurrencyController {
     public CommonResult isPublish(Long userId){
         return currencyService.isPublish(userId);
     }
+
+    /**
+     * 积分数
+     */
+    @RequestMapping("integralCount")
+    public CommonResult integralCount(Long userId){
+        return currencyService.integralCount(userId);
+    }
 }

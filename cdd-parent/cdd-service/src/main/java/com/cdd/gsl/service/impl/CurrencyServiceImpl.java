@@ -1,12 +1,12 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
-import com.cdd.gsl.dao.CurrencyDao;
-import com.cdd.gsl.dao.CurrencyInfoDomainMapper;
-import com.cdd.gsl.dao.UserCurrencyDao;
-import com.cdd.gsl.dao.UserCurrencyMappingDomainMapper;
+import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.UserInfoDomain;
+import com.cdd.gsl.domain.UserInfoDomainExample;
 import com.cdd.gsl.service.CurrencyService;
 import com.cdd.gsl.vo.CurrencyVo;
 import com.cdd.gsl.vo.UserCurrencyVo;
@@ -22,6 +22,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Autowired
     private CurrencyDao currencyDao;
+
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Autowired
+    private UserInfoDomainMapper userInfoDomainMapper;
 
     @Autowired
     private UserCurrencyMappingDomainMapper userCurrencyMappingDomainMapper;
@@ -59,6 +65,45 @@ public class CurrencyServiceImpl implements CurrencyService {
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("该币不存在");
             }
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult integralCount(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
+        userInfoDomainExample.createCriteria().andIdEqualTo(userId).andStatusEqualTo(1);
+        List<UserInfoDomain> userInfoDomainList = userInfoDomainMapper.selectByExample(userInfoDomainExample);
+        if(CollectionUtils.isNotEmpty(userInfoDomainList)){
+            JSONObject json = new JSONObject();
+            UserInfoDomain userInfoDomain = userInfoDomainList.get(0);
+            Integer integral = userInfoDomain.getIntegral();
+            json.put("integral",integral);
+            List<UserCurrencyVo> userCurrencyVos = userCurrencyDao.findUserCurrencyByUserId(userId);
+            if(userCurrencyVos != null && userCurrencyVos.size() > 0) {
+                UserCurrencyVo userCurrencyVo = userCurrencyVos.get(0);
+                List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getId());
+                if (CollectionUtils.isNotEmpty(currencyVos)) {
+                    CurrencyVo currencyVo = currencyVos.get(0);
+                    int days = DateUtil.differentDaysByMillisecond(new Date(),userCurrencyVo.getCreateTs());
+                    if(days < currencyVo.getMonth()*30){
+                        json.put("days",currencyVo.getMonth()*30 - days);
+                    }else {
+                        json.put("days",null);
+                    }
+                }else{
+                    json.put("days",null);
+                }
+            }else {
+                json.put("days",null);
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(json);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("该用户不存在");
         }
         return commonResult;
     }
