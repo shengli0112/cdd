@@ -58,28 +58,52 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private HouseTopDomainMapper houseTopDomainMapper;
 
+    @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
+        logger.info("HouseServiceImpl addHouse -{}",JSONObject.toJSON(houseInfoDomain).toString());
         Long userId = houseInfoDomain.getUserId();
-        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
-        if(!CollectionUtils.isEmpty(userIds)){
-            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
-            if(CollectionUtils.isEmpty(ids)){
+        try {
+            List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+            if(!CollectionUtils.isEmpty(userIds)){
+                List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
+                if(CollectionUtils.isEmpty(ids)){
+                    houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                    userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                    messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                    messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                    messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励5个多多币");
+                    messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                    commonResult.setFlag(1);
+                    commonResult.setMessage("添加成功");
+                }else{
+                    commonResult.setFlag(0);
+                    commonResult.setMessage("重复房源,不能发布");
+                }
+            }else{
                 houseInfoDomainMapper.insertSelective(houseInfoDomain);
-                userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),10);
+                userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励多多币5枚");
+                messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);
                 commonResult.setFlag(1);
                 commonResult.setMessage("添加成功");
-            }else{
-                commonResult.setFlag(0);
-                commonResult.setMessage("重复房源,不能发布");
             }
-        }else{
-            houseInfoDomainMapper.insertSelective(houseInfoDomain);
-            userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),10);
-            commonResult.setFlag(1);
-            commonResult.setMessage("添加成功");
+        }catch (Exception e){
+            logger.info("HouseServiceImpl addHouse error");
+            e.printStackTrace();
+            commonResult.setFlag(0);
+            commonResult.setMessage("发布异常");
         }
+
         return commonResult;
 
     }

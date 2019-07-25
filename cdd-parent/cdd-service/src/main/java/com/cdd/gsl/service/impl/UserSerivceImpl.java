@@ -158,6 +158,7 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
+                    userInfoDomain.setIntegral(300);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
@@ -169,9 +170,12 @@ public class UserSerivceImpl implements UserService {
                     loginTokenVo.setUserId(userInfoDomain.getId());
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
                     loginTokenVo.setToken(token);
+
+                    JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                    loginToken.put("flag",1);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
-                    commonResult.setData(loginTokenVo);
+                    commonResult.setData(loginToken);
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("验证码错误");
@@ -288,8 +292,8 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
-    public CommonResult<LoginTokenVo> phoneLogin(LoginUserVo loginUserVo){
-        CommonResult<LoginTokenVo> commonResult = new CommonResult<>();
+    public CommonResult phoneLogin(LoginUserVo loginUserVo){
+        CommonResult commonResult = new CommonResult<>();
         //是否存在该手机号
         UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
         userInfoDomainExample.createCriteria().andPhoneEqualTo(loginUserVo.getPhone()).andStatusEqualTo(1);
@@ -302,6 +306,7 @@ public class UserSerivceImpl implements UserService {
             if(CollectionUtils.isNotEmpty(verifyPhoneDomains)){
 
                 UserInfoDomain userInfoDomain = new UserInfoDomain();
+                int flag = 0;
                 if(CollectionUtils.isEmpty(userInfoDomainList)){
 
                     userInfoDomain.setPhone(loginUserVo.getPhone());
@@ -311,8 +316,9 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
+                    userInfoDomain.setIntegral(300);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
-
+                    flag = 1;
                 }else{
                     userInfoDomain = userInfoDomainList.get(0);
                 }
@@ -327,9 +333,13 @@ public class UserSerivceImpl implements UserService {
                 loginTokenVo.setUserId(userInfoDomain.getId());
                 loginTokenVo.setUserType(userInfoDomain.getUserType());
                 loginTokenVo.setToken(token);
+                JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                if(flag == 1){
+                    loginToken.put("flag",flag);
+                }
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("登录成功");
-                commonResult.setData(loginTokenVo);
+                commonResult.setData(loginToken);
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("验证码不正确");

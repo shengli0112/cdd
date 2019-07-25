@@ -4,11 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.LeaseParkDao;
-import com.cdd.gsl.dao.LeaseParkInfoDomainMapper;
-import com.cdd.gsl.dao.SellParkDao;
-import com.cdd.gsl.dao.SellParkInfoDomainMapper;
+import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
+import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.LeaseParkCondition;
@@ -36,11 +34,23 @@ public class ParkServiceImpl implements ParkService {
     @Autowired
     private LeaseParkDao leaseParkDao;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(sellParkInfoDomain != null){
             sellParkInfoDomainMapper.insertSelective(sellParkInfoDomain);
+            userInfoDao.updateUserintegralById(sellParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            messageInfoDomain.setUserId(sellParkInfoDomain.getUserId());
+            messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
@@ -55,6 +65,12 @@ public class ParkServiceImpl implements ParkService {
         CommonResult commonResult = new CommonResult();
         if(leaseParkInfoDomain != null){
             leaseParkInfoDomainMapper.insertSelective(leaseParkInfoDomain);
+            userInfoDao.updateUserintegralById(leaseParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            messageInfoDomain.setUserId(leaseParkInfoDomain.getUserId());
+            messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
