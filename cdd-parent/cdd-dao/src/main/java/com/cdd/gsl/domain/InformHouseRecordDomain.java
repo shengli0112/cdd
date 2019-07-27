@@ -17,6 +17,8 @@ public class InformHouseRecordDomain {
 
     private Date createTs;
 
+    private Integer status;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class InformHouseRecordDomain {
 
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

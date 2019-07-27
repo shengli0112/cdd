@@ -1,8 +1,7 @@
 package com.cdd.gsl.vo;
 
-public class SlideConditionVo {
+public class InformHouseConditionVo {
 
-    private String city;
     //第几页
     private Integer page;
 
@@ -10,14 +9,6 @@ public class SlideConditionVo {
     private Integer limit = 10;
 
     private Integer from;
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     public Integer getPage() {
         return page;

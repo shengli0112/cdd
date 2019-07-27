@@ -130,4 +130,33 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
         return commonResult;
     }
+
+    @Override
+    public CommonResult findNewChatList(Long objId, String type,Long sendUserId,Long receiveUserId,int count) {
+        CommonResult commonResult = new CommonResult();
+        if(objId != null && !StringUtils.isEmpty(type) && sendUserId != null && receiveUserId != null){
+            List<ChatMessageVo> allChatMessageList = chatMessageDao.chatMessageList(objId,type,sendUserId,receiveUserId);
+            count = allChatMessageList.size() - count;
+            List<ChatMessageVo> chatMessageVoList = chatMessageDao.newChatMessageList(objId,type,sendUserId,receiveUserId,count);
+            List<ChatMessageVo> chatMessageVos = new ArrayList<>();
+            if(!CollectionUtils.isEmpty(chatMessageVoList)){
+                for(ChatMessageVo chatMessageVo:chatMessageVoList){
+                    SingleUserInfoVo sendUser = userInfoDao.findUserInfoById(chatMessageVo.getSendUserId());
+                    SingleUserInfoVo receiveUser = userInfoDao.findUserInfoById(chatMessageVo.getReceiveUserId());
+                    chatMessageVo.setSendUser(sendUser);
+                    chatMessageVo.setReceiveUser(receiveUser);
+                    chatMessageVos.add(chatMessageVo);
+                }
+            }
+            messageInfoDao.updateMessageIsRead(objId, type, sendUserId, receiveUserId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(chatMessageVos);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
+        return commonResult;
+    }
 }

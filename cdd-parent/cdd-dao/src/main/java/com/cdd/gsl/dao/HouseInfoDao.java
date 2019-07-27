@@ -19,12 +19,13 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
             "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
             "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
-            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade,expire_date as expireDate " +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,description as description,trade as trade,expire_date as expireDate," +
+            "company_name as companyName,staff_number as staffNumber,tax as tax " +
             " from t_house_info where status=1 and id=#{houseId}")
     public HouseInfoDetailVo selectHouseInfoById(Long houseId);
 
     @Select("<script> " +
-            "select h.id as id, h.title as title, h.city as city, " +
+            "select * from ((select h.id as id, h.title as title, h.city as city, " +
             "h.county as county,h.town as town, h.street as street, h.area as area," +
             "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
             "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
@@ -34,8 +35,86 @@ public interface HouseInfoDao {
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
-            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade" +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1" +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
+            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 " +
+            "<if test='userId != null'>" +
+            "  and h.user_id=#{userId}" +
+            "</if> " +
+            "<if test=\"city != null\">" +
+            " and h.city=#{city}"+
+            "</if><if test=\"county != null\">" +
+            " and h.county=#{county}"+
+            "</if>" +
+            "<if test=\"town != null\">" +
+            " and h.town=#{town}"+
+            "</if>" +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if><if test=\"houseUseType != null\">"+
+            " and h.house_use_type=#{houseUseType}"+
+            "</if><if test=\"floor != null\">"+
+            " and h.floor=#{floor}"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"
+            +
+            "<if test='keyword != null'>" +
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
+            " order by top.create_ts desc " +
+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
+            "</if>"+
+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
+            "</if>)"+
+            " union all "+
+            "(select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
+            "u.portrait as portrait,h.trade as trade,h.top as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.top=0" +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -96,12 +175,145 @@ public interface HouseInfoDao {
             "<if test='priceOrder != null'>"+
             "<if test='priceOrder == 1'>,h.selling_price</if>"+
             "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
-            "</if>"+
-            " limit #{from},#{pageSize}"+
+            "</if>)) tmp order by createTs desc" +
+            " limit #{from},#{pageSize} "+
             "</script>")
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
+    @Select("<script> " +
+            "select count(*) " +
+            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 " +
+            "<if test='userId != null'>" +
+            "  and h.user_id=#{userId}" +
+            "</if> " +
+            "<if test=\"city != null\">" +
+            " and h.city=#{city}"+
+            "</if><if test=\"county != null\">" +
+            " and h.county=#{county}"+
+            "</if>" +
+            "<if test=\"town != null\">" +
+            " and h.town=#{town}"+
+            "</if>" +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if><if test=\"houseUseType != null\">"+
+            " and h.house_use_type=#{houseUseType}"+
+            "</if><if test=\"floor != null\">"+
+            " and h.floor=#{floor}"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
 
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"
+            +
+            "<if test='keyword != null'>" +
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
+            " order by top.create_ts desc " +
+
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
+            "</if>"+
+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
+            "</if>"+
+            "</script>")
+    public int selectTopHouseInfoListByCondition(HouseConditionVo houseConditionVo);
+
+
+    @Select("<script> " +
+            "select * from ((select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
+            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 " +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if>"+
+            " order by top.create_ts desc) " +
+            " union all "+
+            "(select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
+            "u.portrait as portrait,h.trade as trade,top as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and h.top=0 and (h.house_use_type=3 or h.house_use_type=4)" +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if>"+
+            " order by h.create_ts desc)) tmp order by createTs desc" +
+            " limit #{from},#{pageSize} " +
+            "</script>")
+    public List<HouseInfoDomainVo> selectHomeHouseListByCondition(HouseConditionVo houseConditionVo);
+
+    @Select("<script> " +
+            "select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
+            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 " +
+            "<if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if>"+
+            " order by top.create_ts desc " +
+
+            "</script>")
+    public List<HouseInfoDomainVo> selectTopHomeHouseListByCondition(HouseConditionVo houseConditionVo);
 
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +
@@ -173,7 +385,7 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(h.id) " +
-            " from t_house_info h where h.status=1 " +
+            " from t_house_info h where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -475,13 +687,14 @@ public interface HouseInfoDao {
             "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs," +
-            "h.trade as trade,h.expire_date as expireDate,h.status as status" +
+            "h.trade as trade,h.expire_date as expireDate,h.status as status," +
+            "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_info h  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.id" +
+            " order by h.status desc,h.id asc " +
             " limit #{from},#{limit}"+
             "</script>")
     public List<HouseInfoDomainVo> selectAdminHouseInfoList(HouseAdminConditionVo houseConditionVo);

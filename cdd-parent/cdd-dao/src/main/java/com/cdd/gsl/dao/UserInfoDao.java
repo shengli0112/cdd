@@ -105,8 +105,9 @@ public interface UserInfoDao {
             " from t_user_info" +
             " where 1=1 " +
             "<if test='keyword != null'>" +
-            " and (username like concat('%','${keyword}','%')) " +
+            " and (username like concat('%','${keyword}','%') or phone like concat('%','${keyword}','%')) " +
             "</if>"+
+            " order by status desc,id asc "+
             " limit #{from},#{limit} </script>")
     List<UserInfoDemainVo> userList(UserAdminConditionVo userConditionVo);
 

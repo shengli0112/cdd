@@ -13,6 +13,8 @@ import java.util.List;
 public interface HouseService {
     CommonResult addHouse(HouseInfoDomain houseInfoDomain);
 
+    CommonResult topHouse(Long houseId,Long userId);
+
     CommonResult updateHouse(HouseInfoDomain houseInfoDomain);
 
     void deleteHouse(HouseInfoDomain houseInfoDomain);
@@ -21,9 +23,15 @@ public interface HouseService {
 
     JSONObject findHouseInfoList(HouseConditionVo houseConditionVo);
 
+    JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo);
+
     List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     List<HouseInfoDomainVo> selectCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
     CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain);
+
+    void delayTopHouse();
+
+    CommonResult switchHouse(Long fromUserId,Long toUserId);
 }

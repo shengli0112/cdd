@@ -6,4 +6,6 @@ public interface CurrencyService {
     public CommonResult currencyList();
 
     public CommonResult isPublish(Long userId);
+
+    public CommonResult integralCount(Long userId);
 }

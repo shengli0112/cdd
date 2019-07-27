@@ -1,6 +1,7 @@
 package com.cdd.gsl.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class LeaseParkInfoVo {
     private Long id;
@@ -38,6 +39,8 @@ public class LeaseParkInfoVo {
     private String background;
 
     private Integer status;
+
+    private List<LeaseParkInfoVo> likes;
 
     public Long getId() {
         return id;
@@ -174,5 +177,13 @@ public class LeaseParkInfoVo {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<LeaseParkInfoVo> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<LeaseParkInfoVo> likes) {
+        this.likes = likes;
     }
 }

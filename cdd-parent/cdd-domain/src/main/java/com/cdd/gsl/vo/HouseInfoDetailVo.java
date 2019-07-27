@@ -69,6 +69,14 @@ public class HouseInfoDetailVo {
 
     private String expireDate;
 
+    private String companyName;
+
+    //公司人数
+    private Integer staffNumber;
+
+    //纳税额 万元
+    private Integer tax;
+
     private List<HouseInfoDomainVo> likes;
 
     public Long getId() {
@@ -333,5 +341,29 @@ public class HouseInfoDetailVo {
 
     public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Integer getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(Integer staffNumber) {
+        this.staffNumber = staffNumber;
+    }
+
+    public Integer getTax() {
+        return tax;
+    }
+
+    public void setTax(Integer tax) {
+        this.tax = tax;
     }
 }

@@ -81,6 +81,13 @@ public interface LeaseParkDao {
             "from t_lease_park_info h where h.status=1 and h.id=#{id}")
     List<LeaseParkInfoVo> selectLeaseParkInfoById(Long id);
 
+    @Select("select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
+            "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
+            "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType " +
+            "from t_lease_park_info h order by rand() limit 3")
+    List<LeaseParkInfoVo> selectLeaseParkInfoByRandom();
+
 
     @Select("<script>" +
             "select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
@@ -93,8 +100,8 @@ public interface LeaseParkDao {
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
+            " order by h.status desc,h.id asc "+
             " limit #{from},#{limit}"+
-
             "</script>")
     public List<LeaseParkInfoVo> selectAdminLeaseParkInfoList(ParkAdminConditionVo leaseParkCondition);
 

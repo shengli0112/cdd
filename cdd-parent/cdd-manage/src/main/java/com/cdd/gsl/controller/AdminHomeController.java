@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping("house")
 public class AdminHomeController {
@@ -46,6 +48,7 @@ public class AdminHomeController {
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
             houseInfoDomain.setId(json.getLong("houseId"));
             houseInfoDomain.setStatus(0);
+            houseInfoDomain.setUpdateTs(new Date());
             houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
             commonResult.setMessage("删除成功");
@@ -67,6 +70,7 @@ public class AdminHomeController {
             HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
             houseInfoDomain.setId(json.getLong("houseId"));
             houseInfoDomain.setStatus(1);
+            houseInfoDomain.setUpdateTs(new Date());
             houseService.deleteHouse(houseInfoDomain);
             commonResult.setFlag(1);
             commonResult.setMessage("恢复成功");

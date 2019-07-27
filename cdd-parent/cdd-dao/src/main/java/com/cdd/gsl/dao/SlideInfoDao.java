@@ -16,9 +16,12 @@ public interface SlideInfoDao {
 
     @Select("<script>" +
             "select id as id,title as title,slide_url as slideUrl,sequence as sequence" +
-            " from t_slide_info where 1=1 and status=1 " +
+            " from t_slide_info where 1=1 and status=1  and city='全国' " +
+            "<if test='city != null'>" +
+            " or city=#{city}" +
+            "</if>" +
             "</script>")
-    List<SlideInfoDomain> slideInfoList();
+    List<SlideInfoDomain> slideInfoList(String city);
 
     @Select("<script>" +
             "select count(*)" +

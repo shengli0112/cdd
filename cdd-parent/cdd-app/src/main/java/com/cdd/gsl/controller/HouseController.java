@@ -1,6 +1,7 @@
 package com.cdd.gsl.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.TrailInfoDomainMapper;
 import com.cdd.gsl.domain.*;
@@ -39,6 +40,11 @@ public class HouseController {
     @RequestMapping("addHouse")
     public CommonResult addHouse(@RequestBody HouseInfoDomain houseInfoDomain){
         return houseService.addHouse(houseInfoDomain);
+    }
+
+    @RequestMapping("topHouse")
+    public CommonResult topHouse(@RequestParam("houseId") Long houseId,@RequestParam("userId") Long userId){
+        return houseService.topHouse(houseId,userId);
     }
 
     @RequestMapping("addTrail")
@@ -127,9 +133,32 @@ public class HouseController {
         return commonResult;
     }
 
+    /**
+     * 首页房源列表
+     * @param houseConditionVo
+     * @return
+     */
+    @RequestMapping("findHomeHouseInfoList")
+    public CommonResult findHomeHouseInfoList(HouseConditionVo houseConditionVo){
+        logger.info("HouseController findHomeHouseInfoList");
+        CommonResult commonResult = new CommonResult();
+
+        if(houseConditionVo != null){
+            JSONObject data = houseService.findHomeHouseInfoList(houseConditionVo);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
+        return commonResult;
+    }
+
     @RequestMapping("findUserHouseList")
     public CommonResult<List<HouseInfoDomainVo>> findUserHouseList(HouseConditionVo houseConditionVo){
-        logger.info("HouseController findHouseInfoList");
+        logger.info("HouseController findUserHouseList");
         CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
         if(houseConditionVo != null){
@@ -147,7 +176,7 @@ public class HouseController {
 
     @RequestMapping("findCompanyHouseList")
     public CommonResult<List<HouseInfoDomainVo>> findCompanyHouseList(HouseConditionVo houseConditionVo){
-        logger.info("HouseController findHouseInfoList");
+        logger.info("HouseController findCompanyHouseList");
         CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
         if(houseConditionVo != null){
@@ -166,6 +195,18 @@ public class HouseController {
     @RequestMapping("informHouseInfo")
     public CommonResult informHouseInfo(@RequestBody InformHouseRecordDomain informHouseRecordDomain){
        return houseService.informHouseInfo(informHouseRecordDomain);
+    }
+
+    @RequestMapping("switchHouse")
+    public CommonResult switchHouse(@RequestParam("fromUserId") Long fromUserId,@RequestParam("toUserId")Long toUserId){
+        CommonResult commonResult = new CommonResult();
+        if(fromUserId != null && toUserId != null){
+            commonResult = houseService.switchHouse(fromUserId,toUserId);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
     }
 
 }

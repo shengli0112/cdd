@@ -3,6 +3,9 @@ package com.cdd.gsl.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.DateUtil;
+import com.cdd.gsl.common.util.PageUtil;
+import com.cdd.gsl.common.util.ResultPage;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
@@ -15,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -47,30 +52,88 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
+    @Autowired
+    private UserInfoDomainMapper userInfoDomainMapper;
+
+    @Autowired
+    private HouseTopDomainMapper houseTopDomainMapper;
+
+    @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
+        logger.info("HouseServiceImpl addHouse -{}",JSONObject.toJSON(houseInfoDomain).toString());
         Long userId = houseInfoDomain.getUserId();
-        List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
-        if(!CollectionUtils.isEmpty(userIds)){
-            List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
-            if(CollectionUtils.isEmpty(ids)){
+        try {
+            List<Long> userIds = applyBrokerInfoDao.selectBrokerByUserId(userId);
+            if(!CollectionUtils.isEmpty(userIds)){
+                List<Long> ids = houseInfoDao.selectHouseByRegionAndUserId(houseInfoDomain,userIds);
+                if(CollectionUtils.isEmpty(ids)){
+                    houseInfoDomainMapper.insertSelective(houseInfoDomain);
+                    userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                    messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                    messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                    messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励5个多多币");
+                    messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                    commonResult.setFlag(1);
+                    commonResult.setMessage("添加成功");
+                }else{
+                    commonResult.setFlag(0);
+                    commonResult.setMessage("重复房源,不能发布");
+                }
+            }else{
                 houseInfoDomainMapper.insertSelective(houseInfoDomain);
-                userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),10);
+                userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励多多币5枚");
+                messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);
                 commonResult.setFlag(1);
                 commonResult.setMessage("添加成功");
-            }else{
-                commonResult.setFlag(0);
-                commonResult.setMessage("重复房源,不能发布");
             }
-        }else{
-            houseInfoDomainMapper.insertSelective(houseInfoDomain);
-            userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),10);
-            commonResult.setFlag(1);
-            commonResult.setMessage("添加成功");
+        }catch (Exception e){
+            logger.info("HouseServiceImpl addHouse error");
+            e.printStackTrace();
+            commonResult.setFlag(0);
+            commonResult.setMessage("发布异常");
         }
+
         return commonResult;
 
+    }
+
+    @Override
+    public CommonResult topHouse(Long houseId,Long userId) {
+        CommonResult commonResult = new CommonResult();
+        UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(userId);
+        if(userInfoDomain != null){
+            if(userInfoDomain.getIntegral()> CddConstant.PAY_INTERGAL_TOP){
+                HouseTopDomain houseTopDomain = new HouseTopDomain();
+                houseTopDomain.setHouseId(houseId);
+                houseTopDomain.setUserId(userId);
+                houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
+                houseTopDomain.setStatus(1);
+                houseTopDomain.setDay(CddConstant.TOP_DAY);
+                houseTopDomainMapper.insert(houseTopDomain);
+                UserInfoDomain user = new UserInfoDomain();
+                user.setId(userInfoDomain.getId());
+                user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
+                userInfoDomainMapper.updateByPrimaryKeySelective(user);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setData("置顶成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setData("多多币不足，请充值");
+            }
+        }
+
+        return commonResult;
     }
 
     @Override
@@ -166,10 +229,30 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
-
+        HashMap map = new HashMap();
+        /*map.put("page", houseConditionVo.getPageNo());
+        map.put("size", houseConditionVo.getPageSize());
+        map = PageUtil.getPageMap(map);*/
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
         int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        int topHouseCount = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
+
+        houseCount = houseCount+topHouseCount;
         JSONObject data = new JSONObject();
+
+        data.put("houseCount",houseCount);
+        data.put("houseList",houseInfoDomainList);
+        return data;
+    }
+
+    @Override
+    public JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo) {
+        List<HouseInfoDomainVo> topHouseDomainList = houseInfoDao.selectTopHomeHouseListByCondition(houseConditionVo);
+        List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHomeHouseListByCondition(houseConditionVo);
+        int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
+        houseCount = houseCount + topHouseDomainList.size();
+        JSONObject data = new JSONObject();
+
         data.put("houseCount",houseCount);
         data.put("houseList",houseInfoDomainList);
         return data;
@@ -264,6 +347,46 @@ public class HouseServiceImpl implements HouseService{
             commonResult.setMessage("参数为空");
         }
 
+        return commonResult;
+    }
+
+    @Override
+    public void delayTopHouse() {
+        logger.info("HouseServiceImpl delayTopHouse start");
+        HouseTopDomainExample houseTopDomainExample = new HouseTopDomainExample();
+        houseTopDomainExample.createCriteria().andStatusEqualTo(1);
+        List<HouseTopDomain> houseTopDomainList = houseTopDomainMapper.selectByExample(houseTopDomainExample);
+        if(!CollectionUtils.isEmpty(houseTopDomainList)){
+            houseTopDomainList.forEach(houseTop ->{
+                int days = DateUtil.differentDaysByMillisecond(new Date(),houseTop.getCreateTs());
+                if(days > houseTop.getDay()){
+                    HouseTopDomain houseTopDomain = new HouseTopDomain();
+                    houseTopDomain.setId(houseTop.getId());
+                    houseTopDomain.setStatus(0);
+                    houseTopDomainMapper.updateByPrimaryKeySelective(houseTopDomain);
+                    logger.info("HouseServiceImpl delayTopHouse expire house id-{}",houseTop.getHouseId());
+                }
+            });
+        }
+    }
+
+    @Override
+    public CommonResult switchHouse(Long fromUserId, Long toUserId) {
+        CommonResult commonResult = new CommonResult();
+        HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+        houseInfoDomainExample.createCriteria().andUserIdEqualTo(fromUserId);
+        List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+        if(!CollectionUtils.isEmpty(houseInfoDomainList)){
+            houseInfoDomainList.forEach(fromHouse ->{
+                HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+                houseInfoDomain.setId(fromHouse.getId());
+                houseInfoDomain.setUserId(toUserId);
+                houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
+            });
+
+        }
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("切换成功");
         return commonResult;
     }
 }

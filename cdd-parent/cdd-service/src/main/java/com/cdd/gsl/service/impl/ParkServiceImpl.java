@@ -4,16 +4,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.LeaseParkDao;
-import com.cdd.gsl.dao.LeaseParkInfoDomainMapper;
-import com.cdd.gsl.dao.SellParkDao;
-import com.cdd.gsl.dao.SellParkInfoDomainMapper;
+import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
+import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.LeaseParkCondition;
 import com.cdd.gsl.vo.LeaseParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
+import com.cdd.gsl.vo.SellParkInfoVo;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,11 +34,23 @@ public class ParkServiceImpl implements ParkService {
     @Autowired
     private LeaseParkDao leaseParkDao;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Autowired
+    private MessageInfoDomainMapper messageInfoDomainMapper;
+
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(sellParkInfoDomain != null){
             sellParkInfoDomainMapper.insertSelective(sellParkInfoDomain);
+            userInfoDao.updateUserintegralById(sellParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            messageInfoDomain.setUserId(sellParkInfoDomain.getUserId());
+            messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
@@ -53,6 +65,12 @@ public class ParkServiceImpl implements ParkService {
         CommonResult commonResult = new CommonResult();
         if(leaseParkInfoDomain != null){
             leaseParkInfoDomainMapper.insertSelective(leaseParkInfoDomain);
+            userInfoDao.updateUserintegralById(leaseParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            messageInfoDomain.setUserId(leaseParkInfoDomain.getUserId());
+            messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
@@ -91,13 +109,23 @@ public class ParkServiceImpl implements ParkService {
     }
 
     @Override
-    public CommonResult<SellParkInfoDomain> findSellParkDetail(Long sellParkId) {
-        CommonResult<SellParkInfoDomain>  commonResult = new CommonResult<>();
+    public CommonResult findSellParkDetail(Long sellParkId) {
+        CommonResult  commonResult = new CommonResult<>();
         if(sellParkId != null){
-            SellParkInfoDomain sellParkInfoDomain = sellParkInfoDomainMapper.selectByPrimaryKey(sellParkId);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("查询成功");
-            commonResult.setData(sellParkInfoDomain);
+            List<SellParkInfoVo> sellParkInfoVoList = sellParkDao.selectSellParkInfoById(sellParkId);
+            if(CollectionUtils.isNotEmpty(sellParkInfoVoList)){
+                SellParkInfoVo sellParkInfoVo = sellParkInfoVoList.get(0);
+                List<SellParkInfoVo> sellParkInfoVoRand = sellParkDao.selectSellParkRand();
+                sellParkInfoVo.setLikes(sellParkInfoVoRand);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("查询成功");
+                commonResult.setData(sellParkInfoVo);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("该出售园区不存在");
+            }
+
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
@@ -113,6 +141,8 @@ public class ParkServiceImpl implements ParkService {
             LeaseParkInfoVo leaseParkInfoVo = new LeaseParkInfoVo();
             if(leaseParkInfos != null && leaseParkInfos.size() > 0){
                 leaseParkInfoVo = leaseParkInfos.get(0);
+                List<LeaseParkInfoVo> randomLeaseParkList = leaseParkDao.selectLeaseParkInfoByRandom();
+                leaseParkInfoVo.setLikes(randomLeaseParkList);
             }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");

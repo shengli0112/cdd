@@ -14,4 +14,5 @@ public interface CurrencyDao {
     @Select("select id as id,integral as integral,duration as duration,month as month " +
             "from t_currency_info where status=1 and id=#{id}")
     List<CurrencyVo> currencyListById(Long id);
+
 }

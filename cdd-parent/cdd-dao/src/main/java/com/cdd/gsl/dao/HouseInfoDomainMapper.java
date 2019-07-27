@@ -17,15 +17,21 @@ public interface HouseInfoDomainMapper {
 
     int insertSelective(HouseInfoDomain record);
 
+    List<HouseInfoDomain> selectByExampleWithBLOBs(HouseInfoDomainExample example);
+
     List<HouseInfoDomain> selectByExample(HouseInfoDomainExample example);
 
     HouseInfoDomain selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") HouseInfoDomain record, @Param("example") HouseInfoDomainExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") HouseInfoDomain record, @Param("example") HouseInfoDomainExample example);
+
     int updateByExample(@Param("record") HouseInfoDomain record, @Param("example") HouseInfoDomainExample example);
 
     int updateByPrimaryKeySelective(HouseInfoDomain record);
+
+    int updateByPrimaryKeyWithBLOBs(HouseInfoDomain record);
 
     int updateByPrimaryKey(HouseInfoDomain record);
 }

@@ -15,6 +15,12 @@ public class SlideInfoDomain {
 
     private Date createTs;
 
+    private String redirectUrl;
+
+    private Date updateTs;
+
+    private String city;
+
     public Long getId() {
         return id;
     }
@@ -61,5 +67,29 @@ public class SlideInfoDomain {
 
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl == null ? null : redirectUrl.trim();
+    }
+
+    public Date getUpdateTs() {
+        return updateTs;
+    }
+
+    public void setUpdateTs(Date updateTs) {
+        this.updateTs = updateTs;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
     }
 }

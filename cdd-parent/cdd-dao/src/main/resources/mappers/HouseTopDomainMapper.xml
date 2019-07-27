@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cdd.gsl.dao.UserInfoDomainMapper" >
-  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.UserInfoDomain" >
+<mapper namespace="com.cdd.gsl.dao.HouseTopDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.HouseTopDomain" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="house_id" property="houseId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="integral" property="integral" jdbcType="INTEGER" />
-    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="salt" property="salt" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
-    <result column="service_area" property="serviceArea" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="day" property="day" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,16 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, phone, user_type, integral, portrait, password, salt, status, create_ts, 
-    update_ts, service_area
+    id, house_id, user_id, integral, create_ts, update_ts, status, day
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseTopDomainExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_user_info
+    from t_house_top
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,61 +89,41 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_user_info
+    from t_house_top
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_user_info
+    delete from t_house_top
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
-    delete from t_user_info
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.HouseTopDomainExample" >
+    delete from t_house_top
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_user_info (username, phone, user_type, 
-      integral, portrait, password, 
-      salt, status, create_ts, 
-      update_ts, service_area)
-    values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, 
-      #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
-      #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
+    insert into t_house_top (id, house_id, user_id, 
+      integral, create_ts, update_ts, 
+      status, day)
+    values (#{id,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{integral,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{day,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_user_info
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
+    insert into t_house_top
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="username != null" >
-        username,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="phone != null" >
-        phone,
+      <if test="houseId != null" >
+        house_id,
       </if>
-      <if test="userType != null" >
-        user_type,
+      <if test="userId != null" >
+        user_id,
       </if>
       <if test="integral != null" >
         integral,
-      </if>
-      <if test="portrait != null" >
-        portrait,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="salt != null" >
-        salt,
-      </if>
-      <if test="status != null" >
-        status,
       </if>
       <if test="createTs != null" >
         create_ts,
@@ -156,34 +131,25 @@
       <if test="updateTs != null" >
         update_ts,
       </if>
-      <if test="serviceArea != null" >
-        service_area,
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="day != null" >
+        day,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
       </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
+      <if test="houseId != null" >
+        #{houseId,jdbcType=BIGINT},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="integral != null" >
         #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="portrait != null" >
-        #{portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null" >
-        #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
       </if>
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
@@ -191,46 +157,34 @@
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="serviceArea != null" >
-        #{serviceArea,jdbcType=VARCHAR},
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" resultType="java.lang.Integer" >
-    select count(*) from t_user_info
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.HouseTopDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_house_top
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_user_info
+    update t_house_top
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.houseId != null" >
+        house_id = #{record.houseId,jdbcType=BIGINT},
       </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userType != null" >
-        user_type = #{record.userType,jdbcType=INTEGER},
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.integral != null" >
         integral = #{record.integral,jdbcType=INTEGER},
-      </if>
-      <if test="record.portrait != null" >
-        portrait = #{record.portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.salt != null" >
-        salt = #{record.salt,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
@@ -238,8 +192,11 @@
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.serviceArea != null" >
-        service_area = #{record.serviceArea,jdbcType=VARCHAR},
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.day != null" >
+        day = #{record.day,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -247,49 +204,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_user_info
+    update t_house_top
     set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=INTEGER},
+      house_id = #{record.houseId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
       integral = #{record.integral,jdbcType=INTEGER},
-      portrait = #{record.portrait,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      salt = #{record.salt,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
-      service_area = #{record.serviceArea,jdbcType=VARCHAR}
+      status = #{record.status,jdbcType=INTEGER},
+      day = #{record.day,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    update t_user_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
+    update t_house_top
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=BIGINT},
       </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null" >
-        user_type = #{userType,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="integral != null" >
         integral = #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="portrait != null" >
-        portrait = #{portrait,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="salt != null" >
-        salt = #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
@@ -297,25 +235,24 @@
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="serviceArea != null" >
-        service_area = #{serviceArea,jdbcType=VARCHAR},
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="day != null" >
+        day = #{day,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
-    update t_user_info
-    set username = #{username,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
+    update t_house_top
+    set house_id = #{houseId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
       integral = #{integral,jdbcType=INTEGER},
-      portrait = #{portrait,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
-      service_area = #{serviceArea,jdbcType=VARCHAR}
+      status = #{status,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
