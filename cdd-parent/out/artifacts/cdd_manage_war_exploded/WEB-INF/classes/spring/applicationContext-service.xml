@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+    default-lazy-init="true">
+
+    <!--开启注解-->
+    <context:annotation-config/>
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+
+    <!--对包中的类自动扫描,以完成bean的创建和自动依赖注入功能 包含了 <context:annotation-config/>-->
+    <context:component-scan base-package="com.cdd.gsl">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="clientRequestFilter" class="com.cdd.gsl.filter.ClientRequestFilter"
+          lazy-init="false">
+    </bean>
+
+    <import resource="applicationContext-db.xml"/>
+    <import resource="mybatis.xml"/>
+    <!--<import resource="applicationContext-shiro.xml"/>-->
+
+
+</beans>

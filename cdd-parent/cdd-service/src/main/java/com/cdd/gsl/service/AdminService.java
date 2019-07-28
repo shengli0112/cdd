@@ -4,6 +4,7 @@ import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.AdminInfoDomain;
 import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
+import com.cdd.gsl.domain.InformHouseRecordDomain;
 import com.cdd.gsl.vo.AdminInformInfoConditionVo;
 import com.cdd.gsl.vo.ApplyBrokerConditionVo;
 import com.cdd.gsl.vo.HouseConditionVo;
@@ -40,4 +41,6 @@ public interface AdminService {
 
     /***************举报*****************************/
     public CommonResult findInformList(AdminInformInfoConditionVo adminInformInfoConditionVo);
+
+    public void handlerInform(InformHouseRecordDomain informHouseRecordDomain);
 }

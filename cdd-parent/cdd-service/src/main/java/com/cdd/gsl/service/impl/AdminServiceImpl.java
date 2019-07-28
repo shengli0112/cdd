@@ -295,6 +295,11 @@ public class AdminServiceImpl implements AdminService {
         return commonResult;
     }
 
+    @Override
+    public void handlerInform(InformHouseRecordDomain informHouseRecordDomain) {
+        informHouseRecordDomainMapper.updateByPrimaryKeySelective(informHouseRecordDomain);
+    }
+
     public String createPassword(String password){
         String salt = BCrypt.gensalt();
         String hashed = BCrypt.hashpw(password, salt);

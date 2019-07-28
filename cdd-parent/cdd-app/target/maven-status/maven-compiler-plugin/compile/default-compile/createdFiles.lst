@@ -2,6 +2,7 @@ com\cdd\gsl\filter\ClientRequestFilter.class
 com\cdd\gsl\controller\ChatMessageController.class
 com\cdd\gsl\controller\EntrustController.class
 com\cdd\gsl\controller\HouseController.class
+com\cdd\gsl\job\TopJob.class
 com\cdd\gsl\controller\CurrencyController.class
 com\cdd\gsl\controller\EnterpriseController.class
 com\cdd\gsl\controller\ParkController.class

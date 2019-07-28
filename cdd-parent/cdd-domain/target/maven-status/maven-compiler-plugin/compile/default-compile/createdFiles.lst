@@ -1,6 +1,7 @@
 com\cdd\gsl\vo\FollowLeaseParkVo.class
 com\cdd\gsl\vo\IsFollowVo.class
 com\cdd\gsl\vo\LoginTokenVo.class
+com\cdd\gsl\vo\AdminInformInfoConditionVo.class
 com\cdd\gsl\vo\SlideConditionVo.class
 com\cdd\gsl\vo\ChatMessageVo.class
 com\cdd\gsl\vo\ApplyBrokerConditionVo.class
@@ -8,6 +9,7 @@ com\cdd\gsl\vo\MessageInfoVo.class
 com\cdd\gsl\vo\HouseCompanyVo.class
 com\cdd\gsl\vo\UserInfoDemainVo.class
 com\cdd\gsl\vo\HouseInfoDomainVo.class
+com\cdd\gsl\vo\InformHouseRecordVo.class
 com\cdd\gsl\vo\MessageConditionVo.class
 com\cdd\gsl\vo\MenuInfoVo.class
 com\cdd\gsl\vo\StorageInfoDomainVo.class
@@ -20,6 +22,7 @@ com\cdd\gsl\vo\ValidateLoginVo.class
 com\cdd\gsl\vo\CommonDictVo.class
 com\cdd\gsl\vo\EnterpriseAdminConditionVo.class
 com\cdd\gsl\vo\UserParamVo.class
+com\cdd\gsl\vo\InformHouseConditionVo.class
 com\cdd\gsl\vo\CurrencyVo.class
 com\cdd\gsl\vo\TrailInfoVo.class
 com\cdd\gsl\vo\ParkInfoVo.class
