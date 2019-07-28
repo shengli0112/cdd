@@ -207,7 +207,7 @@ public class HouseServiceImpl implements HouseService{
             houseInfoDetailVo.setUser_list(userList);
             houseInfoDetailVo.setUser(singleUserInfoVo);
             long start3 = System.currentTimeMillis();
-            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByLike();
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByDetailLike(houseInfoDetailVo.getCounty());
             logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start3));
             houseInfoDetailVo.setLikes(houseInfoDomainVos);
             BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();

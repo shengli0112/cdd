@@ -238,6 +238,21 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public CommonResult companyUserList(String companyName) {
+        CommonResult commonResult = new CommonResult();
+        if(!StringUtils.isEmpty(companyName)){
+            List<UserInfoDemainVo> userInfoDemainVoList = applyBrokerInfoDao.companyUserList(companyName);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(userInfoDemainVoList);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不完整");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult passAudit(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if( applyBrokerInfoDomain != null ){
