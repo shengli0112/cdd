@@ -2,6 +2,7 @@ package com.cdd.gsl.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
+import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.service.AdminService;
@@ -114,6 +115,16 @@ public class AdminHomeController {
             commonResult.setFlag(0);
             commonResult.setMessage("恢复失败，参数不正确");
         }
+        return commonResult;
+    }
+
+    /**
+     * 厂房 土地 仓库 数量
+     */
+    @RequestMapping("houseCount")
+    public CommonResult houseCount(){
+        CommonResult commonResult = houseService.houseCount();
+
         return commonResult;
     }
 }

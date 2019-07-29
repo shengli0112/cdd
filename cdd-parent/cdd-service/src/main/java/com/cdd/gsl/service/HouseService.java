@@ -34,4 +34,6 @@ public interface HouseService {
     void delayTopHouse();
 
     CommonResult switchHouse(Long fromUserId,Long toUserId);
+
+    CommonResult houseCount();
 }
