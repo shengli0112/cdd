@@ -44,7 +44,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 		response.setCharacterEncoding("utf-8");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-		response.setHeader("Access-Control-Allow-Headers","content-type,X-Token");
+		response.setHeader("Access-Control-Allow-Headers","Content-Type,X-Token");
 		String uri = request.getRequestURI();
 		String regex = "[0-9]+";
 		String method = request.getMethod();

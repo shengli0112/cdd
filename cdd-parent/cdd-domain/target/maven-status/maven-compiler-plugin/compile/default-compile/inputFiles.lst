@@ -31,6 +31,8 @@ F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\CityVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\EntrustInfoVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ParkInfoVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\FollowConditionVo.java
+F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\InformHouseRecordVo.java
+F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\AdminInformInfoConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\CommonDictVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\ThirdUserVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\admin\EnterpriseAdminConditionVo.java
@@ -43,6 +45,7 @@ F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\EntrustCondi
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\LoginTokenVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\UserInfoDemainVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\UserParamVo.java
+F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\InformHouseConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\admin\ParkAdminConditionVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\CompanyVo.java
 F:\workspace\cdd\cdd-parent\cdd-domain\src\main\java\com\cdd\gsl\vo\LeaseParkInfoVo.java

@@ -3,6 +3,7 @@ com\cdd\gsl\filter\ClientRequestFilter.class
 com\cdd\gsl\controller\SlideController.class
 com\cdd\gsl\controller\AdminUserController.class
 com\cdd\gsl\controller\ShiroController.class
+com\cdd\gsl\controller\InformController.class
 com\cdd\gsl\shiro\MyRealm.class
 com\cdd\gsl\controller\AdminParkController.class
 com\cdd\gsl\controller\BrokerController.class
