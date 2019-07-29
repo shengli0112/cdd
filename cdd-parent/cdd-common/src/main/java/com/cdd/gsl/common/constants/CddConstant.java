@@ -32,4 +32,10 @@ public class CddConstant {
     public static final Integer TOP_DAY = 5;
 
     public static final Integer AWARD_CURRENCY_COUNT = 5;
+
+    //厂房 仓库 土地
+    public static final Integer HOUSE_TYPE_CF = 1;
+    public static final Integer HOUSE_TYPE_CK = 2;
+    public static final Integer HOUSE_TYPE_TD = 3;
+
 }

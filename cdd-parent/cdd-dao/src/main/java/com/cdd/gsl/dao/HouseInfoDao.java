@@ -708,6 +708,12 @@ public interface HouseInfoDao {
             "</if></script>")
     public int countAdminHouseInfo(HouseAdminConditionVo houseConditionVo);
 
+    /**
+     * 不同房源类型的数量
+     */
+    @Select("select count(*) from t_house_info where status=1 and house_type=#{houseType}")
+    public int countHouseByHouseType(int houseType);
+
     /*******************************************************************************************/
 
 }

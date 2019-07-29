@@ -110,29 +110,36 @@ public class HouseServiceImpl implements HouseService{
 
     @Override
     public CommonResult topHouse(Long houseId,Long userId) {
+        logger.info("HouseServiceImpl topHouse houseId-{}，userId-{}",houseId,userId);
         CommonResult commonResult = new CommonResult();
-        UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(userId);
-        if(userInfoDomain != null){
-            if(userInfoDomain.getIntegral()> CddConstant.PAY_INTERGAL_TOP){
-                HouseTopDomain houseTopDomain = new HouseTopDomain();
-                houseTopDomain.setHouseId(houseId);
-                houseTopDomain.setUserId(userId);
-                houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
-                houseTopDomain.setStatus(1);
-                houseTopDomain.setDay(CddConstant.TOP_DAY);
-                houseTopDomainMapper.insert(houseTopDomain);
-                UserInfoDomain user = new UserInfoDomain();
-                user.setId(userInfoDomain.getId());
-                user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
-                userInfoDomainMapper.updateByPrimaryKeySelective(user);
-                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                commonResult.setData("置顶成功");
-            }else{
-                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                commonResult.setData("多多币不足，请充值");
+        try {
+            UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(userId);
+            if(userInfoDomain != null){
+                if(userInfoDomain.getIntegral()> CddConstant.PAY_INTERGAL_TOP){
+                    HouseTopDomain houseTopDomain = new HouseTopDomain();
+                    houseTopDomain.setHouseId(houseId);
+                    houseTopDomain.setUserId(userId);
+                    houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
+                    houseTopDomain.setStatus(1);
+                    houseTopDomain.setDay(CddConstant.TOP_DAY);
+                    houseTopDomainMapper.insert(houseTopDomain);
+                    UserInfoDomain user = new UserInfoDomain();
+                    user.setId(userInfoDomain.getId());
+                    user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
+                    userInfoDomainMapper.updateByPrimaryKeySelective(user);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setData("置顶成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setData("多多币不足，请充值");
+                }
             }
+        }catch (Exception e){
+            logger.error("HouseServiceImpl topHouse error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setData("系统异常");
         }
-
         return commonResult;
     }
 
@@ -387,6 +394,33 @@ public class HouseServiceImpl implements HouseService{
         }
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("切换成功");
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult houseCount() {
+        CommonResult commonResult = new CommonResult();
+        try {
+            //厂房数量
+            int cfCount = houseInfoDao.countHouseByHouseType(CddConstant.HOUSE_TYPE_CF);
+            //仓库数量
+            int ckCount = houseInfoDao.countHouseByHouseType(CddConstant.HOUSE_TYPE_CK);
+            //土地数量
+            int tdCount = houseInfoDao.countHouseByHouseType(CddConstant.HOUSE_TYPE_TD);
+            JSONObject data = new JSONObject();
+            data.put("cfCount",cfCount);
+            data.put("ckCount",ckCount);
+            data.put("tdCount",tdCount);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+        }catch (Exception e){
+            logger.error("HouseServerImpl houseCount error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("系统异常");
+        }
+
         return commonResult;
     }
 }
