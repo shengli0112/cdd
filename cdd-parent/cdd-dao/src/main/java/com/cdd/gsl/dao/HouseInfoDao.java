@@ -37,8 +37,8 @@ public interface HouseInfoDao {
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
-            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 " +
+            " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 and top.type='house' " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -182,8 +182,8 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(*) " +
-            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 " +
+            " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 and top.type='house' " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -262,8 +262,8 @@ public interface HouseInfoDao {
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
-            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 " +
+            " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 and top.type='house' " +
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if>"+
@@ -305,8 +305,8 @@ public interface HouseInfoDao {
             "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
             "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
-            " from t_house_top top left join t_house_info h on top.house_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 " +
+            " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
+            " where h.status=1 and top.status=1 and top.type='house' " +
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if>"+
