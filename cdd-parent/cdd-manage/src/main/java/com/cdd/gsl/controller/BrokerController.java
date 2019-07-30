@@ -46,6 +46,12 @@ public class BrokerController {
         return adminService.passAudit(applyBrokerInfoDomain);
     }
 
+    @RequestMapping(value = "/companyUserList")
+    public CommonResult companyUserList(String companyName) throws Exception {
+        logger.info("BrokerController companyBrokerList start");
+        return adminService.companyUserList(companyName);
+    }
+
 
 
 }

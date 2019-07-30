@@ -598,6 +598,23 @@ public interface HouseInfoDao {
             " and (house_use_type=3 or house_use_type=4) and status=1 order by rand() limit 3")
     List<HouseInfoDomainVo> selectHouseInfoListByLike();
 
+
+    @Select("select id as id, title as title, city as city, " +
+            "county as county,town as town, street as street, area as area," +
+            "house_number as houseNumber, selling_price as sellingPrice,concat(electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=price_type) as priceType, " +
+            "contacts as contacts,phone as phone, background as background, house_status as houseStatus," +
+            "sign_contract as signContract,cover_area as coverArea,house_edge as houseEdge,user_id as userId," +
+            "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
+            " from t_house_info where id >= " +
+            "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
+            " and (house_use_type=3 or house_use_type=4) and status=1 and county=#{county} order by rand() limit 3")
+    List<HouseInfoDomainVo> selectHouseInfoListByDetailLike(String county);
+
     @Select("select count(id) from t_house_info where user_id=#{userId} and status=1")
     int selectHouseCountByUserId(Long userId);
 

@@ -34,6 +34,8 @@ public interface AdminService {
 
     CommonResult companyBrokerList(String companyName);
 
+    CommonResult companyUserList(String companyName);
+
     CommonResult passAudit(ApplyBrokerInfoDomain applyBrokerInfoDomain);
 
     /*******************房源******************************/
