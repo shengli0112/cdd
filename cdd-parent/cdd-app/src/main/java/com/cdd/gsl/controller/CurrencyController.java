@@ -34,4 +34,12 @@ public class CurrencyController {
     public CommonResult integralCount(Long userId){
         return currencyService.integralCount(userId);
     }
+
+    /**
+     * 消费记录
+     */
+    @RequestMapping("consumeRecord")
+    public CommonResult consumeRecord(Long userId){
+        return currencyService.consumeRecord(userId);
+    }
 }

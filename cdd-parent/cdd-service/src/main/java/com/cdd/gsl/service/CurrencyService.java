@@ -8,4 +8,6 @@ public interface CurrencyService {
     public CommonResult isPublish(Long userId);
 
     public CommonResult integralCount(Long userId);
+
+    public CommonResult consumeRecord(Long userId);
 }

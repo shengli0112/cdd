@@ -2,14 +2,18 @@ package com.cdd.gsl.domain;
 
 import java.util.Date;
 
-public class HouseTopDomain {
+public class ConsumeRecordDomain {
     private Long id;
 
-    private Long objId;
+    private String title;
 
     private Long userId;
 
-    private Long topId;
+    private Integer integral;
+
+    private Integer action;
+
+    private Integer type;
 
     private Date createTs;
 
@@ -17,7 +21,7 @@ public class HouseTopDomain {
 
     private Integer status;
 
-    private String type;
+    private String deadline;
 
     public Long getId() {
         return id;
@@ -27,12 +31,12 @@ public class HouseTopDomain {
         this.id = id;
     }
 
-    public Long getObjId() {
-        return objId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setObjId(Long objId) {
-        this.objId = objId;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public Long getUserId() {
@@ -43,12 +47,28 @@ public class HouseTopDomain {
         this.userId = userId;
     }
 
-    public Long getTopId() {
-        return topId;
+    public Integer getIntegral() {
+        return integral;
     }
 
-    public void setTopId(Long topId) {
-        this.topId = topId;
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    public Integer getAction() {
+        return action;
+    }
+
+    public void setAction(Integer action) {
+        this.action = action;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getCreateTs() {
@@ -75,11 +95,11 @@ public class HouseTopDomain {
         this.status = status;
     }
 
-    public String getType() {
-        return type;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setDeadline(String deadline) {
+        this.deadline = deadline == null ? null : deadline.trim();
     }
 }

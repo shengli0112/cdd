@@ -8,9 +8,12 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.UserInfoDomain;
 import com.cdd.gsl.domain.UserInfoDomainExample;
 import com.cdd.gsl.service.CurrencyService;
+import com.cdd.gsl.vo.ConsumeRecordVo;
 import com.cdd.gsl.vo.CurrencyVo;
 import com.cdd.gsl.vo.UserCurrencyVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ import java.util.List;
 
 @Service("currencyService")
 public class CurrencyServiceImpl implements CurrencyService {
+
+    private Logger logger = LoggerFactory.getLogger(CurrencyServiceImpl.class);
 
     @Autowired
     private CurrencyDao currencyDao;
@@ -34,6 +39,9 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Autowired
     private UserCurrencyDao userCurrencyDao;
+
+    @Autowired
+    private ConsumeRecordDao consumeRecordDao;
 
     @Override
     public CommonResult currencyList() {
@@ -105,6 +113,22 @@ public class CurrencyServiceImpl implements CurrencyService {
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("该用户不存在");
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult consumeRecord(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<ConsumeRecordVo> consumeRecordVoList = consumeRecordDao.selectConsumeRecordByUserId(userId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(consumeRecordVoList);
+        }catch (Exception e){
+            logger.error("CurrencyServiceImpl consumeRecord error");
+            e.printStackTrace();
+        }
+
         return commonResult;
     }
 }

@@ -61,6 +61,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private MessageInfoDomainMapper messageInfoDomainMapper;
 
+    @Autowired
+    private TopInfoDomainMapper topInfoDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -106,41 +109,6 @@ public class HouseServiceImpl implements HouseService{
 
         return commonResult;
 
-    }
-
-    @Override
-    public CommonResult topHouse(Long houseId,Long userId) {
-        logger.info("HouseServiceImpl topHouse houseId-{}，userId-{}",houseId,userId);
-        CommonResult commonResult = new CommonResult();
-        try {
-            UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(userId);
-            if(userInfoDomain != null){
-                if(userInfoDomain.getIntegral()> CddConstant.PAY_INTERGAL_TOP){
-                    HouseTopDomain houseTopDomain = new HouseTopDomain();
-                    houseTopDomain.setHouseId(houseId);
-                    houseTopDomain.setUserId(userId);
-                    houseTopDomain.setIntegral(CddConstant.PAY_INTERGAL_TOP);
-                    houseTopDomain.setStatus(1);
-                    houseTopDomain.setDay(CddConstant.TOP_DAY);
-                    houseTopDomainMapper.insert(houseTopDomain);
-                    UserInfoDomain user = new UserInfoDomain();
-                    user.setId(userInfoDomain.getId());
-                    user.setIntegral(userInfoDomain.getIntegral()-CddConstant.PAY_INTERGAL_TOP);
-                    userInfoDomainMapper.updateByPrimaryKeySelective(user);
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setData("置顶成功");
-                }else{
-                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                    commonResult.setData("多多币不足，请充值");
-                }
-            }
-        }catch (Exception e){
-            logger.error("HouseServiceImpl topHouse error");
-            e.printStackTrace();
-            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-            commonResult.setData("系统异常");
-        }
-        return commonResult;
     }
 
     @Override
@@ -363,15 +331,17 @@ public class HouseServiceImpl implements HouseService{
         HouseTopDomainExample houseTopDomainExample = new HouseTopDomainExample();
         houseTopDomainExample.createCriteria().andStatusEqualTo(1);
         List<HouseTopDomain> houseTopDomainList = houseTopDomainMapper.selectByExample(houseTopDomainExample);
+
         if(!CollectionUtils.isEmpty(houseTopDomainList)){
             houseTopDomainList.forEach(houseTop ->{
                 int days = DateUtil.differentDaysByMillisecond(new Date(),houseTop.getCreateTs());
-                if(days > houseTop.getDay()){
+                TopInfoDomain topInfoDomain = topInfoDomainMapper.selectByPrimaryKey(houseTop.getTopId());
+                if(days > topInfoDomain.getDay()){
                     HouseTopDomain houseTopDomain = new HouseTopDomain();
                     houseTopDomain.setId(houseTop.getId());
                     houseTopDomain.setStatus(0);
                     houseTopDomainMapper.updateByPrimaryKeySelective(houseTopDomain);
-                    logger.info("HouseServiceImpl delayTopHouse expire house id-{}",houseTop.getHouseId());
+                    logger.info("HouseServiceImpl delayTopHouse expire objid-{}, type-{}",houseTop.getObjId(),houseTop.getType());
                 }
             });
         }

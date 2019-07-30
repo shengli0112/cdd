@@ -7,13 +7,12 @@ import com.cdd.gsl.domain.InformHouseRecordDomain;
 import com.cdd.gsl.vo.HouseConditionVo;
 import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.HouseTopParamVo;
 
 import java.util.List;
 
 public interface HouseService {
     CommonResult addHouse(HouseInfoDomain houseInfoDomain);
-
-    CommonResult topHouse(Long houseId,Long userId);
 
     CommonResult updateHouse(HouseInfoDomain houseInfoDomain);
 
