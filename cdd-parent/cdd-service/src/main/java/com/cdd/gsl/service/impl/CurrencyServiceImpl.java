@@ -54,6 +54,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     public CommonResult isPublish(Long userId){
+        logger.info("CurrencyServiceImpl isPublish userId -{}",userId);
         CommonResult commonResult = new CommonResult();
         List<UserCurrencyVo> userCurrencyVos = userCurrencyDao.findUserCurrencyByUserId(userId);
         if(userCurrencyVos != null && userCurrencyVos.size() > 0){
@@ -79,6 +80,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public CommonResult integralCount(Long userId) {
+        logger.info("CurrencyServiceImpl integralCount userId -{}",userId);
         CommonResult commonResult = new CommonResult();
         UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
         userInfoDomainExample.createCriteria().andIdEqualTo(userId).andStatusEqualTo(1);
@@ -118,6 +120,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public CommonResult consumeRecord(Long userId) {
+        logger.info("CurrencyServiceImpl consumeRecord userId -{}",userId);
         CommonResult commonResult = new CommonResult();
         try{
             List<ConsumeRecordVo> consumeRecordVoList = consumeRecordDao.selectConsumeRecordByUserId(userId);
