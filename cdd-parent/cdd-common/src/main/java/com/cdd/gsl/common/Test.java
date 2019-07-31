@@ -11,8 +11,8 @@ import java.util.Date;
 public class Test {
     public static void main(String[] args){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = DateUtil.getSomeDay(new Date(),5);
-        System.out.println(sdf.format(d));
+//        Date d = DateUtil.getSomeDay(new Date(),5);
+//        System.out.println(sdf.format(d));
     }
 
     public static Long getBeginDate()
