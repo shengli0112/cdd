@@ -100,6 +100,10 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
+
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -1014,6 +1018,13 @@ public class UserSerivceImpl implements UserService {
                     userInfo.setIntegral(userInfoDomain.getIntegral()-currencyInfoDomain.getIntegral());
                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
                     userCurrencyMappingDomainMapper.insertSelective(userCurrencyMappingDomain);
+                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                    consumeRecordDomain.setTitle(userInfoDomain.getUsername());
+                    consumeRecordDomain.setUserId(userInfoDomain.getId());
+                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
+                    consumeRecordDomain.setIntegral(currencyInfoDomain.getIntegral());
+                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_MEMBER);
+                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("购买成功");
                 }

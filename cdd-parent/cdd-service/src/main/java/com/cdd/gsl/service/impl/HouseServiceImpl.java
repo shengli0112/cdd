@@ -64,6 +64,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private TopInfoDomainMapper topInfoDomainMapper;
 
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -82,6 +85,13 @@ public class HouseServiceImpl implements HouseService{
                     messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励5个多多币");
                     messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
                     messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                    consumeRecordDomain.setTitle(houseInfoDomain.getTitle());
+                    consumeRecordDomain.setUserId(houseInfoDomain.getUserId());
+                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+                    consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                     commonResult.setFlag(1);
                     commonResult.setMessage("添加成功");
                 }else{

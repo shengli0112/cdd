@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.DateUtil;
 import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.common.util.MailUtil;
 import com.cdd.gsl.common.util.PasswordUtil;
@@ -63,6 +64,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private InformRecordDao informRecordDao;
+
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
 
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -313,6 +317,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void handlerInform(InformHouseRecordDomain informHouseRecordDomain) {
         informHouseRecordDomainMapper.updateByPrimaryKeySelective(informHouseRecordDomain);
+        InformHouseRecordDomain informHouseRecord = informHouseRecordDomainMapper.selectByPrimaryKey(informHouseRecordDomain.getId());
+        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(informHouseRecord.getHouseId());
+        ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+        consumeRecordDomain.setTitle(houseInfoDetailVo.getTitle());
+        consumeRecordDomain.setUserId(houseInfoDetailVo.getUserId());
+        consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
+        consumeRecordDomain.setIntegral(CddConstant.INFORM_INTEGRAL_NUM);
+        consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_INFORM);
+        consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
     }
 
     public String createPassword(String password){
