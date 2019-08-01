@@ -175,7 +175,7 @@ public class UserSerivceImpl implements UserService {
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
                     loginTokenVo.setToken(token);
 
-                    JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                    JSONObject loginToken = (JSONObject)JSONObject.toJSON(loginTokenVo);
                     loginToken.put("flag",1);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
@@ -337,7 +337,7 @@ public class UserSerivceImpl implements UserService {
                 loginTokenVo.setUserId(userInfoDomain.getId());
                 loginTokenVo.setUserType(userInfoDomain.getUserType());
                 loginTokenVo.setToken(token);
-                JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                JSONObject loginToken = (JSONObject)JSONObject.toJSON(loginTokenVo);
                 if(flag == 1){
                     loginToken.put("flag",flag);
                 }
