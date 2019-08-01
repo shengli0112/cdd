@@ -162,7 +162,7 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
-                    userInfoDomain.setIntegral(300);
+                    userInfoDomain.setIntegral(CddConstant.AWARD_INTEGRAL);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
@@ -320,7 +320,7 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
-                    userInfoDomain.setIntegral(300);
+                    userInfoDomain.setIntegral(CddConstant.AWARD_INTEGRAL);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     flag = 1;
                 }else{

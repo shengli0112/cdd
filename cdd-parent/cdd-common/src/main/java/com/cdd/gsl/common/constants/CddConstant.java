@@ -62,4 +62,9 @@ public class CddConstant {
     public static final String CREATE_PARK_TITLE = "您发布新园区";
     public static final String CREATE_ENTERPRISE_TITLE = "您发布新企业圈";
 
+    /**
+     * 注册奖励300多多币
+     */
+    public static final Integer AWARD_INTEGRAL = 300;
+
 }
