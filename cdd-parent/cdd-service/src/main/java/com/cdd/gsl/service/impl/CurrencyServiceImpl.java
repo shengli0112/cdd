@@ -8,6 +8,7 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.UserInfoDomain;
 import com.cdd.gsl.domain.UserInfoDomainExample;
 import com.cdd.gsl.service.CurrencyService;
+import com.cdd.gsl.vo.ConsumeRecordConditionVo;
 import com.cdd.gsl.vo.ConsumeRecordVo;
 import com.cdd.gsl.vo.CurrencyVo;
 import com.cdd.gsl.vo.UserCurrencyVo;
@@ -119,11 +120,11 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public CommonResult consumeRecord(Long userId) {
-        logger.info("CurrencyServiceImpl consumeRecord userId -{}",userId);
+    public CommonResult consumeRecord(ConsumeRecordConditionVo consumeRecordConditionVo) {
+        logger.info("CurrencyServiceImpl consumeRecord userId -{}",consumeRecordConditionVo.getUserId());
         CommonResult commonResult = new CommonResult();
         try{
-            List<ConsumeRecordVo> consumeRecordVoList = consumeRecordDao.selectConsumeRecordByUserId(userId);
+            List<ConsumeRecordVo> consumeRecordVoList = consumeRecordDao.selectConsumeRecordByUserId(consumeRecordConditionVo);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(consumeRecordVoList);

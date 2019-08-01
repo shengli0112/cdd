@@ -75,29 +75,33 @@ public class TopServiceImpl implements TopService {
                     ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
                     String title = "";
                     if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_HOUSE)){
-                        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseTopParamVo.getObjId());
-                        title = houseInfoDetailVo.getTitle();
+//                        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseTopParamVo.getObjId());
+                        title = CddConstant.TOP_HOUSE_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_ENTERPRISE)){
-                        EnterpriseInfoDomainExample enterpriseInfoDomainExample = new EnterpriseInfoDomainExample();
+                        /*EnterpriseInfoDomainExample enterpriseInfoDomainExample = new EnterpriseInfoDomainExample();
                         enterpriseInfoDomainExample.createCriteria().andIdEqualTo(houseTopParamVo.getObjId()).andStatusEqualTo(1);
                         List<EnterpriseInfoDomain> enterpriseInfoDomainList = enterpriseInfoDomainMapper.selectByExample(enterpriseInfoDomainExample);
                         if(CollectionUtils.isNotEmpty(enterpriseInfoDomainList)){
                             title = enterpriseInfoDomainList.get(0).getTitle();
-                        }
+                        }*/
+                        title = CddConstant.TOP_ENTERPRISE_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_LEASE_PARK)){
-                        LeaseParkInfoDomainExample leaseParkInfoDomainExample = new LeaseParkInfoDomainExample();
+                        /*LeaseParkInfoDomainExample leaseParkInfoDomainExample = new LeaseParkInfoDomainExample();
                         leaseParkInfoDomainExample.createCriteria().andIdEqualTo(houseTopParamVo.getObjId()).andStatusEqualTo(1);
                         List<LeaseParkInfoDomain> leaseParkInfoDomainList = leaseParkInfoDomainMapper.selectByExample(leaseParkInfoDomainExample);
                         if(CollectionUtils.isNotEmpty(leaseParkInfoDomainList)){
                             title = leaseParkInfoDomainList.get(0).getParkName();
-                        }
+                        }*/
+
+                        title = CddConstant.TOP_PARK_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_SELL_PARK)){
-                        SellParkInfoDomainExample sellParkInfoDomainExample = new SellParkInfoDomainExample();
+                        /*SellParkInfoDomainExample sellParkInfoDomainExample = new SellParkInfoDomainExample();
                         sellParkInfoDomainExample.createCriteria().andIdEqualTo(houseTopParamVo.getObjId()).andStatusEqualTo(1);
                         List<SellParkInfoDomain> sellParkInfoDomainList = sellParkInfoDomainMapper.selectByExample(sellParkInfoDomainExample);
                         if(CollectionUtils.isNotEmpty(sellParkInfoDomainList)){
                             title = sellParkInfoDomainList.get(0).getParkName();
-                        }
+                        }*/
+                        title = CddConstant.TOP_PARK_TITLE;
                     }
                     consumeRecordDomain.setTitle(title);
                     consumeRecordDomain.setUserId(userInfoDomain.getId());

@@ -86,7 +86,7 @@ public class HouseServiceImpl implements HouseService{
                     messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
                     messageInfoDomainMapper.insertSelective(messageInfoDomain);
                     ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
-                    consumeRecordDomain.setTitle(houseInfoDomain.getTitle());
+                    consumeRecordDomain.setTitle(CddConstant.CREATE_HOUSE_TITLE);
                     consumeRecordDomain.setUserId(houseInfoDomain.getUserId());
                     consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
                     consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);

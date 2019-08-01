@@ -11,8 +11,13 @@ import java.util.Date;
 public class Test {
     public static void main(String[] args){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String url = "http://gz.ooooo.org.cn/52/CN/mb/ed300C/index.html?plan_id=933578&keyword_id={keywordid}";
+        String url1 = "";
+        if(url.contains("{keywordid}")){
+            url1 = url.replace("{keywordid}","12");
+        }
 //        Date d = DateUtil.getSomeDay(new Date(),5);
-//        System.out.println(sdf.format(d));
+        System.out.println(url1);
     }
 
     public static Long getBeginDate()

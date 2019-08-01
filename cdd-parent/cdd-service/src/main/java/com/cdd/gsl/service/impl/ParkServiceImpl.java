@@ -5,6 +5,7 @@ import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.ConsumeRecordDomain;
 import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
@@ -40,6 +41,9 @@ public class ParkServiceImpl implements ParkService {
     @Autowired
     private MessageInfoDomainMapper messageInfoDomainMapper;
 
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -51,6 +55,13 @@ public class ParkServiceImpl implements ParkService {
             messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
             messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
             messageInfoDomainMapper.insertSelective(messageInfoDomain);
+            ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+            consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
+            consumeRecordDomain.setUserId(sellParkInfoDomain.getUserId());
+            consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+            consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+            consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+            consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
@@ -71,6 +82,13 @@ public class ParkServiceImpl implements ParkService {
             messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
             messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
             messageInfoDomainMapper.insertSelective(messageInfoDomain);
+            ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+            consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
+            consumeRecordDomain.setUserId(leaseParkInfoDomain.getUserId());
+            consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+            consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+            consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+            consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建成功");
         }else{
