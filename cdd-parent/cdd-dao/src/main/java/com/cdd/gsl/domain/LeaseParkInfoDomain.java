@@ -41,6 +41,8 @@ public class LeaseParkInfoDomain {
 
     private Integer priceType;
 
+    private Integer top;
+
     public Long getId() {
         return id;
     }
@@ -191,5 +193,13 @@ public class LeaseParkInfoDomain {
 
     public void setPriceType(Integer priceType) {
         this.priceType = priceType;
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
     }
 }

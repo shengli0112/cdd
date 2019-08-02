@@ -13,17 +13,29 @@ import java.util.List;
 public interface EnterpriseInfoDao {
 
     @Select("<script> " +
-            "select id as id, main_business as mainBusiness, enterprise_name as enterpriseName, " +
-            "address as address, register_date as registerDate,description as description, " +
-            " contacts as contacts,phone as phone,image as image,user_id as userId,title as title,trade as trade,price as price" +
-            " from t_enterprise_info where status=1 " +
+            "select * from ((select e.id as id, e.main_business as mainBusiness, e.enterprise_name as enterpriseName, " +
+            "e.address as address, e.register_date as registerDate,e.description as description, " +
+            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price" +
+            " from t_house_top t left join t_enterprise_info e on t.obj_id=e.id where e.status=1 and t.type='enterprise' "+
             "<if test='keyword != null'>" +
-            " and (title like concat('%','${keyword}','%') or main_business like concat('%','${keyword}','%') or enterprise_name like concat('%','${keyword}','%') or address like concat('%','${keyword}','%') " +
-            " or description like concat('%','${keyword}','%') or trade like concat('%','${keyword}','%'))"+
+            " and (e.title like concat('%','${keyword}','%') or e.main_business like concat('%','${keyword}','%') or e.enterprise_name like concat('%','${keyword}','%') or e.address like concat('%','${keyword}','%') " +
+            " or e.description like concat('%','${keyword}','%') or e.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             "<if test='userId != null'>"+
-            " and user_id = #{userId}"+
+            " and e.user_id = #{userId}"+
+            "</if>)" +
+            " union all "+
+            "(select e.id as id, e.main_business as mainBusiness, e.enterprise_name as enterpriseName, " +
+            "e.address as address, e.register_date as registerDate,e.description as description, " +
+            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price" +
+            " from t_enterprise_info e where e.status=1 " +
+            "<if test='keyword != null'>" +
+            " and (e.title like concat('%','${keyword}','%') or e.main_business like concat('%','${keyword}','%') or e.enterprise_name like concat('%','${keyword}','%') or e.address like concat('%','${keyword}','%') " +
+            " or e.description like concat('%','${keyword}','%') or e.trade like concat('%','${keyword}','%'))"+
             "</if>"+
+            "<if test='userId != null'>"+
+            " and e.user_id = #{userId}"+
+            "</if>)) tmp "+
             " limit #{from},#{pageSize}"+
             "</script>")
     public List<EnterpriseInfoDomain> selectEnterpriseInfoListByCondition(EnterpriseConditionVo enterpriseConditionVo);

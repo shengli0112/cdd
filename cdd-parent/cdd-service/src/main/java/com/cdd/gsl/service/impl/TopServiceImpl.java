@@ -38,6 +38,9 @@ public class TopServiceImpl implements TopService {
     private HouseInfoDao houseInfoDao;
 
     @Autowired
+    private HouseInfoDomainMapper houseInfoDomainMapper;
+
+    @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
 
     @Autowired
@@ -76,6 +79,10 @@ public class TopServiceImpl implements TopService {
                     String title = "";
                     if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_HOUSE)){
 //                        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseTopParamVo.getObjId());
+                        HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+                        houseInfoDomain.setId(houseTopParamVo.getObjId());
+                        houseInfoDomain.setTop(1);
+                        houseInfoDomainMapper.updateByPrimaryKeySelective(houseInfoDomain);
                         title = CddConstant.TOP_HOUSE_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_ENTERPRISE)){
                         /*EnterpriseInfoDomainExample enterpriseInfoDomainExample = new EnterpriseInfoDomainExample();
@@ -84,6 +91,10 @@ public class TopServiceImpl implements TopService {
                         if(CollectionUtils.isNotEmpty(enterpriseInfoDomainList)){
                             title = enterpriseInfoDomainList.get(0).getTitle();
                         }*/
+                        EnterpriseInfoDomain enterpriseInfoDomain = new EnterpriseInfoDomain();
+                        enterpriseInfoDomain.setId(houseTopParamVo.getObjId());
+                        enterpriseInfoDomain.setTop(1);
+                        enterpriseInfoDomainMapper.updateByPrimaryKeySelective(enterpriseInfoDomain);
                         title = CddConstant.TOP_ENTERPRISE_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_LEASE_PARK)){
                         /*LeaseParkInfoDomainExample leaseParkInfoDomainExample = new LeaseParkInfoDomainExample();
@@ -92,7 +103,10 @@ public class TopServiceImpl implements TopService {
                         if(CollectionUtils.isNotEmpty(leaseParkInfoDomainList)){
                             title = leaseParkInfoDomainList.get(0).getParkName();
                         }*/
-
+                        LeaseParkInfoDomain leaseParkInfoDomain = new LeaseParkInfoDomain();
+                        leaseParkInfoDomain.setId(houseTopParamVo.getObjId());
+                        leaseParkInfoDomain.setTop(1);
+                        leaseParkInfoDomainMapper.updateByPrimaryKeySelective(leaseParkInfoDomain);
                         title = CddConstant.TOP_PARK_TITLE;
                     }else if(houseTopParamVo.getType().equals(CddConstant.CONSUME_RECORD_TYPE_SELL_PARK)){
                         /*SellParkInfoDomainExample sellParkInfoDomainExample = new SellParkInfoDomainExample();
@@ -101,6 +115,10 @@ public class TopServiceImpl implements TopService {
                         if(CollectionUtils.isNotEmpty(sellParkInfoDomainList)){
                             title = sellParkInfoDomainList.get(0).getParkName();
                         }*/
+                        SellParkInfoDomain sellParkInfoDomain = new SellParkInfoDomain();
+                        sellParkInfoDomain.setId(houseTopParamVo.getObjId());
+                        sellParkInfoDomain.setTop(1);
+                        sellParkInfoDomainMapper.updateByPrimaryKeySelective(sellParkInfoDomain);
                         title = CddConstant.TOP_PARK_TITLE;
                     }
                     consumeRecordDomain.setTitle(title);

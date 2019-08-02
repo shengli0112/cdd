@@ -39,6 +39,8 @@ public class SellParkInfoDomain {
 
     private String industry;
 
+    private Integer top;
+
     public Long getId() {
         return id;
     }
@@ -181,5 +183,13 @@ public class SellParkInfoDomain {
 
     public void setIndustry(String industry) {
         this.industry = industry == null ? null : industry.trim();
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
     }
 }

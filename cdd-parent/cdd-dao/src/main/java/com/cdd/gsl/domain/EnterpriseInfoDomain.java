@@ -36,6 +36,8 @@ public class EnterpriseInfoDomain {
 
     private BigDecimal price;
 
+    private Integer top;
+
     public Long getId() {
         return id;
     }
@@ -162,5 +164,13 @@ public class EnterpriseInfoDomain {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
     }
 }
