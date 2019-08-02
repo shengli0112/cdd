@@ -73,7 +73,7 @@ public interface SellParkDao {
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
             "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.top as top " +
-            "from t_sell_park_info h where h.status=1 " +
+            "from t_sell_park_info h where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -152,7 +152,7 @@ public interface SellParkDao {
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
             "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description," +
             "h.create_ts as createTs " +
-            " from t_sell_park_info where status=1 order by rand() limit 3")
+            " from t_sell_park_info h where status=1 order by rand() limit 3")
     List<SellParkInfoVo> selectSellParkRand();
 
 

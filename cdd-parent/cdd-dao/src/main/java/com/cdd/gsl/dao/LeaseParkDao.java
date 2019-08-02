@@ -74,7 +74,7 @@ public interface LeaseParkDao {
             "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
             "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
             "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.top as top " +
-            "from t_lease_park_info h where h.status=1 " +
+            "from t_lease_park_info h where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
