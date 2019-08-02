@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EnterpriseInfoDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/EnterpriseInfoDao.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java" />
       <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -144,8 +142,8 @@
       <file leaf-file-name="UserSerivceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="182" column="87" lean-forward="true" selection-start-line="182" selection-start-column="87" selection-end-line="182" selection-end-column="87" />
+            <state relative-caret-position="499">
+              <caret line="347" column="92" lean-forward="false" selection-start-line="347" selection-start-column="92" selection-end-line="347" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -1049,12 +1047,12 @@
       <workItem from="1564193297066" duration="3858000" />
       <workItem from="1564208072522" duration="10771000" />
       <workItem from="1564283470681" duration="9530000" />
-      <workItem from="1564480005776" duration="32682000" />
+      <workItem from="1564480005776" duration="33348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1096756000" />
+    <option name="totallyTimeSpent" value="1097422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1578,8 +1576,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/UserSerivceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="182" column="87" lean-forward="true" selection-start-line="182" selection-start-column="87" selection-end-line="182" selection-end-column="87" />
+        <state relative-caret-position="499">
+          <caret line="347" column="92" lean-forward="false" selection-start-line="347" selection-start-column="92" selection-end-line="347" selection-end-column="92" />
           <folding />
         </state>
       </provider>

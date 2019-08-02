@@ -345,6 +345,7 @@ public class UserSerivceImpl implements UserService {
                 if(flag == 1){
                     loginToken.put("flag",flag);
                 }
+                logger.info("UserServiceImpl phone register token -{}",loginToken.toString());
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("登录成功");
                 commonResult.setData(loginToken);
