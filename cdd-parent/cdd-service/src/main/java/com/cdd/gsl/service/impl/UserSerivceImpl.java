@@ -104,6 +104,9 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private ConsumeRecordDomainMapper consumeRecordDomainMapper;
 
+    @Autowired
+    private LeagueInfoDomainMapper leagueInfoDomainMapper;
+
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -1047,6 +1050,27 @@ public class UserSerivceImpl implements UserService {
         commonResult.setMessage("查询成功");
         commonResult.setData(slideInfoDomainList);
         return commonResult;
+    }
+
+    @Override
+    public CommonResult createLeague(LeagueInfoParamVo leagueInfoParamVo) {
+        logger.info("UserServerImpl createLeague leagueInfoParamVo - {}",leagueInfoParamVo.toString());
+        CommonResult commonResult = new CommonResult();
+        try {
+            LeagueInfoDomain leagueInfoDomain = new LeagueInfoDomain();
+            leagueInfoDomain.setCity(leagueInfoParamVo.getCity());
+            leagueInfoDomain.setName(leagueInfoParamVo.getName());
+            leagueInfoDomain.setPhone(leagueInfoParamVo.getPhone());
+            leagueInfoDomainMapper.insertSelective(leagueInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("添加成功");
+        } catch (Exception e){
+            logger.error("UserServerImpl createLeague error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return null;
     }
 
     @Override
