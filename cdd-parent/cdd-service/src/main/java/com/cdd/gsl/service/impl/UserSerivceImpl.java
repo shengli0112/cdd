@@ -180,6 +180,7 @@ public class UserSerivceImpl implements UserService {
 
                     JSONObject loginToken = (JSONObject)JSONObject.toJSON(loginTokenVo);
                     loginToken.put("flag",1);
+                    logger.info("UserServiceImpl register success -{}",loginToken.toString());
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
                     commonResult.setData(loginToken);

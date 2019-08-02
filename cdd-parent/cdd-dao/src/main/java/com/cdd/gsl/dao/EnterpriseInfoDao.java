@@ -15,7 +15,7 @@ public interface EnterpriseInfoDao {
     @Select("<script> " +
             "select * from ((select e.id as id, e.main_business as mainBusiness, e.enterprise_name as enterpriseName, " +
             "e.address as address, e.register_date as registerDate,e.description as description, " +
-            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price" +
+            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price,e.top as top" +
             " from t_house_top t left join t_enterprise_info e on t.obj_id=e.id where e.status=1 and t.type='enterprise' "+
             "<if test='keyword != null'>" +
             " and (e.title like concat('%','${keyword}','%') or e.main_business like concat('%','${keyword}','%') or e.enterprise_name like concat('%','${keyword}','%') or e.address like concat('%','${keyword}','%') " +
@@ -27,7 +27,7 @@ public interface EnterpriseInfoDao {
             " union all "+
             "(select e.id as id, e.main_business as mainBusiness, e.enterprise_name as enterpriseName, " +
             "e.address as address, e.register_date as registerDate,e.description as description, " +
-            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price" +
+            " e.contacts as contacts,e.phone as phone,e.image as image,e.user_id as userId,e.title as title,e.trade as trade,e.price as price,e.top as top" +
             " from t_enterprise_info e where e.status=1 " +
             "<if test='keyword != null'>" +
             " and (e.title like concat('%','${keyword}','%') or e.main_business like concat('%','${keyword}','%') or e.enterprise_name like concat('%','${keyword}','%') or e.address like concat('%','${keyword}','%') " +
