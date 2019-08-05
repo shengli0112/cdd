@@ -50,6 +50,9 @@ public interface HouseInfoDao {
             "<if test=\"town != null\">" +
             " and h.town=#{town}"+
             "</if>" +
+            "<if test='houseUseType == null'>"+
+            " and (h.house_use_type=3 or h.house_use_type=4) "+
+            "</if>"+
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+
@@ -114,7 +117,7 @@ public interface HouseInfoDao {
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
             "u.portrait as portrait,h.trade as trade,h.top as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
-            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.top=0" +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -126,6 +129,9 @@ public interface HouseInfoDao {
             "<if test=\"town != null\">" +
             " and h.town=#{town}"+
             "</if>" +
+            "<if test='houseUseType == null'>"+
+            " and (h.house_use_type=3 or h.house_use_type=4) "+
+            "</if>"+
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if><if test=\"houseUseType != null\">"+

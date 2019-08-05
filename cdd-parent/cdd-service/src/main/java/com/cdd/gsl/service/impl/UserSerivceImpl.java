@@ -1072,7 +1072,7 @@ public class UserSerivceImpl implements UserService {
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
         }
-        return null;
+        return commonResult;
     }
 
     @Override
