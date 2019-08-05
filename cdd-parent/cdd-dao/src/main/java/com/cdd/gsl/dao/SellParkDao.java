@@ -136,7 +136,7 @@ public interface SellParkDao {
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
             "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description," +
-            "h.create_ts as createTs " +
+            "h.create_ts as createTs,h.park_type as parkType " +
             "from t_sell_park_info h where h.status=1 and h.id=#{id}" +
             "</script>")
     public List<SellParkInfoVo> selectSellParkInfoById(Long id);

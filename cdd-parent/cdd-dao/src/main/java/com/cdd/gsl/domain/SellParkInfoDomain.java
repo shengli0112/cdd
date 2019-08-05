@@ -41,6 +41,8 @@ public class SellParkInfoDomain {
 
     private Integer top;
 
+    private String parkType;
+
     public Long getId() {
         return id;
     }
@@ -191,5 +193,13 @@ public class SellParkInfoDomain {
 
     public void setTop(Integer top) {
         this.top = top;
+    }
+
+    public String getParkType() {
+        return parkType;
+    }
+
+    public void setParkType(String parkType) {
+        this.parkType = parkType == null ? null : parkType.trim();
     }
 }

@@ -135,7 +135,7 @@ public interface LeaseParkDao {
     @Select("select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
             "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
             "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
-            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.park_type as parkType " +
             "from t_lease_park_info h where h.status=1 and h.id=#{id}")
     List<LeaseParkInfoVo> selectLeaseParkInfoById(Long id);
 

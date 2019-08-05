@@ -22,6 +22,7 @@
     <result column="background" property="background" jdbcType="VARCHAR" />
     <result column="price_type" property="priceType" jdbcType="INTEGER" />
     <result column="top" property="top" jdbcType="INTEGER" />
+    <result column="park_type" property="parkType" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -84,7 +85,7 @@
   <sql id="Base_Column_List" >
     id, city, county, address, park_name, total_area, unit_price, industry, contacts, 
     phone, tag, description, status, create_ts, update_ts, user_id, town, background, 
-    price_type, top
+    price_type, top, park_type
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomainExample" >
     select
@@ -123,14 +124,16 @@
       phone, tag, description, 
       status, create_ts, update_ts, 
       user_id, town, background, 
-      price_type, top)
+      price_type, top, park_type
+      )
     values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{parkName,jdbcType=VARCHAR}, #{totalArea,jdbcType=INTEGER}, 
       #{unitPrice,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
       #{userId,jdbcType=BIGINT}, #{town,jdbcType=VARCHAR}, #{background,jdbcType=VARCHAR}, 
-      #{priceType,jdbcType=INTEGER}, #{top,jdbcType=INTEGER})
+      #{priceType,jdbcType=INTEGER}, #{top,jdbcType=INTEGER}, #{parkType,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomain" >
     insert into t_lease_park_info
@@ -195,6 +198,9 @@
       <if test="top != null" >
         top,
       </if>
+      <if test="parkType != null" >
+        park_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -256,6 +262,9 @@
       </if>
       <if test="top != null" >
         #{top,jdbcType=INTEGER},
+      </if>
+      <if test="parkType != null" >
+        #{parkType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -328,6 +337,9 @@
       <if test="record.top != null" >
         top = #{record.top,jdbcType=INTEGER},
       </if>
+      <if test="record.parkType != null" >
+        park_type = #{record.parkType,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -354,7 +366,8 @@
       town = #{record.town,jdbcType=VARCHAR},
       background = #{record.background,jdbcType=VARCHAR},
       price_type = #{record.priceType,jdbcType=INTEGER},
-      top = #{record.top,jdbcType=INTEGER}
+      top = #{record.top,jdbcType=INTEGER},
+      park_type = #{record.parkType,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -419,6 +432,9 @@
       <if test="top != null" >
         top = #{top,jdbcType=INTEGER},
       </if>
+      <if test="parkType != null" >
+        park_type = #{parkType,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -442,7 +458,8 @@
       town = #{town,jdbcType=VARCHAR},
       background = #{background,jdbcType=VARCHAR},
       price_type = #{priceType,jdbcType=INTEGER},
-      top = #{top,jdbcType=INTEGER}
+      top = #{top,jdbcType=INTEGER},
+      park_type = #{parkType,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
