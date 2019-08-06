@@ -57,11 +57,11 @@ public class ParkServiceImpl implements ParkService {
                 logger.info("ParkServiceImpl createSellPark sellParkInfoDomain -{}",JSONObject.toJSON(sellParkInfoDomain).toString());
                 sellParkInfoDomainMapper.insertSelective(sellParkInfoDomain);
                 userInfoDao.updateUserintegralById(sellParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                /*MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
                 messageInfoDomain.setUserId(sellParkInfoDomain.getUserId());
                 messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
                 messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-                messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);*/
                 ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
                 consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
                 consumeRecordDomain.setUserId(sellParkInfoDomain.getUserId());
@@ -93,11 +93,11 @@ public class ParkServiceImpl implements ParkService {
                 logger.info("ParkServiceImpl createLeasePark leaseParkInfoDomain -{}",JSONObject.toJSON(leaseParkInfoDomain).toString());
                 leaseParkInfoDomainMapper.insertSelective(leaseParkInfoDomain);
                 userInfoDao.updateUserintegralById(leaseParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                /*MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
                 messageInfoDomain.setUserId(leaseParkInfoDomain.getUserId());
                 messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
                 messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-                messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);*/
                 ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
                 consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
                 consumeRecordDomain.setUserId(leaseParkInfoDomain.getUserId());

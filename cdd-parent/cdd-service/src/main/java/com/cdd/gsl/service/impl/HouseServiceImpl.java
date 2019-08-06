@@ -79,12 +79,12 @@ public class HouseServiceImpl implements HouseService{
                 if(CollectionUtils.isEmpty(ids)){
                     houseInfoDomainMapper.insertSelective(houseInfoDomain);
                     userInfoDao.updateUserintegralById(houseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                    /*MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
                     messageInfoDomain.setUserId(houseInfoDomain.getUserId());
                     messageInfoDomain.setHouseId(houseInfoDomain.getId());
                     messageInfoDomain.setMessage("您发布\""+houseInfoDomain.getTitle()+"\"成功，奖励5个多多币");
                     messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                    messageInfoDomainMapper.insertSelective(messageInfoDomain);*/
                     ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
                     consumeRecordDomain.setTitle(CddConstant.CREATE_HOUSE_TITLE);
                     consumeRecordDomain.setUserId(houseInfoDomain.getUserId());

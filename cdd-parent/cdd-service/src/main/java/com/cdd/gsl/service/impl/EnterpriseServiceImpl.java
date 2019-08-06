@@ -42,11 +42,11 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         if(enterpriseInfoDomain != null){
             enterpriseInfoDomainMapper.insertSelective(enterpriseInfoDomain);
             userInfoDao.updateUserintegralById(enterpriseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            /*MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
             messageInfoDomain.setUserId(enterpriseInfoDomain.getUserId());
             messageInfoDomain.setMessage("您发布企业圈\""+enterpriseInfoDomain.getTitle()+"\"成功，奖励多多币5枚");
             messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-            messageInfoDomainMapper.insertSelective(messageInfoDomain);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);*/
             ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
             consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
             consumeRecordDomain.setUserId(enterpriseInfoDomain.getUserId());
