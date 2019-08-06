@@ -7,10 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1879f9e2-c22d-4ce4-a5cb-c66767b95787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EnterpriseServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EnterpriseServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java" afterPath="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" />
+      <change beforePath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" afterPath="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,65 +47,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HouseInfoDomain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/HouseInfoDomain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding>
-                <element signature="e#4962#4963#0" expanded="true" />
-                <element signature="e#5008#5009#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ParkServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="95" column="16" lean-forward="true" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+            <state relative-caret-position="267">
+              <caret line="199" column="45" lean-forward="false" selection-start-line="199" selection-start-column="45" selection-end-line="199" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeaseParkInfoDomainMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/resources/mappers/LeaseParkInfoDomainMapper.xml">
+      <file leaf-file-name="LeaseParkDao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-              <folding>
-                <marker date="1565071524547" expanded="true" signature="5547:5706" ph="select , fro... " />
-                <marker date="1565071524547" expanded="true" signature="5790:5856" ph="delete from t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="5968:5997" ph="delete from t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="6186:7128" ph="insert into t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="10645:10683" ph="select count... t_lease_park_info" />
-                <marker date="1565071524547" expanded="true" signature="13350:14471" ph="update t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="14644:15701" ph="update t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="15921:17899" ph="update t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="18016:18993" ph="update t_lease_park_info... " />
-                <marker date="1565071524547" expanded="true" signature="19101:20021" ph="update t_lease_park_info... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HouseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/HouseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-138">
-              <caret line="41" column="46" lean-forward="false" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
+            <state relative-caret-position="-713">
+              <caret line="75" column="156" lean-forward="false" selection-start-line="75" selection-start-column="156" selection-end-line="75" selection-end-column="156" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CurrencyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/CurrencyController.java">
+      <file leaf-file-name="SellParkDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="207">
+              <caret line="16" column="127" lean-forward="true" selection-start-line="16" selection-start-column="127" selection-end-line="16" selection-end-column="151" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SellParkInfoDomain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/SellParkInfoDomain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -133,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnterpriseServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EnterpriseServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EnterpriseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
@@ -156,8 +130,18 @@
       <file leaf-file-name="ParkController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+            <state relative-caret-position="428">
+              <caret line="121" column="75" lean-forward="true" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SellParkCondition.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SellParkCondition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-161">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -266,14 +250,14 @@
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/HouseInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkInfoDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/LeaseParkInfoVo.java" />
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" />
         <option value="$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SellParkInfoVo.java" />
-        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkInfoDomainMapper.java" />
         <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/MessageInfoDao.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java" />
         <option value="$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/EnterpriseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java" />
+        <option value="$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java" />
       </list>
     </option>
   </component>
@@ -554,6 +538,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gsl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdd-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="cdd-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gsl" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cdd-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -1052,12 +1046,12 @@
       <workItem from="1564208072522" duration="10771000" />
       <workItem from="1564283470681" duration="9530000" />
       <workItem from="1564480005776" duration="35820000" />
-      <workItem from="1564972110369" duration="11844000" />
+      <workItem from="1564972110369" duration="14196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1111738000" />
+    <option name="totallyTimeSpent" value="1114090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1134,16 +1128,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/CurrencyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/CompanyInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -1406,14 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="146" column="19" lean-forward="false" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SellParkInfoVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -1424,14 +1400,6 @@
             <element signature="e#3612#3613#0" expanded="false" />
             <element signature="e#3652#3653#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="141" column="32" lean-forward="false" selection-start-line="141" selection-start-column="32" selection-end-line="141" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1472,8 +1440,8 @@
         <state relative-caret-position="290">
           <caret line="408" column="38" lean-forward="false" selection-start-line="408" selection-start-column="38" selection-end-line="408" selection-end-column="38" />
           <folding>
-            <element signature="e#11690#11691#0" expanded="true" />
-            <element signature="e#11749#11750#0" expanded="true" />
+            <element signature="e#11690#11691#0" expanded="false" />
+            <element signature="e#11749#11750#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1486,21 +1454,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/SellParkInfoDomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/HouseInfoDomain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
-            <element signature="e#4962#4963#0" expanded="true" />
-            <element signature="e#5008#5009#0" expanded="true" />
+            <element signature="e#4962#4963#0" expanded="false" />
+            <element signature="e#5008#5009#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1548,22 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="40" column="52" lean-forward="true" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="95" column="16" lean-forward="true" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/HouseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
@@ -1584,6 +1528,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="47" column="78" lean-forward="false" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-service/src/main/java/com/cdd/gsl/service/impl/ParkServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="199" column="45" lean-forward="false" selection-start-line="199" selection-start-column="45" selection-end-line="199" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-app/src/main/java/com/cdd/gsl/controller/ParkController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="121" column="75" lean-forward="true" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-domain/src/main/java/com/cdd/gsl/vo/SellParkCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-161">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/domain/SellParkInfoDomain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/SellParkDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="16" column="127" lean-forward="true" selection-start-line="16" selection-start-column="127" selection-end-line="16" selection-end-column="151" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdd-dao/src/main/java/com/cdd/gsl/dao/LeaseParkDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-713">
+          <caret line="75" column="156" lean-forward="false" selection-start-line="75" selection-start-column="156" selection-end-line="75" selection-end-column="156" />
           <folding />
         </state>
       </provider>

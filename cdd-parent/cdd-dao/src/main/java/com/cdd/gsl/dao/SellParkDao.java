@@ -14,7 +14,7 @@ public interface SellParkDao {
             "select * from ((select h.id as id,h.city as city,h.county as county,h.town as town," +
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
-            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.top as top " +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.top as top,h.create_ts as createTs " +
             "from t_sell_park_info h left join t_house_top t on h.id=t.obj_id where h.status=1 and t.type='sellPark' " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
@@ -72,7 +72,7 @@ public interface SellParkDao {
             "(select h.id as id,h.city as city,h.county as county,h.town as town," +
             "h.address as address,h.park_name as parkName," +
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
-            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.top as top " +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.top as top,h.create_ts as createTs " +
             "from t_sell_park_info h where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
@@ -125,7 +125,7 @@ public interface SellParkDao {
             "<if test='priceOrder != null'>"+
             "<if test='priceOrder == 1'>,h.selling_price</if>"+
             "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
-            "</if>)) tmp"+
+            "</if>)) tmp order by top desc, createTs desc"+
             " limit #{from},#{pageSize}"+
 
             "</script>")
@@ -166,7 +166,7 @@ public interface SellParkDao {
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.status desc"+
+            " order by h.status desc,h.create_ts desc"+
             " limit #{from},#{limit}"+
 
             "</script>")

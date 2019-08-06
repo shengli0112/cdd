@@ -15,7 +15,7 @@ public interface LeaseParkDao {
             "select * from ((select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
             "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
             "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
-            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.top as top " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.top as top,h.create_ts as createTs " +
             "from t_lease_park_info h left join t_house_top t on h.id=t.obj_id where h.status=1 and t.type='leasePark' " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
@@ -73,7 +73,7 @@ public interface LeaseParkDao {
             "(select h.id as id,h.city as city,h.county as county,h.town as town,h.tag as tag,h.background as background," +
             "h.address as address,h.park_name as parkName,h.contacts as contacts,h.phone as phone," +
             "h.total_area as totalArea,h.unit_price as unitPrice,h.user_id as userId,h.description as description,h.industry as industry," +
-            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.top as top " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType,h.top as top,h.create_ts as createTs " +
             "from t_lease_park_info h where h.status=1 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
@@ -126,7 +126,7 @@ public interface LeaseParkDao {
             "<if test='priceOrder != null'>"+
             "<if test='priceOrder == 1'>,h.selling_price</if>"+
             "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
-            "</if>)) tmp"+
+            "</if>)) tmp order by top desc, createTs desc"+
             " limit #{from},#{pageSize}"+
 
             "</script>")
@@ -158,7 +158,7 @@ public interface LeaseParkDao {
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.park_name like concat('%','${keyword}','%') or h.description like concat('%','${keyword}','%') or h.industry like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.status desc,h.id asc "+
+            " order by h.status desc,h.create_ts desc "+
             " limit #{from},#{limit}"+
             "</script>")
     public List<LeaseParkInfoVo> selectAdminLeaseParkInfoList(ParkAdminConditionVo leaseParkCondition);
