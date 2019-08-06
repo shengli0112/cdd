@@ -15,6 +15,8 @@ import com.cdd.gsl.vo.LeaseParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
 import com.cdd.gsl.vo.SellParkInfoVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ import java.util.List;
 
 @Service
 public class ParkServiceImpl implements ParkService {
+
+    private Logger logger = LoggerFactory.getLogger(ParkServiceImpl.class);
 
     @Autowired
     private SellParkInfoDomainMapper sellParkInfoDomainMapper;
@@ -47,54 +51,73 @@ public class ParkServiceImpl implements ParkService {
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
-        if(sellParkInfoDomain != null){
-            sellParkInfoDomainMapper.insertSelective(sellParkInfoDomain);
-            userInfoDao.updateUserintegralById(sellParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
-            messageInfoDomain.setUserId(sellParkInfoDomain.getUserId());
-            messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
-            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-            messageInfoDomainMapper.insertSelective(messageInfoDomain);
-            ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
-            consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
-            consumeRecordDomain.setUserId(sellParkInfoDomain.getUserId());
-            consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
-            consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
-            consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
-            consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("创建成功");
-        }else{
+        logger.info("ParkServiceImpl createSellPark start");
+        try{
+            if(sellParkInfoDomain != null){
+                logger.info("ParkServiceImpl createSellPark sellParkInfoDomain -{}",JSONObject.toJSON(sellParkInfoDomain).toString());
+                sellParkInfoDomainMapper.insertSelective(sellParkInfoDomain);
+                userInfoDao.updateUserintegralById(sellParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                messageInfoDomain.setUserId(sellParkInfoDomain.getUserId());
+                messageInfoDomain.setMessage("您发布园区\""+sellParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+                messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
+                consumeRecordDomain.setUserId(sellParkInfoDomain.getUserId());
+                consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+                consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+                consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+                consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("创建成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不正确");
+            }
+        }catch (Exception e){
+            logger.error("ParkServiceImpl createSellPark error");
+            e.printStackTrace();
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-            commonResult.setMessage("参数不正确");
+            commonResult.setMessage("参数异常");
         }
+
         return commonResult;
     }
 
     @Override
     public CommonResult createLeasePark(LeaseParkInfoDomain leaseParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
-        if(leaseParkInfoDomain != null){
-            leaseParkInfoDomainMapper.insertSelective(leaseParkInfoDomain);
-            userInfoDao.updateUserintegralById(leaseParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
-            messageInfoDomain.setUserId(leaseParkInfoDomain.getUserId());
-            messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
-            messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-            messageInfoDomainMapper.insertSelective(messageInfoDomain);
-            ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
-            consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
-            consumeRecordDomain.setUserId(leaseParkInfoDomain.getUserId());
-            consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
-            consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
-            consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
-            consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("创建成功");
-        }else{
+        try{
+            if(leaseParkInfoDomain != null){
+                logger.info("ParkServiceImpl createLeasePark leaseParkInfoDomain -{}",JSONObject.toJSON(leaseParkInfoDomain).toString());
+                leaseParkInfoDomainMapper.insertSelective(leaseParkInfoDomain);
+                userInfoDao.updateUserintegralById(leaseParkInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
+                MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                messageInfoDomain.setUserId(leaseParkInfoDomain.getUserId());
+                messageInfoDomain.setMessage("您发布园区\""+leaseParkInfoDomain.getParkName()+"\"成功，奖励多多币5枚");
+                messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
+                messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
+                consumeRecordDomain.setUserId(leaseParkInfoDomain.getUserId());
+                consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+                consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+                consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+                consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("创建成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不正确");
+            }
+        }catch (Exception e){
+            logger.error("ParkServiceImpl createLeasePark error");
+            e.printStackTrace();
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-            commonResult.setMessage("参数不正确");
+            commonResult.setMessage("参数异常");
         }
+
         return commonResult;
     }
 

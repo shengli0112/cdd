@@ -8,12 +8,11 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="park_name" property="parkName" jdbcType="VARCHAR" />
     <result column="total_area" property="totalArea" jdbcType="INTEGER" />
-    <result column="unit_price" property="unitPrice" jdbcType="INTEGER" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
     <result column="industry" property="industry" jdbcType="VARCHAR" />
     <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
@@ -23,6 +22,9 @@
     <result column="price_type" property="priceType" jdbcType="INTEGER" />
     <result column="top" property="top" jdbcType="INTEGER" />
     <result column="park_type" property="parkType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.LeaseParkInfoDomain" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -84,9 +86,28 @@
   </sql>
   <sql id="Base_Column_List" >
     id, city, county, address, park_name, total_area, unit_price, industry, contacts, 
-    phone, tag, description, status, create_ts, update_ts, user_id, town, background, 
-    price_type, top, park_type
+    phone, tag, status, create_ts, update_ts, user_id, town, background, price_type, 
+    top, park_type
   </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_lease_park_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomainExample" >
     select
     <if test="distinct" >
@@ -101,9 +122,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from t_lease_park_info
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -121,18 +144,18 @@
     insert into t_lease_park_info (id, city, county, 
       address, park_name, total_area, 
       unit_price, industry, contacts, 
-      phone, tag, description, 
-      status, create_ts, update_ts, 
-      user_id, town, background, 
-      price_type, top, park_type
+      phone, tag, status, 
+      create_ts, update_ts, user_id, 
+      town, background, price_type, 
+      top, park_type, description
       )
     values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{parkName,jdbcType=VARCHAR}, #{totalArea,jdbcType=INTEGER}, 
-      #{unitPrice,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=BIGINT}, #{town,jdbcType=VARCHAR}, #{background,jdbcType=VARCHAR}, 
-      #{priceType,jdbcType=INTEGER}, #{top,jdbcType=INTEGER}, #{parkType,jdbcType=VARCHAR}
+      #{unitPrice,jdbcType=DECIMAL}, #{industry,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{town,jdbcType=VARCHAR}, #{background,jdbcType=VARCHAR}, #{priceType,jdbcType=INTEGER}, 
+      #{top,jdbcType=INTEGER}, #{parkType,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomain" >
@@ -171,9 +194,6 @@
       <if test="tag != null" >
         tag,
       </if>
-      <if test="description != null" >
-        description,
-      </if>
       <if test="status != null" >
         status,
       </if>
@@ -201,6 +221,9 @@
       <if test="parkType != null" >
         park_type,
       </if>
+      <if test="description != null" >
+        description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -222,7 +245,7 @@
         #{totalArea,jdbcType=INTEGER},
       </if>
       <if test="unitPrice != null" >
-        #{unitPrice,jdbcType=INTEGER},
+        #{unitPrice,jdbcType=DECIMAL},
       </if>
       <if test="industry != null" >
         #{industry,jdbcType=VARCHAR},
@@ -235,9 +258,6 @@
       </if>
       <if test="tag != null" >
         #{tag,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -265,6 +285,9 @@
       </if>
       <if test="parkType != null" >
         #{parkType,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -296,7 +319,7 @@
         total_area = #{record.totalArea,jdbcType=INTEGER},
       </if>
       <if test="record.unitPrice != null" >
-        unit_price = #{record.unitPrice,jdbcType=INTEGER},
+        unit_price = #{record.unitPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.industry != null" >
         industry = #{record.industry,jdbcType=VARCHAR},
@@ -309,9 +332,6 @@
       </if>
       <if test="record.tag != null" >
         tag = #{record.tag,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -340,7 +360,37 @@
       <if test="record.parkType != null" >
         park_type = #{record.parkType,jdbcType=VARCHAR},
       </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_lease_park_info
+    set id = #{record.id,jdbcType=BIGINT},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      park_name = #{record.parkName,jdbcType=VARCHAR},
+      total_area = #{record.totalArea,jdbcType=INTEGER},
+      unit_price = #{record.unitPrice,jdbcType=DECIMAL},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      town = #{record.town,jdbcType=VARCHAR},
+      background = #{record.background,jdbcType=VARCHAR},
+      price_type = #{record.priceType,jdbcType=INTEGER},
+      top = #{record.top,jdbcType=INTEGER},
+      park_type = #{record.parkType,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -353,12 +403,11 @@
       address = #{record.address,jdbcType=VARCHAR},
       park_name = #{record.parkName,jdbcType=VARCHAR},
       total_area = #{record.totalArea,jdbcType=INTEGER},
-      unit_price = #{record.unitPrice,jdbcType=INTEGER},
+      unit_price = #{record.unitPrice,jdbcType=DECIMAL},
       industry = #{record.industry,jdbcType=VARCHAR},
       contacts = #{record.contacts,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       tag = #{record.tag,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
@@ -391,7 +440,7 @@
         total_area = #{totalArea,jdbcType=INTEGER},
       </if>
       <if test="unitPrice != null" >
-        unit_price = #{unitPrice,jdbcType=INTEGER},
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
       </if>
       <if test="industry != null" >
         industry = #{industry,jdbcType=VARCHAR},
@@ -404,9 +453,6 @@
       </if>
       <if test="tag != null" >
         tag = #{tag,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -435,7 +481,34 @@
       <if test="parkType != null" >
         park_type = #{parkType,jdbcType=VARCHAR},
       </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomain" >
+    update t_lease_park_info
+    set city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      park_name = #{parkName,jdbcType=VARCHAR},
+      total_area = #{totalArea,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      industry = #{industry,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      town = #{town,jdbcType=VARCHAR},
+      background = #{background,jdbcType=VARCHAR},
+      price_type = #{priceType,jdbcType=INTEGER},
+      top = #{top,jdbcType=INTEGER},
+      park_type = #{parkType,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.LeaseParkInfoDomain" >
@@ -445,12 +518,11 @@
       address = #{address,jdbcType=VARCHAR},
       park_name = #{parkName,jdbcType=VARCHAR},
       total_area = #{totalArea,jdbcType=INTEGER},
-      unit_price = #{unitPrice,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
       industry = #{industry,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       tag = #{tag,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},

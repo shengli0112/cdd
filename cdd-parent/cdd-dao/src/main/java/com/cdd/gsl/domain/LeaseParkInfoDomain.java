@@ -1,5 +1,6 @@
 package com.cdd.gsl.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class LeaseParkInfoDomain {
@@ -15,7 +16,7 @@ public class LeaseParkInfoDomain {
 
     private Integer totalArea;
 
-    private Integer unitPrice;
+    private BigDecimal unitPrice;
 
     private String industry;
 
@@ -24,8 +25,6 @@ public class LeaseParkInfoDomain {
     private String phone;
 
     private String tag;
-
-    private String description;
 
     private Integer status;
 
@@ -44,6 +43,8 @@ public class LeaseParkInfoDomain {
     private Integer top;
 
     private String parkType;
+
+    private String description;
 
     public Long getId() {
         return id;
@@ -93,11 +94,11 @@ public class LeaseParkInfoDomain {
         this.totalArea = totalArea;
     }
 
-    public Integer getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Integer unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -131,14 +132,6 @@ public class LeaseParkInfoDomain {
 
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
     }
 
     public Integer getStatus() {
@@ -211,5 +204,13 @@ public class LeaseParkInfoDomain {
 
     public void setParkType(String parkType) {
         this.parkType = parkType == null ? null : parkType.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

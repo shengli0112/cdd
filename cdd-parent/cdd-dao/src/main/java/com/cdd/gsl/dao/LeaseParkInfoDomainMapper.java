@@ -17,15 +17,21 @@ public interface LeaseParkInfoDomainMapper {
 
     int insertSelective(LeaseParkInfoDomain record);
 
+    List<LeaseParkInfoDomain> selectByExampleWithBLOBs(LeaseParkInfoDomainExample example);
+
     List<LeaseParkInfoDomain> selectByExample(LeaseParkInfoDomainExample example);
 
     LeaseParkInfoDomain selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") LeaseParkInfoDomain record, @Param("example") LeaseParkInfoDomainExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") LeaseParkInfoDomain record, @Param("example") LeaseParkInfoDomainExample example);
+
     int updateByExample(@Param("record") LeaseParkInfoDomain record, @Param("example") LeaseParkInfoDomainExample example);
 
     int updateByPrimaryKeySelective(LeaseParkInfoDomain record);
+
+    int updateByPrimaryKeyWithBLOBs(LeaseParkInfoDomain record);
 
     int updateByPrimaryKey(LeaseParkInfoDomain record);
 }
