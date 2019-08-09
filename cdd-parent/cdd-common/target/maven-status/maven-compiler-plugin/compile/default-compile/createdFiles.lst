@@ -1,3 +1,4 @@
+com\cdd\gsl\common\util\RedisUtil.class
 com\cdd\gsl\common\util\HttpClientUtils.class
 com\cdd\gsl\common\util\PasswordUtil.class
 com\cdd\gsl\common\result\CommonResult.class

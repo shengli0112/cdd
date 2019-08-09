@@ -3,13 +3,13 @@
 <mapper namespace="com.cdd.gsl.dao.HouseTopDomainMapper" >
   <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.HouseTopDomain" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="house_id" property="houseId" jdbcType="BIGINT" />
+    <result column="obj_id" property="objId" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="top_id" property="topId" jdbcType="BIGINT" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="day" property="day" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, house_id, user_id, integral, create_ts, update_ts, status, day
+    id, obj_id, user_id, top_id, create_ts, update_ts, status, type
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.HouseTopDomainExample" >
     select
@@ -103,12 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
-    insert into t_house_top (id, house_id, user_id, 
-      integral, create_ts, update_ts, 
-      status, day)
-    values (#{id,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{integral,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER}, #{day,jdbcType=INTEGER})
+    insert into t_house_top (id, obj_id, user_id, 
+      top_id, create_ts, update_ts, 
+      status, type)
+    values (#{id,jdbcType=BIGINT}, #{objId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{topId,jdbcType=BIGINT}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
     insert into t_house_top
@@ -116,14 +116,14 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="houseId != null" >
-        house_id,
+      <if test="objId != null" >
+        obj_id,
       </if>
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="integral != null" >
-        integral,
+      <if test="topId != null" >
+        top_id,
       </if>
       <if test="createTs != null" >
         create_ts,
@@ -134,22 +134,22 @@
       <if test="status != null" >
         status,
       </if>
-      <if test="day != null" >
-        day,
+      <if test="type != null" >
+        type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="houseId != null" >
-        #{houseId,jdbcType=BIGINT},
+      <if test="objId != null" >
+        #{objId,jdbcType=BIGINT},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
       </if>
-      <if test="integral != null" >
-        #{integral,jdbcType=INTEGER},
+      <if test="topId != null" >
+        #{topId,jdbcType=BIGINT},
       </if>
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
@@ -160,8 +160,8 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="day != null" >
-        #{day,jdbcType=INTEGER},
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -177,14 +177,14 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.houseId != null" >
-        house_id = #{record.houseId,jdbcType=BIGINT},
+      <if test="record.objId != null" >
+        obj_id = #{record.objId,jdbcType=BIGINT},
       </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
-      <if test="record.integral != null" >
-        integral = #{record.integral,jdbcType=INTEGER},
+      <if test="record.topId != null" >
+        top_id = #{record.topId,jdbcType=BIGINT},
       </if>
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
@@ -195,8 +195,8 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.day != null" >
-        day = #{record.day,jdbcType=INTEGER},
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -206,13 +206,13 @@
   <update id="updateByExample" parameterType="map" >
     update t_house_top
     set id = #{record.id,jdbcType=BIGINT},
-      house_id = #{record.houseId,jdbcType=BIGINT},
+      obj_id = #{record.objId,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=BIGINT},
-      integral = #{record.integral,jdbcType=INTEGER},
+      top_id = #{record.topId,jdbcType=BIGINT},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
-      day = #{record.day,jdbcType=INTEGER}
+      type = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -220,14 +220,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
     update t_house_top
     <set >
-      <if test="houseId != null" >
-        house_id = #{houseId,jdbcType=BIGINT},
+      <if test="objId != null" >
+        obj_id = #{objId,jdbcType=BIGINT},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
       </if>
-      <if test="integral != null" >
-        integral = #{integral,jdbcType=INTEGER},
+      <if test="topId != null" >
+        top_id = #{topId,jdbcType=BIGINT},
       </if>
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
@@ -238,21 +238,21 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="day != null" >
-        day = #{day,jdbcType=INTEGER},
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.HouseTopDomain" >
     update t_house_top
-    set house_id = #{houseId,jdbcType=BIGINT},
+    set obj_id = #{objId,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},
-      integral = #{integral,jdbcType=INTEGER},
+      top_id = #{topId,jdbcType=BIGINT},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
-      day = #{day,jdbcType=INTEGER}
+      type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

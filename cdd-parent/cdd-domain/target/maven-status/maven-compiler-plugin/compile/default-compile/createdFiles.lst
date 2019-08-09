@@ -2,6 +2,7 @@ com\cdd\gsl\vo\FollowLeaseParkVo.class
 com\cdd\gsl\vo\IsFollowVo.class
 com\cdd\gsl\vo\LoginTokenVo.class
 com\cdd\gsl\vo\AdminInformInfoConditionVo.class
+com\cdd\gsl\vo\ConsumeRecordVo.class
 com\cdd\gsl\vo\SlideConditionVo.class
 com\cdd\gsl\vo\ChatMessageVo.class
 com\cdd\gsl\vo\ApplyBrokerConditionVo.class
@@ -24,12 +25,14 @@ com\cdd\gsl\vo\EnterpriseAdminConditionVo.class
 com\cdd\gsl\vo\UserParamVo.class
 com\cdd\gsl\vo\InformHouseConditionVo.class
 com\cdd\gsl\vo\CurrencyVo.class
+com\cdd\gsl\vo\LeagueInfoParamVo.class
 com\cdd\gsl\vo\TrailInfoVo.class
 com\cdd\gsl\vo\ParkInfoVo.class
 com\cdd\gsl\vo\EnterpriseInfoVo.class
 com\cdd\gsl\vo\FollowConditionVo.class
 com\cdd\gsl\vo\UserInfoVo.class
 com\cdd\gsl\vo\EntrustInfoVo.class
+com\cdd\gsl\vo\TopInfoVo.class
 com\cdd\gsl\vo\UserAdminConditionVo.class
 com\cdd\gsl\vo\HouseInfoDetailVo.class
 com\cdd\gsl\vo\UserCurrencyVo.class
@@ -44,6 +47,7 @@ com\cdd\gsl\vo\AdminRoleVo.class
 com\cdd\gsl\vo\EnterpriseConditionVo.class
 com\cdd\gsl\admin\EnterpriseAdminConditionVo.class
 com\cdd\gsl\vo\AdminVo.class
+com\cdd\gsl\vo\ConsumeRecordConditionVo.class
 com\cdd\gsl\vo\HouseConditionVo.class
 com\cdd\gsl\vo\FollowInfoVo.class
 com\cdd\gsl\vo\MessageVo.class
@@ -55,6 +59,7 @@ com\cdd\gsl\vo\EntrustConditionVo.class
 com\cdd\gsl\vo\LeaseParkCondition.class
 com\cdd\gsl\vo\UserCompanyInfoVo.class
 com\cdd\gsl\vo\BrokerHouseInfoVo.class
+com\cdd\gsl\vo\HouseTopParamVo.class
 com\cdd\gsl\vo\FollowHouseVo.class
 com\cdd\gsl\vo\FollowSellParkVo.class
 com\cdd\gsl\admin\ParkAdminConditionVo.class

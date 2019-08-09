@@ -27,6 +27,7 @@
     <import resource="applicationContext-db.xml"/>
     <import resource="mybatis.xml"/>
     <import resource="applicationContext-rabbitmq-send.xml"/>
+    <import resource="applicationContext-redis.xml"/>
 
 
 </beans>

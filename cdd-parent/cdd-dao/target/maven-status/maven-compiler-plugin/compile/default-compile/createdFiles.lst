@@ -4,6 +4,7 @@ com\cdd\gsl\domain\UserCurrencyMappingDomainExample$Criteria.class
 com\cdd\gsl\domain\MessageInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\ThirdUserInfoDomainExample.class
 com\cdd\gsl\dao\BrowseHouseRecordDomainMapper.class
+com\cdd\gsl\domain\ConsumeRecordDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\StorageInfoDao.class
 com\cdd\gsl\domain\InformHouseRecordDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\EntrustInfoDao.class
@@ -15,6 +16,7 @@ com\cdd\gsl\domain\EnterpriseInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\EntrustUserMappingDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\LandInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\RoleInfoDomainExample$Criterion.class
+com\cdd\gsl\domain\LeagueInfoDomainExample.class
 com\cdd\gsl\domain\CompanyInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\EntrustInfoDomain.class
 com\cdd\gsl\domain\LeaseParkInfoDomain.class
@@ -32,6 +34,7 @@ com\cdd\gsl\dao\RecordInfoDomainMapper.class
 com\cdd\gsl\domain\EntrustInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\ChatMessageDomain.class
 com\cdd\gsl\domain\CompanyUserMappingDomainExample.class
+com\cdd\gsl\domain\ConsumeRecordDomainExample$Criteria.class
 com\cdd\gsl\domain\ApplyBrokerInfoDomainExample$Criterion.class
 com\cdd\gsl\dao\SlideInfoDomainMapper.class
 com\cdd\gsl\domain\InformHouseRecordDomainExample$Criteria.class
@@ -40,9 +43,11 @@ com\cdd\gsl\domain\CheckPhoneDomainExample.class
 com\cdd\gsl\domain\HouseTypeDomain.class
 com\cdd\gsl\domain\SellParkInfoDomainExample.class
 com\cdd\gsl\domain\MessageInfoDomainExample$Criterion.class
+com\cdd\gsl\domain\TopInfoDomainExample$Criterion.class
 com\cdd\gsl\dao\UrlInfoDomainMapper.class
 com\cdd\gsl\domain\LeaseParkInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\SellParkInfoDomainMapper.class
+com\cdd\gsl\dao\TopInfoDao.class
 com\cdd\gsl\domain\TrailInfoDomainExample.class
 com\cdd\gsl\datasource\DataSource.class
 com\cdd\gsl\dao\BrowseRecordDomainMapper.class
@@ -95,6 +100,8 @@ com\cdd\gsl\dao\VerifyPhoneDomainMapper.class
 com\cdd\gsl\domain\InformLeaseHouseRecordDomainExample$Criterion.class
 com\cdd\gsl\domain\ProvinceCityCountyTownVillageMappingDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\UserInfoDomainExample$GeneratedCriteria.class
+com\cdd\gsl\domain\LeagueInfoDomain.class
+com\cdd\gsl\domain\TopInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\CompanyUserMappingDomainExample$Criteria.class
 com\cdd\gsl\dao\InformLeaseHouseRecordDomainMapper.class
 com\cdd\gsl\domain\LandInfoDomain.class
@@ -106,6 +113,8 @@ com\cdd\gsl\domain\RegionTownInfoDomainExample.class
 com\cdd\gsl\domain\ThirdUserInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\RecordInfoDao.class
 com\cdd\gsl\domain\BrowseHouseRecordDomainExample$Criterion.class
+com\cdd\gsl\domain\ConsumeRecordDomainExample$Criterion.class
+com\cdd\gsl\domain\ConsumeRecordDomainExample.class
 com\cdd\gsl\domain\HouseInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\RegionCountyInfoDomainMapper.class
 com\cdd\gsl\domain\HouseTopDomainExample$Criterion.class
@@ -131,18 +140,22 @@ com\cdd\gsl\domain\TradeInfoDomainExample$Criterion.class
 com\cdd\gsl\dao\AdminInfoDomainMapper.class
 com\cdd\gsl\domain\EntrustInfoDomainExample.class
 com\cdd\gsl\datasource\DynamicDataSource.class
+com\cdd\gsl\domain\LeagueInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\TradeInfoDomainExample$Criteria.class
 com\cdd\gsl\dao\InformRecordDao.class
 com\cdd\gsl\domain\PlantInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\UrlInfoDomain.class
 com\cdd\gsl\domain\UrlInfoDomainExample.class
 com\cdd\gsl\domain\UserCurrencyMappingDomain.class
+com\cdd\gsl\domain\LeagueInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\RegionVillageInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\LeaseParkInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\EntrustUserMappingDomainExample$Criteria.class
+com\cdd\gsl\domain\ConsumeRecordDomain.class
 com\cdd\gsl\domain\UserInfoDomainExample$Criterion.class
 com\cdd\gsl\domain\ApplyBrokerInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\dao\LandInfoDomainMapper.class
+com\cdd\gsl\dao\TopInfoDomainMapper.class
 com\cdd\gsl\dao\CompanyInfoDomainMapper.class
 com\cdd\gsl\domain\MenuInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\TrailInfoDomainExample$GeneratedCriteria.class
@@ -163,6 +176,7 @@ com\cdd\gsl\domain\UserTicketDomain.class
 com\cdd\gsl\domain\ProvinceCityCountyTownVillageMappingDomainExample.class
 com\cdd\gsl\dao\ClockCardDomainMapper.class
 com\cdd\gsl\domain\AdminTicketDomain.class
+com\cdd\gsl\dao\ConsumeRecordDao.class
 com\cdd\gsl\domain\BrowseRecordDomain.class
 com\cdd\gsl\domain\HouseTopDomain.class
 com\cdd\gsl\domain\UserInfoDomainExample.class
@@ -193,6 +207,7 @@ com\cdd\gsl\domain\EntrustInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\InformHouseRecordDomainExample$Criterion.class
 com\cdd\gsl\domain\FollowInfoDomainExample.class
 com\cdd\gsl\dao\ChatMessageDomainMapper.class
+com\cdd\gsl\dao\LeagueInfoDomainMapper.class
 com\cdd\gsl\domain\AdminInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\RegionCountyInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\CompanyInfoDomainExample$Criteria.class
@@ -219,6 +234,7 @@ com\cdd\gsl\domain\VerifyPhoneDomainExample$Criteria.class
 com\cdd\gsl\domain\ClockCardDomainExample$Criterion.class
 com\cdd\gsl\domain\RecordInfoDomainExample.class
 com\cdd\gsl\domain\VerifyPhoneDomainExample$GeneratedCriteria.class
+com\cdd\gsl\domain\TopInfoDomain.class
 com\cdd\gsl\domain\TrailInfoDomainExample$Criteria.class
 com\cdd\gsl\dao\MessageInfoDomainMapper.class
 com\cdd\gsl\domain\FollowInfoDomain.class
@@ -257,6 +273,7 @@ com\cdd\gsl\domain\CompanyUserMappingDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\CheckPhoneDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\RecordInfoDomain.class
 com\cdd\gsl\domain\ProvinceCityCountyTownVillageMappingDomain.class
+com\cdd\gsl\domain\TopInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\BrowseRecordDomainExample$Criteria.class
 com\cdd\gsl\domain\UserCurrencyMappingDomainExample$Criterion.class
 com\cdd\gsl\domain\StorageInfoDomainExample$Criterion.class
@@ -265,6 +282,7 @@ com\cdd\gsl\domain\SellParkInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\RoleInfoDomainExample$GeneratedCriteria.class
 com\cdd\gsl\domain\UserTicketDomainExample$Criteria.class
 com\cdd\gsl\dao\CommonDictDomainMapper.class
+com\cdd\gsl\domain\LeagueInfoDomainExample$Criteria.class
 com\cdd\gsl\domain\HouseTypeDomainExample$Criteria.class
 com\cdd\gsl\dao\RegionCityInfoDomainMapper.class
 com\cdd\gsl\domain\TradeInfoDomain.class
@@ -276,11 +294,13 @@ com\cdd\gsl\domain\CommonDictDomainExample.class
 com\cdd\gsl\domain\UserInfoDomain.class
 com\cdd\gsl\domain\CheckPhoneDomainExample$Criteria.class
 com\cdd\gsl\domain\CompanyInfoDomainExample.class
+com\cdd\gsl\dao\ConsumeRecordDomainMapper.class
 com\cdd\gsl\dao\LeaseParkDao.class
 com\cdd\gsl\domain\BrowseHouseRecordDomain.class
 com\cdd\gsl\dao\CompanyUserMappingDomainMapper.class
 com\cdd\gsl\domain\CurrencyInfoDomain.class
 com\cdd\gsl\domain\RecordInfoDomainExample$Criteria.class
+com\cdd\gsl\domain\TopInfoDomainExample.class
 com\cdd\gsl\domain\VerifyPhoneDomain.class
 com\cdd\gsl\domain\ClockCardDomain.class
 com\cdd\gsl\domain\TrailInfoDomain.class

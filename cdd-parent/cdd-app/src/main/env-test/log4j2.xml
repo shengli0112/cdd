@@ -10,17 +10,6 @@
 
 
 
-
-        <File name="RatingAppender" fileName="${sys:catalina.base}/logs/Rating.log">
-            <PatternLayout pattern="%msg%n" />
-        </File>
-
-
-        <Async name="RatingAsync">
-            <AppenderRef ref="RatingAppender"/>
-        </Async>
-
-
         <RollingFile name="debug_log"
                      fileName="${sys:catalina.base}/logs/cddgsl-debug.log" append="true"
                      filePattern="${sys:catalina.base}/logs/cddgsl-debug-%d{yyyy-MM-dd}.log">
@@ -91,10 +80,6 @@
             <!--<appender-ref ref="error_log"/>-->
         </root>
 
-
-        <logger name ="Rating" level="info" >
-            <appender-ref ref="RatingAsync"/>
-        </logger>
 
     </loggers>
 

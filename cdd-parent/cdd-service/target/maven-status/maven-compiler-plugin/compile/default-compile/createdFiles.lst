@@ -7,6 +7,7 @@ com\cdd\gsl\service\impl\HouseServiceImpl.class
 com\cdd\gsl\service\StorageService.class
 com\cdd\gsl\service\impl\ShiroServiceImpl.class
 com\cdd\gsl\service\impl\EnterpriseServiceImpl.class
+com\cdd\gsl\service\impl\TopServiceImpl.class
 com\cdd\gsl\service\impl\RecordInfoServiceImpl.class
 com\cdd\gsl\service\impl\UserSerivceImpl.class
 com\cdd\gsl\service\impl\RegionServiceImpl.class
@@ -19,6 +20,7 @@ com\cdd\gsl\service\CompanyService.class
 com\cdd\gsl\service\impl\CompanyServiceImpl.class
 com\cdd\gsl\service\RegionService.class
 com\cdd\gsl\service\impl\CurrencyServiceImpl.class
+com\cdd\gsl\service\TopService.class
 com\cdd\gsl\service\impl\ParkServiceImpl.class
 com\cdd\gsl\service\impl\ChatMessageServiceImpl.class
 com\cdd\gsl\service\impl\StorageServiceImpl.class
