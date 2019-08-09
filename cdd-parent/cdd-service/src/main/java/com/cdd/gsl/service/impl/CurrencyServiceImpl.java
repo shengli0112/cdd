@@ -94,7 +94,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             List<UserCurrencyVo> userCurrencyVos = userCurrencyDao.findUserCurrencyByUserId(userId);
             if(userCurrencyVos != null && userCurrencyVos.size() > 0) {
                 UserCurrencyVo userCurrencyVo = userCurrencyVos.get(0);
-                List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getId());
+                List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getCurrencyId());
                 if (CollectionUtils.isNotEmpty(currencyVos)) {
                     CurrencyVo currencyVo = currencyVos.get(0);
                     int days = DateUtil.differentDaysByMillisecond(new Date(),userCurrencyVo.getCreateTs());
