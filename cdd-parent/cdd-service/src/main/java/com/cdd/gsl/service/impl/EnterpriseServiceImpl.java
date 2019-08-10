@@ -3,10 +3,8 @@ package com.cdd.gsl.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.EnterpriseInfoDao;
-import com.cdd.gsl.dao.EnterpriseInfoDomainMapper;
-import com.cdd.gsl.dao.MessageInfoDomainMapper;
-import com.cdd.gsl.dao.UserInfoDao;
+import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.ConsumeRecordDomain;
 import com.cdd.gsl.domain.EnterpriseInfoDomain;
 import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.domain.UserInfoDomain;
@@ -35,17 +33,27 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     @Autowired
     private MessageInfoDomainMapper messageInfoDomainMapper;
 
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
     @Override
     public CommonResult createEnterprise(EnterpriseInfoDomain enterpriseInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(enterpriseInfoDomain != null){
             enterpriseInfoDomainMapper.insertSelective(enterpriseInfoDomain);
             userInfoDao.updateUserintegralById(enterpriseInfoDomain.getUserId(),CddConstant.AWARD_CURRENCY_COUNT);
-            MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+            /*MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
             messageInfoDomain.setUserId(enterpriseInfoDomain.getUserId());
             messageInfoDomain.setMessage("您发布企业圈\""+enterpriseInfoDomain.getTitle()+"\"成功，奖励多多币5枚");
             messageInfoDomain.setMessageType(CddConstant.MESSAGE_CURRENCY_TYPE);
-            messageInfoDomainMapper.insertSelective(messageInfoDomain);
+            messageInfoDomainMapper.insertSelective(messageInfoDomain);*/
+            ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+            consumeRecordDomain.setTitle(CddConstant.CREATE_ENTERPRISE_TITLE);
+            consumeRecordDomain.setUserId(enterpriseInfoDomain.getUserId());
+            consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+            consumeRecordDomain.setIntegral(CddConstant.AWARD_CURRENCY_COUNT);
+            consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ADD_HOUSE);
+            consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建企业成功");
         }else{

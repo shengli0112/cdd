@@ -8,9 +8,13 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.UserInfoDomain;
 import com.cdd.gsl.domain.UserInfoDomainExample;
 import com.cdd.gsl.service.CurrencyService;
+import com.cdd.gsl.vo.ConsumeRecordConditionVo;
+import com.cdd.gsl.vo.ConsumeRecordVo;
 import com.cdd.gsl.vo.CurrencyVo;
 import com.cdd.gsl.vo.UserCurrencyVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,8 @@ import java.util.List;
 
 @Service("currencyService")
 public class CurrencyServiceImpl implements CurrencyService {
+
+    private Logger logger = LoggerFactory.getLogger(CurrencyServiceImpl.class);
 
     @Autowired
     private CurrencyDao currencyDao;
@@ -35,6 +41,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Autowired
     private UserCurrencyDao userCurrencyDao;
 
+    @Autowired
+    private ConsumeRecordDao consumeRecordDao;
+
     @Override
     public CommonResult currencyList() {
         List<CurrencyVo> currencyVoList = currencyDao.currencyList();
@@ -46,11 +55,12 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     public CommonResult isPublish(Long userId){
+        logger.info("CurrencyServiceImpl isPublish userId -{}",userId);
         CommonResult commonResult = new CommonResult();
         List<UserCurrencyVo> userCurrencyVos = userCurrencyDao.findUserCurrencyByUserId(userId);
         if(userCurrencyVos != null && userCurrencyVos.size() > 0){
             UserCurrencyVo userCurrencyVo = userCurrencyVos.get(0);
-            List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getId());
+            List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getCurrencyId());
             if(CollectionUtils.isNotEmpty(currencyVos)){
                 CurrencyVo currencyVo = currencyVos.get(0);
                 int days = DateUtil.differentDaysByMillisecond(new Date(),userCurrencyVo.getCreateTs());
@@ -71,6 +81,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public CommonResult integralCount(Long userId) {
+        logger.info("CurrencyServiceImpl integralCount userId -{}",userId);
         CommonResult commonResult = new CommonResult();
         UserInfoDomainExample userInfoDomainExample = new UserInfoDomainExample();
         userInfoDomainExample.createCriteria().andIdEqualTo(userId).andStatusEqualTo(1);
@@ -83,7 +94,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             List<UserCurrencyVo> userCurrencyVos = userCurrencyDao.findUserCurrencyByUserId(userId);
             if(userCurrencyVos != null && userCurrencyVos.size() > 0) {
                 UserCurrencyVo userCurrencyVo = userCurrencyVos.get(0);
-                List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getId());
+                List<CurrencyVo> currencyVos = currencyDao.currencyListById(userCurrencyVo.getCurrencyId());
                 if (CollectionUtils.isNotEmpty(currencyVos)) {
                     CurrencyVo currencyVo = currencyVos.get(0);
                     int days = DateUtil.differentDaysByMillisecond(new Date(),userCurrencyVo.getCreateTs());
@@ -105,6 +116,23 @@ public class CurrencyServiceImpl implements CurrencyService {
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("该用户不存在");
         }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult consumeRecord(ConsumeRecordConditionVo consumeRecordConditionVo) {
+        logger.info("CurrencyServiceImpl consumeRecord userId -{}",consumeRecordConditionVo.getUserId());
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<ConsumeRecordVo> consumeRecordVoList = consumeRecordDao.selectConsumeRecordByUserId(consumeRecordConditionVo);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(consumeRecordVoList);
+        }catch (Exception e){
+            logger.error("CurrencyServiceImpl consumeRecord error");
+            e.printStackTrace();
+        }
+
         return commonResult;
     }
 }

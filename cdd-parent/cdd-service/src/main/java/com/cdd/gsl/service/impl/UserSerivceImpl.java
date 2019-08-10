@@ -100,6 +100,13 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private EnterpriseInfoDao enterpriseInfoDao;
+
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
+    @Autowired
+    private LeagueInfoDomainMapper leagueInfoDomainMapper;
+
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -158,7 +165,7 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
-                    userInfoDomain.setIntegral(300);
+                    userInfoDomain.setIntegral(CddConstant.AWARD_INTEGRAL);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     String waitToken = userInfoDomain.getId() + userInfoDomain.getSalt()+System.currentTimeMillis();
                     String token = DigestUtils.md5DigestAsHex(waitToken.getBytes());
@@ -171,8 +178,9 @@ public class UserSerivceImpl implements UserService {
                     loginTokenVo.setUserType(userInfoDomain.getUserType());
                     loginTokenVo.setToken(token);
 
-                    JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                    JSONObject loginToken = (JSONObject)JSONObject.toJSON(loginTokenVo);
                     loginToken.put("flag",1);
+                    logger.info("UserServiceImpl register success -{}",loginToken.toString());
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("注册成功");
                     commonResult.setData(loginToken);
@@ -316,7 +324,7 @@ public class UserSerivceImpl implements UserService {
                     String[] str = saltPassword.split(",");
                     userInfoDomain.setSalt(str[0]);
                     userInfoDomain.setPassword(str[1]);
-                    userInfoDomain.setIntegral(300);
+                    userInfoDomain.setIntegral(CddConstant.AWARD_INTEGRAL);
                     userInfoDomainMapper.insertSelective(userInfoDomain);
                     flag = 1;
                 }else{
@@ -333,10 +341,11 @@ public class UserSerivceImpl implements UserService {
                 loginTokenVo.setUserId(userInfoDomain.getId());
                 loginTokenVo.setUserType(userInfoDomain.getUserType());
                 loginTokenVo.setToken(token);
-                JSONObject loginToken = JSONObject.parseObject(loginTokenVo.toString());
+                JSONObject loginToken = (JSONObject)JSONObject.toJSON(loginTokenVo);
                 if(flag == 1){
                     loginToken.put("flag",flag);
                 }
+                logger.info("UserServiceImpl phone register token -{}",loginToken.toString());
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("登录成功");
                 commonResult.setData(loginToken);
@@ -1014,6 +1023,13 @@ public class UserSerivceImpl implements UserService {
                     userInfo.setIntegral(userInfoDomain.getIntegral()-currencyInfoDomain.getIntegral());
                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
                     userCurrencyMappingDomainMapper.insertSelective(userCurrencyMappingDomain);
+                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                    consumeRecordDomain.setTitle(userInfoDomain.getUsername());
+                    consumeRecordDomain.setUserId(userInfoDomain.getId());
+                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
+                    consumeRecordDomain.setIntegral(currencyInfoDomain.getIntegral());
+                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_MEMBER);
+                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("购买成功");
                 }
@@ -1035,6 +1051,27 @@ public class UserSerivceImpl implements UserService {
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(slideInfoDomainList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult createLeague(LeagueInfoParamVo leagueInfoParamVo) {
+        logger.info("UserServerImpl createLeague leagueInfoParamVo - {}",leagueInfoParamVo.toString());
+        CommonResult commonResult = new CommonResult();
+        try {
+            LeagueInfoDomain leagueInfoDomain = new LeagueInfoDomain();
+            leagueInfoDomain.setCity(leagueInfoParamVo.getCity());
+            leagueInfoDomain.setName(leagueInfoParamVo.getName());
+            leagueInfoDomain.setPhone(leagueInfoParamVo.getPhone());
+            leagueInfoDomainMapper.insertSelective(leagueInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("添加成功");
+        } catch (Exception e){
+            logger.error("UserServerImpl createLeague error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
         return commonResult;
     }
 

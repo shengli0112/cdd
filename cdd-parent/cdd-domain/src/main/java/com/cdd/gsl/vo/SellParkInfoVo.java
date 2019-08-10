@@ -42,6 +42,8 @@ public class SellParkInfoVo {
 
     private List<SellParkInfoVo> likes;
 
+    private String parkType;
+
     public Long getId() {
         return id;
     }
@@ -194,5 +196,13 @@ public class SellParkInfoVo {
 
     public void setLikes(List<SellParkInfoVo> likes) {
         this.likes = likes;
+    }
+
+    public String getParkType() {
+        return parkType;
+    }
+
+    public void setParkType(String parkType) {
+        this.parkType = parkType;
     }
 }

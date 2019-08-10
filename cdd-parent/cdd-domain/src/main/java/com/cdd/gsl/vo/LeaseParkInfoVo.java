@@ -42,6 +42,10 @@ public class LeaseParkInfoVo {
 
     private List<LeaseParkInfoVo> likes;
 
+    private Integer top;
+
+    private String parkType;
+
     public Long getId() {
         return id;
     }
@@ -185,5 +189,21 @@ public class LeaseParkInfoVo {
 
     public void setLikes(List<LeaseParkInfoVo> likes) {
         this.likes = likes;
+    }
+
+    public Integer getTop() {
+        return top;
+    }
+
+    public void setTop(Integer top) {
+        this.top = top;
+    }
+
+    public String getParkType() {
+        return parkType;
+    }
+
+    public void setParkType(String parkType) {
+        this.parkType = parkType;
     }
 }

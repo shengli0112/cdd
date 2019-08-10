@@ -74,6 +74,8 @@ public interface UserService {
 
     CommonResult slideList(String city);
 
+    CommonResult createLeague(LeagueInfoParamVo leagueInfoParamVo);
+
     /****************************管理员**********************************/
     CommonResult userList(UserAdminConditionVo userConditionVo);
 

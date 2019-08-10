@@ -10,6 +10,7 @@ import com.cdd.gsl.service.TrailService;
 import com.cdd.gsl.vo.HouseConditionVo;
 import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.HouseInfoDomainVo;
+import com.cdd.gsl.vo.HouseTopParamVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,6 @@ public class HouseController {
     @RequestMapping("addHouse")
     public CommonResult addHouse(@RequestBody HouseInfoDomain houseInfoDomain){
         return houseService.addHouse(houseInfoDomain);
-    }
-
-    @RequestMapping("topHouse")
-    public CommonResult topHouse(@RequestParam("houseId") Long houseId,@RequestParam("userId") Long userId){
-        return houseService.topHouse(houseId,userId);
     }
 
     @RequestMapping("addTrail")

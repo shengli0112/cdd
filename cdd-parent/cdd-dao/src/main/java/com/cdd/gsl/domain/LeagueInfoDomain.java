@@ -2,22 +2,20 @@ package com.cdd.gsl.domain;
 
 import java.util.Date;
 
-public class HouseTopDomain {
+public class LeagueInfoDomain {
     private Long id;
 
-    private Long objId;
+    private String city;
 
-    private Long userId;
+    private String name;
 
-    private Long topId;
+    private String phone;
 
     private Date createTs;
 
     private Date updateTs;
 
     private Integer status;
-
-    private String type;
 
     public Long getId() {
         return id;
@@ -27,28 +25,28 @@ public class HouseTopDomain {
         this.id = id;
     }
 
-    public Long getObjId() {
-        return objId;
+    public String getCity() {
+        return city;
     }
 
-    public void setObjId(Long objId) {
-        this.objId = objId;
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public Long getTopId() {
-        return topId;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTopId(Long topId) {
-        this.topId = topId;
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public Date getCreateTs() {
@@ -73,13 +71,5 @@ public class HouseTopDomain {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
     }
 }

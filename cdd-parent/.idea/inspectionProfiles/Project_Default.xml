@@ -5,5 +5,6 @@
       <option name="checkTestFiles" value="false" />
     </inspection_tool>
     <inspection_tool class="SpringIncorrectResourceTypeInspection" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SpringJavaInjectionPointsAutowiringInspection" enabled="false" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>

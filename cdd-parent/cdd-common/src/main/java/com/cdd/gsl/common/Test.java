@@ -1,5 +1,7 @@
 package com.cdd.gsl.common;
 
+import com.cdd.gsl.common.util.DateUtil;
+
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
@@ -8,12 +10,14 @@ import java.util.Date;
 
 public class Test {
     public static void main(String[] args){
-        Instant currentDate = Instant.now();  //当前时间
-        Instant origDate = Instant.now();
-        System.out.println(origDate);
-
-        DurationInitBolt d = new DurationInitBolt("shengli",true,true);
-        d.m();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String url = "http://gz.ooooo.org.cn/52/CN/mb/ed300C/index.html?plan_id=933578&keyword_id={keywordid}";
+        String url1 = "";
+        if(url.contains("{keywordid}")){
+            url1 = url.replace("{keywordid}","12");
+        }
+//        Date d = DateUtil.getSomeDay(new Date(),5);
+        System.out.println(url1);
     }
 
     public static Long getBeginDate()

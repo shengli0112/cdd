@@ -2,6 +2,7 @@ package com.cdd.gsl.controller;
 
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.service.CurrencyService;
+import com.cdd.gsl.vo.ConsumeRecordConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,13 @@ public class CurrencyController {
     @RequestMapping("integralCount")
     public CommonResult integralCount(Long userId){
         return currencyService.integralCount(userId);
+    }
+
+    /**
+     * 消费记录
+     */
+    @RequestMapping("consumeRecord")
+    public CommonResult consumeRecord(ConsumeRecordConditionVo consumeRecordConditionVo){
+        return currencyService.consumeRecord(consumeRecordConditionVo);
     }
 }

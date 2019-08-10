@@ -451,6 +451,14 @@ public class UserController {
         return userService.slideList(city);
     }
 
+    /**
+     * 提交加盟信息
+     */
+    @RequestMapping("createLeague")
+    public CommonResult createLeague(@RequestBody LeagueInfoParamVo leagueInfoParamVo){
+        return userService.createLeague(leagueInfoParamVo);
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();
