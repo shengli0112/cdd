@@ -54,7 +54,7 @@ public interface UserService {
 
     CommonResult updateUser(UserParamVo userParamVo);
 
-    CommonResult allBroker(Integer pageNo,Integer pageSize);
+    CommonResult allBroker(Integer pageNo,Integer pageSize,String param);
 
     CommonResult home();
 
@@ -86,4 +86,7 @@ public interface UserService {
     CommonResult addUser(UserInfoDomain userInfoDomain);
 
     CommonResult updateCurrency(UserInfoDomain userInfoDomain);
+
+    //String accessKey,String secretKey,String bucket
+    CommonResult getQiniuToken();
 }

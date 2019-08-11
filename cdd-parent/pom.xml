@@ -422,6 +422,12 @@
 
       </dependency>
 
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.2.0, 7.2.99]</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -437,6 +443,7 @@
         <version>2.7</version>
         <configuration>
           <encoding>UTF-8</encoding>
+
         </configuration>
       </plugin>
       <!-- java编译插件 -->
@@ -465,6 +472,15 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <includeSystemScope>true</includeSystemScope>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 </project>

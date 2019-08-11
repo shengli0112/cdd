@@ -42,4 +42,15 @@ public class RegionController {
         CommonResult<List<String>> commonResult = regionService.findFirstCodeCity();
         return commonResult;
     }
+
+    /**
+     * 搜索城市
+     * @param param
+     * @return
+     */
+    @RequestMapping("searchCity")
+    public CommonResult searchCity(String param){
+        CommonResult commonResult = regionService.searchCity(param);
+        return commonResult;
+    }
 }

@@ -10,8 +10,11 @@ import com.cdd.gsl.domain.RegionCityInfoDomainExample;
 import com.cdd.gsl.service.RegionService;
 import com.cdd.gsl.vo.CityVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -31,6 +34,8 @@ public class RegionServiceImpl implements RegionService {
 
     @Autowired
     private RegionCityInfoDao regionCityInfoDao;
+
+    private Logger logger = LoggerFactory.getLogger(RegionServiceImpl.class);
 
 
     @Override
@@ -121,6 +126,29 @@ public class RegionServiceImpl implements RegionService {
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(cityVoList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult searchCity(String param) {
+        logger.info("RegionServiceImpl searchCity param-{}",param);
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<String> cityNameList = new ArrayList<>();
+            if(!StringUtils.isEmpty(param)){
+                cityNameList = regionCityInfoDao.selectCityCountyNameByParam(param);
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(cityNameList);
+
+        }catch (Exception e){
+            logger.error("RegionServiceImpl searchCity error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+
         return commonResult;
     }
 }

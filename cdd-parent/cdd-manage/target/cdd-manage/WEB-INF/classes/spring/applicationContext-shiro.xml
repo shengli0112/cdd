@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <description>Shiro Configuration</description>
+
+    <!-- Shiro's main business-tier object for web-enabled applications -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm" />
+        <property name="cacheManager" ref="cacheManager" />
+    </bean>
+    <bean id="myRealm" class="com.cdd.gsl.shiro.MyRealm">
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+
+    <bean id="shiroUserFilter" class="com.cdd.gsl.shiro.filter.ShiroUserFilter"/>
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 没有权限 或者失败后跳转的页面 -->
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/user/login" />
+        <property name="successUrl" value="/loginsuccess.jhtml" />
+        <property name="unauthorizedUrl" value="/error.html" />
+        <property name="filters">
+            <map>
+                <entry key="authc" value-ref="shiroUserFilter"/>
+            </map>
+
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /login = anon
+                /** = authc  <!-- 需要认证的url -->
+                   <!-- 排除认证url -->
+                /checkLogin.json = anon
+                /loginsuccess.jhtml = anon
+                /js/** = anon
+                /css/** = anon
+                /images/** = anon
+                <!--/** = authc-->
+            </value>
+        </property>
+    </bean>
+    <!-- 用户授权信息Cache -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />
+    </bean>
+
+</beans>

@@ -8,4 +8,11 @@ import java.util.List;
 public interface RegionCityInfoDao {
     @Select("select city_name as cityName from t_region_city_info")
     List<String> selectCityName();
+
+    @Select("select * from (" +
+            " (select city_name as name from t_region_city_info where city_name like concat('%','${param}','%'))" +
+            " union all " +
+            " (select county_name as name from t_region_county_info where county_name like concat('%','${param}','%'))" +
+            " ) tmp")
+    List<String> selectCityCountyNameByParam(String param);
 }

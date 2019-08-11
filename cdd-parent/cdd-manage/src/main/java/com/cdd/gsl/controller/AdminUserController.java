@@ -8,6 +8,7 @@ import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.UserAdminConditionVo;
 import com.cdd.gsl.vo.UserConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,8 @@ public class AdminUserController {
 
     @Autowired
     private UserService userService;
+
+
 
     /**
      * 用户列表
@@ -60,5 +63,14 @@ public class AdminUserController {
     public CommonResult updateCurrency(@RequestBody UserInfoDomain userInfoDomain){
 
         return userService.updateCurrency(userInfoDomain);
+    }
+
+    /**
+     * 获取七牛token
+     * @return
+     */
+    @RequestMapping("/getQiniuToken")
+    public CommonResult getQiniuToken(){
+        return userService.getQiniuToken();
     }
 }
