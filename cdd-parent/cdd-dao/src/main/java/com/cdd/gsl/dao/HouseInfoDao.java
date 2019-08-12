@@ -181,7 +181,7 @@ public interface HouseInfoDao {
             "<if test='priceOrder != null'>"+
             "<if test='priceOrder == 1'>,h.selling_price</if>"+
             "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
-            "</if>)) tmp order by createTs desc" +
+            "</if>)) tmp order by createTs desc,top desc" +
             " limit #{from},#{pageSize} "+
             "</script>")
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
