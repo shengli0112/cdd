@@ -111,7 +111,7 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 						//把返回值输出到客户端
 						ServletOutputStream out = response.getOutputStream();
 						CommonResult commonResult = new CommonResult();
-						commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+						commonResult.setFlag(2);
 						commonResult.setMessage("该用户已删除");
 						out.write(JSONObject.toJSONString(commonResult).getBytes("utf-8"));
 						out.flush();
