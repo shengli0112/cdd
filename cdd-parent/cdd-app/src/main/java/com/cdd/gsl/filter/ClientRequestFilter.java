@@ -17,11 +17,13 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.EncryptionUtil;
 import com.cdd.gsl.dao.UrlInfoDao;
 import com.cdd.gsl.dao.UrlInfoDomainMapper;
+import com.cdd.gsl.dao.UserInfoDao;
 import com.cdd.gsl.dao.UserTicketDomainMapper;
 import com.cdd.gsl.domain.UrlInfoDomain;
 import com.cdd.gsl.domain.UrlInfoDomainExample;
 import com.cdd.gsl.domain.UserTicketDomain;
 import com.cdd.gsl.domain.UserTicketDomainExample;
+import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
@@ -44,6 +46,9 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 
 	@Autowired
 	private UrlInfoDao urlInfoDao;
+
+	@Autowired
+	private UserInfoDao userInfoDao;
 
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -85,20 +90,33 @@ public class ClientRequestFilter extends OncePerRequestFilter implements Filter 
 					out.flush();
 					return;
 				}else{
+
 					UserTicketDomainExample userTicketDomainExample = new UserTicketDomainExample();
 					userTicketDomainExample.createCriteria().andTokenEqualTo(token).andUserIdEqualTo(Long.parseLong(userId));
 					List<UserTicketDomain> userTicketDomainList = userTicketDomainMapper.selectByExample(userTicketDomainExample);
-					if(userTicketDomainList != null && userTicketDomainList.size() > 0){
-						filterChain.doFilter(request, response);
+					SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(Long.parseLong(userId));
+					if(singleUserInfoVo != null){
+						if(userTicketDomainList != null && userTicketDomainList.size() > 0){
+							filterChain.doFilter(request, response);
+						}else{
+							//把返回值输出到客户端
+							ServletOutputStream out = response.getOutputStream();
+							CommonResult commonResult = new CommonResult();
+							commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+							commonResult.setMessage("token验证失败");
+							out.write(JSONObject.toJSONString(commonResult).getBytes("utf-8"));
+							out.flush();
+						}
 					}else{
 						//把返回值输出到客户端
 						ServletOutputStream out = response.getOutputStream();
 						CommonResult commonResult = new CommonResult();
 						commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-						commonResult.setMessage("token验证失败");
+						commonResult.setMessage("该用户已删除");
 						out.write(JSONObject.toJSONString(commonResult).getBytes("utf-8"));
 						out.flush();
 					}
+
 				}
 
 			}
