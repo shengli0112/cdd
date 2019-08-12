@@ -183,7 +183,17 @@ public interface HouseInfoDao {
             "<if test='priceOrder == 2'>h.selling_price desc,</if>"+
             "</if>" +
             " h.create_ts desc " +
-            ")) tmp order by top desc,createTs desc" +
+            ")) tmp order by top desc," +
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>area,coverArea,</if>"+
+            "<if test='areaOrder == 2'>area desc,coverArea desc,</if>"+
+            "</if>"+
+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>sellingPrice,</if>"+
+            "<if test='priceOrder == 2'>sellingPrice desc,</if>"+
+            "</if>" +
+            " createTs desc" +
             " limit #{from},#{pageSize} "+
             "</script>")
     public List<HouseInfoDomainVo> selectHouseInfoListByCondition(HouseConditionVo houseConditionVo);
