@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.PinyinUtils;
+import com.cdd.gsl.common.util.RedisUtil;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.RegionCityInfoDomain;
 import com.cdd.gsl.domain.RegionCityInfoDomainExample;
@@ -36,6 +37,12 @@ public class RegionServiceImpl implements RegionService {
     private RegionCityInfoDao regionCityInfoDao;
 
     private Logger logger = LoggerFactory.getLogger(RegionServiceImpl.class);
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private SearchCityUserDao searchCityUserDao;
 
 
     @Override
@@ -76,8 +83,10 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public CommonResult findFirstCodeCity() {
+    public CommonResult findFirstCodeCity(Long userId) {
         CommonResult commonResult = new CommonResult();
+//        String str = redisUtil.hget("city","40");
+//        System.out.println(str);
         List<String> cityNameList = regionCityInfoDao.selectCityName();
         List<CityVo> cityVos = new ArrayList<>();
         cityNameList.forEach(name ->{
@@ -123,6 +132,12 @@ public class RegionServiceImpl implements RegionService {
             result.setCityName(sb.toString().substring(0,sb.toString().length()-1));
             cityVoList.add(result);
         }
+        /*JSONObject data = new JSONObject();
+        if(userId != null){
+            List<String> cityList = searchCityUserDao.selectCityByUserId(userId);
+            data.put("rememberCity",cityList);
+        }
+        data.put("city",cityVoList);*/
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(cityVoList);

@@ -459,6 +459,14 @@ public class UserController {
         return userService.createLeague(leagueInfoParamVo);
     }
 
+    /**
+     * 用户定位城市存储
+     */
+    @RequestMapping("createSearchCity")
+    public CommonResult createSearchCity(@RequestBody SearchCityUserInfo searchCityUserInfo){
+        return userService.createSearchCity(searchCityUserInfo);
+    }
+
     @RequestMapping("testMq")
     public void testMq(){
         HashMap<String, String> map = new HashMap<String, String>();

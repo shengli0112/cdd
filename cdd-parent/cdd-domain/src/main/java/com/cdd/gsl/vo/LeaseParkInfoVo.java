@@ -46,6 +46,8 @@ public class LeaseParkInfoVo {
 
     private String parkType;
 
+    private SingleUserInfoVo user;
+
     public Long getId() {
         return id;
     }
@@ -205,5 +207,13 @@ public class LeaseParkInfoVo {
 
     public void setParkType(String parkType) {
         this.parkType = parkType;
+    }
+
+    public SingleUserInfoVo getUser() {
+        return user;
+    }
+
+    public void setUser(SingleUserInfoVo user) {
+        this.user = user;
     }
 }

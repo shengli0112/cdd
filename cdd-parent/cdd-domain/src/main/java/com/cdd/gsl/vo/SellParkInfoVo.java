@@ -44,6 +44,8 @@ public class SellParkInfoVo {
 
     private String parkType;
 
+    private SingleUserInfoVo user;
+
     public Long getId() {
         return id;
     }
@@ -204,5 +206,13 @@ public class SellParkInfoVo {
 
     public void setParkType(String parkType) {
         this.parkType = parkType;
+    }
+
+    public SingleUserInfoVo getUser() {
+        return user;
+    }
+
+    public void setUser(SingleUserInfoVo user) {
+        this.user = user;
     }
 }

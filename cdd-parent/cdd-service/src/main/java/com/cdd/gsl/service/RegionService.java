@@ -15,4 +15,5 @@ public interface RegionService {
     CommonResult findFirstCodeCity();
 
     CommonResult searchCity(String param);
+    CommonResult findFirstCodeCity(Long userId);
 }

@@ -89,4 +89,6 @@ public interface UserService {
 
     //String accessKey,String secretKey,String bucket
     CommonResult getQiniuToken();
+
+    CommonResult createSearchCity(SearchCityUserInfo searchCityUserInfo);
 }

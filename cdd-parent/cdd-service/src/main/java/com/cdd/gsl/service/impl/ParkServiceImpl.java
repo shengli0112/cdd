@@ -10,10 +10,7 @@ import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.MessageInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.service.ParkService;
-import com.cdd.gsl.vo.LeaseParkCondition;
-import com.cdd.gsl.vo.LeaseParkInfoVo;
-import com.cdd.gsl.vo.SellParkCondition;
-import com.cdd.gsl.vo.SellParkInfoVo;
+import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,6 +153,8 @@ public class ParkServiceImpl implements ParkService {
             List<SellParkInfoVo> sellParkInfoVoList = sellParkDao.selectSellParkInfoById(sellParkId);
             if(CollectionUtils.isNotEmpty(sellParkInfoVoList)){
                 SellParkInfoVo sellParkInfoVo = sellParkInfoVoList.get(0);
+                SingleUserInfoVo userInfoVo = userInfoDao.findUserInfoById(sellParkInfoVo.getUserId());
+                sellParkInfoVo.setUser(userInfoVo);
                 List<SellParkInfoVo> sellParkInfoVoRand = sellParkDao.selectSellParkRand();
                 sellParkInfoVo.setLikes(sellParkInfoVoRand);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
@@ -182,6 +181,8 @@ public class ParkServiceImpl implements ParkService {
             LeaseParkInfoVo leaseParkInfoVo = new LeaseParkInfoVo();
             if(leaseParkInfos != null && leaseParkInfos.size() > 0){
                 leaseParkInfoVo = leaseParkInfos.get(0);
+                SingleUserInfoVo userInfoVo = userInfoDao.findUserInfoById(leaseParkInfoVo.getUserId());
+                leaseParkInfoVo.setUser(userInfoVo);
                 List<LeaseParkInfoVo> randomLeaseParkList = leaseParkDao.selectLeaseParkInfoByRandom();
                 leaseParkInfoVo.setLikes(randomLeaseParkList);
             }
