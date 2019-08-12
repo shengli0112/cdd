@@ -12,5 +12,5 @@ public interface RegionService {
 
     public CommonResult findTownByCounty(String county);
 
-    CommonResult findFirstCodeCity();
+    CommonResult findFirstCodeCity(Long userId);
 }

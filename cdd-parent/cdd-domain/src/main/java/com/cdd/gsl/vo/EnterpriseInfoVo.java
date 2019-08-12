@@ -36,6 +36,8 @@ public class EnterpriseInfoVo {
 
     private Float price;
 
+    private SingleUserInfoVo user;
+
     private List<EnterpriseInfoVo> likes;
 
     public Long getId() {
@@ -173,5 +175,13 @@ public class EnterpriseInfoVo {
 
     public void setLikes(List<EnterpriseInfoVo> likes) {
         this.likes = likes;
+    }
+
+    public SingleUserInfoVo getUser() {
+        return user;
+    }
+
+    public void setUser(SingleUserInfoVo user) {
+        this.user = user;
     }
 }

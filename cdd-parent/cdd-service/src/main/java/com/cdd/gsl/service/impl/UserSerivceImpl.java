@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -106,6 +107,9 @@ public class UserSerivceImpl implements UserService {
 
     @Autowired
     private LeagueInfoDomainMapper leagueInfoDomainMapper;
+
+    @Autowired
+    private SearchCityUserInfoMapper searchCityUserInfoMapper;
 
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -1155,4 +1159,36 @@ public class UserSerivceImpl implements UserService {
     }
 
 
+    @Override
+    public CommonResult createSearchCity(SearchCityUserInfo searchCityUserInfo) {
+        CommonResult commonResult = new CommonResult();
+        logger.info("UserServiceImpl createSearchCity userId-{},cityName-{}",searchCityUserInfo.getUserId(),searchCityUserInfo.getCityName());
+        try{
+            if(searchCityUserInfo != null && searchCityUserInfo.getUserId() != null
+                    && StringUtils.isEmpty(searchCityUserInfo.getCityName())){
+                SearchCityUserInfoExample searchCityUserInfoExample = new SearchCityUserInfoExample();
+                searchCityUserInfoExample.createCriteria().andCityNameEqualTo(searchCityUserInfo.getCityName())
+                        .andUserIdEqualTo(searchCityUserInfo.getUserId()).andStatusEqualTo(1);
+                List<SearchCityUserInfo> searchCityUserInfoList = searchCityUserInfoMapper.selectByExample(searchCityUserInfoExample);
+                if(CollectionUtils.isEmpty(searchCityUserInfoList)){
+                    searchCityUserInfoMapper.insertSelective(searchCityUserInfo);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("添加成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("已存在");
+                }
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不完整");
+            }
+        }catch (Exception e){
+            logger.error("UserServiceImpl createSearchCity error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+
+        return commonResult;
+    }
 }

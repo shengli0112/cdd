@@ -12,6 +12,7 @@ import com.cdd.gsl.service.EnterpriseService;
 import com.cdd.gsl.vo.EnterpriseAdminConditionVo;
 import com.cdd.gsl.vo.EnterpriseConditionVo;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
+import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -108,6 +109,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             List<EnterpriseInfoVo> enterpriseInfoVoList = enterpriseInfoDao.selectAdminEnterpriseInfoListById(enterpriseId);
             if(CollectionUtils.isNotEmpty(enterpriseInfoVoList)){
                 EnterpriseInfoVo enterpriseInfoVo = enterpriseInfoVoList.get(0);
+                SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(enterpriseInfoVo.getUserId());
+                enterpriseInfoVo.setUser(singleUserInfoVo);
                 List<EnterpriseInfoVo> randEnterpriseList = enterpriseInfoDao.selectEnterpriseInfoListRand();
                 enterpriseInfoVo.setLikes(randEnterpriseList);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);

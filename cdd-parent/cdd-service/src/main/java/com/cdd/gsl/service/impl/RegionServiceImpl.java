@@ -36,6 +36,9 @@ public class RegionServiceImpl implements RegionService {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private SearchCityUserDao searchCityUserDao;
+
 
     @Override
     public CommonResult<List<String>> findAllCity() {
@@ -75,7 +78,7 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public CommonResult findFirstCodeCity() {
+    public CommonResult findFirstCodeCity(Long userId) {
         CommonResult commonResult = new CommonResult();
 //        String str = redisUtil.hget("city","40");
 //        System.out.println(str);
@@ -124,9 +127,15 @@ public class RegionServiceImpl implements RegionService {
             result.setCityName(sb.toString().substring(0,sb.toString().length()-1));
             cityVoList.add(result);
         }
+        JSONObject data = new JSONObject();
+        if(userId != null){
+            List<String> cityList = searchCityUserDao.selectCityByUserId(userId);
+            data.put("rememberCity",cityList);
+        }
+        data.put("city",cityVoList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(cityVoList);
+        commonResult.setData(data);
         return commonResult;
     }
 }

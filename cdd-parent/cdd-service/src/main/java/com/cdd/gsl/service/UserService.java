@@ -86,4 +86,6 @@ public interface UserService {
     CommonResult addUser(UserInfoDomain userInfoDomain);
 
     CommonResult updateCurrency(UserInfoDomain userInfoDomain);
+
+    CommonResult createSearchCity(SearchCityUserInfo searchCityUserInfo);
 }

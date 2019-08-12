@@ -38,8 +38,8 @@ public class RegionController {
     }
 
     @RequestMapping("findFirstCodeCity")
-    public CommonResult<List<String>> findFirstCodeCity(){
-        CommonResult<List<String>> commonResult = regionService.findFirstCodeCity();
+    public CommonResult findFirstCodeCity(Long userId){
+        CommonResult commonResult = regionService.findFirstCodeCity(userId);
         return commonResult;
     }
 }
