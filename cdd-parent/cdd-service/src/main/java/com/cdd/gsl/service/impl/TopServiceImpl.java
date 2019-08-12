@@ -69,6 +69,8 @@ public class TopServiceImpl implements TopService {
                     houseTopDomain.setTopId(houseTopParamVo.getTopId());
                     houseTopDomain.setStatus(1);
                     houseTopDomain.setType(houseTopParamVo.getType());
+                    houseTopDomain.setCreateTs(new Date());
+                    houseTopDomain.setUpdateTs(new Date());
                     houseTopDomainMapper.insert(houseTopDomain);
                     TopInfoDomain topInfoDomain = topInfoDomainMapper.selectByPrimaryKey(houseTopParamVo.getTopId());
                     UserInfoDomain user = new UserInfoDomain();
