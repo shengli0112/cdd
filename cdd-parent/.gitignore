@@ -1,4 +1,5 @@
 ##ignore this file##
 /target/
 *.class
-.idea
+/.idea/
+/out/
