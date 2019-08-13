@@ -1196,7 +1196,7 @@ public class UserSerivceImpl implements UserService {
         logger.info("UserServiceImpl createSearchCity userId-{},cityName-{}",searchCityUserInfo.getUserId(),searchCityUserInfo.getCityName());
         try{
             if(searchCityUserInfo != null && searchCityUserInfo.getUserId() != null
-                    && StringUtils.isEmpty(searchCityUserInfo.getCityName())){
+                    && !StringUtils.isEmpty(searchCityUserInfo.getCityName())){
                 SearchCityUserInfoExample searchCityUserInfoExample = new SearchCityUserInfoExample();
                 searchCityUserInfoExample.createCriteria().andCityNameEqualTo(searchCityUserInfo.getCityName())
                         .andUserIdEqualTo(searchCityUserInfo.getUserId()).andStatusEqualTo(1);

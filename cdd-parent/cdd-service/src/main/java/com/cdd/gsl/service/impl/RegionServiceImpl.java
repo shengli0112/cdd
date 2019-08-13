@@ -36,13 +36,13 @@ public class RegionServiceImpl implements RegionService {
     @Autowired
     private RegionCityInfoDao regionCityInfoDao;
 
-    private Logger logger = LoggerFactory.getLogger(RegionServiceImpl.class);
-
     @Autowired
     private RedisUtil redisUtil;
 
     @Autowired
     private SearchCityUserDao searchCityUserDao;
+
+    private Logger logger = LoggerFactory.getLogger(RegionServiceImpl.class);
 
 
     @Override
@@ -132,12 +132,12 @@ public class RegionServiceImpl implements RegionService {
             result.setCityName(sb.toString().substring(0,sb.toString().length()-1));
             cityVoList.add(result);
         }
-        /*JSONObject data = new JSONObject();
+        JSONObject data = new JSONObject();
         if(userId != null){
             List<String> cityList = searchCityUserDao.selectCityByUserId(userId);
             data.put("rememberCity",cityList);
         }
-        data.put("city",cityVoList);*/
+        data.put("city",cityVoList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(cityVoList);
@@ -151,7 +151,7 @@ public class RegionServiceImpl implements RegionService {
         try{
             List<String> cityNameList = new ArrayList<>();
             if(!StringUtils.isEmpty(param)){
-                cityNameList = regionCityInfoDao.selectCityCountyNameByParam(param);
+                cityNameList = regionCityInfoDao.selectCityByCityName(param);
             }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
@@ -166,4 +166,6 @@ public class RegionServiceImpl implements RegionService {
 
         return commonResult;
     }
+
+
 }
