@@ -42,4 +42,10 @@ public class RegionController {
         CommonResult commonResult = regionService.findFirstCodeCity(userId);
         return commonResult;
     }
+
+    @RequestMapping("findCityName")
+    public CommonResult findCityName(String city){
+        CommonResult commonResult = regionService.findCityName(city);
+        return commonResult;
+    }
 }
