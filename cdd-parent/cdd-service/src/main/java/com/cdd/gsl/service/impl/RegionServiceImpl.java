@@ -140,7 +140,7 @@ public class RegionServiceImpl implements RegionService {
         data.put("city",cityVoList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(data);
+        commonResult.setData(cityVoList);
         return commonResult;
     }
 
