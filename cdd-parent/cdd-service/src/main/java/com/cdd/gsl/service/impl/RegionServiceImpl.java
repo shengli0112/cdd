@@ -145,17 +145,20 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public CommonResult findCityName(String city) {
+    public CommonResult searchCity(String param) {
+        logger.info("RegionServiceImpl searchCity param-{}",param);
         CommonResult commonResult = new CommonResult();
         try{
-            if(!StringUtils.isEmpty(city)){
-                List<String> cityNameList = regionCityInfoDao.selectCityByCityName(city);
-                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                commonResult.setMessage("查询成功");
-                commonResult.setData(cityNameList);
+            List<String> cityNameList = new ArrayList<>();
+            if(!StringUtils.isEmpty(param)){
+                cityNameList = regionCityInfoDao.selectCityByCityName(param);
             }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(cityNameList);
+
         }catch (Exception e){
-            logger.error("findCityName error");
+            logger.error("RegionServiceImpl searchCity error");
             e.printStackTrace();
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("服务器异常");
@@ -163,4 +166,6 @@ public class RegionServiceImpl implements RegionService {
 
         return commonResult;
     }
+
+
 }

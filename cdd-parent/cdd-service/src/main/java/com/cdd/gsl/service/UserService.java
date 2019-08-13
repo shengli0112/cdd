@@ -87,5 +87,8 @@ public interface UserService {
 
     CommonResult updateCurrency(UserInfoDomain userInfoDomain);
 
+    //String accessKey,String secretKey,String bucket
+    CommonResult getQiniuToken();
+
     CommonResult createSearchCity(SearchCityUserInfo searchCityUserInfo);
 }

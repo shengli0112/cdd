@@ -43,9 +43,14 @@ public class RegionController {
         return commonResult;
     }
 
-    @RequestMapping("findCityName")
-    public CommonResult findCityName(String city){
-        CommonResult commonResult = regionService.findCityName(city);
+    /**
+     * 搜索城市
+     * @param param
+     * @return
+     */
+    @RequestMapping("searchCity")
+    public CommonResult searchCity(String param){
+        CommonResult commonResult = regionService.searchCity(param);
         return commonResult;
     }
 }

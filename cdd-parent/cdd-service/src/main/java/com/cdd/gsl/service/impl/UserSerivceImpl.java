@@ -8,6 +8,7 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.UserService;
 import com.cdd.gsl.vo.*;
+import com.qiniu.util.Auth;
 import org.apache.commons.collections4.CollectionUtils;
 import org.elasticsearch.common.Strings;
 import org.slf4j.Logger;
@@ -119,6 +120,15 @@ public class UserSerivceImpl implements UserService {
 
     @Value("${verify.code.id}")
     private String verifyCodeId;
+
+    @Value("${accessKey}")
+    private String accessKey;
+
+    @Value("${secretKey}")
+    private String secretKey;
+
+    @Value("${bucket}")
+    private String bucket;
 
     @Override
     public CommonResult thirdLogin(ThirdUserInfoDomain thirdUserInfoDomain) {
@@ -1158,6 +1168,27 @@ public class UserSerivceImpl implements UserService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult getQiniuToken() {
+        CommonResult commonResult = new CommonResult();
+        try {
+            Auth auth = Auth.create(accessKey, secretKey);
+            String upToken = auth.uploadToken(bucket);
+            JSONObject data = new JSONObject();
+            data.put("token",upToken);
+            data.put("key",accessKey);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("获取token成功");
+            commonResult.setData(data);
+        }catch (Exception e){
+            logger.error("getQiniuToken error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("获取token失败");
+        }
+
+        return commonResult;
+    }
 
     @Override
     public CommonResult createSearchCity(SearchCityUserInfo searchCityUserInfo) {

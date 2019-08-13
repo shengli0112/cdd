@@ -12,7 +12,7 @@ public interface RegionService {
 
     public CommonResult findTownByCounty(String county);
 
+    CommonResult searchCity(String param);
     CommonResult findFirstCodeCity(Long userId);
 
-    CommonResult findCityName(String city);
 }

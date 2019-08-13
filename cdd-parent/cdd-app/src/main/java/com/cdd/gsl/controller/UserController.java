@@ -326,7 +326,7 @@ public class UserController {
     }
 
     @RequestMapping("allBroker")
-    public CommonResult allBroker(Integer pageNo, Integer pageSize){
+    public CommonResult allBroker(Integer pageNo, Integer pageSize,String param){
         if(pageNo == null){
             pageNo = 1;
         }
@@ -334,7 +334,7 @@ public class UserController {
             pageSize = 10;
         }
 
-        return userService.allBroker(pageNo,pageSize);
+        return userService.allBroker(pageNo,pageSize,param);
     }
 
     @RequestMapping("findApplyBroker")
