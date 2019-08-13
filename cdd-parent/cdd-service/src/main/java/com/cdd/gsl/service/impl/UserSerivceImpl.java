@@ -809,10 +809,10 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult allBroker(Integer pageNo, Integer pageSize) {
+    public CommonResult allBroker(Integer pageNo, Integer pageSize,String param) {
         CommonResult commonResult = new CommonResult();
         int from = (pageNo-1) * pageSize;
-        List<UserBrokerVo> userBrokerVos = applyBrokerInfoDao.userBrokerList(from,pageSize);
+        List<UserBrokerVo> userBrokerVos = applyBrokerInfoDao.userBrokerList(from,pageSize,param);
         List<UserBrokerVo> userBrokerList = new ArrayList<>();
         if(userBrokerVos != null && userBrokerVos.size() > 0){
             for(UserBrokerVo userBrokerVo:userBrokerVos){
