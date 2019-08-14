@@ -150,10 +150,7 @@ public class RegionServiceImpl implements RegionService {
         logger.info("RegionServiceImpl searchCity param-{}",param);
         CommonResult commonResult = new CommonResult();
         try{
-            List<SearchCityVo> cityNameList = new ArrayList<>();
-            if(!StringUtils.isEmpty(param)){
-                cityNameList = regionCityInfoDao.selectCityByCityName(param);
-            }
+            List<SearchCityVo> cityNameList = regionCityInfoDao.selectCityByCityName(param);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(cityNameList);
