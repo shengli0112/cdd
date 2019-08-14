@@ -1,6 +1,7 @@
 package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.RegionCityInfoDomain;
+import com.cdd.gsl.vo.SearchCityVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public interface RegionCityInfoDao {
     List<String> selectCityName();
 
     @Select("select * from " +
-            "((select city_name as name from t_region_city_info where city_name like concat('%','${cityName}','%'))" +
+            "((select city.city_name as cityName,'' as countyName from t_region_city_info city where city.city_name like concat('%','${cityName}','%'))" +
             " union all " +
-            " (select county_name as name from t_region_county_info where county_name like concat('%','${cityName}','%')))" +
+            " (select city.city_name as cityName,county.county_name as countyName from t_region_city_info city left join t_region_county_info county on city.city_id=county.city_id where county.county_name like concat('%','${cityName}','%')))" +
             " tmp")
-    List<String> selectCityByCityName(String cityName);
+    List<SearchCityVo> selectCityByCityName(String cityName);
 }

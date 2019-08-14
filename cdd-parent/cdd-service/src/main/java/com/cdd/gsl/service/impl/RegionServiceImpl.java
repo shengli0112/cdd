@@ -10,6 +10,7 @@ import com.cdd.gsl.domain.RegionCityInfoDomain;
 import com.cdd.gsl.domain.RegionCityInfoDomainExample;
 import com.cdd.gsl.service.RegionService;
 import com.cdd.gsl.vo.CityVo;
+import com.cdd.gsl.vo.SearchCityVo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -149,7 +150,7 @@ public class RegionServiceImpl implements RegionService {
         logger.info("RegionServiceImpl searchCity param-{}",param);
         CommonResult commonResult = new CommonResult();
         try{
-            List<String> cityNameList = new ArrayList<>();
+            List<SearchCityVo> cityNameList = new ArrayList<>();
             if(!StringUtils.isEmpty(param)){
                 cityNameList = regionCityInfoDao.selectCityByCityName(param);
             }

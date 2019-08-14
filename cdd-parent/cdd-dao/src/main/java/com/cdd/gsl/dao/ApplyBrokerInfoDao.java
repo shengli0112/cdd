@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ApplyBrokerInfoDao {
     @Select("select a.user_id as userId,u.username as username,u.phone as phone,u.portrait as portrait,a.company_name as companyName,u.service_area as serviceArea" +
-            " from t_apply_broker_info a left join t_user_info u on a.user_id=u.id where u.username like concat('%','${param}','%') a.apply_type=2 limit #{from},#{pageSize}")
+            " from t_apply_broker_info a left join t_user_info u on a.user_id=u.id where u.username like concat('%','${param}','%') and a.apply_type=2 limit #{from},#{pageSize}")
     public List<UserBrokerVo> userBrokerList(@Param("from") int from,@Param("pageSize") int pageSize,@Param("param")String param );
 
     @Select("select u.id as id,u.username as username,u.phone as phone," +
