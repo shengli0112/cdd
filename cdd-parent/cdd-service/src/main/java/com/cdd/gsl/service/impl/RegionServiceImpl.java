@@ -10,6 +10,7 @@ import com.cdd.gsl.domain.RegionCityInfoDomain;
 import com.cdd.gsl.domain.RegionCityInfoDomainExample;
 import com.cdd.gsl.service.RegionService;
 import com.cdd.gsl.vo.CityVo;
+import com.cdd.gsl.vo.SearchCityVo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -140,7 +141,7 @@ public class RegionServiceImpl implements RegionService {
         data.put("city",cityVoList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(cityVoList);
+        commonResult.setData(data);
         return commonResult;
     }
 
@@ -149,10 +150,7 @@ public class RegionServiceImpl implements RegionService {
         logger.info("RegionServiceImpl searchCity param-{}",param);
         CommonResult commonResult = new CommonResult();
         try{
-            List<String> cityNameList = new ArrayList<>();
-            if(!StringUtils.isEmpty(param)){
-                cityNameList = regionCityInfoDao.selectCityByCityName(param);
-            }
+            List<SearchCityVo> cityNameList = regionCityInfoDao.selectCityByCityName(param);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(cityNameList);
@@ -166,6 +164,4 @@ public class RegionServiceImpl implements RegionService {
 
         return commonResult;
     }
-
-
 }
