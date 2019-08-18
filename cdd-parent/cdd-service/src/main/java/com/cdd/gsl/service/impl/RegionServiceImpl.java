@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.PinyinUtils;
-import com.cdd.gsl.common.util.RedisUtil;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.RegionCityInfoDomain;
 import com.cdd.gsl.domain.RegionCityInfoDomainExample;
@@ -36,9 +35,6 @@ public class RegionServiceImpl implements RegionService {
 
     @Autowired
     private RegionCityInfoDao regionCityInfoDao;
-
-    @Autowired
-    private RedisUtil redisUtil;
 
     @Autowired
     private SearchCityUserDao searchCityUserDao;

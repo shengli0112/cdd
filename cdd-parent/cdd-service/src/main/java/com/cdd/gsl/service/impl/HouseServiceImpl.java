@@ -1,6 +1,7 @@
 package com.cdd.gsl.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.admin.ExportHouseVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
@@ -402,5 +403,64 @@ public class HouseServiceImpl implements HouseService{
         }
 
         return commonResult;
+    }
+
+    @Override
+    public CommonResult exportHouse(String keyword) {
+        CommonResult commonResult = new CommonResult();
+
+        try {
+            List<HouseInfoDomainVo> houseInfoDomainVoList = houseInfoDao.selectAdminHouseInfoListByKeyword(keyword);
+            List<ExportHouseVo> exportHouseVos = convertExportHouse(houseInfoDomainVoList);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(exportHouseVos);
+        }catch (Exception e){
+            logger.error("HouseServerImpl houseCount error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("系统异常");
+        }
+        return commonResult;
+    }
+
+    public List<ExportHouseVo> convertExportHouse(List<HouseInfoDomainVo> houseInfoDomainVoList){
+        List<ExportHouseVo> exportHouseVos = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(houseInfoDomainVoList)){
+            houseInfoDomainVoList.forEach(house -> {
+                ExportHouseVo exportHouseVo = new ExportHouseVo();
+                exportHouseVo.setTitle(house.getTitle());
+                exportHouseVo.setConcacts(house.getContacts());
+                exportHouseVo.setCreateTs(house.getCreateTs());
+                exportHouseVo.setFloor(house.getFloor());
+                exportHouseVo.setHouseType(house.getHouseType());
+                exportHouseVo.setHouseUseType(house.getHouseUseType());
+                exportHouseVo.setPhone(house.getPhone());
+                exportHouseVo.setRegion(house.getCity()+house.getCounty()+house.getTown());
+
+                if(house.getHouseType().equals("土地") && (house.getCoverArea() != null && !house.getCoverArea().equals(""))){
+                    exportHouseVo.setTotalArea(house.getCoverArea()+"亩");
+                }else if((house.getHouseType().equals("厂房") || house.getHouseType().equals("仓库"))
+                        && (null != house.getArea() && !house.getArea().equals(""))){
+                    exportHouseVo.setTotalArea(house.getArea()+"㎡");
+                }
+
+                if(house.getHouseType().equals("土地") && (house.getUseArea() != null && !house.getUseArea().equals("")) ){
+                    exportHouseVo.setUseArea(house.getUseArea()+"亩");
+                }else if((house.getHouseType().equals("厂房") || house.getHouseType().equals("仓库"))
+                        && (null != house.getUseArea() && !house.getUseArea().equals(""))){
+                    exportHouseVo.setUseArea(house.getUseArea()+"㎡");
+                }
+
+                if(house.getHouseUseType().equals("出售") && house.getSellingPrice() != null){
+                    exportHouseVo.setPrice(house.getSellingPrice()+(house.getPriceType() != null?house.getPriceType():""));
+                }else if(house.getHouseUseType().equals("出租") && house.getSinglePrice() != null){
+                    exportHouseVo.setPrice(house.getSinglePrice()+(house.getPriceType() != null?house.getPriceType():""));
+                }
+                exportHouseVos.add(exportHouseVo);
+            });
+        }
+
+        return exportHouseVos;
     }
 }

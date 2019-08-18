@@ -11,14 +11,14 @@
 
 
 
-        <File name="RatingAppender" fileName="${sys:catalina.base}/logs/Rating.log">
+        <!--<File name="RatingAppender" fileName="${sys:catalina.base}/logs/Rating.log">
             <PatternLayout pattern="%msg%n" />
         </File>
 
 
         <Async name="RatingAsync">
             <AppenderRef ref="RatingAppender"/>
-        </Async>
+        </Async>-->
 
 
         <RollingFile name="debug_log"
@@ -92,9 +92,9 @@
         </root>
 
 
-        <logger name ="Rating" level="info" >
+        <!--<logger name ="Rating" level="info" >
             <appender-ref ref="RatingAsync"/>
-        </logger>
+        </logger>-->
 
     </loggers>
 

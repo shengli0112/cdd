@@ -35,4 +35,6 @@ public interface HouseService {
     CommonResult switchHouse(Long fromUserId,Long toUserId);
 
     CommonResult houseCount();
+
+    public CommonResult exportHouse(String keyword);
 }

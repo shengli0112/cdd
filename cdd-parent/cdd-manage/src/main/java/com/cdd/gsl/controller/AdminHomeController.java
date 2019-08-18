@@ -127,4 +127,14 @@ public class AdminHomeController {
 
         return commonResult;
     }
+
+    /**
+     * 导出房源信息
+     */
+    @RequestMapping("exportHouse")
+    public CommonResult exportHouse(String keyword){
+        CommonResult commonResult = houseService.exportHouse(keyword);
+
+        return commonResult;
+    }
 }
