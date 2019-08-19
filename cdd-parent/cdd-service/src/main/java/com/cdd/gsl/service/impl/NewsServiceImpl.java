@@ -9,6 +9,9 @@ import com.cdd.gsl.dao.NewsInfoDomainMapper;
 import com.cdd.gsl.domain.NewsInfoDomain;
 import com.cdd.gsl.domain.NewsInfoDomainExample;
 import com.cdd.gsl.service.NewsService;
+import com.cdd.gsl.vo.NewsInfoVo;
+import com.cdd.gsl.vo.NewsParamVo;
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +83,44 @@ public class NewsServiceImpl implements NewsService {
         newsInfoDao.updateNewsStatus(newsInfoDomain);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("更新成功");
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult newsList(NewsParamVo newsParamVo) {
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<NewsInfoVo> newsInfoDomainList = newsInfoDao.newsList(newsParamVo);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(newsInfoDomainList);
+        }catch (Exception e){
+            logger.error("NewsServiceImpl createNews error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findNewsDetail(Long newsId) {
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<NewsInfoVo> newsInfoDomainList = newsInfoDao.findNewsById(newsId);
+            NewsInfoVo newsInfoVo = null;
+            if(!CollectionUtils.isEmpty(newsInfoDomainList)){
+                newsInfoVo = newsInfoDomainList.get(0);
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(newsInfoVo);
+        }catch (Exception e){
+            logger.error("NewsServiceImpl createNews error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
         return commonResult;
     }
 }

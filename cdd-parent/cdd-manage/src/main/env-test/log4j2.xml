@@ -85,10 +85,10 @@
     <loggers>
         <root level="debug">
             <appender-ref ref="Console"/>
-            <!--<appender-ref ref="debug_log"/>-->
-            <!--<appender-ref ref="info_log"/>-->
-            <!--<appender-ref ref="warn_log"/>-->
-            <!--<appender-ref ref="error_log"/>-->
+            <appender-ref ref="debug_log"/>
+            <appender-ref ref="info_log"/>
+            <appender-ref ref="warn_log"/>
+            <appender-ref ref="error_log"/>
         </root>
 
 
