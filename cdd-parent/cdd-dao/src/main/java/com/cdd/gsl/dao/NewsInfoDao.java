@@ -35,7 +35,7 @@ public interface NewsInfoDao {
             " or content like concat('%','${keyword}','%'))  " +
             "</if>" +
             " order by create_ts desc " +
-            " limit #{from},#{limit}"+
+            " limit #{from},#{pageSize}"+
             "</script>")
     public List<NewsInfoVo> newsList(NewsParamVo newsParamVo);
 
