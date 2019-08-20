@@ -1,6 +1,7 @@
 package com.cdd.gsl.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class NewsInfoVo {
     private Long id;
@@ -20,6 +21,8 @@ public class NewsInfoVo {
     private String updateTs;
 
     private String content;
+
+    private List<NewsInfoVo> recommendNewsList;
 
     public Long getId() {
         return id;
@@ -91,5 +94,13 @@ public class NewsInfoVo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<NewsInfoVo> getRecommendNewsList() {
+        return recommendNewsList;
+    }
+
+    public void setRecommendNewsList(List<NewsInfoVo> recommendNewsList) {
+        this.recommendNewsList = recommendNewsList;
     }
 }

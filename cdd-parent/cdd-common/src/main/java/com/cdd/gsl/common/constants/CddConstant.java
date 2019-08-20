@@ -54,13 +54,13 @@ public class CddConstant {
 
     public static final Integer INFORM_INTEGRAL_NUM = 20; //举报属实扣除积分数
 
-    public static final String TOP_HOUSE_TITLE = "您置顶房源";
-    public static final String TOP_PARK_TITLE = "您置顶园区";
-    public static final String TOP_ENTERPRISE_TITLE = "您置顶企业圈";
+    public static final String TOP_HOUSE_TITLE = "置顶房源";
+    public static final String TOP_PARK_TITLE = "置顶园区";
+    public static final String TOP_ENTERPRISE_TITLE = "置顶企业圈";
 
-    public static final String CREATE_HOUSE_TITLE = "您发布新房源";
-    public static final String CREATE_PARK_TITLE = "您发布新园区";
-    public static final String CREATE_ENTERPRISE_TITLE = "您发布新企业圈";
+    public static final String CREATE_HOUSE_TITLE = "发布新房源";
+    public static final String CREATE_PARK_TITLE = "发布新园区";
+    public static final String CREATE_ENTERPRISE_TITLE = "发布新企业圈";
 
     /**
      * 注册奖励300多多币

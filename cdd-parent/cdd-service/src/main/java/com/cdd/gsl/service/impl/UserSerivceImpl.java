@@ -1038,7 +1038,7 @@ public class UserSerivceImpl implements UserService {
                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
                     userCurrencyMappingDomainMapper.insertSelective(userCurrencyMappingDomain);
                     ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
-                    consumeRecordDomain.setTitle(userInfoDomain.getUsername());
+                    consumeRecordDomain.setTitle("开通会员");
                     consumeRecordDomain.setUserId(userInfoDomain.getId());
                     consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
                     consumeRecordDomain.setIntegral(currencyInfoDomain.getIntegral());

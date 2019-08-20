@@ -32,7 +32,8 @@ public interface EntrustInfoDao {
             " and e.entrust_use_type=#{entrustUseType} "+
             "</if>"+
             "<if test='keyword != null'>"+
-            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') or e.phone like concat('%','${keyword}','%') ）" +
+            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') or e.phone like concat('%','${keyword}','%'))" +
+
             "</if>"+
             " order by e.create_ts desc " +
             "<if test='areaOrder == 1'>,e.area</if>"+
@@ -63,6 +64,9 @@ public interface EntrustInfoDao {
             "</if>"+
             "<if test='entrustUseType != null'>" +
             " and e.entrust_use_type=#{entrustUseType} "+
+            "</if>"+
+            "<if test='keyword != null'>"+
+            " and (e.city like concat('%','${keyword}','%') or e.county like concat('%','${keyword}','%') or e.town like concat('%','${keyword}','%'))" +
             "</if>"+
             " order by e.create_ts desc " +
             "<if test=\"areaOrder != null\">"+

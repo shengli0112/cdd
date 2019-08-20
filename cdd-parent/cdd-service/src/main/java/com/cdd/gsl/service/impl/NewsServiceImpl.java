@@ -111,6 +111,8 @@ public class NewsServiceImpl implements NewsService {
             NewsInfoVo newsInfoVo = null;
             if(!CollectionUtils.isEmpty(newsInfoDomainList)){
                 newsInfoVo = newsInfoDomainList.get(0);
+                List<NewsInfoVo> recommendNews = newsInfoDao.findRecommandNews();
+                newsInfoVo.setRecommendNewsList(recommendNews);
             }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");

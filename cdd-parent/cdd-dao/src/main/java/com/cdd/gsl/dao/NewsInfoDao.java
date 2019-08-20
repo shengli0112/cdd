@@ -44,6 +44,11 @@ public interface NewsInfoDao {
             " where 1=1 and status=1 and id=#{newsId}")
     public List<NewsInfoVo> findNewsById(Long newsId);
 
+    @Select("select id as id,title as title,link_desc as linkDesc,link_url as linkUrl," +
+            "home_image as homeImage,create_ts as createTs,status as status from t_news_info " +
+            " where 1=1 and status=1 order by rand() limit 3")
+    public List<NewsInfoVo> findRecommandNews();
+
     @Select("<script>" +
             "select count(*) from t_news_info " +
             " where 1=1" +
