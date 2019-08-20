@@ -40,7 +40,7 @@ public interface NewsInfoDao {
     public List<NewsInfoVo> newsList(NewsParamVo newsParamVo);
 
     @Select("select id as id,title as title,link_desc as linkDesc,link_url as linkUrl," +
-            "home_image as homeImage,content as content，create_ts as createTs,status as status from t_news_info " +
+            "home_image as homeImage,content as content,create_ts as createTs,status as status from t_news_info " +
             " where 1=1 and status=1 and id=#{newsId}")
     public List<NewsInfoVo> findNewsById(Long newsId);
 
