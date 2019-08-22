@@ -32,6 +32,15 @@ public class AdminUserController {
     }
 
     /**
+     * 导出用户列表
+     * @return
+     */
+    @RequestMapping("/exportUser")
+    public CommonResult exportUser(UserAdminConditionVo userConditionVo){
+        return userService.exportUser(userConditionVo);
+    }
+
+    /**
      * 删除用户
      */
 

@@ -2,7 +2,7 @@ package com.cdd.gsl.vo;
 
 public class SlideConditionVo {
 
-    private String city;
+    private String keyword;
     //第几页
     private Integer page;
 
@@ -11,12 +11,12 @@ public class SlideConditionVo {
 
     private Integer from;
 
-    public String getCity() {
-        return city;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public Integer getPage() {

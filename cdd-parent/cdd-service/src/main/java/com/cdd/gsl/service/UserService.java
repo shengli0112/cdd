@@ -79,6 +79,8 @@ public interface UserService {
     /****************************管理员**********************************/
     CommonResult userList(UserAdminConditionVo userConditionVo);
 
+    CommonResult exportUser(UserAdminConditionVo userConditionVo);
+
     CommonResult deleteUser(Long userId);
 
     CommonResult recoverUser(Long userId);

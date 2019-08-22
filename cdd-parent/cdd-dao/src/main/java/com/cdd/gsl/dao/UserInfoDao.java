@@ -111,6 +111,17 @@ public interface UserInfoDao {
             " limit #{from},#{limit} </script>")
     List<UserInfoDemainVo> userList(UserAdminConditionVo userConditionVo);
 
+    @Select("<script> select id as id,username as username,phone as phone,user_type as userType,integral as integral,portrait as portrait," +
+            "status as status,create_ts as createTs,update_ts as updateTs,service_area as serviceArea" +
+            " from t_user_info" +
+            " where 1=1 " +
+            "<if test='keyword != null'>" +
+            " and (username like concat('%','${keyword}','%') or phone like concat('%','${keyword}','%')) " +
+            "</if>"+
+            " order by status desc,create_ts desc "+
+            "  </script>")
+    List<UserInfoDemainVo> exportUser(UserAdminConditionVo userConditionVo);
+
     @Select("<script> select count(*)" +
             " from t_user_info" +
             " where 1=1 " +

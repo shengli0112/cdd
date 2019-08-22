@@ -1104,6 +1104,16 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult exportUser(UserAdminConditionVo userConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        List<UserInfoDemainVo> userInfoDomainList = userInfoDao.exportUser(userConditionVo);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(userInfoDomainList);
+        return commonResult;
+    }
+
+    @Override
     public CommonResult deleteUser(Long userId) {
         CommonResult commonResult = new CommonResult();
         if(userId != null){
