@@ -11,6 +11,7 @@ import com.cdd.gsl.vo.SlideConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +30,21 @@ public class SlideServiceImpl implements SlideService {
             slideInfoDomainMapper.insertSelective(slideInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数为空");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult updateSlide(SlideInfoDomain slideInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(slideInfoDomain != null){
+            slideInfoDomain.setUpdateTs(new Date());
+            slideInfoDomainMapper.updateByPrimaryKeySelective(slideInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("修改成功");
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数为空");
