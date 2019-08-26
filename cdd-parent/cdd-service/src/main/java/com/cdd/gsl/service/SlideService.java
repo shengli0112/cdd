@@ -1,7 +1,9 @@
 package com.cdd.gsl.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.admin.ScreenAdminConditionVo;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.domain.OpenScreenInfoDomain;
 import com.cdd.gsl.domain.SlideInfoDomain;
 import com.cdd.gsl.vo.SlideConditionVo;
 
@@ -17,4 +19,14 @@ public interface SlideService {
     public CommonResult recoverSlide(JSONObject json);
 
     public CommonResult orderSlide(JSONObject json);
+
+    public CommonResult findSlideList(String city);
+
+    public CommonResult findSlidePosition();
+
+    public CommonResult addOpenScreen(OpenScreenInfoDomain openScreenInfoDomain);
+
+    public CommonResult updateOpenScreen(OpenScreenInfoDomain openScreenInfoDomain);
+
+    public CommonResult openScreenList(ScreenAdminConditionVo screenAdminConditionVo);
 }

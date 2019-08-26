@@ -21,6 +21,10 @@ public class SlideInfoDomain {
 
     private String city;
 
+    private Integer isLook;
+
+    private String position;
+
     public Long getId() {
         return id;
     }
@@ -91,5 +95,21 @@ public class SlideInfoDomain {
 
     public void setCity(String city) {
         this.city = city == null ? null : city.trim();
+    }
+
+    public Integer getIsLook() {
+        return isLook;
+    }
+
+    public void setIsLook(Integer isLook) {
+        this.isLook = isLook;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position == null ? null : position.trim();
     }
 }

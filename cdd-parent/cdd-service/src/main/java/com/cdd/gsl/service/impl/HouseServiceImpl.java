@@ -68,6 +68,9 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private ConsumeRecordDomainMapper consumeRecordDomainMapper;
 
+    @Autowired
+    private EntrustInfoDao entrustInfoDao;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -388,10 +391,13 @@ public class HouseServiceImpl implements HouseService{
             int ckCount = houseInfoDao.countHouseByHouseType(CddConstant.HOUSE_TYPE_CK);
             //土地数量
             int tdCount = houseInfoDao.countHouseByHouseType(CddConstant.HOUSE_TYPE_TD);
+            //委托数量
+            int entrustCount = entrustInfoDao.countEntrust();
             JSONObject data = new JSONObject();
             data.put("cfCount",cfCount);
             data.put("ckCount",ckCount);
             data.put("tdCount",tdCount);
+            data.put("entrustCount",entrustCount);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(data);

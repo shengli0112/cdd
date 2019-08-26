@@ -1,5 +1,7 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.admin.EntrustAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
@@ -7,6 +9,8 @@ import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.EntrustService;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class EntrustServiceImpl implements EntrustService {
+
+    private Logger logger = LoggerFactory.getLogger(EntrustServiceImpl.class);
 
     @Autowired
     private EntrustInfoDomainMapper entrustInfoDomainMapper;
@@ -242,5 +248,26 @@ public class EntrustServiceImpl implements EntrustService {
 
 //        System.out.println(i + "," + j + "," + k);
 //        System.out.println((int)(Math.random() * 10));
+    }
+
+    @Override
+    public CommonResult findAdminEntrustList(EntrustAdminConditionVo entrustAdminConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        try{
+            List<EntrustInfoVo> entrustInfoVoList = entrustInfoDao.findEntrustInfoList(entrustAdminConditionVo);
+            int total = entrustInfoDao.countAllEntrust(entrustAdminConditionVo);
+            JSONObject data = new JSONObject();
+            data.put("entrustInfoList",entrustInfoVoList);
+            data.put("total",total);
+            commonResult.setData(data);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+        }catch (Exception e){
+            logger.error("findAdminEntrustList error");
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
     }
 }

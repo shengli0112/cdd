@@ -19,6 +19,17 @@ public interface SlideInfoDao {
     List<SlideInfoDomain> slideList(SlideConditionVo slideConditionVo);
 
     @Select("<script>" +
+            "select id as id,title as title,slide_url as slideUrl,sequence as sequence," +
+            "status as status,city as city,redirect_url as redirectUrl,create_ts as createTs," +
+            "update_ts as updateTs,is_look as isLook" +
+            " from t_slide_info where status=1 and city=''" +
+            "<if test='city != null'>" +
+            " and  city=#{city} " +
+            "</if> order by sequence desc" +
+            "</script>")
+    List<SlideInfoDomain> findSlideListByCity(String city);
+
+    @Select("<script>" +
             "select id as id,title as title,slide_url as slideUrl,sequence as sequence" +
             " from t_slide_info where 1=1 and status=1  and city='全国' " +
             "<if test='city != null'>" +

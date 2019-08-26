@@ -1,5 +1,6 @@
 package com.cdd.gsl.dao;
 
+import com.cdd.gsl.admin.EntrustAdminConditionVo;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
 import org.apache.ibatis.annotations.Select;
@@ -49,6 +50,58 @@ public interface EntrustInfoDao {
             "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
             " e.contacts as contacts,e.phone as phone,e.business as business"   +
             " from t_entrust_info e " +
+            " left join t_entrust_user_mapping um on e.id=um.entrust_id "+
+            "left join t_user_info u on um.user_id=u.id " +
+            "where 1=1 " +
+
+            "<if test='entrustType != null'>" +
+            " and e.entrust_type=#{entrustType} "+
+            "</if>"+
+            "<if test='entrustUseType != null'>" +
+            " and e.entrust_use_type=#{entrustUseType} "+
+            "</if>"+
+            "<if test='keyword != null'>"+
+            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') " +
+            "or e.phone like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
+            "or e.city like concat('%','${keyword}','%') or e.county like concat('%','${keyword}','%')" +
+            " or e.town like concat('%','${keyword}','%'))" +
+
+            "</if>"+
+            " order by e.create_ts desc " +
+
+            " limit #{from},#{limit}"+
+            "</script>")
+    public List<EntrustInfoVo> findEntrustInfoList(EntrustAdminConditionVo entrustAdminConditionVo);
+
+    @Select("<script> " +
+            "select count(*) " +
+            " from t_entrust_info e " +
+            "where 1=1 " +
+
+            "<if test='entrustType != null'>" +
+            " and e.entrust_type=#{entrustType} "+
+            "</if>"+
+            "<if test='entrustUseType != null'>" +
+            " and e.entrust_use_type=#{entrustUseType} "+
+            "</if>"+
+            "<if test='keyword != null'>"+
+            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') " +
+            "or e.phone like concat('%','${keyword}','%') " +
+            "or e.city like concat('%','${keyword}','%') or e.county like concat('%','${keyword}','%')" +
+            " or e.town like concat('%','${keyword}','%'))" +
+
+            "</if>"+
+
+            "</script>")
+    int countAllEntrust(EntrustAdminConditionVo entrustAdminConditionVo);
+
+    @Select("<script> " +
+            "select e.id as entrustId, u.username as username,e.entrust_type as type, " +
+            "(select dict_value from t_common_dict where dict_name='entrustType' and dict_code=e.entrust_type) as entrustType, " +
+            "(select dict_value from t_common_dict where dict_name='entrustUseType' and dict_code=e.entrust_use_type) as entrustUseType, " +
+            "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
+            " e.contacts as contacts,e.phone as phone,e.business as business"   +
+            " from t_entrust_info e " +
             "left join t_user_info u on e.user_id=u.id " +
             "where 1=1 " +
             "<if test=\"city != null\">" +
@@ -87,4 +140,9 @@ public interface EntrustInfoDao {
             "left join t_user_info u on um.user_id=u.id " +
             "where 1=1 and e.id=#{id}")
     List<EntrustInfoVo> findEntrustInfoById(Long id);
+
+    @Select("select count(*) from t_entrust_info where status=1")
+    int countEntrust();
+
+
 }

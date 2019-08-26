@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cdd.gsl.dao.SlideInfoDomainMapper" >
-  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.SlideInfoDomain" >
+<mapper namespace="com.cdd.gsl.dao.OpenScreenInfoDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.OpenScreenInfoDomain" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="slide_url" property="slideUrl" jdbcType="VARCHAR" />
-    <result column="sequence" property="sequence" jdbcType="INTEGER" />
+    <result column="screen_url" property="screenUrl" jdbcType="VARCHAR" />
+    <result column="redirect_url" property="redirectUrl" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
-    <result column="redirect_url" property="redirectUrl" jdbcType="VARCHAR" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
-    <result column="city" property="city" jdbcType="VARCHAR" />
-    <result column="is_look" property="isLook" jdbcType="INTEGER" />
-    <result column="position" property="position" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,16 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, slide_url, sequence, status, create_ts, redirect_url, update_ts, city, 
-    is_look, position
+    id, title, screen_url, redirect_url, status, create_ts, update_ts
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.SlideInfoDomainExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomainExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_slide_info
+    from t_open_screen_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,31 +88,29 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from t_slide_info
+    from t_open_screen_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_slide_info
+    delete from t_open_screen_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.SlideInfoDomainExample" >
-    delete from t_slide_info
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomainExample" >
+    delete from t_open_screen_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
-    insert into t_slide_info (id, title, slide_url, 
-      sequence, status, create_ts, 
-      redirect_url, update_ts, city, 
-      is_look, position)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{slideUrl,jdbcType=VARCHAR}, 
-      #{sequence,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
-      #{redirectUrl,jdbcType=VARCHAR}, #{updateTs,jdbcType=TIMESTAMP}, #{city,jdbcType=VARCHAR}, 
-      #{isLook,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomain" >
+    insert into t_open_screen_info (id, title, screen_url, 
+      redirect_url, status, create_ts, 
+      update_ts)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{screenUrl,jdbcType=VARCHAR}, 
+      #{redirectUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
-    insert into t_slide_info
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomain" >
+    insert into t_open_screen_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -125,11 +118,11 @@
       <if test="title != null" >
         title,
       </if>
-      <if test="slideUrl != null" >
-        slide_url,
+      <if test="screenUrl != null" >
+        screen_url,
       </if>
-      <if test="sequence != null" >
-        sequence,
+      <if test="redirectUrl != null" >
+        redirect_url,
       </if>
       <if test="status != null" >
         status,
@@ -137,20 +130,8 @@
       <if test="createTs != null" >
         create_ts,
       </if>
-      <if test="redirectUrl != null" >
-        redirect_url,
-      </if>
       <if test="updateTs != null" >
         update_ts,
-      </if>
-      <if test="city != null" >
-        city,
-      </if>
-      <if test="isLook != null" >
-        is_look,
-      </if>
-      <if test="position != null" >
-        position,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -160,11 +141,11 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="slideUrl != null" >
-        #{slideUrl,jdbcType=VARCHAR},
+      <if test="screenUrl != null" >
+        #{screenUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sequence != null" >
-        #{sequence,jdbcType=INTEGER},
+      <if test="redirectUrl != null" >
+        #{redirectUrl,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -172,31 +153,19 @@
       <if test="createTs != null" >
         #{createTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="redirectUrl != null" >
-        #{redirectUrl,jdbcType=VARCHAR},
-      </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="city != null" >
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="isLook != null" >
-        #{isLook,jdbcType=INTEGER},
-      </if>
-      <if test="position != null" >
-        #{position,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cdd.gsl.domain.SlideInfoDomainExample" resultType="java.lang.Integer" >
-    select count(*) from t_slide_info
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_open_screen_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_slide_info
+    update t_open_screen_info
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
@@ -204,11 +173,11 @@
       <if test="record.title != null" >
         title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.slideUrl != null" >
-        slide_url = #{record.slideUrl,jdbcType=VARCHAR},
+      <if test="record.screenUrl != null" >
+        screen_url = #{record.screenUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.sequence != null" >
-        sequence = #{record.sequence,jdbcType=INTEGER},
+      <if test="record.redirectUrl != null" >
+        redirect_url = #{record.redirectUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -216,20 +185,8 @@
       <if test="record.createTs != null" >
         create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.redirectUrl != null" >
-        redirect_url = #{record.redirectUrl,jdbcType=VARCHAR},
-      </if>
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.city != null" >
-        city = #{record.city,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isLook != null" >
-        is_look = #{record.isLook,jdbcType=INTEGER},
-      </if>
-      <if test="record.position != null" >
-        position = #{record.position,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -237,33 +194,29 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_slide_info
+    update t_open_screen_info
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
-      slide_url = #{record.slideUrl,jdbcType=VARCHAR},
-      sequence = #{record.sequence,jdbcType=INTEGER},
+      screen_url = #{record.screenUrl,jdbcType=VARCHAR},
+      redirect_url = #{record.redirectUrl,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      redirect_url = #{record.redirectUrl,jdbcType=VARCHAR},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
-      city = #{record.city,jdbcType=VARCHAR},
-      is_look = #{record.isLook,jdbcType=INTEGER},
-      position = #{record.position,jdbcType=VARCHAR}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
-    update t_slide_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomain" >
+    update t_open_screen_info
     <set >
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="slideUrl != null" >
-        slide_url = #{slideUrl,jdbcType=VARCHAR},
+      <if test="screenUrl != null" >
+        screen_url = #{screenUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sequence != null" >
-        sequence = #{sequence,jdbcType=INTEGER},
+      <if test="redirectUrl != null" >
+        redirect_url = #{redirectUrl,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -271,36 +224,20 @@
       <if test="createTs != null" >
         create_ts = #{createTs,jdbcType=TIMESTAMP},
       </if>
-      <if test="redirectUrl != null" >
-        redirect_url = #{redirectUrl,jdbcType=VARCHAR},
-      </if>
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
-      </if>
-      <if test="city != null" >
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="isLook != null" >
-        is_look = #{isLook,jdbcType=INTEGER},
-      </if>
-      <if test="position != null" >
-        position = #{position,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.SlideInfoDomain" >
-    update t_slide_info
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.OpenScreenInfoDomain" >
+    update t_open_screen_info
     set title = #{title,jdbcType=VARCHAR},
-      slide_url = #{slideUrl,jdbcType=VARCHAR},
-      sequence = #{sequence,jdbcType=INTEGER},
+      screen_url = #{screenUrl,jdbcType=VARCHAR},
+      redirect_url = #{redirectUrl,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      redirect_url = #{redirectUrl,jdbcType=VARCHAR},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP},
-      city = #{city,jdbcType=VARCHAR},
-      is_look = #{isLook,jdbcType=INTEGER},
-      position = #{position,jdbcType=VARCHAR}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
