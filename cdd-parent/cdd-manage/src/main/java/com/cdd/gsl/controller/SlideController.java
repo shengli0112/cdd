@@ -48,9 +48,15 @@ public class SlideController {
     }
 
     @RequestMapping(value = "/addSlide")
-    public CommonResult addSlide(SlideInfoDomain slideInfoDomain) throws Exception {
+    public CommonResult addSlide(@RequestBody SlideInfoDomain slideInfoDomain) throws Exception {
         logger.info("SlideController brokerList start");
         return slideService.addSlide(slideInfoDomain);
+    }
+
+    @RequestMapping(value = "/updateSlide")
+    public CommonResult updateSlide(@RequestBody SlideInfoDomain slideInfoDomain) throws Exception {
+        logger.info("SlideController brokerList start");
+        return slideService.updateSlide(slideInfoDomain);
     }
 
 }

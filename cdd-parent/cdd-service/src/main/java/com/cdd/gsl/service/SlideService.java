@@ -8,6 +8,8 @@ import com.cdd.gsl.vo.SlideConditionVo;
 public interface SlideService {
     public CommonResult addSlide(SlideInfoDomain slideInfoDomain);
 
+    public CommonResult updateSlide(SlideInfoDomain slideInfoDomain);
+
     public CommonResult slideList(SlideConditionVo slideConditionVo);
 
     public CommonResult deleteSlide(JSONObject json);
