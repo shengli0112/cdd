@@ -31,6 +31,8 @@ public class EntrustInfoVo {
     //是否查看手机号
     private Integer checkPhone;
 
+    private Integer status;
+
     public Long getEntrustId() {
         return entrustId;
     }
@@ -138,5 +140,13 @@ public class EntrustInfoVo {
 
     public void setCheckPhone(Integer checkPhone) {
         this.checkPhone = checkPhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
