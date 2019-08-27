@@ -24,9 +24,9 @@
     </bean>
 
     <!-- task任务扫描 -->
-    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+    <!--<task:annotation-driven executor="executor" scheduler="scheduler"/>
     <task:scheduler id="scheduler" pool-size="10"/>
-    <task:executor id="executor" pool-size="10"/>
+    <task:executor id="executor" pool-size="10"/>-->
 
 
     <import resource="applicationContext-db.xml"/>
