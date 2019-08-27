@@ -190,4 +190,15 @@ public class SlideServiceImpl implements SlideService {
         commonResult.setData(json);
         return commonResult;
     }
+
+    @Override
+    public CommonResult slidePositionList() {
+        CommonResult commonResult = new CommonResult();
+        SlidePositionInfoDomainExample slidePositionInfoDomainExample = new SlidePositionInfoDomainExample();
+        List<SlidePositionInfoDomain> slidePositionInfoDomainList = slidePositionInfoDomainMapper.selectByExample(slidePositionInfoDomainExample);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(slidePositionInfoDomainList);
+        return commonResult;
+    }
 }

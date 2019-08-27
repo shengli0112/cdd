@@ -29,4 +29,6 @@ public interface SlideService {
     public CommonResult updateOpenScreen(OpenScreenInfoDomain openScreenInfoDomain);
 
     public CommonResult openScreenList(ScreenAdminConditionVo screenAdminConditionVo);
+
+    public CommonResult slidePositionList();
 }

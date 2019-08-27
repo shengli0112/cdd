@@ -129,4 +129,10 @@ public class SlideController {
         return commonResult;
     }
 
+    @RequestMapping(value = "/slidePositionList")
+    public CommonResult slidePositionList() throws Exception {
+        logger.info("SlideController openScreenList start");
+        return slideService.slidePositionList();
+    }
+
 }
