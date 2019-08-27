@@ -11,6 +11,7 @@ import com.cdd.gsl.vo.SlideConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -196,9 +197,13 @@ public class SlideServiceImpl implements SlideService {
         CommonResult commonResult = new CommonResult();
         SlidePositionInfoDomainExample slidePositionInfoDomainExample = new SlidePositionInfoDomainExample();
         List<SlidePositionInfoDomain> slidePositionInfoDomainList = slidePositionInfoDomainMapper.selectByExample(slidePositionInfoDomainExample);
+        List<String> positionList = new ArrayList<>();
+        slidePositionInfoDomainList.forEach(slidePosition ->{
+            positionList.add(slidePosition.getSlidePosition());
+        });
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
-        commonResult.setData(slidePositionInfoDomainList);
+        commonResult.setData(positionList);
         return commonResult;
     }
 }

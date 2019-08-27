@@ -10,7 +10,7 @@ public interface OpenScreenDao {
     @Select("<script>" +
             "select id as id,title as title,screen_url as screenUrl," +
             "status as status,redirect_url as redirectUrl,create_ts as createTs,update_ts as updateTs" +
-            " from t_slide_info where 1=1 " +
+            " from t_open_screen_info where 1=1 " +
             "<if test='keyword != null'>" +
             " and  (city like concat('%','${keyword}','%') or title like concat('%','${keyword}','%'))" +
             "</if> order by update_ts desc" +
