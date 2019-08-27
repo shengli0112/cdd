@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SlideInfoDao {
     @Select("<script>" +
-            "select id as id,title as title,slide_url as slideUrl,sequence as sequence," +
+            "select id as id,title as title,slide_url as slideUrl,sequence as sequence,position as position,is_look as isLook," +
             "status as status,city as city,redirect_url as redirectUrl,create_ts as createTs,update_ts as updateTs" +
             " from t_slide_info where 1=1 " +
             "<if test='keyword != null'>" +
