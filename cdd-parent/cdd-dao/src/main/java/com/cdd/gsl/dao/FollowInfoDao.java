@@ -36,7 +36,7 @@ public interface FollowInfoDao {
     public List<FollowSellParkVo> findFollowSellPark(FollowConditionVo followConditionVo);
 
     @Select("select f.id as followId,s.id as id,s.city as city,s.county as county,s.address as address,s.park_name as parkName," +
-            "s.total_area as totalArea,s.unit_price as unitPrice,"+
+            "s.total_area as totalArea,s.unit_price as unitPrice,s.id as leaseParkId, "+
             "s.tag as tag,(select dict_value from t_common_dict where dict_name='priceType' and dict_code=s.price_type) as priceType,s.background as background " +
             " from t_follow_info f left join t_lease_park_info s on f.follow_id=s.id" +
             " where s.status=1 and f.follow_type=#{followType} and f.user_id=#{userId}" +

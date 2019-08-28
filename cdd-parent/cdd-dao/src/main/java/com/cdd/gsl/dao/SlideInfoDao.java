@@ -22,7 +22,7 @@ public interface SlideInfoDao {
     @Select("<script>" +
             "select id as id,title as title,slide_url as slideUrl,sequence as sequence," +
             "status as status,city as city,redirect_url as redirectUrl,create_ts as createTs," +
-            "update_ts as updateTs,is_look as isLook,postion as position" +
+            "update_ts as updateTs,is_look as isLook,position as position" +
             " from t_slide_info where status=1 and position=#{position} " +
             "<if test='isLook == 0'>" +
             " and isLook=0 " +
