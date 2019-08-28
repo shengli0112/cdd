@@ -25,11 +25,15 @@ public interface SlideInfoDao {
             "update_ts as updateTs,is_look as isLook,position as position" +
             " from t_slide_info where status=1 and position=#{position} " +
             "<if test='isLook == 0'>" +
-            " and isLook=0 " +
+            " and is_look=0 " +
             "</if> " +
-            " and city='' " +
+            " and " +
             "<if test='city != null'>" +
-            " or city=#{city} " +
+            " ( " +
+            "</if> " +
+            "city='' " +
+            "<if test='city != null'>" +
+            " or city=#{city} )" +
             "</if> " +
             "order by sequence desc" +
             "</script>")
