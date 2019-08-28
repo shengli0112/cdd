@@ -466,13 +466,14 @@ public class UserSerivceImpl implements UserService {
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("查询成功");
                 }else if(followType == 4){
-                    List<FollowSellParkVo> followSellParkVos = followInfoDao.findFollowSellPark(followConditionVo);
-                    commonResult.setData(followSellParkVos);
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setMessage("查询成功");
-                }else if(followType == 5){
                     List<FollowLeaseParkVo> followLeaseParkVos = followInfoDao.findFollowLeasePark(followConditionVo);
                     commonResult.setData(followLeaseParkVos);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+
+                }else if(followType == 5){
+                    List<FollowSellParkVo> followSellParkVos = followInfoDao.findFollowSellPark(followConditionVo);
+                    commonResult.setData(followSellParkVos);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("查询成功");
                 }else{

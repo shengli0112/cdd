@@ -4,6 +4,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.service.SlideService;
 import com.cdd.gsl.service.TopService;
 import com.cdd.gsl.vo.HouseTopParamVo;
+import com.cdd.gsl.vo.SlideParamVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,13 @@ public class SlideController {
     private SlideService slideService;
 
 
-    @RequestMapping("findSlideList")
-    public CommonResult findSlideList(String city){
-        return slideService.findSlideList(city);
+    @RequestMapping("/findSlideList")
+    public CommonResult findSlideList(SlideParamVo slideParamVo){
+        return slideService.findSlideList(slideParamVo);
+    }
+
+    @RequestMapping("/findScreenList")
+    public CommonResult findScreenList(){
+        return slideService.findScreenList();
     }
 }

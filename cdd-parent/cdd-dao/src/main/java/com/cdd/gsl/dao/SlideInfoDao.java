@@ -2,6 +2,7 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.domain.SlideInfoDomain;
 import com.cdd.gsl.vo.SlideConditionVo;
+import com.cdd.gsl.vo.SlideParamVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -21,13 +22,18 @@ public interface SlideInfoDao {
     @Select("<script>" +
             "select id as id,title as title,slide_url as slideUrl,sequence as sequence," +
             "status as status,city as city,redirect_url as redirectUrl,create_ts as createTs," +
-            "update_ts as updateTs,is_look as isLook" +
-            " from t_slide_info where status=1 and city=''" +
+            "update_ts as updateTs,is_look as isLook,postion as position" +
+            " from t_slide_info where status=1 and position=#{position} " +
+            "<if test='isLook == 0'>" +
+            " and isLook=0 " +
+            "</if> " +
+            " and city='' " +
             "<if test='city != null'>" +
-            " and  city=#{city} " +
-            "</if> order by sequence desc" +
+            " or city=#{city} " +
+            "</if> " +
+            "order by sequence desc" +
             "</script>")
-    List<SlideInfoDomain> findSlideListByCity(String city);
+    List<SlideInfoDomain> findSlideListByCity(SlideParamVo slideParamVo);
 
     @Select("<script>" +
             "select id as id,title as title,slide_url as slideUrl,sequence as sequence" +

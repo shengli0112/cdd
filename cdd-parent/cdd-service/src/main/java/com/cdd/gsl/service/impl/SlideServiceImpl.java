@@ -8,6 +8,7 @@ import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.SlideService;
 import com.cdd.gsl.vo.SlideConditionVo;
+import com.cdd.gsl.vo.SlideParamVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -128,9 +129,9 @@ public class SlideServiceImpl implements SlideService {
     }
 
     @Override
-    public CommonResult findSlideList(String city) {
+    public CommonResult findSlideList(SlideParamVo slideParamVo) {
         CommonResult commonResult = new CommonResult();
-        List<SlideInfoDomain> slideInfoDomainList = slideInfoDao.findSlideListByCity(city);
+        List<SlideInfoDomain> slideInfoDomainList = slideInfoDao.findSlideListByCity(slideParamVo);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(slideInfoDomainList);
@@ -204,6 +205,18 @@ public class SlideServiceImpl implements SlideService {
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(positionList);
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findScreenList() {
+        CommonResult commonResult = new CommonResult();
+        OpenScreenInfoDomainExample openScreenInfoDomainExample = new OpenScreenInfoDomainExample();
+        openScreenInfoDomainExample.createCriteria().andStatusEqualTo(1);
+        List<OpenScreenInfoDomain> openScreenInfoDomainList = openScreenInfoDomainMapper.selectByExample(openScreenInfoDomainExample);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(openScreenInfoDomainList);
         return commonResult;
     }
 }

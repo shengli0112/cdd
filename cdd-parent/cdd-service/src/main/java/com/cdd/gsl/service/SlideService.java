@@ -6,6 +6,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.OpenScreenInfoDomain;
 import com.cdd.gsl.domain.SlideInfoDomain;
 import com.cdd.gsl.vo.SlideConditionVo;
+import com.cdd.gsl.vo.SlideParamVo;
 
 public interface SlideService {
     public CommonResult addSlide(SlideInfoDomain slideInfoDomain);
@@ -20,7 +21,7 @@ public interface SlideService {
 
     public CommonResult orderSlide(JSONObject json);
 
-    public CommonResult findSlideList(String city);
+    public CommonResult findSlideList(SlideParamVo slideParamVo);
 
     public CommonResult findSlidePosition();
 
@@ -31,4 +32,6 @@ public interface SlideService {
     public CommonResult openScreenList(ScreenAdminConditionVo screenAdminConditionVo);
 
     public CommonResult slidePositionList();
+
+    public CommonResult findScreenList();
 }
