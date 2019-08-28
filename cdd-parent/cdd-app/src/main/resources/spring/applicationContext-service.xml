@@ -23,15 +23,9 @@
           lazy-init="false">
     </bean>
 
-    <!-- task任务扫描 -->
-    <!--<task:annotation-driven executor="executor" scheduler="scheduler"/>
-    <task:scheduler id="scheduler" pool-size="10"/>
-    <task:executor id="executor" pool-size="10"/>-->
-
 
     <import resource="applicationContext-db.xml"/>
     <import resource="mybatis.xml"/>
-    <import resource="applicationContext-rabbitmq-send.xml"/>
     <import resource="applicationContext-redis.xml"/>
 
 

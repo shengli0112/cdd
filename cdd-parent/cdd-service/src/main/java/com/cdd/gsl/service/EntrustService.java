@@ -13,6 +13,8 @@ public interface EntrustService {
 
     public CommonResult updateEntrust(EntrustInfoDomain entrustInfoDomain);
 
+    public CommonResult deleteEntrust(EntrustInfoDomain entrustInfoDomain);
+
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoList(EntrustConditionVo entrustConditionVo);
 
     public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo);

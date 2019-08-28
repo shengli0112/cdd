@@ -156,6 +156,23 @@ public class EntrustServiceImpl implements EntrustService {
     }
 
     @Override
+    public CommonResult deleteEntrust(EntrustInfoDomain entrustInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        if(entrustInfoDomain != null){
+            entrustInfoDomainMapper.updateByPrimaryKeySelective(entrustInfoDomain);
+            EntrustUserMappingDomainExample entrustUserMappingDomainExample = new EntrustUserMappingDomainExample();
+            entrustUserMappingDomainExample.createCriteria().andEntrustIdEqualTo(entrustInfoDomain.getId());
+            entrustUserMappingDomainMapper.deleteByExample(entrustUserMappingDomainExample);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数为空");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoList(EntrustConditionVo entrustConditionVo) {
         CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
         // && entrustConditionVo.getEntrustType() != null

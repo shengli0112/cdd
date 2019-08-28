@@ -32,7 +32,7 @@ public class AdminEntrustController {
             EntrustInfoDomain entrustInfoDomain = new EntrustInfoDomain();
             entrustInfoDomain.setId(jsonObject.getLong("entrustId"));
             entrustInfoDomain.setStatus(0);
-            commonResult = entrustService.updateEntrust(entrustInfoDomain);
+            commonResult = entrustService.deleteEntrust(entrustInfoDomain);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数为空");

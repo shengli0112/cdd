@@ -10,7 +10,6 @@ import com.cdd.gsl.service.*;
 import com.cdd.gsl.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,9 +43,6 @@ public class UserController {
 
     @Autowired
     private RecordInfoService recordInfoService;
-
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -467,93 +463,5 @@ public class UserController {
         return userService.createSearchCity(searchCityUserInfo);
     }
 
-    @RequestMapping("testMq")
-    public void testMq(){
-        HashMap<String, String> map = new HashMap<String, String>();
-        List<HashMap<String, String>> mapList = new ArrayList<>();
-        map.put("userAccount", "");
-        map.put("siteId", "123456700");
-        map.put("siteName", "ssdd");
-        map.put("siteMd5", "qw234");
-        map.put("source", "ddddd");
-        map.put("provinceId", "12");
-        map.put("provinceName", "山东");
-        map.put("cityId", "112");
-        map.put("cityName", "济南");
-        map.put("projectCode", "12");
-        map.put("projectName", "aa");
-        map.put("websiteCode", "12");
-        map.put("websiteName", "www.baidu.com");
-        map.put("advertiserCode", "12");
-        map.put("advertiserName", "今日头条");
-        map.put("promoteTypeCode", "12");
-        map.put("promoteTypeName", "大灯多");
-        map.put("deviceCode", "12");
-        map.put("deviceName", "ios");
-        map.put("flowCenterCode", "12");
-        map.put("flowCenterName", "12");
-        map.put("flowCorpCode", "12");
-        map.put("flowCorpName", "12");
-        map.put("callCorpCode", "12");
-        map.put("callCorpName", "12");
-        map.put("pmAccount", "12");
-        map.put("respAccount", "12");
-        map.put("cardTypeCode", "12");
-        map.put("cardTypeName", "12");
-        map.put("virtualGroupCode", "");
-        map.put("virtualGroupName", "");
-        map.put("comments", "12");
-        map.put("allProvinceFlag", "2");
-        map.put("multiRegionInfo", "[{\"cityId\":\"360\",\"cityName\":\"北京\",\"provinceId\":\"2\",\"provinceName\":\"北京\"},{\"cityId\":\"76\",\"cityName\":\"唐山\",\"provinceId\":\"12\",\"provinceName\":\"河北\"},{\"cityId\":\"38\",\"cityName\":\"青岛\",\"provinceId\":\"9\",\"provinceName\":\"山东\"}]\n");
-        mapList.add(map);
-
-        String str = "[{\n" +
-                "\t\"advertiserCode\": \"360\",\n" +
-                "\t\"advertiserName\": \"360搜索\",\n" +
-                "\t\"allProvinceFlag\": \"2\",\n" +
-                "\t\"callCorpCode\": \"2021075\",\n" +
-                "\t\"callCorpName\": \"第九军团\",\n" +
-                "\t\"cardTypeCode\": \"ISMOBILE\",\n" +
-                "\t\"cardTypeName\": \"手机\",\n" +
-                "\t\"cityId\": \"52\",\n" +
-                "\t\"cityName\": \"长春\",\n" +
-                "\t\"comments\": \"备注\",\n" +
-                "\t\"createTime\": \"2019-03-25 14:03:15\",\n" +
-                "\t\"deviceCode\": \"pc\",\n" +
-                "\t\"deviceName\": \"PC端\",\n" +
-                "\t\"flowCenterCode\": \"101\",\n" +
-                "\t\"flowCenterName\": \"lizhifeng\",\n" +
-                "\t\"flowCorpCode\": \"123\",\n" +
-                "\t\"flowCorpName\": \"123\",\n" +
-                "\t\"multiRegionInfo\": \"[{\\\"cityId\\\":\\\"52\\\",\\\"cityName\\\":\\\"长春\\\",\\\"provinceId\\\":\\\"6\\\",\\\"provinceName\\\":\\\"吉林\\\"},{\\\"cityId\\\":\\\"38\\\",\\\"cityName\\\":\\\"沈阳\\\",\\\"provinceId\\\":\\\"29\\\",\\\"provinceName\\\":\\\"辽宁\\\"}]\",\n" +
-                "\t\"mutilProvinceId\": \"6,29\",\n" +
-                "\t\"mutilProvinceName\": \"吉林,辽宁\",\n" +
-                "\t\"pmAccount\": \"wangyazhou\",\n" +
-                "\t\"projectCode\": \"12\",\n" +
-                "\t\"projectName\": \"会计证\",\n" +
-                "\t\"promoteTypeCode\": \"wm\",\n" +
-                "\t\"promoteTypeName\": \"网盟\",\n" +
-                "\t\"propertyCheck\": 1,\n" +
-                "\t\"provinceId\": \"6\",\n" +
-                "\t\"provinceIds\": \"7,8\",\n" +
-                "\t\"provinceName\": \"吉林\",\n" +
-                "\t\"quantumId\": \"2030009\",\n" +
-                "\t\"respAccount\": \"wangyazhou\",\n" +
-                "\t\"siteId\": \"7000050780\",\n" +
-                "\t\"siteMd5\": \"18e9f80e6ee11987b480e3fc4d3d8bfd\",\n" +
-                "\t\"siteName\": \"测试MQ7\",\n" +
-                "\t\"source\": \"360搜索网盟\",\n" +
-                "\t\"state\": \"\",\n" +
-                "\t\"userAccount\": \"wangzhen06@sunlands.com\",\n" +
-                "\t\"virtualGroupCode\": \"2\",\n" +
-                "\t\"virtualGroupName\": \"MBA组\",\n" +
-                "\t\"websiteCode\": \"sunlandscom\",\n" +
-                "\t\"websiteName\": \"sunlandscom\"\n" +
-                "}]";
-        JSONArray arr = JSONArray.parseArray(str);
-        //根据key发送到对应的队列
-        rabbitTemplate.convertAndSend("que_cat_key", arr);
-
-    }
 
 }

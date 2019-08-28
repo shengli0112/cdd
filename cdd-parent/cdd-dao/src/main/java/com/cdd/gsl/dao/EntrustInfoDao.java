@@ -50,7 +50,7 @@ public interface EntrustInfoDao {
             "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
             " e.contacts as contacts,e.phone as phone,e.business as business,e.status as status"   +
             " from t_entrust_info e " +
-            "where 1=1 " +
+            "where 1=1 and e.status=1 " +
 
             "<if test='keyword != null'>"+
             " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') " +
@@ -68,7 +68,7 @@ public interface EntrustInfoDao {
     @Select("<script> " +
             "select count(*) " +
             " from t_entrust_info e " +
-            "where 1=1 " +
+            "where 1=1 and e.status=1 " +
             "<if test='keyword != null'>"+
             " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') " +
             "or e.phone like concat('%','${keyword}','%') " +
@@ -88,7 +88,7 @@ public interface EntrustInfoDao {
             " e.contacts as contacts,e.phone as phone,e.business as business"   +
             " from t_entrust_info e " +
             "left join t_user_info u on e.user_id=u.id " +
-            "where 1=1 " +
+            "where 1=1 and e.status=1" +
             "<if test=\"city != null\">" +
             " and e.city=#{city}"+
             "</if><if test=\"county != null\">" +
