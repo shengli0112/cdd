@@ -112,6 +112,9 @@ public class UserSerivceImpl implements UserService {
     @Autowired
     private SearchCityUserInfoMapper searchCityUserInfoMapper;
 
+    @Autowired
+    private SearchCityUserDao searchCityUserDao;
+
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
 
@@ -1208,11 +1211,8 @@ public class UserSerivceImpl implements UserService {
         try{
             if(searchCityUserInfo != null && searchCityUserInfo.getUserId() != null
                     && !StringUtils.isEmpty(searchCityUserInfo.getCityName())){
-                SearchCityUserInfoExample searchCityUserInfoExample = new SearchCityUserInfoExample();
-                searchCityUserInfoExample.createCriteria().andCityNameEqualTo(searchCityUserInfo.getCityName())
-                        .andUserIdEqualTo(searchCityUserInfo.getUserId()).andStatusEqualTo(1);
-                List<SearchCityUserInfo> searchCityUserInfoList = searchCityUserInfoMapper.selectByExample(searchCityUserInfoExample);
-                if(CollectionUtils.isEmpty(searchCityUserInfoList)){
+                List<String> searchCityNameList = searchCityUserDao.selectCity(searchCityUserInfo);
+                if(CollectionUtils.isEmpty(searchCityNameList)){
                     searchCityUserInfoMapper.insertSelective(searchCityUserInfo);
                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                     commonResult.setMessage("添加成功");
