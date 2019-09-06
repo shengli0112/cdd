@@ -38,7 +38,39 @@ public class DateUtil {
         return dateString;
     }
 
+    public static String getMonth(int months){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, months);
+        Date m = c.getTime();
+        String mon = format.format(m);
+        System.out.println("过去一个月："+mon);
+        return mon;
+    }
+
+    public static String getMonthStart(int months){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, months);
+        c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天
+        String monthStart = format.format(c.getTime())+" 00:00:00";
+        System.out.println(monthStart);
+        return monthStart;
+    }
+
+    public static String getMonthEnd(int months){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar ca = Calendar.getInstance();
+        ca.add(Calendar.MONTH, months);
+        ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));
+        String monthEnd = format.format(ca.getTime())+" 23:59:59";
+        System.out.println(monthEnd);
+        return monthEnd;
+    }
+
     public static void main(String[] args)throws Exception{
-       System.out.println(getDate(-7));
+       System.out.println(getMonthStart(0));
     }
 }

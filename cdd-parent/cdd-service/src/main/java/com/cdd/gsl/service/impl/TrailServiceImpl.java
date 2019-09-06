@@ -52,9 +52,18 @@ public class TrailServiceImpl implements TrailService {
         CommonResult commonResult = new CommonResult();
         if(followTrailInfo != null){
             followTrailInfo.setCreateTs(new Date());
-            followTrailInfoMapper.insertSelective(followTrailInfo);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("添加成功");
+            FollowTrailInfoExample followTrailInfoExample = new FollowTrailInfoExample();
+            followTrailInfoExample.createCriteria().andUserIdEqualTo(followTrailInfo.getUserId()).andHouseIdEqualTo(followTrailInfo.getHouseId());
+            List<FollowTrailInfo> followTrailInfoList = followTrailInfoMapper.selectByExample(followTrailInfoExample);
+            if(followTrailInfoList != null && followTrailInfoList.size() > 0){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("已存在相应数据");
+            }else{
+                followTrailInfoMapper.insertSelective(followTrailInfo);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("添加成功");
+            }
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不正确");

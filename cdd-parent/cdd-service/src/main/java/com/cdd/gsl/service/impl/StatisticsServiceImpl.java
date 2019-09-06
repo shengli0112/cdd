@@ -61,15 +61,27 @@ public class StatisticsServiceImpl implements StatisticsService {
             }
 
             if(Strings.isNotEmpty(statisticsContionVo.getTime())){
+                String from = "";
+                String to = "";
                 if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_TODAY)){
-                    DateUtil.getDate(0);
+                    to = DateUtil.getDate(0);
+                    from = to.split(" ")[0]+" 00:00:00";
+                    statisticsContionVo.setFrom(from);
+                    statisticsContionVo.setTo(to);
                 }else if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_YESTERDAY)){
+                    String date = DateUtil.getDate(-1);
+                    from = date.split(" ")[0]+" 00:00:00";
+                    to = date.split(" ")[0]+" 23:59:59";
 
                 }else if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_MONTH)){
-
+                    from = DateUtil.getMonthStart(0);
+                    to = DateUtil.getMonthEnd(0);
                 }else if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_PREMONTH)){
-
+                    from = DateUtil.getMonthStart(-1);
+                    to = DateUtil.getMonthEnd(-1);
                 }
+                statisticsContionVo.setFrom(from);
+                statisticsContionVo.setTo(to);
             }
 
             String houseOrder = "";
@@ -97,6 +109,7 @@ public class StatisticsServiceImpl implements StatisticsService {
             List<CountCoustomerTrail> countCoustomerTrailList = trailInfoDao.countCoustomerTrailByUserId(userIdList,customerTrailOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
             List<StatisticsInfoVo> statisticsInfoVoList = new ArrayList<>();
+//            if(){}
 
         }
         return null;
