@@ -19,7 +19,7 @@ public class TopJob {
     @Autowired
     private HouseService houseService;
 
-    @Scheduled(cron = "59 59 23 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void expireTopHouse(){
         houseService.delayTopHouse();
     }

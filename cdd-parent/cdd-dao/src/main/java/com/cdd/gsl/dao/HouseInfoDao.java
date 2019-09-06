@@ -709,6 +709,47 @@ public interface HouseInfoDao {
     @Select("select concact(city,county,town) from t_house_info limit 1")
     String selectRegionFromHouseByUserId(Long userId);
 
+    @Select("<script>" +
+            "select user_id userId,count(id) countHouse from t_house_info where house_use_type in (3,4) " +
+            "<if test='from != null and from != \"\"'>"+
+            " and create_ts <![CDATA[>= ]]> #{from} "+
+            "</if>"+
+            "<if test='to != null and to != \"\"'>"+
+            " and create_ts <![CDATA[<= ]]> #{to} "+
+            "</if>"+
+            "<if test='userIdList != null'>" +
+            " user_id in " +
+            "<foreach collection='userIdList' item='userId' open='(' close=')' separator=',' >" +
+            "#{userId}" +
+            " </foreach>" +
+            "</if> group by user_id" +
+            "<if test='orderParam != null and orderParam != \"\"'>"+
+            " order by countHouse desc"+
+            "</if>"+
+            "</script>")
+    List<CountHouse> countHouseByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
+
+    @Select("<script>" +
+            "select user_id userId,count(id) countCustomer from t_house_info where house_use_type in (1,2) " +
+            "<if test='from != null and from != \"\"'>"+
+            " and create_ts <![CDATA[>= ]]> #{from} "+
+            "</if>"+
+            "<if test='to != null and to != \"\"'>"+
+            " and create_ts <![CDATA[<= ]]> #{to} "+
+            "</if>"+
+            "<if test='userIdList != null'>" +
+            " user_id in " +
+            "<foreach collection='userIdList' item='userId' open='(' close=')' separator=',' >" +
+            "#{userId}" +
+            " </foreach>" +
+            "</if> group by user_id" +
+            "<if test='orderParam != null and orderParam != \"\"'>"+
+            " order by countCustomer desc"+
+            "</if>"+
+            "</script>")
+    List<CountCoustomer> countCoustomerByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
+
+
     /**************************管理员项目使用的房源********************************************/
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +

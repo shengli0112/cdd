@@ -348,7 +348,7 @@ public class HouseServiceImpl implements HouseService{
 
         if(!CollectionUtils.isEmpty(houseTopDomainList)){
             houseTopDomainList.forEach(houseTop ->{
-                int days = DateUtil.differentDaysByMillisecond(new Date(),houseTop.getCreateTs());
+                int days = DateUtil.differentDaysByMillisecond(houseTop.getCreateTs(),new Date());
                 logger.info("HouseServiceImpl delayTopHouse days--{}",days);
                 TopInfoDomain topInfoDomain = topInfoDomainMapper.selectByPrimaryKey(houseTop.getTopId());
                 if(days > topInfoDomain.getDay()){

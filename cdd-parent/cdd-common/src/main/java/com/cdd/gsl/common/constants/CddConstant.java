@@ -67,4 +67,24 @@ public class CddConstant {
      */
     public static final Integer AWARD_INTEGRAL = 300;
 
+    public static final String STATISTICS_TODAY = "今天";
+
+    public static final String STATISTICS_YESTERDAY = "昨天";
+
+    public static final String STATISTICS_SEVENDAY = "过去七天";
+
+    public static final String STATISTICS_MONTH = "本月";
+
+    public static final String STATISTICS_PREMONTH = "上月";
+
+    public static final String STATISTICS_ADD_HOUSE = "新增房源从多到少";
+
+    public static final String STATISTICS_ADD_CUSTOMER = "新增客源从多到少";
+
+    public static final String STATISTICS_TRAIL_HOUSE = "跟进房源从多到少";
+
+    public static final String STATISTICS_TRAIL_CUSTOMER = "跟进客源从多到少";
+
+
+
 }

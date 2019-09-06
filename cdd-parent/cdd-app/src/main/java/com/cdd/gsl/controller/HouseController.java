@@ -55,10 +55,28 @@ public class HouseController {
         return commonResult;
     }
 
+    @RequestMapping("addFollowTrail")
+    public CommonResult addFollowTrail(@RequestBody FollowTrailInfo followTrailInfo){
+        CommonResult commonResult = new CommonResult();
+        if(followTrailInfo != null){
+            commonResult = trailService.addFollowTrail(followTrailInfo);
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("添加失败");
+        }
+        return commonResult;
+    }
+
     @RequestMapping("findTrailList")
     public CommonResult findTrailList(Long houseId){
 
         return trailService.findTrailList(houseId);
+    }
+
+    @RequestMapping("findFollowTrailList")
+    public CommonResult findFollowTrailList(Long userId){
+
+        return trailService.findFollowTrailList(userId);
     }
 
     @RequestMapping("updateHouse")
