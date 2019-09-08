@@ -4,16 +4,16 @@ public class StatisticsInfoVo {
     private String username;
 
     //新增房源数
-    private Integer addHouseCount;
+    private Integer addHouseCount = 0;
 
     //新增客源数
-    private Integer addCustomerCount;
+    private Integer addCustomerCount = 0;
 
     //跟进房源数
-    private Integer trailHouseCount;
+    private Integer trailHouseCount = 0;
 
     //跟进客源数
-    private Integer trailCustomerCount;
+    private Integer trailCustomerCount = 0;
 
     public String getUsername() {
         return username;

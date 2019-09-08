@@ -1212,14 +1212,13 @@ public class UserSerivceImpl implements UserService {
             if(searchCityUserInfo != null && searchCityUserInfo.getUserId() != null
                     && !StringUtils.isEmpty(searchCityUserInfo.getCityName())){
                 List<String> searchCityNameList = searchCityUserDao.selectCity(searchCityUserInfo);
-                if(CollectionUtils.isEmpty(searchCityNameList)){
-                    searchCityUserInfoMapper.insertSelective(searchCityUserInfo);
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setMessage("添加成功");
-                }else{
-                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                    commonResult.setMessage("已存在");
-                }
+                SearchCityUserInfoExample searchCityUserInfoExample = new SearchCityUserInfoExample();
+                searchCityUserInfoExample.createCriteria().andUserIdEqualTo(searchCityUserInfo.getUserId())
+                        .andCityNameEqualTo(searchCityUserInfo.getCityName());
+                searchCityUserInfoMapper.deleteByExample(searchCityUserInfoExample);
+                searchCityUserInfoMapper.insertSelective(searchCityUserInfo);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("添加成功");
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("参数不完整");

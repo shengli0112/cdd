@@ -3,13 +3,11 @@ package com.cdd.gsl.service.impl;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
-import com.cdd.gsl.dao.ApplyBrokerInfoDao;
-import com.cdd.gsl.dao.ApplyBrokerInfoDomainMapper;
-import com.cdd.gsl.dao.HouseInfoDao;
-import com.cdd.gsl.dao.TrailInfoDao;
+import com.cdd.gsl.dao.*;
 import com.cdd.gsl.service.StatisticsService;
 import com.cdd.gsl.vo.*;
 import org.apache.logging.log4j.util.Strings;
+import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +28,9 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Autowired
     private TrailInfoDao trailInfoDao;
+
+    @Autowired
+    private UserInfoDao userInfoDao;
 
     @Override
     public CommonResult companyUser(String companyName) {
@@ -109,10 +110,55 @@ public class StatisticsServiceImpl implements StatisticsService {
             List<CountCoustomerTrail> countCoustomerTrailList = trailInfoDao.countCoustomerTrailByUserId(userIdList,customerTrailOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
             List<StatisticsInfoVo> statisticsInfoVoList = new ArrayList<>();
-//            if(){}
+            if(!CollectionUtils.isEmpty(userIdList)){
+                for(Long userId:userIdList){
+                    StatisticsInfoVo statisticsInfoVo = new StatisticsInfoVo();
+                    SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(userId);
+                    statisticsInfoVo.setUsername(singleUserInfoVo.getUsername());
+                    if(!CollectionUtils.isEmpty(countHouseList)){
+                        countHouseList.forEach(countHouse ->{
+                            if(countHouse.getUserId() == userId){
+                                statisticsInfoVo.setAddHouseCount(countHouse.getCountHouse());
+                            }
+                        });
+                    }
 
+                    if(!CollectionUtils.isEmpty(countCoustomerList)){
+                        countCoustomerList.forEach(countCoustomer ->{
+                            if(countCoustomer.getUserId() == userId){
+                                statisticsInfoVo.setAddCustomerCount(countCoustomer.getCountCoustomer());
+                            }
+                        });
+                    }
+
+                    if(!CollectionUtils.isEmpty(countHouseTrailList)){
+                        countHouseTrailList.forEach(countHouseTrail ->{
+                            if(countHouseTrail.getUserId() == userId){
+                                statisticsInfoVo.setTrailHouseCount(countHouseTrail.getCountHouseTrail());
+                            }
+                        });
+                    }
+
+                    if(!CollectionUtils.isEmpty(countCoustomerTrailList)){
+                        countCoustomerTrailList.forEach(countCoustomerTrail ->{
+                            if(countCoustomerTrail.getUserId() == userId){
+                                statisticsInfoVo.setTrailCustomerCount(countCoustomerTrail.getCountCoustomerTrail());
+                            }
+                        });
+                    }
+
+                    statisticsInfoVoList.add(statisticsInfoVo);
+                }
+            }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(statisticsInfoVoList);
+
+        } else {
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数异常");
         }
-        return null;
+        return commonResult;
     }
 
 }
