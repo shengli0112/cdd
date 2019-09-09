@@ -66,6 +66,26 @@ public interface EntrustInfoDao {
     public List<EntrustInfoVo> findEntrustInfoList(EntrustAdminConditionVo entrustAdminConditionVo);
 
     @Select("<script> " +
+            "select e.id as entrustId, e.entrust_type as type, " +
+            "(select dict_value from t_common_dict where dict_name='entrustType' and dict_code=e.entrust_type) as entrustType, " +
+            "(select dict_value from t_common_dict where dict_name='entrustUseType' and dict_code=e.entrust_use_type) as entrustUseType, " +
+            "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
+            " e.contacts as contacts,e.phone as phone,e.business as business,e.status as status"   +
+            " from t_entrust_info e " +
+            "where 1=1 and e.status=1 " +
+
+            "<if test='keyword != null'>"+
+            " and (e.business like concat('%','${keyword}','%') or e.contacts like concat('%','${keyword}','%') " +
+            "or e.phone like concat('%','${keyword}','%') " +
+            "or e.city like concat('%','${keyword}','%') or e.county like concat('%','${keyword}','%')" +
+            " or e.town like concat('%','${keyword}','%'))" +
+
+            "</if>"+
+            " order by e.create_ts desc " +
+            "</script>")
+    public List<EntrustInfoVo> findExportEntrustInfoList(String keyword);
+
+    @Select("<script> " +
             "select count(*) " +
             " from t_entrust_info e " +
             "where 1=1 and e.status=1 " +

@@ -5,6 +5,7 @@ import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.vo.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -656,6 +657,9 @@ public interface HouseInfoDao {
             " from t_house_info where user_id=#{userId} " +
             "and status=1 and (house_use_type =3 or house_use_type =4) order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByRecommend(@Param("userId") Long userId);
+
+    @Update("update t_house_info set top=0 where id=#{houseId}")
+    void topHouse(@Param("houseId")Long houseId);
 
     @Select("select id as id, user_id as userId "+
             " from t_house_info where (area between #{fromArea} and #{toArea}) " +

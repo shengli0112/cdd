@@ -22,4 +22,6 @@ public interface EntrustService {
     //*********************************admin manager***************************************************************
 
     public CommonResult findAdminEntrustList(EntrustAdminConditionVo entrustAdminConditionVo);
+
+    public CommonResult exportEntrustList(String keyword);
 }

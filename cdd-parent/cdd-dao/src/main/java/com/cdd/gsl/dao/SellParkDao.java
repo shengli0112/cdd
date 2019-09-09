@@ -5,7 +5,9 @@ import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.ParkInfoVo;
 import com.cdd.gsl.vo.SellParkCondition;
 import com.cdd.gsl.vo.SellParkInfoVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -181,4 +183,7 @@ public interface SellParkDao {
             "</if>"+
             "</script>")
     int sellParkCount(ParkAdminConditionVo sellParkCondition);
+
+    @Update("update t_sell_park_info set top=0 where id=#{sellParkId}")
+    void topSellPark(@Param("sellParkId")Long sellParkId);
 }

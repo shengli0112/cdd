@@ -33,6 +33,15 @@ public class HouseServiceImpl implements HouseService{
     private HouseInfoDao houseInfoDao;
 
     @Autowired
+    private EnterpriseInfoDao enterpriseInfoDao;
+
+    @Autowired
+    private SellParkDao sellParkDao;
+
+    @Autowired
+    private LeaseParkDao leaseParkDao;
+
+    @Autowired
     private CompanyInfoDomainMapper companyInfoDomainMapper;
 
     @Autowired
@@ -357,6 +366,16 @@ public class HouseServiceImpl implements HouseService{
                     houseTopDomain.setStatus(0);
                     houseTopDomainMapper.updateByPrimaryKeySelective(houseTopDomain);
                     logger.info("HouseServiceImpl delayTopHouse expire objid-{}, type-{}",houseTop.getObjId(),houseTop.getType());
+                    String type = houseTop.getType();
+                    if(type.equals("house")){
+                        houseInfoDao.topHouse(houseTop.getObjId());
+                    }else if(type.equals("enterprise")){
+                        enterpriseInfoDao.topEnterprise(houseTop.getObjId());
+                    }else if(type.equals("sellPark")){
+                        sellParkDao.topSellPark(houseTop.getObjId());
+                    }else if(type.equals("leasePark")){
+                        leaseParkDao.topLeasePark(houseTop.getObjId());
+                    }
                 }
             });
         }

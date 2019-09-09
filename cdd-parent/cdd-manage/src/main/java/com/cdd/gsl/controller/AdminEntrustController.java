@@ -67,4 +67,14 @@ public class AdminEntrustController {
         }
         return commonResult;
     }
+
+    /**
+     * 导出委托信息
+     */
+    @RequestMapping("exportEntrustList")
+    public CommonResult exportEntrustList(String keyword){
+        CommonResult commonResult = entrustService.exportEntrustList(keyword);
+
+        return commonResult;
+    }
 }

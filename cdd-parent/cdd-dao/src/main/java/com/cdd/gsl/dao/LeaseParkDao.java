@@ -5,7 +5,9 @@ import com.cdd.gsl.domain.LeaseParkInfoDomain;
 import com.cdd.gsl.domain.SellParkInfoDomain;
 import com.cdd.gsl.vo.LeaseParkCondition;
 import com.cdd.gsl.vo.LeaseParkInfoVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -173,4 +175,8 @@ public interface LeaseParkDao {
             "</if>"+
             "</script>")
     int leaseParkCount(ParkAdminConditionVo leaseParkCondition);
+
+    @Update("update t_lease_park_info set top=0 where id=#{leaseParkId}")
+    void topLeasePark(@Param("leaseParkId")Long leaseParkId);
+
 }

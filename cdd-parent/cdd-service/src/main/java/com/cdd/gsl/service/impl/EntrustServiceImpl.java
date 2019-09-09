@@ -287,4 +287,14 @@ public class EntrustServiceImpl implements EntrustService {
         }
         return commonResult;
     }
+
+    @Override
+    public CommonResult exportEntrustList(String keyword) {
+        CommonResult commonResult = new CommonResult();
+        List<EntrustInfoVo> entrustInfoVoList = entrustInfoDao.findExportEntrustInfoList(keyword);
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(entrustInfoVoList);
+        return commonResult;
+    }
 }

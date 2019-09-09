@@ -83,4 +83,7 @@ public interface EnterpriseInfoDao {
 
     @Update("update t_enterprise_info set status=0 where id=#{enterpriseId} and user_id=#{userId}")
     void deleteEnterpriseInfoByIdAndUserId(@Param("enterpriseId") Long enterpriseId,@Param("userId")Long userId);
+
+    @Update("update t_enterprise_info set top=0 where id=#{enterpriseId}")
+    void topEnterprise(@Param("enterpriseId") Long enterpriseId);
 }
