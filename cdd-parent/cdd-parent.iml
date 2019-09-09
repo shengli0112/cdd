@@ -57,6 +57,7 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.8.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.8.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-web:2.8.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.16" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
@@ -144,7 +145,6 @@
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.5" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch.client:transport:5.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch:elasticsearch:5.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-common:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-backward-codecs:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-grouping:6.5.0" level="project" />
@@ -152,7 +152,6 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-misc:6.5.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-spatial:6.5.0" level="project" />
@@ -208,5 +207,7 @@
     <orderEntry type="library" name="Maven: com.belerweb:pinyin4j:2.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.qiniu:qiniu-java-sdk:7.2.25" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:6.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:6.5.0" level="project" />
   </component>
 </module>

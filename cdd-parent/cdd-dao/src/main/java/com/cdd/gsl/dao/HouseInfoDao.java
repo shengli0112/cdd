@@ -389,6 +389,10 @@ public interface HouseInfoDao {
             "</if>" +
             "</otherwise>"+
             "</choose>"+
+            "<if test='keyword != null'>" +
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+

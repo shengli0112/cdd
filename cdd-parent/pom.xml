@@ -110,6 +110,13 @@
       </dependency>
 
       <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-web</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
         <version>${poi.version}</version>
@@ -427,6 +434,12 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>[7.2.0, 7.2.99]</version>
         </dependency>
+
+      <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-queries</artifactId>
+        <version>6.5.0</version>
+      </dependency>
 
 
       <!-- jackson json -->
