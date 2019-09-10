@@ -67,6 +67,17 @@
             <PatternLayout
                     pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}- [%t] %-5level %X{sessionId} %class{36} %L %M - %msg%xEx%n"/>
         </RollingFile>
+
+        <RollingFile name="CATALINA_BASE_ROLLING" fileName="${sys:catalina.base}/logs/catalina.out"
+                     filePattern="${sys:catalina.base}/logs/catalina-%d{yyyy-MM-dd}.out">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}- [%t] %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="102400 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
     </appenders>
 
     <loggers>
@@ -76,6 +87,7 @@
             <appender-ref ref="info_log"/>
             <appender-ref ref="warn_log"/>
             <appender-ref ref="error_log"/>
+            <appender-ref ref="CATALINA_BASE_ROLLING"/>
         </root>
 
 
