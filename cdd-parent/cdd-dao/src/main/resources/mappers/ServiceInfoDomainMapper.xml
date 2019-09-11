@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdd.gsl.dao.ServiceInfoDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.cdd.gsl.domain.ServiceInfoDomain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="service_type_id" property="serviceTypeId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
+    <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.ServiceInfoDomain" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, phone, service_type_id, status, create_ts, update_ts
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cdd.gsl.domain.ServiceInfoDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_service_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.ServiceInfoDomainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_service_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_service_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_service_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdd.gsl.domain.ServiceInfoDomainExample" >
+    delete from t_service_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
+    insert into t_service_info (id, username, phone, 
+      service_type_id, status, create_ts, 
+      update_ts, description)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{serviceTypeId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
+    insert into t_service_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTs != null" >
+        create_ts,
+      </if>
+      <if test="updateTs != null" >
+        update_ts,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTypeId != null" >
+        #{serviceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdd.gsl.domain.ServiceInfoDomainExample" resultType="java.lang.Integer" >
+    select count(*) from t_service_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_service_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTypeId != null" >
+        service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTs != null" >
+        create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTs != null" >
+        update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_service_info
+    set id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_service_info
+    set id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=INTEGER},
+      create_ts = #{record.createTs,jdbcType=TIMESTAMP},
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
+    update t_service_info
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTs != null" >
+        create_ts = #{createTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTs != null" >
+        update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
+    update t_service_info
+    set username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
+    update t_service_info
+    set username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      create_ts = #{createTs,jdbcType=TIMESTAMP},
+      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

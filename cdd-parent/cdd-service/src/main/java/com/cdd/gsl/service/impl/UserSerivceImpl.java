@@ -835,6 +835,12 @@ public class UserSerivceImpl implements UserService {
                 userBrokerList.add(userBrokerVo);
             }
         }
+
+        Collections.sort(userBrokerList,new Comparator<UserBrokerVo>(){
+            public int compare(UserBrokerVo u1, UserBrokerVo u2) {
+                return Integer.valueOf(u1.getHouseCount()).compareTo(Integer.valueOf(u2.getHouseCount()));
+            }
+        });
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(userBrokerList);
