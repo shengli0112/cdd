@@ -15,7 +15,8 @@ public interface ServiceInfoDao {
             "from t_service_info si left join t_service_type st on si.service_type_id=st.id where si.status=1" +
             "<if test='keyword != null'>" +
             " and (si.username like concat('%','${keyword}','%') or si.description like concat('%','${keyword}','%')" +
-            " or st.service_type_name like concat('%','${keyword}','%'))" +
+            " or st.service_type_name like concat('%','${keyword}','%')) " +
+            "</if>" +
             " order by si.create_ts desc " +
             " limit #{from},#{pageSize}"+
             "</script>")
@@ -29,6 +30,7 @@ public interface ServiceInfoDao {
             "<if test='keyword != null'>" +
             " and (si.username like concat('%','${keyword}','%') or si.description like concat('%','${keyword}','%')" +
             " or st.service_type_name like concat('%','${keyword}','%'))" +
+            "</if>" +
             " order by si.create_ts desc " +
             " limit #{from},#{limit}"+
             "</script>")
