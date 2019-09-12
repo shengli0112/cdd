@@ -39,9 +39,9 @@ public class StatisticsController {
     }
 
     @RequestMapping("companyUser")
-    public CommonResult companyUser(String companyName){
-        logger.info("StatisticsController companyUser companyName-{}",companyName);
-        CommonResult commonResult = statisticsService.companyUser(companyName);
+    public CommonResult companyUser(Long userId){
+        logger.info("StatisticsController companyUser userId-{}",userId);
+        CommonResult commonResult = statisticsService.companyUser(userId);
         return commonResult;
     }
 

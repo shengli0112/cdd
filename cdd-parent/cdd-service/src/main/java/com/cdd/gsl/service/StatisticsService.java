@@ -6,5 +6,5 @@ import com.cdd.gsl.vo.StatisticsContionVo;
 public interface StatisticsService {
     CommonResult companyData(StatisticsContionVo statisticsContionVo);
 
-    CommonResult companyUser(String companyName);
+    CommonResult companyUser(Long userId);
 }

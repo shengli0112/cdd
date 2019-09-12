@@ -4,6 +4,8 @@ import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
 import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.ApplyBrokerInfoDomain;
+import com.cdd.gsl.domain.ApplyBrokerInfoDomainExample;
 import com.cdd.gsl.service.StatisticsService;
 import com.cdd.gsl.vo.*;
 import org.apache.logging.log4j.util.Strings;
@@ -33,10 +35,17 @@ public class StatisticsServiceImpl implements StatisticsService {
     private UserInfoDao userInfoDao;
 
     @Override
-    public CommonResult companyUser(String companyName) {
+    public CommonResult companyUser(Long userId) {
         CommonResult commonResult = new CommonResult();
-        if(Strings.isNotEmpty(companyName)){
-            List<UserInfoDemainVo> userList = applyBrokerInfoDao.companyHaveUserList(companyName);
+        if(userId != null){
+            ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId);
+            List<UserInfoDemainVo> userList = new ArrayList<>();
+            List<ApplyBrokerInfoDomain> applyBrokerInfoDomainList = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            if(applyBrokerInfoDomainList != null && applyBrokerInfoDomainList.size() > 0){
+                ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomainList.get(0);
+                userList = applyBrokerInfoDao.companyHaveUserList(applyBrokerInfoDomain.getCompanyName());
+            }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(userList);
