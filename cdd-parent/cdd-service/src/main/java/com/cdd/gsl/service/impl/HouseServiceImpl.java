@@ -283,6 +283,7 @@ public class HouseServiceImpl implements HouseService{
         ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
         applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andApplyTypeEqualTo(2);
         List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+        String companyName = "";
         List<HouseInfoDomainVo> houseInfoDomainList = null;
         if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
             ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
@@ -318,6 +319,7 @@ public class HouseServiceImpl implements HouseService{
                 }else{
                     houseInfoDomainVo.setCheckPhone(false);
                 }
+                houseInfoDomainVo.setCompanyName(companyName);
                 houseInfoDomains.add(houseInfoDomainVo);
             }
         }
