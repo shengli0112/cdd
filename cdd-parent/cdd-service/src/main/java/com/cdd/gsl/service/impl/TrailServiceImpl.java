@@ -1,19 +1,17 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
-import com.cdd.gsl.dao.FollowTrailInfoMapper;
-import com.cdd.gsl.dao.TrailInfoDao;
-import com.cdd.gsl.dao.TrailInfoDomainMapper;
-import com.cdd.gsl.domain.FollowTrailInfo;
-import com.cdd.gsl.domain.FollowTrailInfoExample;
-import com.cdd.gsl.domain.TrailInfoDomain;
-import com.cdd.gsl.domain.TrailInfoDomainExample;
+import com.cdd.gsl.dao.*;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.TrailService;
+import com.cdd.gsl.vo.HouseInfoDetailVo;
 import com.cdd.gsl.vo.TrailInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +22,12 @@ public class TrailServiceImpl implements TrailService {
 
     @Autowired
     private TrailInfoDao trailInfoDao;
+
+    @Autowired
+    private HouseInfoDao houseInfoDao;
+
+    @Autowired
+    private HouseInfoDomainMapper houseInfoDomainMapper;
 
     @Autowired
     private FollowTrailInfoMapper followTrailInfoMapper;
@@ -93,9 +97,23 @@ public class TrailServiceImpl implements TrailService {
             FollowTrailInfoExample followTrailInfoExample = new FollowTrailInfoExample();
             followTrailInfoExample.createCriteria().andUserIdEqualTo(userId);
             List<FollowTrailInfo> followTrailInfos = followTrailInfoMapper.selectByExample(followTrailInfoExample);
+            List<JSONObject> data = new ArrayList<>();
+            followTrailInfos.forEach(followTrailInfo -> {
+                JSONObject dataJson = new JSONObject();
+                Long houseId = followTrailInfo.getHouseId();
+                dataJson.put("houseId",houseId);
+                dataJson.put("userId",followTrailInfo.getUserId());
+                HouseInfoDomain houseInfoDomain = houseInfoDomainMapper.selectByPrimaryKey(houseId);
+                if(houseInfoDomain.getHouseUseType().intValue() == 1 || houseInfoDomain.getHouseUseType().intValue() == 2 ){
+                    dataJson.put("houseUseType",1);//客源
+                }else if(houseInfoDomain.getHouseUseType().intValue() == 3 || houseInfoDomain.getHouseUseType().intValue() == 4){
+                    dataJson.put("houseUseType",2);//房源
+                }
+                data.add(dataJson);
+            });
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
-            commonResult.setData(followTrailInfos);
+            commonResult.setData(data);
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
