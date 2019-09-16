@@ -206,6 +206,25 @@ public class HouseController {
         return commonResult;
     }
 
+    //分享公司房源
+    @RequestMapping("shareCompanyHouseList")
+    public CommonResult<List<HouseInfoDomainVo>> shareCompanyHouseList(HouseConditionVo houseConditionVo){
+        logger.info("HouseController findCompanyHouseList");
+        CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
+
+        if(houseConditionVo != null){
+            List<HouseInfoDomainVo> houseInfoDomainList = houseService.shareCompanyHouseInfoListByCondition(houseConditionVo);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(houseInfoDomainList);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
+        return commonResult;
+    }
+
     @RequestMapping("informHouseInfo")
     public CommonResult informHouseInfo(@RequestBody InformHouseRecordDomain informHouseRecordDomain){
        return houseService.informHouseInfo(informHouseRecordDomain);

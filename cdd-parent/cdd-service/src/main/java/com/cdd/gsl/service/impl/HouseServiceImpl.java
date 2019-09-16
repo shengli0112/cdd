@@ -328,6 +328,52 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
+    public List<HouseInfoDomainVo> shareCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo) {
+        Long userId = houseConditionVo.getUserId();
+        ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+        applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andApplyTypeEqualTo(2);
+        List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+        String companyName = "";
+        List<HouseInfoDomainVo> houseInfoDomainList = null;
+        if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
+            ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
+            ApplyBrokerInfoDomainExample applyBrokerInfoExample = new ApplyBrokerInfoDomainExample();
+            applyBrokerInfoExample.createCriteria().andCompanyNameEqualTo(applyBrokerInfoDomain.getCompanyName()).andApplyTypeEqualTo(2);
+            List<ApplyBrokerInfoDomain> applyBrokerInfos = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoExample);
+            List<Long> userIds = new ArrayList<>();
+            if(applyBrokerInfos != null && applyBrokerInfos.size() > 0){
+                applyBrokerInfos.forEach(applyBrokerInfo -> {
+                    userIds.add(applyBrokerInfo.getUserId());
+                });
+            }
+            HouseCompanyVo houseCompanyVo = new HouseCompanyVo();
+            BeanUtils.copyProperties(houseConditionVo,houseCompanyVo);
+            houseCompanyVo.setUserIds(userIds);
+            houseInfoDomainList = houseInfoDao.shareCompanyHouseInfoList(houseCompanyVo);
+
+        }
+
+        List<HouseInfoDomainVo> houseInfoDomains = new ArrayList<>();
+        if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            for(HouseInfoDomainVo houseInfoDomainVo:houseInfoDomainList){
+                CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                checkPhoneDomainExample.createCriteria().andUserIdEqualTo(houseConditionVo.getUserId())
+                        .andInfoIdEqualTo(houseInfoDomainVo.getId()).andTypeEqualTo("house");
+                List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                    houseInfoDomainVo.setCheckPhone(true);
+                }else{
+                    houseInfoDomainVo.setCheckPhone(false);
+                }
+                houseInfoDomainVo.setCompanyName(companyName);
+                houseInfoDomains.add(houseInfoDomainVo);
+            }
+        }
+
+        return houseInfoDomains;
+    }
+
+    @Override
     public CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain) {
         CommonResult commonResult = new CommonResult();
         if(informHouseRecordDomain != null){

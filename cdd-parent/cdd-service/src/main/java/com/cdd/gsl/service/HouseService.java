@@ -28,6 +28,8 @@ public interface HouseService {
 
     List<HouseInfoDomainVo> selectCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo);
 
+    List<HouseInfoDomainVo> shareCompanyHouseInfoListByCondition(HouseConditionVo houseConditionVo);
+
     CommonResult informHouseInfo(InformHouseRecordDomain informHouseRecordDomain);
 
     void delayTopHouse();

@@ -40,6 +40,8 @@ public interface UserService {
 
     CommonResult findBrokerDetail(Long userId);
 
+    CommonResult findBrokerInfo(Long userId);
+
     CommonResult agreeBroker(Long brokerId);
 
     CommonResult<String> verifyCode(String phone);

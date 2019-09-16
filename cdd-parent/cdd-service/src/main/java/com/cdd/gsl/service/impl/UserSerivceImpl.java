@@ -663,6 +663,24 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult findBrokerInfo(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+        applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andStatusEqualTo(1).andApplyTypeEqualTo(2);
+        applyBrokerInfoDomainExample.setOrderByClause("create_ts desc");
+        List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+        ApplyBrokerInfoDomain applyBrokerInfoDomain = null;
+        if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
+            applyBrokerInfoDomain = applyBrokerInfoDomains.get(0);
+        }
+
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(applyBrokerInfoDomain);
+        return commonResult;
+    }
+
+    @Override
     public CommonResult agreeBroker(Long brokerId) {
         CommonResult commonResult = new CommonResult();
         if(brokerId != null){

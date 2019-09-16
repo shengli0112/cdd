@@ -533,6 +533,79 @@ public interface HouseInfoDao {
             "</script>")
     public List<HouseInfoDomainVo> selectCompanyHouseInfoList(HouseCompanyVo houseConditionVo);
 
+    @Select("<script> " +
+            "select h.id as id, h.title as title, h.city as city, " +
+            "h.county as county,h.town as town, h.street as street, h.area as area," +
+            "h.house_number as houseNumber, h.selling_price as sellingPrice,concat(h.electricity,'KV') as electricity," +
+            "(select dict_value from t_common_dict where dict_name='houseType' and dict_code=h.house_type) as houseType, " +
+            "(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=h.house_use_type) as houseUseType, " +
+            "(select dict_value from t_common_dict where dict_name='floor' and dict_code=h.floor) as floor, " +
+            "(select dict_value from t_common_dict where dict_name='fireControl' and dict_code=h.fire_control) as fireControl, " +
+            "(select dict_value from t_common_dict where dict_name='priceType' and dict_code=h.price_type) as priceType, " +
+            "h.contacts as contacts,h.phone as phone, h.background as background, h.house_status as houseStatus," +
+            "h.sign_contract as signContract,h.cover_area as coverArea,h.house_edge as houseEdge,h.user_id as userId," +
+            "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs,u.username as username," +
+            "u.portrait as portrait,h.trade as trade,h.expire_date as expireDate,h.top as top" +
+            " from t_house_info h left join t_user_info u on h.user_id=u.id where h.status=1 and house_use_type in (3,4)"+
+            "<foreach collection=\"userIds\" index=\"index\" item=\"item\" open=\" and h.user_id in (\" close=\")\" separator=\",\">" +
+            "#{item}"+
+            "</foreach>"+
+            "<if test=\"city != null\">" +
+            " and h.city=#{city}"+
+            "</if><if test=\"county != null\">" +
+            " and h.county=#{county}"+
+            "</if><if test=\"houseType != null\">"+
+            " and h.house_type=#{houseType}"+
+            "</if><if test=\"houseUseType != null\">"+
+            " and h.house_use_type=#{houseUseType}"+
+            "</if><if test=\"floor != null\">"+
+            " and h.floor=#{floor}"+
+            "</if>"+
+            "<choose>" +
+            "<when test='areaFrom != null and areaTo != null'>" +
+            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='areaFrom != null'>" +
+            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            "</if>" +
+            "<if test='areaTo != null'>" +
+            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            "</if>" +
+            "</otherwise>"+
+            "</choose>"+
+            "<choose>" +
+            "<when test='priceFrom != null and priceTo != null'>" +
+            " and ((h.selling_price <![CDATA[>= ]]> #{priceFrom} and h.selling_price <![CDATA[<= ]]> #{priceTo}) or (h.single_price <![CDATA[>= ]]> #{priceFrom} and h.single_price <![CDATA[<= ]]> #{priceTo}))" +
+            "</when>" +
+            "<otherwise>" +
+            "<if test='priceFrom != null'>" +
+            " and (h.selling_price <![CDATA[>= ]]> #{priceFrom} or h.single_price <![CDATA[>= ]]> #{priceFrom})" +
+            "</if>" +
+            "<if test='priceTo != null'>" +
+            " and (h.selling_price <![CDATA[<= ]]> #{priceTo} or h.single_price <![CDATA[<= ]]> #{priceTo})" +
+            "</if>" +
+
+            "</otherwise>"+
+            "</choose>"+
+            "<if test='keyword != null'>"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            "</if>"+
+            " order by h.house_status asc,h.create_ts desc " +
+            "<if test='areaOrder != null'>"+
+            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
+            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
+            "</if>"+
+            "<if test='priceOrder != null'>"+
+            "<if test='priceOrder == 1'>,h.selling_price</if>"+
+            "<if test='priceOrder == 2'>,h.selling_price desc</if>"+
+            "</if>"+
+
+            " limit #{from},#{pageSize}"+
+            "</script>")
+    public List<HouseInfoDomainVo> shareCompanyHouseInfoList(HouseCompanyVo houseConditionVo);
+
     //主管能看到房源
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +

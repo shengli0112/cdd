@@ -321,6 +321,11 @@ public class UserController {
         return userService.findBrokerDetail(userId);
     }
 
+    @RequestMapping("findBrokerInfo")
+    public CommonResult findBrokerInfo(Long userId){
+        return userService.findBrokerInfo(userId);
+    }
+
     @RequestMapping("allBroker")
     public CommonResult allBroker(Integer pageNo, Integer pageSize,String param){
         if(pageNo == null){
