@@ -5,23 +5,30 @@ import com.cdd.gsl.admin.ExportHouseVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.common.util.PageUtil;
 import com.cdd.gsl.common.util.ResultPage;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.HouseService;
 import com.cdd.gsl.vo.*;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class HouseServiceImpl implements HouseService{
@@ -80,6 +87,17 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private EntrustInfoDao entrustInfoDao;
 
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${verify.warn.id}")
+    private String verifyWarnId;
+
     @Override
     public CommonResult addHouse(HouseInfoDomain houseInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -123,6 +141,17 @@ public class HouseServiceImpl implements HouseService{
                 commonResult.setFlag(1);
                 commonResult.setMessage("添加成功");
             }
+            if(Strings.isNotEmpty(houseInfoDomain.getPhone())){
+                logger.info("房源提醒短信发送开始");
+                executorService.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        logger.info("房源提醒短信 addHouse houseInfoDomain -{}",houseInfoDomain.toString());
+                        sendSms(houseInfoDomain);
+                    }
+                });
+            }
+
         }catch (Exception e){
             logger.info("HouseServiceImpl addHouse error");
             e.printStackTrace();
@@ -131,6 +160,58 @@ public class HouseServiceImpl implements HouseService{
         }
 
         return commonResult;
+
+    }
+
+    //短信提醒
+    public void sendSms(HouseInfoDomain houseInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
+                    .append(houseInfoDomain.getStreet()).append(houseInfoDomain.getHouseNumber());
+            if(houseInfoDomain.getHouseType() == 1){
+                address.append("厂房面积:").append(houseInfoDomain.getArea()+"㎡，").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getPriceType() == 1){
+                    address.append("元/㎡/天");
+                }else if(houseInfoDomain.getPriceType() == 2){
+                    address.append("元/㎡/月");
+                }else if(houseInfoDomain.getPriceType() == 3){
+                    address.append("元/㎡/年");
+                }
+            }else if(houseInfoDomain.getHouseType() == 2){
+                address.append("仓库面积:").append(houseInfoDomain.getArea()+"㎡").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getPriceType() == 1){
+                    address.append("元/㎡/天");
+                }else if(houseInfoDomain.getPriceType() == 2){
+                    address.append("元/㎡/月");
+                }else if(houseInfoDomain.getPriceType() == 3){
+                    address.append("元/㎡/年");
+                }
+            }else if(houseInfoDomain.getHouseType() == 3){
+                address.append("仓库面积:").append(houseInfoDomain.getCoverArea()+"亩");
+            }
+            SingleUserInfoVo user = userInfoDao.findUserInfoById(houseInfoDomain.getUserId());
+            String userStr = user.getUsername()+" "+user.getPhone();
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                .append("?mobile=").append(houseInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+        String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+        if(Strings.isNotEmpty(response)){
+            JSONObject res = JSONObject.parseObject(response);
+            Integer flag = res.getInteger("error_code");
+            if(flag == 0){
+                logger.info("addHouse 验证码发送成功");
+            }else{
+                logger.info("addHouse 验证码发送失败");
+            }
+        }else{
+            logger.info("addHouse 验证码发送失败");
+        }
 
     }
 
