@@ -3,6 +3,7 @@ package com.cdd.gsl.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.ConsumeRecordDomain;
 import com.cdd.gsl.domain.EnterpriseInfoDomain;
@@ -14,13 +15,23 @@ import com.cdd.gsl.vo.EnterpriseConditionVo;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
 import com.cdd.gsl.vo.SingleUserInfoVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.logging.log4j.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
+
+    private Logger logger = LoggerFactory.getLogger(ParkServiceImpl.class);
 
     @Autowired
     private EnterpriseInfoDomainMapper enterpriseInfoDomainMapper;
@@ -36,6 +47,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Autowired
     private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${verify.warn.id}")
+    private String verifyWarnId;
 
     @Override
     public CommonResult createEnterprise(EnterpriseInfoDomain enterpriseInfoDomain) {
@@ -57,11 +79,52 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("创建企业成功");
+            if(Strings.isNotEmpty(enterpriseInfoDomain.getPhone())){
+                logger.info("企业圈提醒短信发送开始");
+                executorService.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        logger.info("企业圈提醒短信 createEnterprise enterpriseInfoDomain -{}",enterpriseInfoDomain.toString());
+                        sendSms(enterpriseInfoDomain);
+                    }
+                });
+            }
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
             commonResult.setMessage("参数不能为空");
         }
         return commonResult;
+    }
+
+    //出售短信提醒
+    public void sendSms(EnterpriseInfoDomain enterpriseInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(enterpriseInfoDomain.getEnterpriseName()).append(enterpriseInfoDomain.getMainBusiness());
+
+            SingleUserInfoVo user = userInfoDao.findUserInfoById(enterpriseInfoDomain.getUserId());
+            String userStr = user.getUsername()+" "+user.getPhone();
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                .append("?mobile=").append(enterpriseInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+        String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+        if(Strings.isNotEmpty(response)){
+            JSONObject res = JSONObject.parseObject(response);
+            Integer flag = res.getInteger("error_code");
+            if(flag == 0){
+                logger.info("createEnterprise 验证码发送成功");
+            }else{
+                logger.info("createEnterprise 验证码发送失败");
+            }
+        }else{
+            logger.info("createEnterprise 验证码发送失败");
+        }
+
     }
 
     @Override

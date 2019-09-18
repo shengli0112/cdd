@@ -4,20 +4,24 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.ParkAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.dao.*;
-import com.cdd.gsl.domain.ConsumeRecordDomain;
-import com.cdd.gsl.domain.LeaseParkInfoDomain;
-import com.cdd.gsl.domain.MessageInfoDomain;
-import com.cdd.gsl.domain.SellParkInfoDomain;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.ParkService;
 import com.cdd.gsl.vo.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class ParkServiceImpl implements ParkService {
@@ -45,6 +49,17 @@ public class ParkServiceImpl implements ParkService {
     @Autowired
     private ConsumeRecordDomainMapper consumeRecordDomainMapper;
 
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${verify.warn.id}")
+    private String verifyWarnId;
+
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -68,6 +83,16 @@ public class ParkServiceImpl implements ParkService {
                 consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("创建成功");
+                if(Strings.isNotEmpty(sellParkInfoDomain.getPhone())){
+                    logger.info("出售园区提醒短信发送开始");
+                    executorService.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            logger.info("出售园区提醒短信 createSellPark sellParkInfoDomain -{}",sellParkInfoDomain.toString());
+                            sendSellParkSms(sellParkInfoDomain);
+                        }
+                    });
+                }
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("参数不正确");
@@ -104,6 +129,16 @@ public class ParkServiceImpl implements ParkService {
                 consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("创建成功");
+                if(Strings.isNotEmpty(leaseParkInfoDomain.getPhone())){
+                    logger.info("出租园区提醒短信发送开始");
+                    executorService.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            logger.info("出租园区提醒短信 createLeasePark leaseParkInfoDomain -{}",leaseParkInfoDomain.toString());
+                            sendLeaseParkSms(leaseParkInfoDomain);
+                        }
+                    });
+                }
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("参数不正确");
@@ -116,6 +151,80 @@ public class ParkServiceImpl implements ParkService {
         }
 
         return commonResult;
+    }
+
+    //出售短信提醒
+    public void sendSellParkSms(SellParkInfoDomain sellParkInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(sellParkInfoDomain.getCity()).append(sellParkInfoDomain.getCounty()).append(sellParkInfoDomain.getTown())
+                .append(" "+sellParkInfoDomain.getParkName()).append(" 出售园区面积：").append(sellParkInfoDomain.getTotalArea()).append("㎡，")
+                .append("价格 "+sellParkInfoDomain.getTotalPrice()+"元/㎡");
+
+            SingleUserInfoVo user = userInfoDao.findUserInfoById(sellParkInfoDomain.getUserId());
+            String userStr = user.getUsername()+" "+user.getPhone();
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                .append("?mobile=").append(sellParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+        String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+        if(Strings.isNotEmpty(response)){
+            JSONObject res = JSONObject.parseObject(response);
+            Integer flag = res.getInteger("error_code");
+            if(flag == 0){
+                logger.info("createSellPark 验证码发送成功");
+            }else{
+                logger.info("createSellPark 验证码发送失败");
+            }
+        }else{
+            logger.info("createSellPark 验证码发送失败");
+        }
+
+    }
+
+    //出租短信提醒
+    public void sendLeaseParkSms(LeaseParkInfoDomain leaseParkInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(leaseParkInfoDomain.getCity()).append(leaseParkInfoDomain.getCounty()).append(leaseParkInfoDomain.getTown())
+                    .append(" "+leaseParkInfoDomain.getParkName()).append(" 出租园区面积：").append(leaseParkInfoDomain.getTotalArea()).append("㎡，")
+                    .append("价格 "+leaseParkInfoDomain.getUnitPrice());
+
+            if(leaseParkInfoDomain.getPriceType() == 1){
+                address.append("元/㎡/天");
+            }else if(leaseParkInfoDomain.getPriceType() == 2){
+                address.append("元/㎡/月");
+            }else if(leaseParkInfoDomain.getPriceType() == 3){
+                address.append("元/㎡/年");
+            }
+
+            SingleUserInfoVo user = userInfoDao.findUserInfoById(leaseParkInfoDomain.getUserId());
+            String userStr = user.getUsername()+" "+user.getPhone();
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                .append("?mobile=").append(leaseParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+        String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+        if(Strings.isNotEmpty(response)){
+            JSONObject res = JSONObject.parseObject(response);
+            Integer flag = res.getInteger("error_code");
+            if(flag == 0){
+                logger.info("createLeasePark 验证码发送成功");
+            }else{
+                logger.info("createLeasePark 验证码发送失败");
+            }
+        }else{
+            logger.info("createLeasePark 验证码发送失败");
+        }
+
     }
 
     @Override

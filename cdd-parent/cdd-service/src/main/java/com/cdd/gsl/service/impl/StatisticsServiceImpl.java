@@ -54,7 +54,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         CommonResult commonResult = new CommonResult();
         if(statisticsContionVo.getLoginUserId() != null){
             List<Long> userIdList = new ArrayList<>();
-            if(statisticsContionVo.getUserId().equals(0)){
+            if(statisticsContionVo.getUserId()== null){
                 List<UserInfoDemainVo> userList = applyBrokerInfoDao.companyHaveUserList(statisticsContionVo.getLoginUserId());
                 userList.forEach(userInfoDemainVo -> {
                     userIdList.add(userInfoDemainVo.getId());
