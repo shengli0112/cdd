@@ -193,7 +193,7 @@ public class HouseServiceImpl implements HouseService{
             }
             SingleUserInfoVo user = userInfoDao.findUserInfoById(houseInfoDomain.getUserId());
             String userStr = user.getUsername()+" "+user.getPhone();
-            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr,"UTF-8");
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
