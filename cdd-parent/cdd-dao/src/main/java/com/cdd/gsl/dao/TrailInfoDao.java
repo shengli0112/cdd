@@ -40,7 +40,6 @@ public interface TrailInfoDao {
 
     @Select("<script>" +
             "select t.user_id as userId,count(t.id) countHouseTrail " +
-            "t.create_ts as createTs,t.house_id as houseId " +
             " from t_trail_info t left join t_house_info h on t.house_id=h.id " +
             "where h.house_use_type in (1,2) and h.`status`=1 "+
             "<if test='from != null and from != \"\"'>"+
@@ -50,7 +49,7 @@ public interface TrailInfoDao {
             " and t.create_ts <![CDATA[<= ]]> #{to} "+
             "</if>"+
             "<if test='userIdList != null'>" +
-            " and user_id in " +
+            " and t.user_id in " +
             "<foreach collection='userIdList' item='userId' open='(' close=')' separator=',' >" +
             "#{userId}" +
             " </foreach>" +
