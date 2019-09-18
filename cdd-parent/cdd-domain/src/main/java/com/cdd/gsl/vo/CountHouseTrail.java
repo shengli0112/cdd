@@ -3,7 +3,7 @@ package com.cdd.gsl.vo;
 public class CountHouseTrail {
     private Long userId;
 
-    private Integer countHouseTrail;
+    private Integer countHouseTrail = 0;
 
     public Long getUserId() {
         return userId;

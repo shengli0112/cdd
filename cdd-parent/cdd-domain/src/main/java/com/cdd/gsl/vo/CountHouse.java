@@ -3,7 +3,7 @@ package com.cdd.gsl.vo;
 public class CountHouse {
     private Long userId;
 
-    private Integer countHouse;
+    private Integer countHouse = 0;
 
     public Long getUserId() {
         return userId;
