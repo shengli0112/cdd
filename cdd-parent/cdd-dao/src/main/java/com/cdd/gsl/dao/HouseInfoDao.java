@@ -799,7 +799,7 @@ public interface HouseInfoDao {
             " and create_ts <![CDATA[<= ]]> #{to} "+
             "</if>"+
             "<if test='userIdList != null'>" +
-            " user_id in " +
+            " and user_id in " +
             "<foreach collection='userIdList' item='userId' open='(' close=')' separator=',' >" +
             "#{userId}" +
             " </foreach>" +
@@ -819,7 +819,7 @@ public interface HouseInfoDao {
             " and create_ts <![CDATA[<= ]]> #{to} "+
             "</if>"+
             "<if test='userIdList != null'>" +
-            " user_id in " +
+            " and user_id in " +
             "<foreach collection='userIdList' item='userId' open='(' close=')' separator=',' >" +
             "#{userId}" +
             " </foreach>" +
