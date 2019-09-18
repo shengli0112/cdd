@@ -171,7 +171,16 @@ public class HouseServiceImpl implements HouseService{
             address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
                     .append(houseInfoDomain.getStreet()).append(houseInfoDomain.getHouseNumber());
             if(houseInfoDomain.getHouseType() == 1){
-                address.append("厂房面积:").append(houseInfoDomain.getArea()+"㎡，").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 厂房求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 厂房求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 厂房出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 厂房出售面积:");
+                }
+                address.append(houseInfoDomain.getArea()+"㎡，").append("价格 "+houseInfoDomain.getSinglePrice());
                 if(houseInfoDomain.getPriceType() == 1){
                     address.append("元/㎡/天");
                 }else if(houseInfoDomain.getPriceType() == 2){
@@ -180,7 +189,16 @@ public class HouseServiceImpl implements HouseService{
                     address.append("元/㎡/年");
                 }
             }else if(houseInfoDomain.getHouseType() == 2){
-                address.append("仓库面积:").append(houseInfoDomain.getArea()+"㎡").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 仓库求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 仓库求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 仓库出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 仓库出售面积:");
+                }
+                address.append(houseInfoDomain.getArea()+"㎡").append("价格 "+houseInfoDomain.getSinglePrice());
                 if(houseInfoDomain.getPriceType() == 1){
                     address.append("元/㎡/天");
                 }else if(houseInfoDomain.getPriceType() == 2){
@@ -189,11 +207,20 @@ public class HouseServiceImpl implements HouseService{
                     address.append("元/㎡/年");
                 }
             }else if(houseInfoDomain.getHouseType() == 3){
-                address.append("仓库面积:").append(houseInfoDomain.getCoverArea()+"亩");
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 土地求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 土地求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 土地出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 土地出售面积:");
+                }
+                address.append(houseInfoDomain.getCoverArea()+"亩");
             }
             SingleUserInfoVo user = userInfoDao.findUserInfoById(houseInfoDomain.getUserId());
             String userStr = user.getUsername()+" "+user.getPhone();
-            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

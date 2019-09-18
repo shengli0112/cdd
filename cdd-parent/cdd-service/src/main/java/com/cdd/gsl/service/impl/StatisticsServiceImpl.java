@@ -38,14 +38,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     public CommonResult companyUser(Long userId) {
         CommonResult commonResult = new CommonResult();
         if(userId != null){
-            ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
-            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId);
-            List<UserInfoDemainVo> userList = new ArrayList<>();
-            List<ApplyBrokerInfoDomain> applyBrokerInfoDomainList = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
-            if(applyBrokerInfoDomainList != null && applyBrokerInfoDomainList.size() > 0){
-                ApplyBrokerInfoDomain applyBrokerInfoDomain = applyBrokerInfoDomainList.get(0);
-                userList = applyBrokerInfoDao.companyHaveUserList(applyBrokerInfoDomain.getCompanyName());
-            }
+            List<UserInfoDemainVo> userList = applyBrokerInfoDao.companyHaveUserList(userId);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("查询成功");
             commonResult.setData(userList);
@@ -59,10 +52,10 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public CommonResult companyData(StatisticsContionVo statisticsContionVo) {
         CommonResult commonResult = new CommonResult();
-        if(Strings.isNotEmpty(statisticsContionVo.getCompanyName())){
+        if(statisticsContionVo.getLoginUserId() != null){
             List<Long> userIdList = new ArrayList<>();
             if(statisticsContionVo.getUserId().equals(0)){
-                List<UserInfoDemainVo> userList = applyBrokerInfoDao.companyHaveUserList(statisticsContionVo.getCompanyName());
+                List<UserInfoDemainVo> userList = applyBrokerInfoDao.companyHaveUserList(statisticsContionVo.getLoginUserId());
                 userList.forEach(userInfoDemainVo -> {
                     userIdList.add(userInfoDemainVo.getId());
                 });

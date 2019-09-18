@@ -14,7 +14,7 @@ public class StatisticsContionVo {
     //顺序
     private String sequence;
 
-    private String companyName;
+    private Long loginUserId;
 
     private Long userId;
 
@@ -58,12 +58,12 @@ public class StatisticsContionVo {
         this.sequence = sequence;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public Long getLoginUserId() {
+        return loginUserId;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setLoginUserId(Long loginUserId) {
+        this.loginUserId = loginUserId;
     }
 
     public Long getUserId() {

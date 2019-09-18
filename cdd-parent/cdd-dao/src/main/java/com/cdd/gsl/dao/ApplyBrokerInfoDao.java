@@ -50,6 +50,8 @@ public interface ApplyBrokerInfoDao {
 
     //公司员工
     @Select("select u.id as id,u.username as username,u.portrait as portrait" +
-            " from t_apply_broker_info a left join t_user_info u on a.user_id=u.id where a.company_name=#{companyName} and a.apply_type=2 and u.status=1 and a.status=1")
-    public List<UserInfoDemainVo> companyHaveUserList(String companyName);
+            " from t_apply_broker_info a left join t_user_info u on a.user_id=u.id " +
+            "where a.company_name=(select company_name from t_apply_broker_info where user_id=#{loginUserId}) " +
+            "and a.apply_type=2 and u.status=1 and a.status=1")
+    public List<UserInfoDemainVo> companyHaveUserList(Long loginUserId);
 }
