@@ -169,11 +169,16 @@ public class HouseServiceImpl implements HouseService{
         try {
             StringBuffer address = new StringBuffer();
             address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
-                    .append(houseInfoDomain.getStreet()).append(houseInfoDomain.getHouseNumber());
+                    .append(houseInfoDomain.getStreet());
+            if(houseInfoDomain.getHouseNumber() != null){
+                address.append(houseInfoDomain.getHouseNumber()+"号");
+            }
             if(houseInfoDomain.getHouseType() == 1){
                 if(houseInfoDomain.getHouseUseType() == 1){
+                    logger.info("厂房求租提醒短信 addHouse houseId -{}",JSONObject.toJSONString(houseInfoDomain));
                     address.append(" 厂房求租面积:");
                 }else if(houseInfoDomain.getHouseUseType() == 2){
+                    logger.info("厂房求租提醒短信 addHouse houseId -{}",JSONObject.toJSONString(houseInfoDomain));
                     address.append(" 厂房求购面积:");
                 }else if(houseInfoDomain.getHouseUseType() == 3){
                     address.append(" 厂房出租面积:");
@@ -221,6 +226,7 @@ public class HouseServiceImpl implements HouseService{
             SingleUserInfoVo user = userInfoDao.findUserInfoById(houseInfoDomain.getUserId());
             String userStr = user.getUsername()+" "+user.getPhone();
             tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+            logger.info("addHouse verifyCodeUrl-{},tpl_value-{}",verifyCodeUrl,"#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -228,16 +234,17 @@ public class HouseServiceImpl implements HouseService{
                 .append("?mobile=").append(houseInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
                 .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
         String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+        logger.info("addHouse response -{}",response);
         if(Strings.isNotEmpty(response)){
             JSONObject res = JSONObject.parseObject(response);
             Integer flag = res.getInteger("error_code");
             if(flag == 0){
-                logger.info("addHouse 验证码发送成功");
+                logger.info("addHouse 推广短信发送成功");
             }else{
-                logger.info("addHouse 验证码发送失败");
+                logger.info("addHouse 推广短信发送失败");
             }
         }else{
-            logger.info("addHouse 验证码发送失败");
+            logger.info("addHouse 推广短信发送失败");
         }
 
     }
