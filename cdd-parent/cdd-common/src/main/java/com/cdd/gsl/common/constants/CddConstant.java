@@ -28,6 +28,9 @@ public class CddConstant {
     //置顶需要花费的币
     public static final Integer PAY_INTERGAL_TOP = 20;
 
+    //查看需求电话花费币
+    public static final Integer PAY_INTERGAL_CHECK_PHONE = 5;
+
     //置顶的天数
     public static final Integer TOP_DAY = 5;
 

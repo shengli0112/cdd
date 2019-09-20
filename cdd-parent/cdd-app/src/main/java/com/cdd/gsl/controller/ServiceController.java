@@ -34,5 +34,10 @@ public class ServiceController {
         return serviceInfoService.findServiceInfoList(serviceInfoConditionVo);
     }
 
+    @RequestMapping("checkPhone")
+    public CommonResult checkPhone(Long userId){
+        return serviceInfoService.checkPhone(userId);
+    }
+
 
 }

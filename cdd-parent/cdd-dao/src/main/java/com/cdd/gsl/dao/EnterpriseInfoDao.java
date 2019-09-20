@@ -81,6 +81,12 @@ public interface EnterpriseInfoDao {
             " order by rand() limit 3")
     public List<EnterpriseInfoVo> selectEnterpriseInfoListRand();
 
+    @Select("select id as id, main_business as mainBusiness, enterprise_name as enterpriseName, " +
+            "address as address, register_date as registerDate, trade as trade,description as description, " +
+            " contacts as contacts,phone as phone,image as image,user_id as userId,title as title,price as price" +
+            " from t_enterprise_info where user_id=#{userId} and status=1 ")
+    public List<EnterpriseInfoVo> selectEnterpriseInfoListByUserId(Long userId);
+
     @Update("update t_enterprise_info set status=0 where id=#{enterpriseId} and user_id=#{userId}")
     void deleteEnterpriseInfoByIdAndUserId(@Param("enterpriseId") Long enterpriseId,@Param("userId")Long userId);
 
