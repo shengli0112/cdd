@@ -9,13 +9,21 @@ public class ServiceInfoDomain {
 
     private String phone;
 
-    private Long serviceTypeId;
+    private String serviceTypeName;
 
     private Integer status;
 
     private Date createTs;
 
     private Date updateTs;
+
+    private String city;
+
+    private String county;
+
+    private String town;
+
+    private String trade;
 
     private String description;
 
@@ -43,12 +51,12 @@ public class ServiceInfoDomain {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Long getServiceTypeId() {
-        return serviceTypeId;
+    public String getServiceTypeName() {
+        return serviceTypeName;
     }
 
-    public void setServiceTypeId(Long serviceTypeId) {
-        this.serviceTypeId = serviceTypeId;
+    public void setServiceTypeName(String serviceTypeName) {
+        this.serviceTypeName = serviceTypeName == null ? null : serviceTypeName.trim();
     }
 
     public Integer getStatus() {
@@ -73,6 +81,38 @@ public class ServiceInfoDomain {
 
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county == null ? null : county.trim();
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town == null ? null : town.trim();
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade == null ? null : trade.trim();
     }
 
     public String getDescription() {

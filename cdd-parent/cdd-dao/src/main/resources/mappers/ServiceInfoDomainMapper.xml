@@ -5,10 +5,14 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="service_type_id" property="serviceTypeId" jdbcType="BIGINT" />
+    <result column="service_type_name" property="serviceTypeName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="trade" property="trade" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.ServiceInfoDomain" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
@@ -72,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, phone, service_type_id, status, create_ts, update_ts
+    id, username, phone, service_type_name, status, create_ts, update_ts, city, county, 
+    town, trade
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -127,11 +132,15 @@
   </delete>
   <insert id="insert" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
     insert into t_service_info (id, username, phone, 
-      service_type_id, status, create_ts, 
-      update_ts, description)
+      service_type_name, status, create_ts, 
+      update_ts, city, county, 
+      town, trade, description
+      )
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{serviceTypeId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
-      #{updateTs,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR})
+      #{serviceTypeName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
+      #{updateTs,jdbcType=TIMESTAMP}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{town,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
     insert into t_service_info
@@ -145,8 +154,8 @@
       <if test="phone != null" >
         phone,
       </if>
-      <if test="serviceTypeId != null" >
-        service_type_id,
+      <if test="serviceTypeName != null" >
+        service_type_name,
       </if>
       <if test="status != null" >
         status,
@@ -156,6 +165,18 @@
       </if>
       <if test="updateTs != null" >
         update_ts,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="trade != null" >
+        trade,
       </if>
       <if test="description != null" >
         description,
@@ -171,8 +192,8 @@
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="serviceTypeId != null" >
-        #{serviceTypeId,jdbcType=BIGINT},
+      <if test="serviceTypeName != null" >
+        #{serviceTypeName,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -182,6 +203,18 @@
       </if>
       <if test="updateTs != null" >
         #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
@@ -206,8 +239,8 @@
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
-      <if test="record.serviceTypeId != null" >
-        service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      <if test="record.serviceTypeName != null" >
+        service_type_name = #{record.serviceTypeName,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -217,6 +250,18 @@
       </if>
       <if test="record.updateTs != null" >
         update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade != null" >
+        trade = #{record.trade,jdbcType=VARCHAR},
       </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
@@ -231,10 +276,14 @@
     set id = #{record.id,jdbcType=BIGINT},
       username = #{record.username,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      service_type_name = #{record.serviceTypeName,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      trade = #{record.trade,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -245,10 +294,14 @@
     set id = #{record.id,jdbcType=BIGINT},
       username = #{record.username,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      service_type_id = #{record.serviceTypeId,jdbcType=BIGINT},
+      service_type_name = #{record.serviceTypeName,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
-      update_ts = #{record.updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      trade = #{record.trade,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -262,8 +315,8 @@
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="serviceTypeId != null" >
-        service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      <if test="serviceTypeName != null" >
+        service_type_name = #{serviceTypeName,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -273,6 +326,18 @@
       </if>
       <if test="updateTs != null" >
         update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        trade = #{trade,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
@@ -284,10 +349,14 @@
     update t_service_info
     set username = #{username,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      service_type_name = #{serviceTypeName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      trade = #{trade,jdbcType=VARCHAR},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -295,10 +364,14 @@
     update t_service_info
     set username = #{username,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      service_type_id = #{serviceTypeId,jdbcType=BIGINT},
+      service_type_name = #{serviceTypeName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
-      update_ts = #{updateTs,jdbcType=TIMESTAMP}
+      update_ts = #{updateTs,jdbcType=TIMESTAMP},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      trade = #{trade,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

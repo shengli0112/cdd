@@ -15,6 +15,16 @@ public class ServiceInfoVo {
 
     private String createTs;
 
+    private String city;
+
+    private String county;
+
+    private String town;
+
+    private String trade;
+
+
+
     public Long getId() {
         return id;
     }
@@ -69,5 +79,37 @@ public class ServiceInfoVo {
 
     public void setCreateTs(String createTs) {
         this.createTs = createTs;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
     }
 }
