@@ -894,6 +894,146 @@ public class ServiceInfoDomainExample {
             addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
+
+        public Criteria andReferrerIsNull() {
+            addCriterion("referrer is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerIsNotNull() {
+            addCriterion("referrer is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerEqualTo(String value) {
+            addCriterion("referrer =", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerNotEqualTo(String value) {
+            addCriterion("referrer <>", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerGreaterThan(String value) {
+            addCriterion("referrer >", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerGreaterThanOrEqualTo(String value) {
+            addCriterion("referrer >=", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerLessThan(String value) {
+            addCriterion("referrer <", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerLessThanOrEqualTo(String value) {
+            addCriterion("referrer <=", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerLike(String value) {
+            addCriterion("referrer like", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerNotLike(String value) {
+            addCriterion("referrer not like", value, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerIn(List<String> values) {
+            addCriterion("referrer in", values, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerNotIn(List<String> values) {
+            addCriterion("referrer not in", values, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerBetween(String value1, String value2) {
+            addCriterion("referrer between", value1, value2, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerNotBetween(String value1, String value2) {
+            addCriterion("referrer not between", value1, value2, "referrer");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneIsNull() {
+            addCriterion("referrer_phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneIsNotNull() {
+            addCriterion("referrer_phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneEqualTo(String value) {
+            addCriterion("referrer_phone =", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneNotEqualTo(String value) {
+            addCriterion("referrer_phone <>", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneGreaterThan(String value) {
+            addCriterion("referrer_phone >", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("referrer_phone >=", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneLessThan(String value) {
+            addCriterion("referrer_phone <", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneLessThanOrEqualTo(String value) {
+            addCriterion("referrer_phone <=", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneLike(String value) {
+            addCriterion("referrer_phone like", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneNotLike(String value) {
+            addCriterion("referrer_phone not like", value, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneIn(List<String> values) {
+            addCriterion("referrer_phone in", values, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneNotIn(List<String> values) {
+            addCriterion("referrer_phone not in", values, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneBetween(String value1, String value2) {
+            addCriterion("referrer_phone between", value1, value2, "referrerPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferrerPhoneNotBetween(String value1, String value2) {
+            addCriterion("referrer_phone not between", value1, value2, "referrerPhone");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

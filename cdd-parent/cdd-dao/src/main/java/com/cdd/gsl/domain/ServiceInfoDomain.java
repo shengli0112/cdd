@@ -27,6 +27,10 @@ public class ServiceInfoDomain {
 
     private Long userId;
 
+    private String referrer;
+
+    private String referrerPhone;
+
     private String description;
 
     public Long getId() {
@@ -123,6 +127,22 @@ public class ServiceInfoDomain {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getReferrer() {
+        return referrer;
+    }
+
+    public void setReferrer(String referrer) {
+        this.referrer = referrer == null ? null : referrer.trim();
+    }
+
+    public String getReferrerPhone() {
+        return referrerPhone;
+    }
+
+    public void setReferrerPhone(String referrerPhone) {
+        this.referrerPhone = referrerPhone == null ? null : referrerPhone.trim();
     }
 
     public String getDescription() {

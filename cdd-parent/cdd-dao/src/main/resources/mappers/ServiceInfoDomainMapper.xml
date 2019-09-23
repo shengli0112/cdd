@@ -14,6 +14,8 @@
     <result column="town" property="town" jdbcType="VARCHAR" />
     <result column="trade" property="trade" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="referrer" property="referrer" jdbcType="VARCHAR" />
+    <result column="referrer_phone" property="referrerPhone" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cdd.gsl.domain.ServiceInfoDomain" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
@@ -78,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, username, phone, service_type_name, status, create_ts, update_ts, city, county, 
-    town, trade, user_id
+    town, trade, user_id, referrer, referrer_phone
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -136,12 +138,14 @@
       service_type_name, status, create_ts, 
       update_ts, city, county, 
       town, trade, user_id, 
-      description)
+      referrer, referrer_phone, description
+      )
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{serviceTypeName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
       #{updateTs,jdbcType=TIMESTAMP}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
       #{town,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
-      #{description,jdbcType=LONGVARCHAR})
+      #{referrer,jdbcType=VARCHAR}, #{referrerPhone,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.ServiceInfoDomain" >
     insert into t_service_info
@@ -181,6 +185,12 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="referrer != null" >
+        referrer,
+      </if>
+      <if test="referrerPhone != null" >
+        referrer_phone,
       </if>
       <if test="description != null" >
         description,
@@ -222,6 +232,12 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="referrer != null" >
+        #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="referrerPhone != null" >
+        #{referrerPhone,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=LONGVARCHAR},
@@ -273,6 +289,12 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
+      <if test="record.referrer != null" >
+        referrer = #{record.referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referrerPhone != null" >
+        referrer_phone = #{record.referrerPhone,jdbcType=VARCHAR},
+      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -295,6 +317,8 @@
       town = #{record.town,jdbcType=VARCHAR},
       trade = #{record.trade,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=BIGINT},
+      referrer = #{record.referrer,jdbcType=VARCHAR},
+      referrer_phone = #{record.referrerPhone,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -313,7 +337,9 @@
       county = #{record.county,jdbcType=VARCHAR},
       town = #{record.town,jdbcType=VARCHAR},
       trade = #{record.trade,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=BIGINT}
+      user_id = #{record.userId,jdbcType=BIGINT},
+      referrer = #{record.referrer,jdbcType=VARCHAR},
+      referrer_phone = #{record.referrerPhone,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -354,6 +380,12 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=BIGINT},
       </if>
+      <if test="referrer != null" >
+        referrer = #{referrer,jdbcType=VARCHAR},
+      </if>
+      <if test="referrerPhone != null" >
+        referrer_phone = #{referrerPhone,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -373,6 +405,8 @@
       town = #{town,jdbcType=VARCHAR},
       trade = #{trade,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},
+      referrer = #{referrer,jdbcType=VARCHAR},
+      referrer_phone = #{referrerPhone,jdbcType=VARCHAR},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -388,7 +422,9 @@
       county = #{county,jdbcType=VARCHAR},
       town = #{town,jdbcType=VARCHAR},
       trade = #{trade,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT}
+      user_id = #{userId,jdbcType=BIGINT},
+      referrer = #{referrer,jdbcType=VARCHAR},
+      referrer_phone = #{referrerPhone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

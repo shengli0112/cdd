@@ -23,6 +23,10 @@ public class ServiceInfoVo {
 
     private String trade;
 
+    private String referrer;
+
+    private String referrerPhone;
+
 
 
     public Long getId() {
@@ -111,5 +115,21 @@ public class ServiceInfoVo {
 
     public void setTrade(String trade) {
         this.trade = trade;
+    }
+
+    public String getReferrer() {
+        return referrer;
+    }
+
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
+
+    public String getReferrerPhone() {
+        return referrerPhone;
+    }
+
+    public void setReferrerPhone(String referrerPhone) {
+        this.referrerPhone = referrerPhone;
     }
 }
