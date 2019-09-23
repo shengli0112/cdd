@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -46,6 +47,9 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         CommonResult commonResult = new CommonResult();
         try {
             if(serviceInfoDomain != null){
+                serviceInfoDomain.setCreateTs(new Date());
+                serviceInfoDomain.setUpdateTs(new Date());
+                serviceInfoDomain.setStatus(1);
                 serviceInfoDomainMapper.insertSelective(serviceInfoDomain);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("添加成功");
