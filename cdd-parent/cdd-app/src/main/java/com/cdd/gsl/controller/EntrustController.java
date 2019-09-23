@@ -38,6 +38,16 @@ public class EntrustController {
     }
 
     /**
+     * 个人发布的委托列表
+     */
+    @RequestMapping("findEntrustInfoByUserId")
+    public CommonResult<List<EntrustInfoVo>> findEntrustInfoByUserId(EntrustConditionVo entrustConditionVo){
+        //TODO 有问题条件没有判断清楚
+        return entrustService.findEntrustInfoByUserId(entrustConditionVo);
+    }
+
+
+    /**
      * 所有人都可以查看托管信息
      */
     @RequestMapping("findEntrustList")

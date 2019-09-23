@@ -45,8 +45,8 @@ public class ServiceController {
     }
 
     @RequestMapping("checkPhone")
-    public CommonResult checkPhone(Long userId){
-        return serviceInfoService.checkPhone(userId);
+    public CommonResult checkPhone(Long userId,Long serviceId){
+        return serviceInfoService.checkPhone(userId,serviceId);
     }
 
 

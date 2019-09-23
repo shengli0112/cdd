@@ -211,6 +211,45 @@ public class EntrustServiceImpl implements EntrustService {
     }
 
     @Override
+    public CommonResult<List<EntrustInfoVo>> findEntrustInfoByUserId(EntrustConditionVo entrustConditionVo) {
+
+        CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
+        // && entrustConditionVo.getEntrustType() != null
+        if(entrustConditionVo.getUserId() != null){
+            List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustByUserId(entrustConditionVo);
+           /* List<EntrustInfoVo> entrustInfoVoList = new ArrayList<>();
+            if(entrustInfoVos != null && entrustInfoVos.size() > 0){
+                for(EntrustInfoVo entrustInfoVo:entrustInfoVos){
+                    CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                    if(entrustConditionVo.getUserId() != null){
+                        checkPhoneDomainExample.createCriteria().andUserIdEqualTo(entrustConditionVo.getUserId())
+                                .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
+                    }else{
+                        checkPhoneDomainExample.createCriteria()
+                                .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
+                    }
+
+                    List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                    if(checkPhoneDomains != null && checkPhoneDomains.size() > 0){
+                        entrustInfoVo.setCheckPhone(1);
+                    }else{
+                        entrustInfoVo.setCheckPhone(0);
+                    }
+                    entrustInfoVoList.add(entrustInfoVo);
+                }
+            }*/
+            commonResult.setData(entrustInfoVos);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+
+        return commonResult;
+    }
+
+    @Override
     public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo) {
         CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();
         // && entrustConditionVo.getEntrustType() != null

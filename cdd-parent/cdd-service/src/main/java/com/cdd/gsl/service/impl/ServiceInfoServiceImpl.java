@@ -5,6 +5,7 @@ import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.ServiceInfoDomain;
+import com.cdd.gsl.domain.ServiceInfoDomainExample;
 import com.cdd.gsl.domain.UserInfoDomain;
 import com.cdd.gsl.service.ServiceInfoService;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
@@ -15,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -145,22 +148,56 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
     }
 
     @Override
-    public CommonResult checkPhone(Long userId) {
+    public CommonResult checkPhone(Long userId,Long serviceId) {
         CommonResult commonResult = new CommonResult();
         try {
             if(userId != null){
                 List<EnterpriseInfoVo> enterpriseInfoVos = enterpriseInfoDao.selectEnterpriseInfoListByUserId(userId);
                 if(enterpriseInfoVos != null && enterpriseInfoVos.size() > 0){
-                    UserInfoDomain singleUserInfoVo = userInfoDomainMapper.selectByPrimaryKey(userId);
-                    Integer integral = singleUserInfoVo.getIntegral();
-                    if(integral > CddConstant.PAY_INTERGAL_CHECK_PHONE){
-                        UserInfoDomain userInfoDomain = new UserInfoDomain();
-                        userInfoDomain.setId(userId);
-                        userInfoDomain.setIntegral(integral - CddConstant.PAY_INTERGAL_CHECK_PHONE);
-                        userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+                    EnterpriseInfoVo enterpriseInfoVo = enterpriseInfoVos.get(0);
+                    String trade = enterpriseInfoVo.getTrade();
+                    if(!StringUtils.isEmpty(trade)){
+                        ServiceInfoDomainExample serviceInfoDomainExample = new ServiceInfoDomainExample();
+                        serviceInfoDomainExample.createCriteria().andIdEqualTo(serviceId).andStatusEqualTo(1);
+                        List<ServiceInfoDomain> serviceInfoDomainList = serviceInfoDomainMapper.selectByExample(serviceInfoDomainExample);
+                        if(!CollectionUtils.isEmpty(serviceInfoDomainList)){
+                            ServiceInfoDomain serviceInfoDomain = serviceInfoDomainList.get(0);
+                            String serviceTypeName = serviceInfoDomain.getServiceTypeName();
+                            String[] tradeArr = trade.split(",");
+                            boolean isCheck = false;
+                            for(String tradeStr:tradeArr){
+                                if(serviceTypeName.contains(tradeStr)){
+                                    isCheck = true;
+                                }
+                            }
+                            if(isCheck){
+                                UserInfoDomain singleUserInfoVo = userInfoDomainMapper.selectByPrimaryKey(userId);
+                                Integer integral = singleUserInfoVo.getIntegral();
+                                if(integral > CddConstant.PAY_INTERGAL_CHECK_PHONE){
+                                    UserInfoDomain userInfoDomain = new UserInfoDomain();
+                                    userInfoDomain.setId(userId);
+                                    userInfoDomain.setIntegral(integral - CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                                    userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+                                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                                    commonResult.setMessage("允许查询");
+                                }else{
+                                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                                    commonResult.setMessage("多多币余额不足");
+                                }
+
+                            }else{
+                                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                                commonResult.setMessage("您的服务行业不包含对应的需求类型");
+                            }
+                        }else{
+                            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                            commonResult.setMessage("该企业需求已被删除");
+                        }
+                    }else{
+                        commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                        commonResult.setMessage("请补全您企业的行业");
                     }
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setMessage("允许查询");
+
                 }else{
                     commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                     commonResult.setMessage("请发布企业后查询");

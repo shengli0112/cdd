@@ -127,6 +127,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     }
 
+
+
     @Override
     public CommonResult updateEnterprise(EnterpriseInfoDomain enterpriseInfoDomain) {
         CommonResult commonResult = new CommonResult();

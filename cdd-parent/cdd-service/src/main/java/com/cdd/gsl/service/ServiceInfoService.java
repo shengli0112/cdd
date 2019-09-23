@@ -12,7 +12,7 @@ public interface ServiceInfoService {
 
     public CommonResult findAdminServiceInfoList(AdminServiceConditionVo serviceInfoConditionVo);
 
-    public CommonResult checkPhone(Long userId);
+    public CommonResult checkPhone(Long userId,Long serviceId);
 
     public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain);
 
