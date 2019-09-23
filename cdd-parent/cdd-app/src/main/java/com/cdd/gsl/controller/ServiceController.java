@@ -29,6 +29,16 @@ public class ServiceController {
         return serviceInfoService.createServiceInfo(serviceInfoDomain);
     }
 
+    @RequestMapping("/updateServiceInfo")
+    public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain){
+        return serviceInfoService.updateServiceInfo(serviceInfoDomain);
+    }
+
+    @RequestMapping("/deleteServiceInfo")
+    public CommonResult deleteServiceInfo(Long userId,Long serviceId){
+        return serviceInfoService.deleteServiceInfo(userId,serviceId);
+    }
+
     @RequestMapping("/findServiceInfoList")
     public CommonResult findServiceInfoList(ServiceInfoConditionVo serviceInfoConditionVo){
         return serviceInfoService.findServiceInfoList(serviceInfoConditionVo);

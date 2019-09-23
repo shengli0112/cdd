@@ -22,6 +22,9 @@ public interface ServiceInfoDao {
             "<if test=\"town != null\">" +
             " and si.town=#{town}"+
             "</if>" +
+            "<if test=\"userId != null\">" +
+            " and si.user_id=#{userId}"+
+            "</if>" +
             "<if test=\"serviceTypeName != null\">" +
             " and si.service_type_name like concat('%','${serviceTypeName}','%')"+
             "</if>" +

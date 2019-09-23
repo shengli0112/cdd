@@ -223,6 +223,7 @@ public class HouseServiceImpl implements HouseService{
                 }
                 address.append(houseInfoDomain.getCoverArea()+"亩");
             }
+            logger.info("addHouse address-{}",address.toString());
             SingleUserInfoVo user = userInfoDao.findUserInfoById(houseInfoDomain.getUserId());
             String userStr = user.getUsername()+" "+user.getPhone();
             tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
@@ -234,7 +235,7 @@ public class HouseServiceImpl implements HouseService{
                 .append("?mobile=").append(houseInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
                 .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
         String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
-        logger.info("addHouse response -{}",response);
+        logger.info("addHouse uri-{} response -{}",uri.toString(),response);
         if(Strings.isNotEmpty(response)){
             JSONObject res = JSONObject.parseObject(response);
             Integer flag = res.getInteger("error_code");
@@ -651,5 +652,79 @@ public class HouseServiceImpl implements HouseService{
         }
 
         return exportHouseVos;
+    }
+
+    //短信提醒
+    public static  void sendDuanxin(HouseInfoDomain houseInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
+                    .append(houseInfoDomain.getStreet());
+            if(houseInfoDomain.getHouseNumber() != null){
+                address.append(houseInfoDomain.getHouseNumber()+"号");
+            }
+            if(houseInfoDomain.getHouseType() == 1){
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 厂房求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 厂房求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 厂房出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 厂房出售面积:");
+                }
+                address.append(houseInfoDomain.getArea()+"㎡，").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getPriceType() == 1){
+                    address.append("元/㎡/天");
+                }else if(houseInfoDomain.getPriceType() == 2){
+                    address.append("元/㎡/月");
+                }else if(houseInfoDomain.getPriceType() == 3){
+                    address.append("元/㎡/年");
+                }
+            }else if(houseInfoDomain.getHouseType() == 2){
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 仓库求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 仓库求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 仓库出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 仓库出售面积:");
+                }
+                address.append(houseInfoDomain.getArea()+"㎡").append("价格 "+houseInfoDomain.getSinglePrice());
+                if(houseInfoDomain.getPriceType() == 1){
+                    address.append("元/㎡/天");
+                }else if(houseInfoDomain.getPriceType() == 2){
+                    address.append("元/㎡/月");
+                }else if(houseInfoDomain.getPriceType() == 3){
+                    address.append("元/㎡/年");
+                }
+            }else if(houseInfoDomain.getHouseType() == 3){
+                if(houseInfoDomain.getHouseUseType() == 1){
+                    address.append(" 土地求租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 2){
+                    address.append(" 土地求购面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 3){
+                    address.append(" 土地出租面积:");
+                }else if(houseInfoDomain.getHouseUseType() == 4){
+                    address.append(" 土地出售面积:");
+                }
+                address.append(houseInfoDomain.getCoverArea()+"亩");
+            }
+            System.out.println("addHouse address-{}"+address.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void main(String[] args){
+        HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
+        houseInfoDomain.setHouseType(3);
+        houseInfoDomain.setHouseUseType(1);
+        houseInfoDomain.setPriceType(1);
+        sendDuanxin(houseInfoDomain);
     }
 }

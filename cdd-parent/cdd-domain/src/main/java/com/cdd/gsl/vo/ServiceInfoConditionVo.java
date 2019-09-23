@@ -2,6 +2,8 @@ package com.cdd.gsl.vo;
 
 public class ServiceInfoConditionVo {
 
+    private Long userId;
+
     private String keyword;
 
     private String city;
@@ -82,5 +84,13 @@ public class ServiceInfoConditionVo {
 
     public void setServiceTypeName(String serviceTypeName) {
         this.serviceTypeName = serviceTypeName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

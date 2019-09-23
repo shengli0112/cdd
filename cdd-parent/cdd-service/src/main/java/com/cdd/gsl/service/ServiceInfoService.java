@@ -13,4 +13,8 @@ public interface ServiceInfoService {
     public CommonResult findAdminServiceInfoList(AdminServiceConditionVo serviceInfoConditionVo);
 
     public CommonResult checkPhone(Long userId);
+
+    public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain);
+
+    public CommonResult deleteServiceInfo(Long userId,Long serviceId);
 }

@@ -60,6 +60,47 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
     }
 
     @Override
+    public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            if(serviceInfoDomain != null){
+                serviceInfoDomainMapper.updateByPrimaryKeySelective(serviceInfoDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("修改成功");
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不能为空");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("ServiceInfoServiceImpl updateServiceInfo error");
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult deleteServiceInfo(Long userId, Long serviceId) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            ServiceInfoDomain serviceInfoDomain = new ServiceInfoDomain();
+            serviceInfoDomain.setId(serviceId);
+            serviceInfoDomain.setUserId(userId);
+            serviceInfoDomain.setStatus(0);
+            serviceInfoDomainMapper.updateByPrimaryKeySelective(serviceInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("删除成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("ServiceInfoServiceImpl deleteServiceInfo error");
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult findServiceInfoList(ServiceInfoConditionVo serviceInfoConditionVo) {
         CommonResult commonResult = new CommonResult();
         try {
@@ -137,4 +178,6 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         }
         return commonResult;
     }
+
+
 }

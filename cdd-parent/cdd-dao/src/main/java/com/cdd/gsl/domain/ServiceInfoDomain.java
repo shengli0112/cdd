@@ -25,6 +25,8 @@ public class ServiceInfoDomain {
 
     private String trade;
 
+    private Long userId;
+
     private String description;
 
     public Long getId() {
@@ -113,6 +115,14 @@ public class ServiceInfoDomain {
 
     public void setTrade(String trade) {
         this.trade = trade == null ? null : trade.trim();
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
