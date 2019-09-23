@@ -6,6 +6,7 @@ import com.cdd.gsl.service.ServiceInfoService;
 import com.cdd.gsl.service.ServiceTypeService;
 import com.cdd.gsl.vo.ServiceInfoConditionVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class ServiceController {
     }
 
     @RequestMapping("/createServiceInfo")
-    public CommonResult createServiceInfo(ServiceInfoDomain serviceInfoDomain){
+    public CommonResult createServiceInfo(@RequestBody ServiceInfoDomain serviceInfoDomain){
         return serviceInfoService.createServiceInfo(serviceInfoDomain);
     }
 
