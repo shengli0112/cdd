@@ -23,8 +23,6 @@ public class ServiceInfoDomain {
 
     private String town;
 
-    private String trade;
-
     private Long userId;
 
     private String referrer;
@@ -111,14 +109,6 @@ public class ServiceInfoDomain {
 
     public void setTown(String town) {
         this.town = town == null ? null : town.trim();
-    }
-
-    public String getTrade() {
-        return trade;
-    }
-
-    public void setTrade(String trade) {
-        this.trade = trade == null ? null : trade.trim();
     }
 
     public Long getUserId() {
