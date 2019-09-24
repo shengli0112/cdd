@@ -12,8 +12,8 @@
 
 
         <RollingFile name="debug_log"
-                     fileName="${sys:catalina.base}/logs/cddgsl-debug.log" append="true"
-                     filePattern="${sys:catalina.base}/logs/cddgsl-debug-%d{yyyy-MM-dd}.log">
+                     fileName="${sys:catalina.home}/logs/cddgsl-debug.log" append="true"
+                     filePattern="${sys:catalina.home}/logs/cddgsl-debug-%d{yyyy-MM-dd}.log">
             <Filters>
                 <ThresholdFilter level="debug" onMatch="ACCEPT"
                                  onMismatch="NEUTRAL"/>
@@ -27,8 +27,8 @@
         </RollingFile>
 
         <RollingFile name="info_log"
-                     fileName="${sys:catalina.base}/logs/cddgsl-info.log" append="true"
-                     filePattern="${sys:catalina.base}/logs/cddgsl-info-%d{yyyy-MM-dd}.log">
+                     fileName="${sys:catalina.home}/logs/cddgsl-info.log" append="true"
+                     filePattern="${sys:catalina.home}/logs/cddgsl-info-%d{yyyy-MM-dd}.log">
             <Filters>
                 <ThresholdFilter level="info" onMatch="ACCEPT"
                                  onMismatch="DENY"/>
@@ -42,8 +42,8 @@
         </RollingFile>
 
         <RollingFile name="warn_log"
-                     fileName="${sys:catalina.base}/logs/cddgsl-warn.log" append="true"
-                     filePattern="${sys:catalina.base}/logs/cddgsl-warn-%d{yyyy-MM-dd}.log">
+                     fileName="${sys:catalina.home}/logs/cddgsl-warn.log" append="true"
+                     filePattern="${sys:catalina.home}/logs/cddgsl-warn-%d{yyyy-MM-dd}.log">
             <Filters>
                 <ThresholdFilter level="warn" onMatch="ACCEPT"
                                  onMismatch="DENY"/>
@@ -57,8 +57,8 @@
         </RollingFile>
 
         <RollingFile name="error_log"
-                     fileName="${sys:catalina.base}/logs/cddgsl-error.log" append="true"
-                     filePattern="${sys:catalina.base}/logs/cddgsl-error-%d{yyyy-MM-dd}.log">
+                     fileName="${sys:catalina.home}/logs/cddgsl-error.log" append="true"
+                     filePattern="${sys:catalina.home}/logs/cddgsl-error-%d{yyyy-MM-dd}.log">
             <Filters>
                 <ThresholdFilter level="error" onMatch="ACCEPT"
                                  onMismatch="DENY"/>
@@ -71,8 +71,8 @@
                     pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}- [%t] %-5level %X{sessionId} %class{36} %L %M - %msg%xEx%n"/>
         </RollingFile>
 
-        <RollingFile name="CATALINA_BASE_ROLLING" fileName="${sys:catalina.base}/logs/catalina.out"
-                     filePattern="${sys:catalina.base}/logs/catalina-%d{yyyy-MM-dd}.out">
+        <RollingFile name="CATALINA_BASE_ROLLING" fileName="${sys:catalina.home}/logs/catalina.out"
+                     filePattern="${sys:catalina.home}/logs/catalina-%d{yyyy-MM-dd}.out">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}- [%t] %-5level %class{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
