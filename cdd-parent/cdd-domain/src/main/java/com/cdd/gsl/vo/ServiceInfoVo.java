@@ -21,8 +21,6 @@ public class ServiceInfoVo {
 
     private String town;
 
-    private String trade;
-
     private String referrer;
 
     private String referrerPhone;
@@ -109,13 +107,6 @@ public class ServiceInfoVo {
         this.town = town;
     }
 
-    public String getTrade() {
-        return trade;
-    }
-
-    public void setTrade(String trade) {
-        this.trade = trade;
-    }
 
     public String getReferrer() {
         return referrer;

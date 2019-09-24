@@ -12,7 +12,7 @@ public interface ServiceInfoDao {
     @Select("<script>" +
             "select si.id as id,si.username as username,si.phone as phone,si.description as description," +
             "si.service_type_name as serviceTypeName ,si.create_ts as createTs,si.city as city," +
-            "si.county as county,si.town as town,si.trade as trade,referrer as referrer,referrer_phone as referrerPhone " +
+            "si.county as county,si.town as town,referrer as referrer,referrer_phone as referrerPhone " +
             "from t_service_info si where si.status=1" +
             "<if test=\"city != null\">" +
             " and si.city=#{city}"+
@@ -32,7 +32,7 @@ public interface ServiceInfoDao {
             " and (si.username like concat('%','${keyword}','%') or si.description like concat('%','${keyword}','%')" +
             " or si.service_type_name like concat('%','${keyword}','%') or si.city like concat('%','${keyword}','%')" +
             " or si.county like concat('%','${keyword}','%') or si.town like concat('%','${keyword}','%') " +
-            " or si.trade like concat('%','${keyword}','%') or si.trade like concat('%','${keyword}','%')) " +
+            " or si.referrer like concat('%','${keyword}','%')) " +
             "</if>" +
             " order by si.create_ts desc " +
             " limit #{from},#{pageSize}"+
@@ -43,7 +43,7 @@ public interface ServiceInfoDao {
     @Select("<script>" +
             "select si.id as id,si.username as username,si.phone as phone,si.description as description," +
             "st.service_type_name as serviceTypeName,si.create_ts as createTs,si.city as city, " +
-            "si.county as county,si.town as town,si.trade as trade,referrer as referrer,referrer_phone as referrerPhone " +
+            "si.county as county,si.town as town,referrer as referrer,referrer_phone as referrerPhone " +
             "from t_service_info si left join t_service_type st on si.service_type_id=st.id where si.status=1" +
             "<if test='keyword != null'>" +
             " and (si.username like concat('%','${keyword}','%') or si.description like concat('%','${keyword}','%')" +
