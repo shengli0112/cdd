@@ -274,5 +274,23 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         return commonResult;
     }
 
-
+    @Override
+    public CommonResult isEnterprise(Long userId) {
+        CommonResult commonResult = new CommonResult();
+        List<EnterpriseInfoVo> enterpriseInfoVos = enterpriseInfoDao.selectEnterpriseInfoListByUserId(userId);
+        if(!CollectionUtils.isEmpty(enterpriseInfoVos)){
+            JSONObject data = new JSONObject();
+            data.put("exist",1);
+            commonResult.setData(data);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+        }else{
+            JSONObject data = new JSONObject();
+            data.put("exist",0);
+            commonResult.setData(data);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+        }
+        return commonResult;
+    }
 }

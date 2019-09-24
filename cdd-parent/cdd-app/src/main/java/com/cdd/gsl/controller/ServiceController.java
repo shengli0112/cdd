@@ -55,5 +55,10 @@ public class ServiceController {
         return serviceInfoService.checkPhone(userId,serviceId);
     }
 
+    @RequestMapping("isEnterprise")
+    public CommonResult isEnterprise(Long userId){
+        return serviceInfoService.isEnterprise(userId);
+    }
+
 
 }
