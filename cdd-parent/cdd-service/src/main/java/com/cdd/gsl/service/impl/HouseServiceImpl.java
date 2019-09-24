@@ -87,7 +87,7 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private EntrustInfoDao entrustInfoDao;
 
-    private static  ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private  ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -143,7 +143,13 @@ public class HouseServiceImpl implements HouseService{
             }
             if(Strings.isNotEmpty(houseInfoDomain.getPhone())){
                 logger.info("房源提醒短信发送开始");
-                sendSms(houseInfoDomain);
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendSms(houseInfoDomain);
+                    }
+                });
+
             }
 
         }catch (Exception e){
@@ -739,12 +745,7 @@ public class HouseServiceImpl implements HouseService{
         houseInfoDomain.setHouseType(1);
         houseInfoDomain.setHouseUseType(1);
         houseInfoDomain.setPriceType(1);
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                sendDuanxin(houseInfoDomain);
-            }
-        });
+
 
     }
 }
