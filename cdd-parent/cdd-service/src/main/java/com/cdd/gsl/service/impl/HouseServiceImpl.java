@@ -87,7 +87,7 @@ public class HouseServiceImpl implements HouseService{
     @Autowired
     private EntrustInfoDao entrustInfoDao;
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private static  ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     @Value("${verify.code.url}")
     private String verifyCodeUrl;
@@ -143,13 +143,7 @@ public class HouseServiceImpl implements HouseService{
             }
             if(Strings.isNotEmpty(houseInfoDomain.getPhone())){
                 logger.info("房源提醒短信发送开始");
-                executorService.submit(new Runnable() {
-                    @Override
-                    public void run() {
-                        logger.info("房源提醒短信 addHouse houseInfoDomain -{}",houseInfoDomain.toString());
-                        sendSms(houseInfoDomain);
-                    }
-                });
+                sendSms(houseInfoDomain);
             }
 
         }catch (Exception e){
@@ -168,8 +162,18 @@ public class HouseServiceImpl implements HouseService{
         String tplValue = null;
         try {
             StringBuffer address = new StringBuffer();
-            address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
-                    .append(houseInfoDomain.getStreet());
+            if(Strings.isNotEmpty(houseInfoDomain.getCity())){
+                address.append(houseInfoDomain.getCity());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getCounty())){
+                address.append(houseInfoDomain.getCounty());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getTown())){
+                address.append(houseInfoDomain.getTown());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getStreet())){
+                address.append(houseInfoDomain.getStreet());
+            }
             if(houseInfoDomain.getHouseNumber() != null){
                 address.append(houseInfoDomain.getHouseNumber()+"号");
             }
@@ -659,8 +663,18 @@ public class HouseServiceImpl implements HouseService{
         String tplValue = null;
         try {
             StringBuffer address = new StringBuffer();
-            address.append(houseInfoDomain.getCity()).append(houseInfoDomain.getCounty()).append(houseInfoDomain.getTown())
-                    .append(houseInfoDomain.getStreet());
+            if(Strings.isNotEmpty(houseInfoDomain.getCity())){
+                address.append(houseInfoDomain.getCity());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getCounty())){
+                address.append(houseInfoDomain.getCounty());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getTown())){
+                address.append(houseInfoDomain.getTown());
+            }
+            if(Strings.isNotEmpty(houseInfoDomain.getStreet())){
+                address.append(houseInfoDomain.getStreet());
+            }
             if(houseInfoDomain.getHouseNumber() != null){
                 address.append(houseInfoDomain.getHouseNumber()+"号");
             }
@@ -722,9 +736,15 @@ public class HouseServiceImpl implements HouseService{
 
     public static void main(String[] args){
         HouseInfoDomain houseInfoDomain = new HouseInfoDomain();
-        houseInfoDomain.setHouseType(3);
+        houseInfoDomain.setHouseType(1);
         houseInfoDomain.setHouseUseType(1);
         houseInfoDomain.setPriceType(1);
-        sendDuanxin(houseInfoDomain);
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                sendDuanxin(houseInfoDomain);
+            }
+        });
+
     }
 }

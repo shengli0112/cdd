@@ -53,6 +53,7 @@ public class CddConstant {
     public static final Integer CONSUME_RECORD_TYPE_TOP = 2; //置顶
     public static final Integer CONSUME_RECORD_TYPE_MEMBER = 3; //会员
     public static final Integer CONSUME_RECORD_TYPE_INFORM = 4; //举报
+    public static final Integer CONSUME_RECORD_TYPE_CHECK_PHONE = 5; //企业服务查看手机号
 
 
     public static final Integer INFORM_INTEGRAL_NUM = 20; //举报属实扣除积分数
@@ -60,6 +61,7 @@ public class CddConstant {
     public static final String TOP_HOUSE_TITLE = "置顶房源";
     public static final String TOP_PARK_TITLE = "置顶园区";
     public static final String TOP_ENTERPRISE_TITLE = "置顶企业圈";
+    public static final String SERVICE_CHECK_PHONE = "企业服务查看手机号";
 
     public static final String CREATE_HOUSE_TITLE = "发布新房源";
     public static final String CREATE_PARK_TITLE = "发布新园区";

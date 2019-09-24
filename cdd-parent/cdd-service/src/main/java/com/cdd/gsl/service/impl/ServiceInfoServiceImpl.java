@@ -45,6 +45,9 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
     @Autowired
     private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
+    @Autowired
+    private ConsumeRecordDomainMapper consumeRecordDomainMapper;
+
     @Override
     public CommonResult createServiceInfo(ServiceInfoDomain serviceInfoDomain) {
         CommonResult commonResult = new CommonResult();
@@ -232,6 +235,13 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                                     checkPhoneDomain.setUserId(userId);
                                     checkPhoneDomain.setType("service");
                                     checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+                                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                                    consumeRecordDomain.setTitle(CddConstant.SERVICE_CHECK_PHONE);
+                                    consumeRecordDomain.setUserId(userId);
+                                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
+                                    consumeRecordDomain.setIntegral(CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_CHECK_PHONE);
+                                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                                     JSONObject data = new JSONObject();
                                     data.put("phone",serviceInfoDomain.getPhone());
                                     data.put("flag",1);
