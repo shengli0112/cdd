@@ -10,7 +10,7 @@ import java.util.List;
 public interface ServiceInfoDao {
 
     @Select("<script>" +
-            "select si.id as id,si.username as username,si.phone as phone,si.description as description," +
+            "select si.id as id,si.username as username,si.description as description," +
             "si.service_type_name as serviceTypeName ,si.create_ts as createTs,si.city as city," +
             "si.county as county,si.town as town,referrer as referrer,referrer_phone as referrerPhone " +
             "from t_service_info si where si.status=1" +

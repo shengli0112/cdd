@@ -1,5 +1,6 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.AdminServiceConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
@@ -182,6 +183,10 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                                     userInfoDomain.setId(userId);
                                     userInfoDomain.setIntegral(integral - CddConstant.PAY_INTERGAL_CHECK_PHONE);
                                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+                                    JSONObject data = new JSONObject();
+                                    data.put("phone",serviceInfoDomain.getPhone());
+                                    data.put("flag",1);
+                                    commonResult.setData(data);
                                     commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                                     commonResult.setMessage("允许查询");
                                 }else{
