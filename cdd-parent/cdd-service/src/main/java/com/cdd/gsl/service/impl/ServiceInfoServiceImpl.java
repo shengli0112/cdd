@@ -57,6 +57,16 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                 serviceInfoDomain.setUpdateTs(new Date());
                 serviceInfoDomain.setStatus(1);
                 serviceInfoDomainMapper.insertSelective(serviceInfoDomain);
+                if(serviceInfoDomain.getUserId() != null){
+                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                    consumeRecordDomain.setTitle(CddConstant.SERVICE_INFO_CREATE);
+                    consumeRecordDomain.setUserId(serviceInfoDomain.getUserId());
+                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_AWARD);
+                    consumeRecordDomain.setIntegral(CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_CREATE_SERVICE);
+                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
+                }
+
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("添加成功");
             }else{
@@ -133,11 +143,16 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                             serviceVoList.add(serviceInfoVo);
                         });
                     }
-                    commonResult.setData(serviceVoList);
-                }else{
-                    commonResult.setData(serviceInfoVoList);;
-                }
 
+                }else{
+                    if(!CollectionUtils.isEmpty(serviceInfoVoList)){
+                        serviceInfoVoList.forEach(serviceInfoVo -> {
+                            serviceInfoVo.setPhone("");
+                            serviceVoList.add(serviceInfoVo);
+                        });
+                    }
+                }
+                commonResult.setData(serviceVoList);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("查询成功");
 
