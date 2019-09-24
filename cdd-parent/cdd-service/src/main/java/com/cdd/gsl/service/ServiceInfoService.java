@@ -10,6 +10,8 @@ public interface ServiceInfoService {
 
     public CommonResult findServiceInfoList(ServiceInfoConditionVo serviceInfoConditionVo);
 
+    public CommonResult findServiceInfoListByUserId(ServiceInfoConditionVo serviceInfoConditionVo);
+
     public CommonResult findAdminServiceInfoList(AdminServiceConditionVo serviceInfoConditionVo);
 
     public CommonResult checkPhone(Long userId,Long serviceId);

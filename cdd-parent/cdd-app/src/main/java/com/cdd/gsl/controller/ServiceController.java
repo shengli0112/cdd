@@ -45,6 +45,11 @@ public class ServiceController {
         return serviceInfoService.findServiceInfoList(serviceInfoConditionVo);
     }
 
+    @RequestMapping("/findServiceInfoListByUserId")
+    public CommonResult findServiceInfoListByUserId(ServiceInfoConditionVo serviceInfoConditionVo){
+        return serviceInfoService.findServiceInfoListByUserId(serviceInfoConditionVo);
+    }
+
     @RequestMapping("checkPhone")
     public CommonResult checkPhone(Long userId,Long serviceId){
         return serviceInfoService.checkPhone(userId,serviceId);

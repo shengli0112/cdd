@@ -5,9 +5,7 @@ import com.cdd.gsl.admin.AdminServiceConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
-import com.cdd.gsl.domain.ServiceInfoDomain;
-import com.cdd.gsl.domain.ServiceInfoDomainExample;
-import com.cdd.gsl.domain.UserInfoDomain;
+import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.ServiceInfoService;
 import com.cdd.gsl.vo.EnterpriseInfoVo;
 import com.cdd.gsl.vo.ServiceInfoConditionVo;
@@ -20,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +41,9 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
 
     @Autowired
     private UserInfoDomainMapper userInfoDomainMapper;
+
+    @Autowired
+    private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
     @Override
     public CommonResult createServiceInfo(ServiceInfoDomain serviceInfoDomain) {
@@ -114,9 +116,51 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         try {
             if(serviceInfoConditionVo != null){
                 List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.getServiceInfoList(serviceInfoConditionVo);
+                List<ServiceInfoVo> serviceVoList = new ArrayList<>();
+                if(serviceInfoConditionVo.getUserId() != null){
+                    if(!CollectionUtils.isEmpty(serviceInfoVoList)){
+                        serviceInfoVoList.forEach(serviceInfoVo -> {
+                            CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                            checkPhoneDomainExample.createCriteria().andTypeEqualTo("service")
+                                    .andInfoIdEqualTo(serviceInfoVo.getId()).andUserIdEqualTo(serviceInfoConditionVo.getUserId());
+                            List<CheckPhoneDomain> checkPhoneDomainList = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
+                            if(CollectionUtils.isEmpty(checkPhoneDomainList)){
+                               serviceInfoVo.setPhone("");
+                            }
+                            serviceVoList.add(serviceInfoVo);
+                        });
+                    }
+                    commonResult.setData(serviceVoList);
+                }else{
+                    commonResult.setData(serviceInfoVoList);;
+                }
+
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("查询成功");
-                commonResult.setData(serviceInfoVoList);
+
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不能为空");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("ServiceInfoServiceImpl findServiceInfoList error");
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
+
+    @Override
+    public CommonResult findServiceInfoListByUserId(ServiceInfoConditionVo serviceInfoConditionVo) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            if(serviceInfoConditionVo != null){
+                List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.getServiceInfoListByUserId(serviceInfoConditionVo);
+                commonResult.setData(serviceInfoVoList);;
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("查询成功");
+
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("参数不能为空");
@@ -183,6 +227,11 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                                     userInfoDomain.setId(userId);
                                     userInfoDomain.setIntegral(integral - CddConstant.PAY_INTERGAL_CHECK_PHONE);
                                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+                                    CheckPhoneDomain checkPhoneDomain = new CheckPhoneDomain();
+                                    checkPhoneDomain.setInfoId(serviceId);
+                                    checkPhoneDomain.setUserId(userId);
+                                    checkPhoneDomain.setType("service");
+                                    checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
                                     JSONObject data = new JSONObject();
                                     data.put("phone",serviceInfoDomain.getPhone());
                                     data.put("flag",1);
