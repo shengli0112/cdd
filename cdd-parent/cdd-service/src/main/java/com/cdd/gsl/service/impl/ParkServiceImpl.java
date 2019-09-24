@@ -57,8 +57,8 @@ public class ParkServiceImpl implements ParkService {
     @Value("${verify.code.key}")
     private String verifyCodeKey;
 
-    @Value("${verify.warn.id}")
-    private String verifyWarnId;
+    @Value("${verify.park.id}")
+    private String verifyParkId;
 
     @Override
     public CommonResult createSellPark(SellParkInfoDomain sellParkInfoDomain) {
@@ -158,18 +158,16 @@ public class ParkServiceImpl implements ParkService {
         String tplValue = null;
         try {
             StringBuffer address = new StringBuffer();
-            address.append(sellParkInfoDomain.getCity()).append(sellParkInfoDomain.getCounty()).append(sellParkInfoDomain.getTown())
-                .append(" "+sellParkInfoDomain.getParkName()).append(" 出售园区面积：").append(sellParkInfoDomain.getTotalArea()).append("㎡，")
-                .append("价格 "+sellParkInfoDomain.getTotalPrice()+"元/㎡");
+            address.append(" 园区名称:").append(sellParkInfoDomain.getParkName()).append(" 适合行业：")
+                .append(sellParkInfoDomain.getIndustry());
 
             SingleUserInfoVo user = userInfoDao.findUserInfoById(sellParkInfoDomain.getUserId());
-            String userStr = user.getUsername()+" "+user.getPhone();
-            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
-                .append("?mobile=").append(sellParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("?mobile=").append(sellParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyParkId)
                 .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
         String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
         if(Strings.isNotEmpty(response)){
@@ -191,7 +189,7 @@ public class ParkServiceImpl implements ParkService {
         String tplValue = null;
         try {
             StringBuffer address = new StringBuffer();
-            address.append(leaseParkInfoDomain.getCity()).append(leaseParkInfoDomain.getCounty()).append(leaseParkInfoDomain.getTown())
+            /*address.append(leaseParkInfoDomain.getCity()).append(leaseParkInfoDomain.getCounty()).append(leaseParkInfoDomain.getTown())
                     .append(" "+leaseParkInfoDomain.getParkName()).append(" 出租园区面积：").append(leaseParkInfoDomain.getTotalArea()).append("㎡，")
                     .append("价格 "+leaseParkInfoDomain.getUnitPrice());
 
@@ -201,7 +199,9 @@ public class ParkServiceImpl implements ParkService {
                 address.append("元/㎡/月");
             }else if(leaseParkInfoDomain.getPriceType() == 3){
                 address.append("元/㎡/年");
-            }
+            }*/
+            address.append(" 园区名称:").append(leaseParkInfoDomain.getParkName()).append(" 适合行业：")
+                    .append(leaseParkInfoDomain.getIndustry());
 
             SingleUserInfoVo user = userInfoDao.findUserInfoById(leaseParkInfoDomain.getUserId());
             String userStr = user.getUsername()+" "+user.getPhone();
@@ -210,7 +210,7 @@ public class ParkServiceImpl implements ParkService {
             e.printStackTrace();
         }
         StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
-                .append("?mobile=").append(leaseParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("?mobile=").append(leaseParkInfoDomain.getPhone()).append("&tpl_id=").append(verifyParkId)
                 .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
         String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
         if(Strings.isNotEmpty(response)){

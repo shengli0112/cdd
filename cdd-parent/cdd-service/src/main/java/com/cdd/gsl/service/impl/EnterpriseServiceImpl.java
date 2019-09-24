@@ -56,8 +56,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     @Value("${verify.code.key}")
     private String verifyCodeKey;
 
-    @Value("${verify.warn.id}")
-    private String verifyWarnId;
+    @Value("${verify.enterprise.id}")
+    private String verifyEnterpriseId;
 
     @Override
     public CommonResult createEnterprise(EnterpriseInfoDomain enterpriseInfoDomain) {
@@ -101,16 +101,15 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         String tplValue = null;
         try {
             StringBuffer address = new StringBuffer();
-            address.append(enterpriseInfoDomain.getEnterpriseName()).append(enterpriseInfoDomain.getMainBusiness());
+            address.append("公司名称:").append(enterpriseInfoDomain.getEnterpriseName()).append(" 主营产品：")
+                    .append(enterpriseInfoDomain.getMainBusiness());
 
-            SingleUserInfoVo user = userInfoDao.findUserInfoById(enterpriseInfoDomain.getUserId());
-            String userStr = user.getUsername()+" "+user.getPhone();
-            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#name#="+userStr+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#content#=网址：http://cddwang.com，欢迎点击网址进入平台查看或发布信息。","UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
-                .append("?mobile=").append(enterpriseInfoDomain.getPhone()).append("&tpl_id=").append(verifyWarnId)
+                .append("?mobile=").append(enterpriseInfoDomain.getPhone()).append("&tpl_id=").append(verifyEnterpriseId)
                 .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
         String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
         if(Strings.isNotEmpty(response)){
