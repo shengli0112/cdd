@@ -7,8 +7,6 @@ public class ServiceInfoVo {
 
     private String phone;
 
-    private Long serviceTypeId;
-
     private String serviceTypeName;
 
     private String description;
@@ -49,14 +47,6 @@ public class ServiceInfoVo {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public Long getServiceTypeId() {
-        return serviceTypeId;
-    }
-
-    public void setServiceTypeId(Long serviceTypeId) {
-        this.serviceTypeId = serviceTypeId;
     }
 
     public String getServiceTypeName() {
