@@ -36,7 +36,7 @@ public class ServiceController {
     }
 
     @RequestMapping("/updateServiceInfo")
-    public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain){
+    public CommonResult updateServiceInfo(@RequestBody ServiceInfoDomain serviceInfoDomain){
         return serviceInfoService.updateServiceInfo(serviceInfoDomain);
     }
 

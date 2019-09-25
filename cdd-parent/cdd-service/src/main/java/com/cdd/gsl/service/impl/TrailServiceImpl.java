@@ -36,7 +36,6 @@ public class TrailServiceImpl implements TrailService {
     public CommonResult addTrail(TrailInfoDomain trailInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(trailInfoDomain != null){
-            trailInfoDomain.setCreateTs(new Date());
             trailInfoDomainMapper.insertSelective(trailInfoDomain);
             FollowTrailInfoExample followTrailInfoExample = new FollowTrailInfoExample();
             followTrailInfoExample.createCriteria().andUserIdEqualTo(trailInfoDomain.getUserId())
@@ -55,7 +54,6 @@ public class TrailServiceImpl implements TrailService {
     public CommonResult addFollowTrail(FollowTrailInfo followTrailInfo) {
         CommonResult commonResult = new CommonResult();
         if(followTrailInfo != null){
-            followTrailInfo.setCreateTs(new Date());
             FollowTrailInfoExample followTrailInfoExample = new FollowTrailInfoExample();
             followTrailInfoExample.createCriteria().andUserIdEqualTo(followTrailInfo.getUserId()).andHouseIdEqualTo(followTrailInfo.getHouseId());
             List<FollowTrailInfo> followTrailInfoList = followTrailInfoMapper.selectByExample(followTrailInfoExample);
