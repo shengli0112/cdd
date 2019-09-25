@@ -67,10 +67,10 @@ public interface HouseInfoDao {
             "</when>" +
             "<otherwise>" +
             "<if test='areaFrom != null'>" +
-            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom} or h.use_area <![CDATA[>= ]]> #{areaFrom})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaFrom})" +
             "</if>" +
             "<if test='areaTo != null'>" +
-            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo} or h.use_area <![CDATA[>= ]]> #{areaTo})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaTo})" +
             "</if>" +
             "</otherwise>"+
             "</choose>"+
@@ -142,14 +142,14 @@ public interface HouseInfoDao {
             "</if>"+
             "<choose>" +
             "<when test='areaFrom != null and areaTo != null'>" +
-            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            " and ((h.use_area <![CDATA[>= ]]> #{areaFrom} and h.use_area <![CDATA[<= ]]> #{areaTo}))" +
             "</when>" +
             "<otherwise>" +
             "<if test='areaFrom != null'>" +
-            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom} or h.use_area <![CDATA[>= ]]> #{areaFrom})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaFrom})" +
             "</if>" +
             "<if test='areaTo != null'>" +
-            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo} or h.use_area <![CDATA[>= ]]> #{areaTo})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaTo})" +
             "</if>" +
             "</otherwise>"+
             "</choose>"+
@@ -175,8 +175,8 @@ public interface HouseInfoDao {
             " order by  " +
 
             "<if test='areaOrder != null'>"+
-            "<if test='areaOrder == 1'>h.area,h.cover_area,</if>"+
-            "<if test='areaOrder == 2'>h.area desc,h.cover_area desc,</if>"+
+            "<if test='areaOrder == 1'>h.use_area,</if>"+
+            "<if test='areaOrder == 2'>h.use_area desc,</if>"+
             "</if>"+
 
             "<if test='priceOrder != null'>"+
@@ -186,8 +186,8 @@ public interface HouseInfoDao {
             " h.create_ts desc " +
             ")) tmp order by top desc," +
             "<if test='areaOrder != null'>"+
-            "<if test='areaOrder == 1'>area,coverArea,</if>"+
-            "<if test='areaOrder == 2'>area desc,coverArea desc,</if>"+
+            "<if test='areaOrder == 1'>useArea,</if>"+
+            "<if test='areaOrder == 2'>useArea desc</if>"+
             "</if>"+
 
             "<if test='priceOrder != null'>"+
@@ -227,10 +227,10 @@ public interface HouseInfoDao {
             "</when>" +
             "<otherwise>" +
             "<if test='areaFrom != null'>" +
-            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom} or h.use_area <![CDATA[>= ]]> #{areaFrom})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaFrom})" +
             "</if>" +
             "<if test='areaTo != null'>" +
-            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo} or h.use_area <![CDATA[>= ]]> #{areaTo})" +
+            " and (h.use_area <![CDATA[<= ]]> #{areaTo})" +
             "</if>" +
             "</otherwise>"+
             "</choose>"+
@@ -256,8 +256,8 @@ public interface HouseInfoDao {
             " order by top.create_ts desc " +
 
             "<if test='areaOrder != null'>"+
-            "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
-            "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
+            "<if test='areaOrder == 1'>,h.use_area</if>"+
+            "<if test='areaOrder == 2'>,h.use_area desc</if>"+
             "</if>"+
 
             "<if test='priceOrder != null'>"+
@@ -429,14 +429,14 @@ public interface HouseInfoDao {
             "</if>"+
             "<choose>" +
             "<when test='areaFrom != null and areaTo != null'>" +
-            " and ((h.area <![CDATA[>= ]]> #{areaFrom} and h.area <![CDATA[<= ]]> #{areaTo}) or (h.cover_area <![CDATA[>= ]]> #{areaFrom} and h.cover_area <![CDATA[<= ]]> #{areaTo}))" +
+            " and ((h.use_area <![CDATA[>= ]]> #{areaFrom} and h.use_area <![CDATA[<= ]]> #{areaTo}))" +
             "</when>" +
             "<otherwise>" +
             "<if test='areaFrom != null'>" +
-            " and (h.area <![CDATA[>= ]]> #{areaFrom} or h.cover_area <![CDATA[>= ]]> #{areaFrom})" +
+            " and (h.use_area <![CDATA[>= ]]> #{areaFrom})" +
             "</if>" +
             "<if test='areaTo != null'>" +
-            " and (h.area <![CDATA[<= ]]> #{areaTo} or h.cover_area <![CDATA[<= ]]> #{areaTo})" +
+            " and (h.use_area <![CDATA[<= ]]> #{areaTo})" +
             "</if>" +
             "</otherwise>"+
             "</choose>"+
