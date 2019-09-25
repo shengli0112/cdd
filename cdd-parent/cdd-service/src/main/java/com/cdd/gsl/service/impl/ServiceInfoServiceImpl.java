@@ -83,6 +83,35 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
     }
 
     @Override
+    public CommonResult findServiceDetail(Long serviceId) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            if(serviceId != null){
+                List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.getServiceInfoById(serviceId);
+                if(serviceInfoVoList != null && serviceInfoVoList.size() > 0){
+                    ServiceInfoVo serviceInfoVo = serviceInfoVoList.get(0);
+                    commonResult.setData(serviceInfoVo);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("查询成功");
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("没有对应数据");
+                }
+
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不能为空");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("ServiceInfoServiceImpl findServiceDetail error");
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult updateServiceInfo(ServiceInfoDomain serviceInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {

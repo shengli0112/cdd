@@ -25,6 +25,11 @@ public class ServiceController {
         return serviceTypeService.findServiceType();
     }
 
+    @RequestMapping("/findServiceDetail")
+    public CommonResult findServiceDetail(Long serviceId){
+        return serviceInfoService.findServiceDetail(serviceId);
+    }
+
     @RequestMapping("/createServiceInfo")
     public CommonResult createServiceInfo(@RequestBody ServiceInfoDomain serviceInfoDomain){
         return serviceInfoService.createServiceInfo(serviceInfoDomain);

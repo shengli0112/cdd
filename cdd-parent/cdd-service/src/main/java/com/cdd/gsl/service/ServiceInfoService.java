@@ -21,4 +21,6 @@ public interface ServiceInfoService {
     public CommonResult deleteServiceInfo(Long userId,Long serviceId);
 
     public CommonResult isEnterprise(Long userId);
+
+    public CommonResult findServiceDetail(Long serviceId);
 }
