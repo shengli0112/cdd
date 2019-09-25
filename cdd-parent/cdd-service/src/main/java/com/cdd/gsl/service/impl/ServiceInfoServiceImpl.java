@@ -53,8 +53,6 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         CommonResult commonResult = new CommonResult();
         try {
             if(serviceInfoDomain != null){
-                serviceInfoDomain.setCreateTs(new Date());
-                serviceInfoDomain.setUpdateTs(new Date());
                 serviceInfoDomain.setStatus(1);
                 serviceInfoDomainMapper.insertSelective(serviceInfoDomain);
                 if(serviceInfoDomain.getUserId() != null){
