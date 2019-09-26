@@ -538,6 +538,7 @@ public class HouseServiceImpl implements HouseService{
                     HouseTopDomain houseTopDomain = new HouseTopDomain();
                     houseTopDomain.setId(houseTop.getId());
                     houseTopDomain.setStatus(0);
+                    houseTopDomain.setUpdateTs(new Date());
                     houseTopDomainMapper.updateByPrimaryKeySelective(houseTopDomain);
                     logger.info("HouseServiceImpl delayTopHouse expire objid-{}, type-{}",houseTop.getObjId(),houseTop.getType());
                     String type = houseTop.getType();
