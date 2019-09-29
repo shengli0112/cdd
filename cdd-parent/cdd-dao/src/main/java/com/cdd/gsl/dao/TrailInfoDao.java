@@ -38,7 +38,7 @@ public interface TrailInfoDao {
     List<CountHouseTrail> countHouseTrailByUserId(@Param("userIdList") List<Long> userIdList, @Param("orderParam") String orderParam, @Param("from")String from, @Param("to")String to);
 
     @Select("<script>" +
-            "select t.user_id as userId,count(t.id) countHouseTrail " +
+            "select t.user_id as userId,count(t.id) countCoustomerTrail " +
             " from t_trail_info t left join t_house_info h on t.house_id=h.id " +
             "where h.house_use_type in (1,2) and h.`status`=1 "+
             "<if test='from != null and from != \"\"'>"+

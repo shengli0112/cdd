@@ -132,7 +132,7 @@ public class StatisticsServiceImpl implements StatisticsService {
                     if(!CollectionUtils.isEmpty(countCoustomerList)){
                         countCoustomerList.forEach(countCoustomer ->{
                             if(countCoustomer.getUserId().longValue() == userId.longValue()){
-                                statisticsInfoVo.setAddCustomerCount(countCoustomer.getCountCoustomer());
+                                statisticsInfoVo.setAddCustomerCount(countCoustomer.getCountAddCoustomer());
                             }
                         });
                     }

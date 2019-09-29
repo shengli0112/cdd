@@ -3,7 +3,7 @@ package com.cdd.gsl.vo;
 public class CountCoustomer {
     private Long userId;
 
-    private Integer countCoustomer = 0;
+    private Integer countAddCoustomer = 0;
 
     public Long getUserId() {
         return userId;
@@ -13,11 +13,11 @@ public class CountCoustomer {
         this.userId = userId;
     }
 
-    public Integer getCountCoustomer() {
-        return countCoustomer;
+    public Integer getCountAddCoustomer() {
+        return countAddCoustomer;
     }
 
-    public void setCountCoustomer(Integer countCoustomer) {
-        this.countCoustomer = countCoustomer;
+    public void setCountAddCoustomer(Integer countAddCoustomer) {
+        this.countAddCoustomer = countAddCoustomer;
     }
 }

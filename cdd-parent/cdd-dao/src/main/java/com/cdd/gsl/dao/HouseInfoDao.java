@@ -811,7 +811,7 @@ public interface HouseInfoDao {
     List<CountHouse> countHouseByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
 
     @Select("<script>" +
-            "select user_id userId,count(id) countCustomer from t_house_info where house_use_type in (1,2) " +
+            "select user_id userId,count(id) countAddCoustomer from t_house_info where house_use_type in (1,2) " +
             "<if test='from != null and from != \"\"'>"+
             " and create_ts <![CDATA[>= ]]> #{from} "+
             "</if>"+
