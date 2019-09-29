@@ -108,13 +108,13 @@ public class StatisticsServiceImpl implements StatisticsService {
                 }
             }
 
-            List<CountHouse> countHouseList = houseInfoDao.countHouseByUserId(userIdList,houseOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
+            List<CountHouse> countHouseList = houseInfoDao.countHouseByUserId(userIdList,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 //            logger.info("");
-            List<CountCoustomer> countCoustomerList = houseInfoDao.countCoustomerByUserId(userIdList,customerOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
+            List<CountCoustomer> countCoustomerList = houseInfoDao.countCoustomerByUserId(userIdList,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
-            List<CountHouseTrail> countHouseTrailList = trailInfoDao.countHouseTrailByUserId(userIdList,houseTrailOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
+            List<CountHouseTrail> countHouseTrailList = trailInfoDao.countHouseTrailByUserId(userIdList,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
-            List<CountCoustomerTrail> countCoustomerTrailList = trailInfoDao.countCoustomerTrailByUserId(userIdList,customerTrailOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
+            List<CountCoustomerTrail> countCoustomerTrailList = trailInfoDao.countCoustomerTrailByUserId(userIdList,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
             List<StatisticsInfoVo> statisticsInfoVoList = new ArrayList<>();
             if(!CollectionUtils.isEmpty(userIdList)){

@@ -804,11 +804,8 @@ public interface HouseInfoDao {
             "#{userId}" +
             " </foreach>" +
             "</if> group by user_id" +
-            "<if test='orderParam != null and orderParam != \"\"'>"+
-            " order by countHouse desc"+
-            "</if>"+
             "</script>")
-    List<CountHouse> countHouseByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
+    List<CountHouse> countHouseByUserId(@Param("userIdList") List<Long> userIdList,@Param("from")String from,@Param("to")String to);
 
     @Select("<script>" +
             "select user_id userId,count(id) countAddCoustomer from t_house_info where house_use_type in (1,2) and status=1 " +
@@ -824,11 +821,8 @@ public interface HouseInfoDao {
             "#{userId}" +
             " </foreach>" +
             "</if> group by user_id" +
-            "<if test='orderParam != null and orderParam != \"\"'>"+
-            " order by countCustomer desc"+
-            "</if>"+
             "</script>")
-    List<CountCoustomer> countCoustomerByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
+    List<CountCoustomer> countCoustomerByUserId(@Param("userIdList") List<Long> userIdList,@Param("from")String from,@Param("to")String to);
 
 
     /**************************管理员项目使用的房源********************************************/

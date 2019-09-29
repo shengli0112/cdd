@@ -31,11 +31,8 @@ public interface TrailInfoDao {
             "#{userId}" +
             " </foreach>" +
             "</if> group by t.user_id" +
-            "<if test='orderParam != null and orderParam != \"\"'>"+
-            " order by countHouseTrail desc"+
-            "</if>"+
             "</script>")
-    List<CountHouseTrail> countHouseTrailByUserId(@Param("userIdList") List<Long> userIdList, @Param("orderParam") String orderParam, @Param("from")String from, @Param("to")String to);
+    List<CountHouseTrail> countHouseTrailByUserId(@Param("userIdList") List<Long> userIdList, @Param("from")String from, @Param("to")String to);
 
     @Select("<script>" +
             "select t.user_id as userId,count(t.id) countCoustomerTrail " +
@@ -53,10 +50,7 @@ public interface TrailInfoDao {
             "#{userId}" +
             " </foreach>" +
             "</if> group by t.user_id" +
-            "<if test='orderParam != null and orderParam != \"\"'>"+
-            " order by countHouseTrail desc"+
-            "</if>"+
             "</script>")
-    List<CountCoustomerTrail> countCoustomerTrailByUserId(@Param("userIdList") List<Long> userIdList, @Param("orderParam") String orderParam, @Param("from")String from, @Param("to")String to);
+    List<CountCoustomerTrail> countCoustomerTrailByUserId(@Param("userIdList") List<Long> userIdList, @Param("from")String from, @Param("to")String to);
 
 }
