@@ -791,7 +791,7 @@ public interface HouseInfoDao {
     String selectRegionFromHouseByUserId(Long userId);
 
     @Select("<script>" +
-            "select user_id userId,count(id) countHouse from t_house_info where house_use_type in (3,4) " +
+            "select user_id userId,count(id) countHouse from t_house_info where house_use_type in (3,4) and status=1 " +
             "<if test='from != null and from != \"\"'>"+
             " and create_ts <![CDATA[>= ]]> #{from} "+
             "</if>"+
@@ -811,7 +811,7 @@ public interface HouseInfoDao {
     List<CountHouse> countHouseByUserId(@Param("userIdList") List<Long> userIdList,@Param("orderParam") String orderParam,@Param("from")String from,@Param("to")String to);
 
     @Select("<script>" +
-            "select user_id userId,count(id) countAddCoustomer from t_house_info where house_use_type in (1,2) " +
+            "select user_id userId,count(id) countAddCoustomer from t_house_info where house_use_type in (1,2) and status=1 " +
             "<if test='from != null and from != \"\"'>"+
             " and create_ts <![CDATA[>= ]]> #{from} "+
             "</if>"+
@@ -893,6 +893,12 @@ public interface HouseInfoDao {
             " order by h.status desc,h.create_ts desc " +
             "</script>")
     public List<HouseInfoDomainVo> selectAdminHouseInfoListByKeyword(String keyword);
+
+    @Update("update t_house_info set status=0 where user_id=#{userId}")
+    public void deleteHouseByUserId(Long userId);
+
+    @Update("update t_house_info set user_id=#{toUserId} where user_id=#{fromUserId}")
+    public void transferHouseToUserId(Long fromUserId,Long toUserId);
 
     /*******************************************************************************************/
 

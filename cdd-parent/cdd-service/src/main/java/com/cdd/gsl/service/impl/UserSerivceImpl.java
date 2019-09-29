@@ -1150,6 +1150,11 @@ public class UserSerivceImpl implements UserService {
             userInfoDomain.setStatus(0);
             userInfoDomain.setUpdateTs(new Date());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            List<SingleUserBrokerVo> userInfoVoList = userInfoDao.findUserBrokerByUserId(userId,2);
+            if(CollectionUtils.isNotEmpty(userInfoVoList)){
+                SingleUserBrokerVo singleUserBrokerVo = userInfoVoList.get(0);
+                houseInfoDao.transferHouseToUserId(userId,singleUserBrokerVo.getUserId());
+            }
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("删除成功");
         }else{
