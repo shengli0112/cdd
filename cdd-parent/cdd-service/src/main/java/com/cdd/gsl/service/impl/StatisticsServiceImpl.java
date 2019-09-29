@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -81,6 +82,12 @@ public class StatisticsServiceImpl implements StatisticsService {
                     String date = DateUtil.getDate(-1);
                     from = date.split(" ")[0]+" 00:00:00";
                     to = date.split(" ")[0]+" 23:59:59";
+
+                }else if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_SEVENDAY)){
+                    String fromDate = DateUtil.getDate(-8);
+                    String toDate = DateUtil.getDate(-1);
+                    from = fromDate.split(" ")[0]+" 00:00:00";
+                    to = toDate.split(" ")[0]+" 23:59:59";
 
                 }else if(statisticsContionVo.getTime().equals(CddConstant.STATISTICS_MONTH)){
                     from = DateUtil.getMonthStart(0);

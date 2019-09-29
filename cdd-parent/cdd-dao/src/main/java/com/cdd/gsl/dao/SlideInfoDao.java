@@ -35,7 +35,7 @@ public interface SlideInfoDao {
             "<if test='city != null'>" +
             " or city=#{city} )" +
             "</if> " +
-            "order by sequence desc" +
+            "order by sequence" +
             "</script>")
     List<SlideInfoDomain> findSlideListByCity(SlideParamVo slideParamVo);
 

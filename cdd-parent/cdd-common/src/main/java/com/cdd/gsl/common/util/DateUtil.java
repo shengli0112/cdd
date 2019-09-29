@@ -71,6 +71,6 @@ public class DateUtil {
     }
 
     public static void main(String[] args)throws Exception{
-       System.out.println(getMonthStart(0));
+       System.out.println(getMonthEnd(0));
     }
 }
