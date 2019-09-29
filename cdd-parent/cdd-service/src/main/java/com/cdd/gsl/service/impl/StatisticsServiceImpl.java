@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -156,53 +157,37 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     statisticsInfoVoList.add(statisticsInfoVo);
                     if(Strings.isNotEmpty(houseOrder)){
-                        statisticsInfoVoList.sort(new Comparator<StatisticsInfoVo>() {
+                        Collections.sort(statisticsInfoVoList, new Comparator<StatisticsInfoVo>() {
                             @Override
                             public int compare(StatisticsInfoVo o1, StatisticsInfoVo o2) {
-                                if(o1.getAddHouseCount() > o2.getAddHouseCount()){
-                                    return 1;
-                                }else{
-                                    return 0;
-                                }
+                                return o2.getAddHouseCount() - o1.getAddHouseCount();
                             }
                         });
                     }
 
                     if(Strings.isNotEmpty(customerOrder)){
-                        statisticsInfoVoList.sort(new Comparator<StatisticsInfoVo>() {
+                        Collections.sort(statisticsInfoVoList, new Comparator<StatisticsInfoVo>() {
                             @Override
                             public int compare(StatisticsInfoVo o1, StatisticsInfoVo o2) {
-                                if(o1.getAddCustomerCount() > o2.getAddCustomerCount()){
-                                    return 1;
-                                }else{
-                                    return 0;
-                                }
+                                return o2.getAddCustomerCount() - o1.getAddCustomerCount();
                             }
                         });
                     }
 
                     if(Strings.isNotEmpty(houseTrailOrder)){
-                        statisticsInfoVoList.sort(new Comparator<StatisticsInfoVo>() {
+                        Collections.sort(statisticsInfoVoList, new Comparator<StatisticsInfoVo>() {
                             @Override
                             public int compare(StatisticsInfoVo o1, StatisticsInfoVo o2) {
-                                if(o1.getTrailHouseCount() > o2.getTrailHouseCount()){
-                                    return 1;
-                                }else{
-                                    return 0;
-                                }
+                                return o2.getTrailHouseCount() - o1.getTrailHouseCount();
                             }
                         });
                     }
 
                     if(Strings.isNotEmpty(customerTrailOrder)){
-                        statisticsInfoVoList.sort(new Comparator<StatisticsInfoVo>() {
+                        Collections.sort(statisticsInfoVoList, new Comparator<StatisticsInfoVo>() {
                             @Override
                             public int compare(StatisticsInfoVo o1, StatisticsInfoVo o2) {
-                                if(o1.getTrailCustomerCount() > o2.getTrailCustomerCount()){
-                                    return 1;
-                                }else{
-                                    return 0;
-                                }
+                                return o2.getTrailCustomerCount() - o1.getTrailCustomerCount();
                             }
                         });
                     }
