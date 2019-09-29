@@ -10,6 +10,8 @@ import com.cdd.gsl.service.StatisticsService;
 import com.cdd.gsl.vo.*;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
+
+    private Logger logger = LoggerFactory.getLogger(StatisticsServiceImpl.class);
 
     @Autowired
     private ApplyBrokerInfoDomainMapper applyBrokerInfoDomainMapper;
@@ -104,7 +108,7 @@ public class StatisticsServiceImpl implements StatisticsService {
             }
 
             List<CountHouse> countHouseList = houseInfoDao.countHouseByUserId(userIdList,houseOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
-
+//            logger.info("");
             List<CountCoustomer> countCoustomerList = houseInfoDao.countCoustomerByUserId(userIdList,customerOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
 
             List<CountHouseTrail> countHouseTrailList = trailInfoDao.countHouseTrailByUserId(userIdList,houseTrailOrder,statisticsContionVo.getFrom(),statisticsContionVo.getTo());
@@ -119,7 +123,7 @@ public class StatisticsServiceImpl implements StatisticsService {
                     statisticsInfoVo.setUsername(singleUserInfoVo.getUsername());
                     if(!CollectionUtils.isEmpty(countHouseList)){
                         countHouseList.forEach(countHouse ->{
-                            if(countHouse.getUserId() == userId){
+                            if(countHouse.getUserId().longValue() == userId.longValue()){
                                 statisticsInfoVo.setAddHouseCount(countHouse.getCountHouse());
                             }
                         });
@@ -127,7 +131,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     if(!CollectionUtils.isEmpty(countCoustomerList)){
                         countCoustomerList.forEach(countCoustomer ->{
-                            if(countCoustomer.getUserId() == userId){
+                            if(countCoustomer.getUserId().longValue() == userId.longValue()){
                                 statisticsInfoVo.setAddCustomerCount(countCoustomer.getCountCoustomer());
                             }
                         });
@@ -135,7 +139,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     if(!CollectionUtils.isEmpty(countHouseTrailList)){
                         countHouseTrailList.forEach(countHouseTrail ->{
-                            if(countHouseTrail.getUserId() == userId){
+                            if(countHouseTrail.getUserId().longValue() == userId.longValue()){
                                 statisticsInfoVo.setTrailHouseCount(countHouseTrail.getCountHouseTrail());
                             }
                         });
@@ -143,7 +147,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     if(!CollectionUtils.isEmpty(countCoustomerTrailList)){
                         countCoustomerTrailList.forEach(countCoustomerTrail ->{
-                            if(countCoustomerTrail.getUserId() == userId){
+                            if(countCoustomerTrail.getUserId().longValue() == userId.longValue()){
                                 statisticsInfoVo.setTrailCustomerCount(countCoustomerTrail.getCountCoustomerTrail());
                             }
                         });
