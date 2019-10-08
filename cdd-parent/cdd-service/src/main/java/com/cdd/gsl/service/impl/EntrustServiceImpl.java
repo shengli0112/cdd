@@ -211,6 +211,21 @@ public class EntrustServiceImpl implements EntrustService {
     }
 
     @Override
+    public CommonResult findEntrustDetail(Long entrustId) {
+        CommonResult commonResult = new CommonResult();
+        if(entrustId != null){
+            EntrustInfoDomain entrustInfoDomain = entrustInfoDomainMapper.selectByPrimaryKey(entrustId);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(entrustInfoDomain);
+        }else{
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult<List<EntrustInfoVo>> findEntrustInfoByUserId(EntrustConditionVo entrustConditionVo) {
 
         CommonResult<List<EntrustInfoVo>> commonResult = new CommonResult<>();

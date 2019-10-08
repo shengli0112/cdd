@@ -352,6 +352,17 @@ public class UserController {
     }
 
     /**
+     *
+     * @param loginUserId 登录用户ID
+     * @param deleteUserId 删除用户ID
+     * @param transferUserId 房源转入用户ID
+     * @return
+     */
+    public CommonResult deleteBroker(Long loginUserId,Long deleteUserId,Long transferUserId){
+        return userService.deleteBroker(loginUserId,deleteUserId,transferUserId);
+    }
+
+    /**
      * 同意加入该公司
      */
     @RequestMapping("agreeBroker")

@@ -1,5 +1,6 @@
 package com.cdd.gsl.dao;
 
+import com.cdd.gsl.admin.AdminMonthStatisticsVo;
 import com.cdd.gsl.admin.HouseAdminConditionVo;
 import com.cdd.gsl.domain.HouseInfoDomain;
 import com.cdd.gsl.vo.*;
@@ -865,6 +866,10 @@ public interface HouseInfoDao {
     @Select("select count(*) from t_house_info where status=1 and house_type=#{houseType}")
     public int countHouseByHouseType(int houseType);
 
+    @Select("select DATE_FORMAT(create_ts,'%Y%m') as month,(select dict_value from t_common_dict where dict_name='houseUseType' and dict_code=house_use_type) as houseUseType" +
+            ",count(id) as count from t_house_info where house_type=#{houseType} and status=1 group by house_use_type, DATE_FORMAT(create_ts,'%Y%m')")
+    public List<AdminMonthStatisticsVo> countHouseDateCountByHouseType(int houseType);
+
     @Select("<script> " +
             "select h.id as id, h.title as title, h.city as city, " +
             "h.county as county,h.town as town, h.street as street, h.area as area," +
@@ -893,6 +898,8 @@ public interface HouseInfoDao {
 
     @Update("update t_house_info set user_id=#{toUserId} where user_id=#{fromUserId}")
     public void transferHouseToUserId(Long fromUserId,Long toUserId);
+
+
 
     /*******************************************************************************************/
 

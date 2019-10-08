@@ -162,7 +162,7 @@ public interface SellParkDao {
             "select h.id as id,h.city as city,h.county as county,h.town as town," +
             "h.address as address,h.park_name as parkName,h.status as status," +
             "h.total_area as totalArea,h.total_price as totalPrice,h.industry as industry,h.background as background," +
-            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description " +
+            "h.tag as tag,h.user_id as userId,h.contacts as contacts,h.phone as phone,h.description as description,h.create_ts as createTs " +
             "from t_sell_park_info h where 1=1 " +
             "<if test=\"keyword != null\">" +
             " and (h.address like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +

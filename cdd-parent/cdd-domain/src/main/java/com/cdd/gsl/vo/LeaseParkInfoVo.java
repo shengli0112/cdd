@@ -48,6 +48,8 @@ public class LeaseParkInfoVo {
 
     private SingleUserInfoVo user;
 
+    private String createTs;
+
     public Long getId() {
         return id;
     }
@@ -215,5 +217,13 @@ public class LeaseParkInfoVo {
 
     public void setUser(SingleUserInfoVo user) {
         this.user = user;
+    }
+
+    public String getCreateTs() {
+        return createTs;
+    }
+
+    public void setCreateTs(String createTs) {
+        this.createTs = createTs;
     }
 }

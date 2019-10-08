@@ -21,6 +21,8 @@ public interface EntrustService {
 
     public CommonResult<List<EntrustInfoVo>> findEntrustList(EntrustConditionVo entrustConditionVo);
 
+    CommonResult findEntrustDetail(Long entrustId);
+
     //*********************************admin manager***************************************************************
 
     public CommonResult findAdminEntrustList(EntrustAdminConditionVo entrustAdminConditionVo);

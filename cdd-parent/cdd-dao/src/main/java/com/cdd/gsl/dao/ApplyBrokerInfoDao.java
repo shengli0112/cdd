@@ -6,6 +6,7 @@ import com.cdd.gsl.vo.UserBrokerVo;
 import com.cdd.gsl.vo.UserInfoDemainVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -54,4 +55,7 @@ public interface ApplyBrokerInfoDao {
             "where a.company_name=(select company_name from t_apply_broker_info where user_id=#{loginUserId}) " +
             "and a.apply_type=2 and u.status=1 and a.status=1")
     public List<UserInfoDemainVo> companyHaveUserList(Long loginUserId);
+
+    @Update("update t_apply_broker_info set status=0 where user_id=#{userId}")
+    void deleteApplyBroker(Long userId);
 }

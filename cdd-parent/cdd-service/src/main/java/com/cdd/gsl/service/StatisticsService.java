@@ -7,4 +7,6 @@ public interface StatisticsService {
     CommonResult companyData(StatisticsContionVo statisticsContionVo);
 
     CommonResult companyUser(Long userId);
+
+    CommonResult monthStatistics();
 }

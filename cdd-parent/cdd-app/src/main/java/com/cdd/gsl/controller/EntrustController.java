@@ -28,6 +28,24 @@ public class EntrustController {
         return entrustService.createEntrust(entrustInfoDomain);
     }
 
+    @RequestMapping("updateEntrust")
+    public CommonResult updateEntrust(@RequestBody EntrustInfoDomain entrustInfoDomain){
+        return entrustService.updateEntrust(entrustInfoDomain);
+    }
+
+    @RequestMapping("deleteEntrust")
+    public CommonResult deleteEntrust(Long entrustId){
+        EntrustInfoDomain entrustInfoDomain = new EntrustInfoDomain();
+        entrustInfoDomain.setId(entrustId);
+        entrustInfoDomain.setStatus(0);
+        return entrustService.updateEntrust(entrustInfoDomain);
+    }
+
+    @RequestMapping("findEntrustDetail")
+    public CommonResult findEntrustDetail(Long entrustId){
+        return entrustService.findEntrustDetail(entrustId);
+    }
+
     /**
      * 个人房源列表
      */

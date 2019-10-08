@@ -936,6 +936,40 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
+    public CommonResult deleteBroker(Long loginUserId, Long deleteUserId, Long transferUserId) {
+        logger.info("UserServiceImpl deleteBroker loginUserId-{}, deleteUserId-{}, transferUserId-{}",loginUserId,deleteUserId,transferUserId);
+        CommonResult commonResult = new CommonResult();
+        if(loginUserId != null && deleteUserId != null && transferUserId != null){
+            //首先判断当前登录的用户是否是店长
+            ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(loginUserId)
+                    .andStatusEqualTo(1).andApplyTypeEqualTo(2).andBrokerTypeEqualTo(2);
+            List<ApplyBrokerInfoDomain> applyBrokerInfoDomainList = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
+            if(CollectionUtils.isNotEmpty(applyBrokerInfoDomainList)){
+                //apply_broker 表中的status 修改为 0
+                applyBrokerInfoDao.deleteApplyBroker(deleteUserId);
+                //user表中的状态置为普通用户
+                UserInfoDomain userInfoDomain = new UserInfoDomain();
+                userInfoDomain.setId(deleteUserId);
+                userInfoDomain.setUserType(1);
+                userInfoDomain.setUpdateTs(new Date());
+                userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+                //把删除经纪人的房源转移到对应的经纪人下
+                houseInfoDao.transferHouseToUserId(deleteUserId,transferUserId);
+                commonResult.setFlag(CommonResult.RESULT_SUCCESS_FLAG);
+                commonResult.setMessage("删除成功");
+            }else{
+                commonResult.setFlag(CommonResult.RESULT_FAILURE_FLAG);
+                commonResult.setMessage("当前账号不是店长，没有删除权限");
+            }
+        }else{
+            commonResult.setFlag(CommonResult.RESULT_FAILURE_FLAG);
+            commonResult.setMessage("参数不能为空");
+        }
+        return commonResult;
+    }
+
+    @Override
     public CommonResult updateBroker(ApplyBrokerInfoDomain applyBrokerInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(applyBrokerInfoDomain != null){
@@ -1019,7 +1053,7 @@ public class UserSerivceImpl implements UserService {
     public CommonResult checkMobile(CheckPhoneDomain checkPhoneDomain) {
         CommonResult commonResult = new CommonResult();
         if(checkPhoneDomain != null){
-            checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+
             JSONObject jsonObject = new JSONObject();
             String phone = "";
             if(checkPhoneDomain.getType().equals("house")){
@@ -1032,13 +1066,26 @@ public class UserSerivceImpl implements UserService {
                 }
             }
 
-            jsonObject.put("phone",phone);
-            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-            commonResult.setMessage("添加成功");
-            commonResult.setData(jsonObject);
+            UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(checkPhoneDomain.getUserId());
+            if(userInfoDomain.getIntegral() > CddConstant.PAY_INTERGAL_CHECK_PHONE){
+                UserInfoDomain userInfo = new UserInfoDomain();
+                userInfo.setId(checkPhoneDomain.getUserId());
+                userInfo.setIntegral(userInfoDomain.getIntegral() - CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
+                checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+                jsonObject.put("phone",phone);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("添加成功");
+                commonResult.setData(jsonObject);
+            }else{
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("多多币不足");
+            }
+
+
         }else{
             commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-            commonResult.setMessage("添加失败");
+            commonResult.setMessage("参数不正确");
         }
         return commonResult;
     }

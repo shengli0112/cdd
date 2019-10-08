@@ -1,5 +1,7 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cdd.gsl.admin.AdminMonthStatisticsVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.common.util.DateUtil;
@@ -16,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -40,6 +39,9 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Autowired
     private UserInfoDao userInfoDao;
+
+    @Autowired
+    private EntrustInfoDao entrustInfoDao;
 
     @Override
     public CommonResult companyUser(Long userId) {
@@ -212,4 +214,249 @@ public class StatisticsServiceImpl implements StatisticsService {
         return commonResult;
     }
 
+    @Override
+    public CommonResult monthStatistics() {
+
+        CommonResult commonResult = new CommonResult();
+        //厂房
+        List<AdminMonthStatisticsVo> cfTypeList = houseInfoDao.countHouseDateCountByHouseType(1);
+        //仓库
+        List<AdminMonthStatisticsVo> ckTypeList = houseInfoDao.countHouseDateCountByHouseType(2);
+        //土地
+        List<AdminMonthStatisticsVo> tdTypeList = houseInfoDao.countHouseDateCountByHouseType(3);
+        JSONObject data = new JSONObject();
+        JSONObject changfang = new JSONObject();
+        JSONObject cangku = new JSONObject();
+        JSONObject tudi = new JSONObject();
+        if(!CollectionUtils.isEmpty(cfTypeList)){
+            Set<String> monthSet = new HashSet<>();
+            for(AdminMonthStatisticsVo month:cfTypeList){
+                monthSet.add(month.getMonth());
+            }
+            //求租
+            List<AdminMonthStatisticsVo> qzCfList = new ArrayList<>();
+            //求购
+            List<AdminMonthStatisticsVo> qgCfList = new ArrayList<>();
+            //出租
+            List<AdminMonthStatisticsVo> czCfList = new ArrayList<>();
+            //出售
+            List<AdminMonthStatisticsVo> csCfList = new ArrayList<>();
+
+            for(AdminMonthStatisticsVo qcCount:cfTypeList){
+                if(qcCount.getHouseUseType().equals("求租")){
+                    qzCfList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("求购")){
+                    qgCfList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出租")){
+                    czCfList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出售")){
+                    csCfList.add(qcCount);
+                }
+            }
+            //求租数量
+            List<Integer> qzCountList = new ArrayList<>();
+            //求购数量
+            List<Integer> qgCountList = new ArrayList<>();
+            //出租数量
+            List<Integer> czCountList = new ArrayList<>();
+            //出售数量
+            List<Integer> csCountList = new ArrayList<>();
+
+            for(String month:monthSet){
+                for(AdminMonthStatisticsVo qz:qzCfList){
+                    if(month.equals(qz.getMonth())){
+                        qzCountList.add(qz.getCount());
+                    }else{
+                        qzCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo qg:qgCfList){
+                    if(month.equals(qg.getMonth())){
+                        qgCountList.add(qg.getCount());
+                    }else{
+                        qgCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cz:czCfList){
+                    if(month.equals(cz.getMonth())){
+                        czCountList.add(cz.getCount());
+                    }else{
+                        czCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cs:csCfList){
+                    if(month.equals(cs.getMonth())){
+                        csCountList.add(cs.getCount());
+                    }else{
+                        csCountList.add(0);
+                    }
+                }
+            }
+            changfang.put("month",monthSet);
+            changfang.put("求租",qzCountList);
+            changfang.put("求购",qgCountList);
+            changfang.put("出租",czCountList);
+            changfang.put("出售",csCountList);
+        }
+
+        if(!CollectionUtils.isEmpty(ckTypeList)){
+            Set<String> monthSet = new HashSet<>();
+            for(AdminMonthStatisticsVo month:ckTypeList){
+                monthSet.add(month.getMonth());
+            }
+            //求租
+            List<AdminMonthStatisticsVo> qzCkList = new ArrayList<>();
+            //求购
+            List<AdminMonthStatisticsVo> qgCkList = new ArrayList<>();
+            //出租
+            List<AdminMonthStatisticsVo> czCkList = new ArrayList<>();
+            //出售
+            List<AdminMonthStatisticsVo> csCkList = new ArrayList<>();
+
+            for(AdminMonthStatisticsVo qcCount:ckTypeList){
+                if(qcCount.getHouseUseType().equals("求租")){
+                    qzCkList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("求购")){
+                    qgCkList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出租")){
+                    czCkList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出售")){
+                    csCkList.add(qcCount);
+                }
+            }
+            //求租数量
+            List<Integer> qzCountList = new ArrayList<>();
+            //求购数量
+            List<Integer> qgCountList = new ArrayList<>();
+            //出租数量
+            List<Integer> czCountList = new ArrayList<>();
+            //出售数量
+            List<Integer> csCountList = new ArrayList<>();
+
+            for(String month:monthSet){
+                for(AdminMonthStatisticsVo qz:qzCkList){
+                    if(month.equals(qz.getMonth())){
+                        qzCountList.add(qz.getCount());
+                    }else{
+                        qzCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo qg:qgCkList){
+                    if(month.equals(qg.getMonth())){
+                        qgCountList.add(qg.getCount());
+                    }else{
+                        qgCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cz:czCkList){
+                    if(month.equals(cz.getMonth())){
+                        czCountList.add(cz.getCount());
+                    }else{
+                        czCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cs:csCkList){
+                    if(month.equals(cs.getMonth())){
+                        csCountList.add(cs.getCount());
+                    }else{
+                        csCountList.add(0);
+                    }
+                }
+            }
+            cangku.put("month",monthSet);
+            cangku.put("求租",qzCountList);
+            cangku.put("求购",qgCountList);
+            cangku.put("出租",czCountList);
+            cangku.put("出售",csCountList);
+        }
+
+        if(!CollectionUtils.isEmpty(tdTypeList)){
+            Set<String> monthSet = new HashSet<>();
+            for(AdminMonthStatisticsVo month:tdTypeList){
+                monthSet.add(month.getMonth());
+            }
+            //求租
+            List<AdminMonthStatisticsVo> qzTdList = new ArrayList<>();
+            //求购
+            List<AdminMonthStatisticsVo> qgTdList = new ArrayList<>();
+            //出租
+            List<AdminMonthStatisticsVo> czTdList = new ArrayList<>();
+            //出售
+            List<AdminMonthStatisticsVo> csTdList = new ArrayList<>();
+
+            for(AdminMonthStatisticsVo qcCount:ckTypeList){
+                if(qcCount.getHouseUseType().equals("求租")){
+                    qzTdList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("求购")){
+                    qgTdList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出租")){
+                    czTdList.add(qcCount);
+                }else if(qcCount.getHouseUseType().equals("出售")){
+                    csTdList.add(qcCount);
+                }
+            }
+            //求租数量
+            List<Integer> qzCountList = new ArrayList<>();
+            //求购数量
+            List<Integer> qgCountList = new ArrayList<>();
+            //出租数量
+            List<Integer> czCountList = new ArrayList<>();
+            //出售数量
+            List<Integer> csCountList = new ArrayList<>();
+
+            for(String month:monthSet){
+                for(AdminMonthStatisticsVo qz:qzTdList){
+                    if(month.equals(qz.getMonth())){
+                        qzCountList.add(qz.getCount());
+                    }else{
+                        qzCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo qg:qgTdList){
+                    if(month.equals(qg.getMonth())){
+                        qgCountList.add(qg.getCount());
+                    }else{
+                        qgCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cz:czTdList){
+                    if(month.equals(cz.getMonth())){
+                        czCountList.add(cz.getCount());
+                    }else{
+                        czCountList.add(0);
+                    }
+                }
+
+                for(AdminMonthStatisticsVo cs:csTdList){
+                    if(month.equals(cs.getMonth())){
+                        csCountList.add(cs.getCount());
+                    }else{
+                        csCountList.add(0);
+                    }
+                }
+            }
+            tudi.put("month",monthSet);
+            tudi.put("求租",qzCountList);
+            tudi.put("求购",qgCountList);
+            tudi.put("出租",czCountList);
+            tudi.put("出售",csCountList);
+        }
+        data.put("changfang",changfang);
+        data.put("cangku",cangku);
+        data.put("tudi",tudi);
+
+        commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+        commonResult.setMessage("查询成功");
+        commonResult.setData(data);
+        return commonResult;
+
+    }
 }

@@ -38,6 +38,8 @@ public interface UserService {
 
     CommonResult findBroker(Long userId);
 
+    CommonResult deleteBroker(Long loginUserId,Long deleteUserId,Long transferUserId);
+
     CommonResult findBrokerDetail(Long userId);
 
     CommonResult findBrokerInfo(Long userId);
