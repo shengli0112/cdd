@@ -48,7 +48,7 @@ public interface EntrustInfoDao {
             "(select dict_value from t_common_dict where dict_name='entrustType' and dict_code=e.entrust_type) as entrustType, " +
             "(select dict_value from t_common_dict where dict_name='entrustUseType' and dict_code=e.entrust_use_type) as entrustUseType, " +
             "concat(e.city,e.county,e.town) as address, e.create_ts as createTs, e.area as area," +
-            " e.contacts as contacts,e.phone as phone,e.business as business"   +
+            " e.contacts as contacts,e.phone as phone,e.business as business,e.status as status"   +
             " from t_entrust_info e " +
             "left join t_user_info u on e.user_id=u.id " +
             "where e.user_id=#{userId} " +
