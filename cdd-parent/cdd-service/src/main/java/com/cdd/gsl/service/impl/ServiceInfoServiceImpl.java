@@ -63,6 +63,7 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                     consumeRecordDomain.setIntegral(CddConstant.PAY_INTERGAL_CHECK_PHONE);
                     consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_CREATE_SERVICE);
                     consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
+                    userInfoDao.updateUserintegralById(serviceInfoDomain.getUserId(),CddConstant.PAY_INTERGAL_CHECK_PHONE);
                 }
 
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);

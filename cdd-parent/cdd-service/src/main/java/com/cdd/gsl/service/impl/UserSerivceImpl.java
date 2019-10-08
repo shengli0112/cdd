@@ -1059,28 +1059,41 @@ public class UserSerivceImpl implements UserService {
             if(checkPhoneDomain.getType().equals("house")){
                 HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(checkPhoneDomain.getInfoId());
                 phone = houseInfoDetailVo.getPhone();
-            }else if(checkPhoneDomain.getType().equals("entrust")){
-                List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoById(checkPhoneDomain.getInfoId());
-                if(entrustInfoVos != null && entrustInfoVos.size() > 0){
-                    phone = entrustInfoVos.get(0).getPhone();
-                }
-            }
-
-            UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(checkPhoneDomain.getUserId());
-            if(userInfoDomain.getIntegral() > CddConstant.PAY_INTERGAL_CHECK_PHONE){
-                UserInfoDomain userInfo = new UserInfoDomain();
-                userInfo.setId(checkPhoneDomain.getUserId());
-                userInfo.setIntegral(userInfoDomain.getIntegral() - CddConstant.PAY_INTERGAL_CHECK_PHONE);
-                userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
                 checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
                 jsonObject.put("phone",phone);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("添加成功");
                 commonResult.setData(jsonObject);
-            }else{
-                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                commonResult.setMessage("多多币不足");
+            }else if(checkPhoneDomain.getType().equals("entrust")){
+                List<EntrustInfoVo> entrustInfoVos = entrustInfoDao.findEntrustInfoById(checkPhoneDomain.getInfoId());
+                if(entrustInfoVos != null && entrustInfoVos.size() > 0){
+                    phone = entrustInfoVos.get(0).getPhone();
+                }
+                UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(checkPhoneDomain.getUserId());
+                if(userInfoDomain.getIntegral() > CddConstant.PAY_INTERGAL_CHECK_PHONE){
+                    UserInfoDomain userInfo = new UserInfoDomain();
+                    userInfo.setId(checkPhoneDomain.getUserId());
+                    userInfo.setIntegral(userInfoDomain.getIntegral() - CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                    userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
+
+                    ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
+                    consumeRecordDomain.setTitle(CddConstant.SERVICE_CHECK_PHONE);
+                    consumeRecordDomain.setUserId(checkPhoneDomain.getUserId());
+                    consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
+                    consumeRecordDomain.setIntegral(CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                    consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ENTRUST_CHECK_PHONE);
+                    consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
+                    jsonObject.put("phone",phone);
+                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                    commonResult.setMessage("添加成功");
+                    commonResult.setData(jsonObject);
+                }else{
+                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                    commonResult.setMessage("多多币不足");
+                }
             }
+
+
 
 
         }else{

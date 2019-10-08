@@ -55,6 +55,7 @@ public class CddConstant {
     public static final Integer CONSUME_RECORD_TYPE_INFORM = 4; //举报
     public static final Integer CONSUME_RECORD_TYPE_CHECK_PHONE = 6; //企业服务查看手机号
     public static final Integer CONSUME_RECORD_TYPE_CREATE_SERVICE = 7; //创建企业服务
+    public static final Integer CONSUME_RECORD_TYPE_ENTRUST_CHECK_PHONE = 8; //查看个人委托手机号
 
 
     public static final Integer INFORM_INTEGRAL_NUM = 20; //举报属实扣除积分数
