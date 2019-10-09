@@ -1053,13 +1053,13 @@ public class UserSerivceImpl implements UserService {
     public CommonResult checkMobile(CheckPhoneDomain checkPhoneDomain) {
         CommonResult commonResult = new CommonResult();
         if(checkPhoneDomain != null){
-
+            checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
             JSONObject jsonObject = new JSONObject();
             String phone = "";
             if(checkPhoneDomain.getType().equals("house")){
                 HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(checkPhoneDomain.getInfoId());
                 phone = houseInfoDetailVo.getPhone();
-                checkPhoneDomainMapper.insertSelective(checkPhoneDomain);
+
                 jsonObject.put("phone",phone);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("添加成功");
