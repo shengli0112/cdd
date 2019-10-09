@@ -51,7 +51,7 @@ public interface EntrustInfoDao {
             " e.contacts as contacts,e.phone as phone,e.business as business,e.status as status"   +
             " from t_entrust_info e " +
             "left join t_user_info u on e.user_id=u.id " +
-            "where e.user_id=#{userId} " +
+            "where e.user_id=#{userId} and e.status=1 " +
             "<if test=\"city != null\">" +
             " and e.city=#{city}"+
             "</if><if test=\"county != null\">" +

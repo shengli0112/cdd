@@ -4,16 +4,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.EntrustAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
+import com.cdd.gsl.common.util.HttpClientUtils;
 import com.cdd.gsl.dao.*;
 import com.cdd.gsl.domain.*;
 import com.cdd.gsl.service.EntrustService;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +50,28 @@ public class EntrustServiceImpl implements EntrustService {
     @Autowired
     private CheckPhoneDomainMapper checkPhoneDomainMapper;
 
+    @Autowired
+    private UserInfoDao userInfoDao;
+
+    @Value("${verify.code.url}")
+    private String verifyCodeUrl;
+
+    @Value("${verify.code.key}")
+    private String verifyCodeKey;
+
+    @Value("${entrust.warn.id}")
+    private String entrustWarnId;
+
     @Override
     public CommonResult createEntrust(EntrustInfoDomain entrustInfoDomain) {
         CommonResult commonResult = new CommonResult();
         if(entrustInfoDomain != null){
             entrustInfoDomainMapper.insertSelective(entrustInfoDomain);
+            try {
+                sendEntrustSms(entrustInfoDomain);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             Integer area = entrustInfoDomain.getArea();
             Double fromArea =  area * 0.8;
             Double toArea = area * 1.2;
@@ -85,50 +109,7 @@ public class EntrustServiceImpl implements EntrustService {
                     messageInfoDomainMapper.insertSelective(messageInfoDomain);
                 }
 
-               /* int size = 0;
-                List<Integer> list = new ArrayList<>();
-                if(houseInfoDomainList.size() >= 3){
-                    size = 3;
-                    list = getRandomNum(houseInfoDomainList.size());
-                }else if (houseInfoDomainList.size() < 3){
-                    size = houseInfoDomainList.size();
-                }else{
-                    size = 3;
-                }*/
-               /* if(size == 3){
-                    for(int i=0;i<size;i++){
-                        HouseInfoDomain houseInfoDomain = null;
-                        if(houseInfoDomainList.size() > 3){
-                            houseInfoDomain = houseInfoDomainList.get(list.get(i));
-                       }else{
-                           houseInfoDomain = houseInfoDomainList.get(i);
-                       }
-                        EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
-                        entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
-                        entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
-                        entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
-                        MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
-                        messageInfoDomain.setUserId(houseInfoDomain.getUserId());
-                        messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
-                        messageInfoDomain.setHouseId(houseInfoDomain.getId());
-                        messageInfoDomain.setMessage("匹配成功，点击查看");
-                        messageInfoDomainMapper.insertSelective(messageInfoDomain);
-                    }
-                }else{
-                    for(int i=0;i<size;i++){
-                        HouseInfoDomain  houseInfoDomain = houseInfoDomainList.get(i);
-                        EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
-                        entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
-                        entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
-                        entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
-                        MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
-                        messageInfoDomain.setUserId(houseInfoDomain.getUserId());
-                        messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
-                        messageInfoDomain.setHouseId(houseInfoDomain.getId());
-                        messageInfoDomainMapper.insertSelective(messageInfoDomain);
-                    }
 
-                }*/
 
             }
 
@@ -350,5 +331,75 @@ public class EntrustServiceImpl implements EntrustService {
         commonResult.setMessage("查询成功");
         commonResult.setData(entrustInfoVoList);
         return commonResult;
+    }
+
+    //委托短信提醒
+    public void sendEntrustSms(EntrustInfoDomain entrustInfoDomain){
+        String tplValue = null;
+        try {
+            StringBuffer address = new StringBuffer();
+            address.append(entrustInfoDomain.getContacts());
+            if(entrustInfoDomain.getEntrustUseType() == 1){
+                address.append("求租");
+            }else if(entrustInfoDomain.getEntrustUseType() == 2){
+                address.append("求购");
+            }else if(entrustInfoDomain.getEntrustUseType() == 3){
+                address.append("出租");
+            }else if(entrustInfoDomain.getEntrustUseType() == 4){
+                address.append("出售");
+            }
+            if(!StringUtils.isEmpty(entrustInfoDomain.getCity())){
+                address.append(entrustInfoDomain.getCity());
+            }
+
+            if(!StringUtils.isEmpty(entrustInfoDomain.getCounty())){
+                address.append(entrustInfoDomain.getCounty());
+            }
+
+            if(!StringUtils.isEmpty(entrustInfoDomain.getTown())){
+                address.append(entrustInfoDomain.getTown());
+            }
+
+            if(entrustInfoDomain.getEntrustType() == 1){
+                address.append(entrustInfoDomain.getArea()+"㎡").append("厂房");
+            }else if(entrustInfoDomain.getEntrustType() == 2){
+                address.append(entrustInfoDomain.getArea()+"㎡").append("仓库");
+            }else if(entrustInfoDomain.getEntrustType() == 3){
+                address.append(entrustInfoDomain.getArea()+"亩").append("土地");
+            }
+
+            if(!StringUtils.isEmpty(entrustInfoDomain.getBusiness())){
+                address.append(" "+entrustInfoDomain.getBusiness());
+            }
+
+
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#content#=http://cddwang.com","UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        List<String> phoneList = userInfoDao.findPhoneByServiceArea(entrustInfoDomain.getCity()+entrustInfoDomain.getCounty());
+        if(!CollectionUtils.isEmpty(phoneList)){
+            for(String phone:phoneList){
+                StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
+                        .append("?mobile=").append(phone).append("&tpl_id=").append(entrustWarnId)
+                        .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);
+                String response = HttpClientUtils.getInstance().doGetWithJsonResult(uri.toString());
+                if(Strings.isNotEmpty(response)){
+                    JSONObject res = JSONObject.parseObject(response);
+                    Integer flag = res.getInteger("error_code");
+                    if(flag == 0){
+                        logger.info("sendEntrustSms手机号 -{} 匹配信息发送成功",phone);
+                    }else{
+                        logger.info("sendEntrustSms手机号 -{} 匹配信息发送失败",phone);
+                    }
+                }else{
+                    logger.info("sendEntrustSms手机号 -{} 匹配信息发送失败",phone);
+                }
+            }
+
+        }
+
+
     }
 }
