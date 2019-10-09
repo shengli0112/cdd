@@ -173,14 +173,6 @@ public class UserController {
         return commonResult;
     }
 
-    /**
-     * 托管厂房列表
-     */
-    @RequestMapping("findPlantList")
-    public CommonResult findPlantList(){
-
-        return null;
-    }
 
     /**
      * 个人托管仓库创建
@@ -209,14 +201,6 @@ public class UserController {
         return commonResult;
     }
 
-    /**
-     * 托管土地列表
-     */
-    @RequestMapping("findLandList")
-    public CommonResult findLandList(){
-
-        return null;
-    }
 
     /**
      * 我的关注

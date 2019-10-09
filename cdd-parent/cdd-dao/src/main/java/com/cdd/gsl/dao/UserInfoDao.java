@@ -81,11 +81,13 @@ public interface UserInfoDao {
     @Options(useGeneratedKeys = true,keyProperty = "id" ,keyColumn = "id")
     void insertUserInfo(UserInfoDomain userInfoDomain);
 
-    @Select("select id as userId,username as username,phone as phone,portrait as portrait,service_area as serviceArea " +
+    @Select("select id as userId,username as username,phone as phone,portrait as portrait," +
+            "service_area as serviceArea,city as city,county as county,town as town " +
             "from t_user_info where id=#{userId} and status=1")
     SingleUserInfoVo findUserInfoById(Long userId);
     @Select("<script>select u.id as userId,u.username as username,u.phone as phone,u.portrait as portrait," +
-            "b.apply_type as applyType,b.id as applyBrokerId,u.service_area as serviceArea" +
+            "b.apply_type as applyType,b.id as applyBrokerId,u.service_area as serviceArea," +
+            "u.city as city,u.county as county,u.town as town " +
             " from t_user_info u left join t_apply_broker_info b on u.id=b.user_id where b.company_name=" +
             "(select company_name from t_apply_broker_info where apply_type=2 and user_id=#{userId}) and b.status=1 and u.status=1" +
             "<if test=\"userType == 2\">" +
@@ -94,8 +96,8 @@ public interface UserInfoDao {
             "</script>")
     List<SingleUserBrokerVo> findUserBrokerByUserId(@Param("userId") Long userId, @Param("userType") Integer userType);
 
-    @Select("select phone from t_user_info where status=1 and user_type in (2,3) and service_area like concat('%','${serviceArea}','%')")
-    List<String> findPhoneByServiceArea(String serviceArea);
+    @Select("select phone from t_user_info where status=1 and user_type in (2,3) and city=#{city} and county=#{county}")
+    List<String> findPhoneByServiceArea(@Param("city") String city,@Param("county") String county);
 
     @Select("select count(*) from t_user_info where status=1")
     int selectAllUserCount();

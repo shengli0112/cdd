@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ApplyBrokerInfoDao {
     @Select("<script>select a.user_id as userId,u.username as username,u.phone as phone,u.portrait as portrait," +
-            "a.company_name as companyName,u.service_area as serviceArea" +
+            "a.company_name as companyName,u.service_area as serviceArea,u.city as city,u.county as county,u.town as town" +
             " from t_apply_broker_info a left join t_user_info u on a.user_id=u.id " +
             "where a.apply_type=2 and u.status=1 " +
             "<if test='param != null'>" +

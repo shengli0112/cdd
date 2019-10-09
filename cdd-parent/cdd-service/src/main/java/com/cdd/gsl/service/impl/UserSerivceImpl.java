@@ -830,6 +830,9 @@ public class UserSerivceImpl implements UserService {
             userInfoDomain.setUsername(userParamVo.getUsername());
             userInfoDomain.setPortrait(userParamVo.getPortrait());
             userInfoDomain.setServiceArea(userParamVo.getServiceArea());
+            userInfoDomain.setCity(userParamVo.getCity());
+            userInfoDomain.setCounty(userParamVo.getCounty());
+            userInfoDomain.setTown(userParamVo.getTown());
             userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("修改成功");

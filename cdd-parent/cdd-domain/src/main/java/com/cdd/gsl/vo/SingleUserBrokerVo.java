@@ -16,6 +16,12 @@ public class SingleUserBrokerVo {
 
     private String serviceArea;
 
+    private String city;
+
+    private String county;
+
+    private String town;
+
     public Long getUserId() {
         return userId;
     }
@@ -70,5 +76,29 @@ public class SingleUserBrokerVo {
 
     public void setServiceArea(String serviceArea) {
         this.serviceArea = serviceArea;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 }

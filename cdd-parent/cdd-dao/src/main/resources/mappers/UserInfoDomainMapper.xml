@@ -14,6 +14,9 @@
     <result column="create_ts" property="createTs" jdbcType="TIMESTAMP" />
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
     <result column="service_area" property="serviceArea" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -75,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, username, phone, user_type, integral, portrait, password, salt, status, create_ts, 
-    update_ts, service_area
+    update_ts, service_area, city, county, town
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.UserInfoDomainExample" >
     select
@@ -114,11 +117,13 @@
     insert into t_user_info (username, phone, user_type, 
       integral, portrait, password, 
       salt, status, create_ts, 
-      update_ts, service_area)
+      update_ts, service_area, city, 
+      county, town)
     values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, 
       #{integral,jdbcType=INTEGER}, #{portrait,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, 
-      #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR})
+      #{updateTs,jdbcType=TIMESTAMP}, #{serviceArea,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.UserInfoDomain" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -159,6 +164,15 @@
       <if test="serviceArea != null" >
         service_area,
       </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="username != null" >
@@ -193,6 +207,15 @@
       </if>
       <if test="serviceArea != null" >
         #{serviceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -241,6 +264,15 @@
       <if test="record.serviceArea != null" >
         service_area = #{record.serviceArea,jdbcType=VARCHAR},
       </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -259,7 +291,10 @@
       status = #{record.status,jdbcType=INTEGER},
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
-      service_area = #{record.serviceArea,jdbcType=VARCHAR}
+      service_area = #{record.serviceArea,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -300,6 +335,15 @@
       <if test="serviceArea != null" >
         service_area = #{serviceArea,jdbcType=VARCHAR},
       </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -315,7 +359,10 @@
       status = #{status,jdbcType=INTEGER},
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
-      service_area = #{serviceArea,jdbcType=VARCHAR}
+      service_area = #{serviceArea,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
