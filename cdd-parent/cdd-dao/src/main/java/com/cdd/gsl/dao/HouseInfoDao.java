@@ -283,7 +283,7 @@ public interface HouseInfoDao {
             "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 and top.type='house' " +
+            " where h.status=1 and top.status=1 and h.house_status !=3 and top.type='house' " +
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if>"+
@@ -303,7 +303,7 @@ public interface HouseInfoDao {
             "u.portrait as portrait,h.trade as trade,top as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_info h left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and h.top=0 and (h.house_use_type=3 or h.house_use_type=4)" +
+            " where h.status=1 and h.top=0 and h.house_status !=3 and (h.house_use_type=3 or h.house_use_type=4)" +
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if>"+
@@ -326,7 +326,7 @@ public interface HouseInfoDao {
             "h.single_price as singlePrice,h.use_area as useArea,top.create_ts as createTs,u.username as username,u.portrait as portrait,h.trade as trade,1 as top," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
             " from t_house_top top left join t_house_info h on top.obj_id=h.id left join t_user_info u on h.user_id=u.id " +
-            " where h.status=1 and top.status=1 and top.type='house' " +
+            " where h.status=1 and top.status=1 and h.house_status != 3 and top.type='house' " +
             "<if test=\"houseType != null\">"+
             " and h.house_type=#{houseType}"+
             "</if>"+
@@ -409,7 +409,7 @@ public interface HouseInfoDao {
 
     @Select("<script> " +
             "select count(h.id) " +
-            " from t_house_info h where h.status=1 and h.top=0 " +
+            " from t_house_info h where h.status=1 and h.house_status != 3 and h.top=0 " +
             "<if test='userId != null'>" +
             "  and h.user_id=#{userId}" +
             "</if> " +
@@ -520,7 +520,7 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.create_ts desc " +
+            " order by h.create_ts desc,h.house_status asc " +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
             "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
@@ -666,7 +666,7 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
-            " order by h.create_ts desc " +
+            " order by h.create_ts desc,h.house_status asc " +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>,h.area,h.cover_area</if>"+
             "<if test='areaOrder == 2'>,h.area desc,h.cover_area desc</if>"+
