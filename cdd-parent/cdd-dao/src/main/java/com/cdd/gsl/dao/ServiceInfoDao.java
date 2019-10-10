@@ -92,4 +92,7 @@ public interface ServiceInfoDao {
             " limit #{from},#{limit}"+
             "</script>")
     public List<ServiceInfoVo> findAdminServiceInfoList(ServiceAdminConditionVo serviceAdminConditionVo);
+
+    @Select("select count(id) from t_service_info")
+    int countAdminServiceInfo();
 }

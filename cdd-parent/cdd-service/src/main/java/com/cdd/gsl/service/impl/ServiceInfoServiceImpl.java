@@ -1,5 +1,6 @@
 package com.cdd.gsl.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.AdminServiceConditionVo;
 import com.cdd.gsl.admin.ServiceAdminConditionVo;
@@ -226,10 +227,14 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         CommonResult commonResult = new CommonResult();
         try {
             if(serviceInfoConditionVo != null){
+                JSONObject data = new JSONObject();
                 List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.findAdminServiceInfoList(serviceInfoConditionVo);
+                int total = serviceInfoDao.countAdminServiceInfo();
+                data.put("serviceInfoList",serviceInfoVoList);
+                data.put("total",total);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("查询成功");
-                commonResult.setData(serviceInfoVoList);
+                commonResult.setData(data);
             }else{
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("参数不能为空");
