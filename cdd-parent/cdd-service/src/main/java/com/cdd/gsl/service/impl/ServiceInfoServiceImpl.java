@@ -2,6 +2,7 @@ package com.cdd.gsl.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cdd.gsl.admin.AdminServiceConditionVo;
+import com.cdd.gsl.admin.ServiceAdminConditionVo;
 import com.cdd.gsl.common.constants.CddConstant;
 import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.dao.*;
@@ -221,11 +222,11 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
     }
 
     @Override
-    public CommonResult findAdminServiceInfoList(AdminServiceConditionVo serviceInfoConditionVo) {
+    public CommonResult findAdminServiceInfoList(ServiceAdminConditionVo serviceInfoConditionVo) {
         CommonResult commonResult = new CommonResult();
         try {
             if(serviceInfoConditionVo != null){
-                List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.getAdminServiceInfoList(serviceInfoConditionVo);
+                List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.findAdminServiceInfoList(serviceInfoConditionVo);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("查询成功");
                 commonResult.setData(serviceInfoVoList);
@@ -346,4 +347,5 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         }
         return commonResult;
     }
+
 }

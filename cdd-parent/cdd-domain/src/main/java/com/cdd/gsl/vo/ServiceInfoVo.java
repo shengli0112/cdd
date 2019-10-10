@@ -23,6 +23,8 @@ public class ServiceInfoVo {
 
     private String referrerPhone;
 
+    private Integer status;
+
 
 
     public Long getId() {
@@ -112,5 +114,13 @@ public class ServiceInfoVo {
 
     public void setReferrerPhone(String referrerPhone) {
         this.referrerPhone = referrerPhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
