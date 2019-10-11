@@ -63,7 +63,7 @@ public class CddConstant {
     public static final String TOP_HOUSE_TITLE = "置顶房源";
     public static final String TOP_PARK_TITLE = "置顶园区";
     public static final String TOP_ENTERPRISE_TITLE = "置顶企业圈";
-    public static final String SERVICE_CHECK_PHONE = "企业服务查看手机号";
+    public static final String SERVICE_CHECK_PHONE = "查看个人电话";
     public static final String SERVICE_INFO_CREATE = "创建企业服务";
 
     public static final String CREATE_HOUSE_TITLE = "发布新房源";

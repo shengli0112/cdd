@@ -368,12 +368,12 @@ public class EntrustServiceImpl implements EntrustService {
                 address.append(entrustInfoDomain.getArea()+"亩").append("土地");
             }
 
-            if(!StringUtils.isEmpty(entrustInfoDomain.getBusiness())){
+           /* if(!StringUtils.isEmpty(entrustInfoDomain.getBusiness())){
                 address.append(" "+entrustInfoDomain.getBusiness());
-            }
+            }*/
 
 
-            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#content#=http://cddwang.com","UTF-8");
+            tplValue = URLEncoder.encode("#code#="+address.toString()+"&#content#=http://cddwang.com ","UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

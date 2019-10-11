@@ -1073,17 +1073,17 @@ public class UserSerivceImpl implements UserService {
                     phone = entrustInfoVos.get(0).getPhone();
                 }
                 UserInfoDomain userInfoDomain = userInfoDomainMapper.selectByPrimaryKey(checkPhoneDomain.getUserId());
-                if(userInfoDomain.getIntegral() > CddConstant.PAY_INTERGAL_CHECK_PHONE){
+                if(userInfoDomain.getIntegral() > 10){
                     UserInfoDomain userInfo = new UserInfoDomain();
                     userInfo.setId(checkPhoneDomain.getUserId());
-                    userInfo.setIntegral(userInfoDomain.getIntegral() - CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                    userInfo.setIntegral(userInfoDomain.getIntegral() - 10);
                     userInfoDomainMapper.updateByPrimaryKeySelective(userInfo);
 
                     ConsumeRecordDomain consumeRecordDomain = new ConsumeRecordDomain();
                     consumeRecordDomain.setTitle(CddConstant.SERVICE_CHECK_PHONE);
                     consumeRecordDomain.setUserId(checkPhoneDomain.getUserId());
                     consumeRecordDomain.setAction(CddConstant.CONSUME_RECORD_CONSUME);
-                    consumeRecordDomain.setIntegral(CddConstant.PAY_INTERGAL_CHECK_PHONE);
+                    consumeRecordDomain.setIntegral(10);
                     consumeRecordDomain.setType(CddConstant.CONSUME_RECORD_TYPE_ENTRUST_CHECK_PHONE);
                     consumeRecordDomainMapper.insertSelective(consumeRecordDomain);
                     jsonObject.put("phone",phone);
