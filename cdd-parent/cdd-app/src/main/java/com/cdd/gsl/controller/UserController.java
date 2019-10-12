@@ -342,8 +342,9 @@ public class UserController {
      * @param transferUserId 房源转入用户ID
      * @return
      */
-    public CommonResult deleteBroker(Long loginUserId,Long deleteUserId,Long transferUserId){
-        return userService.deleteBroker(loginUserId,deleteUserId,transferUserId);
+    @RequestMapping("deleteBroker")
+    public CommonResult deleteBroker(@RequestBody UserBrokerDeleteVo userBrokerDeleteVo){
+        return userService.deleteBroker(userBrokerDeleteVo);
     }
 
     /**

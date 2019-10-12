@@ -939,26 +939,29 @@ public class UserSerivceImpl implements UserService {
     }
 
     @Override
-    public CommonResult deleteBroker(Long loginUserId, Long deleteUserId, Long transferUserId) {
-        logger.info("UserServiceImpl deleteBroker loginUserId-{}, deleteUserId-{}, transferUserId-{}",loginUserId,deleteUserId,transferUserId);
+    public CommonResult deleteBroker(UserBrokerDeleteVo userBrokerDeleteVo) {
+        logger.info("UserServiceImpl deleteBroker loginUserId-{}, deleteUserId-{}, transferUserId-{}",
+                userBrokerDeleteVo.getLoginUserId(),userBrokerDeleteVo.getDeleteUserId(),userBrokerDeleteVo.getTransferUserId());
         CommonResult commonResult = new CommonResult();
-        if(loginUserId != null && deleteUserId != null && transferUserId != null){
+        if(userBrokerDeleteVo.getLoginUserId() != null &&
+                userBrokerDeleteVo.getDeleteUserId() != null &&
+                userBrokerDeleteVo.getTransferUserId() != null){
             //首先判断当前登录的用户是否是店长
             ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
-            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(loginUserId)
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userBrokerDeleteVo.getLoginUserId())
                     .andStatusEqualTo(1).andApplyTypeEqualTo(2).andBrokerTypeEqualTo(2);
             List<ApplyBrokerInfoDomain> applyBrokerInfoDomainList = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
             if(CollectionUtils.isNotEmpty(applyBrokerInfoDomainList)){
                 //apply_broker 表中的status 修改为 0
-                applyBrokerInfoDao.deleteApplyBroker(deleteUserId);
+                applyBrokerInfoDao.deleteApplyBroker(userBrokerDeleteVo.getDeleteUserId());
                 //user表中的状态置为普通用户
                 UserInfoDomain userInfoDomain = new UserInfoDomain();
-                userInfoDomain.setId(deleteUserId);
+                userInfoDomain.setId(userBrokerDeleteVo.getDeleteUserId());
                 userInfoDomain.setUserType(1);
                 userInfoDomain.setUpdateTs(new Date());
                 userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
                 //把删除经纪人的房源转移到对应的经纪人下
-                houseInfoDao.transferHouseToUserId(deleteUserId,transferUserId);
+                houseInfoDao.transferHouseToUserId(userBrokerDeleteVo.getDeleteUserId(),userBrokerDeleteVo.getTransferUserId());
                 commonResult.setFlag(CommonResult.RESULT_SUCCESS_FLAG);
                 commonResult.setMessage("删除成功");
             }else{

@@ -843,7 +843,8 @@ public interface HouseInfoDao {
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax,u.username as username " +
             " from t_house_info h left join t_user_info u on h.user_id=u.id  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
-            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') " +
+            "or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
             " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.status desc,h.create_ts desc " +
