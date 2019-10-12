@@ -337,9 +337,9 @@ public class UserController {
 
     /**
      *
-     * @param loginUserId 登录用户ID
-     * @param deleteUserId 删除用户ID
-     * @param transferUserId 房源转入用户ID
+     *  loginUserId 登录用户ID
+     *  deleteUserId 删除用户ID
+     *  transferUserId 房源转入用户ID
      * @return
      */
     @RequestMapping("deleteBroker")
