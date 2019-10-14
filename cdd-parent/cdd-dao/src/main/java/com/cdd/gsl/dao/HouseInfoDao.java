@@ -893,7 +893,7 @@ public interface HouseInfoDao {
             "</if>"+
             " order by h.status desc,h.create_ts desc " +
             "</script>")
-    public List<HouseInfoDomainVo> selectAdminHouseInfoListByKeyword(String keyword);
+    public List<HouseInfoDomainVo> selectAdminHouseInfoListByKeyword(@Param("keyword") String keyword);
 
     @Update("update t_house_info set status=0 where user_id=#{userId}")
     public void deleteHouseByUserId(Long userId);
