@@ -854,10 +854,11 @@ public interface HouseInfoDao {
 
     @Select("<script>"+
             "select count(h.id)" +
-            " from t_house_info h  where (h.status=1 or h.status=0) "+
+            " from t_house_info h left join t_user_info u where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
-            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') " +
+            " or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%'))"+
             "</if></script>")
     public int countAdminHouseInfo(HouseAdminConditionVo houseConditionVo);
 
@@ -885,10 +886,10 @@ public interface HouseInfoDao {
             "h.single_price as singlePrice,h.use_area as useArea,h.create_ts as createTs," +
             "h.trade as trade,h.expire_date as expireDate,h.status as status," +
             "h.company_name as companyName,h.staff_number as staffNumber,h.tax as tax " +
-            " from t_house_info h  where (h.status=1 or h.status=0) "+
+            " from t_house_info h left join t_user_info u  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.status desc,h.create_ts desc " +
             "</script>")
