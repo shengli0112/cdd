@@ -905,7 +905,7 @@ public interface HouseInfoDao {
     public void deleteHouseByUserId(Long userId);
 
     @Update("update t_house_info set user_id=#{toUserId} where user_id=#{fromUserId}")
-    public void transferHouseToUserId(Long fromUserId,Long toUserId);
+    public void transferHouseToUserId(@Param("fromUserId") Long fromUserId,@Param("toUserId") Long toUserId);
 
 
 

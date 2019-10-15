@@ -190,7 +190,7 @@ public class HouseController {
 
     @RequestMapping("findCompanyHouseList")
     public CommonResult<List<HouseInfoDomainVo>> findCompanyHouseList(HouseConditionVo houseConditionVo){
-        logger.info("HouseController findCompanyHouseList");
+        logger.info("HouseController findCompanyHouseList houseConditionVo-{}",JSONObject.toJSONString(houseConditionVo));
         CommonResult<List<HouseInfoDomainVo>> commonResult = new CommonResult<>();
 
         if(houseConditionVo != null){
