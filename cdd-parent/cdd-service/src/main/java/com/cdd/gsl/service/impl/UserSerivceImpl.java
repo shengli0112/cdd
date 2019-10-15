@@ -794,7 +794,7 @@ public class UserSerivceImpl implements UserService {
         CommonResult commonResult = new CommonResult();
         if(userId != null){
             ApplyBrokerInfoDomainExample applyBrokerInfoDomainExample = new ApplyBrokerInfoDomainExample();
-            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andApplyTypeNotEqualTo(3);
+            applyBrokerInfoDomainExample.createCriteria().andUserIdEqualTo(userId).andApplyTypeNotEqualTo(3).andStatusEqualTo(1);
             List<ApplyBrokerInfoDomain> applyBrokerInfoDomains = applyBrokerInfoDomainMapper.selectByExample(applyBrokerInfoDomainExample);
             if(applyBrokerInfoDomains != null && applyBrokerInfoDomains.size() > 0){
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
