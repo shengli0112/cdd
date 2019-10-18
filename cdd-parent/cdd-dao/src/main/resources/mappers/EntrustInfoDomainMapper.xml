@@ -17,6 +17,9 @@
     <result column="update_ts" property="updateTs" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="assert_prop" property="assertProp" jdbcType="VARCHAR" />
+    <result column="sale" property="sale" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +81,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, city, county, town, area, business, pay_tax, contacts, phone, entrust_type, entrust_use_type, 
-    create_ts, update_ts, user_id, status
+    create_ts, update_ts, user_id, status, assert_prop, sale, description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cdd.gsl.domain.EntrustInfoDomainExample" >
     select
@@ -118,12 +121,14 @@
       area, business, pay_tax, 
       contacts, phone, entrust_type, 
       entrust_use_type, create_ts, update_ts, 
-      user_id, status)
+      user_id, status, assert_prop, 
+      sale, description)
     values (#{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{business,jdbcType=VARCHAR}, #{payTax,jdbcType=INTEGER}, 
       #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{entrustType,jdbcType=INTEGER}, 
       #{entrustUseType,jdbcType=INTEGER}, #{createTs,jdbcType=TIMESTAMP}, #{updateTs,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER})
+      #{userId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{assertProp,jdbcType=VARCHAR}, 
+      #{sale,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cdd.gsl.domain.EntrustInfoDomain" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -173,6 +178,15 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="assertProp != null" >
+        assert_prop,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="city != null" >
@@ -216,6 +230,15 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="assertProp != null" >
+        #{assertProp,jdbcType=VARCHAR},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -273,6 +296,15 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.assertProp != null" >
+        assert_prop = #{record.assertProp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale != null" >
+        sale = #{record.sale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -294,7 +326,10 @@
       create_ts = #{record.createTs,jdbcType=TIMESTAMP},
       update_ts = #{record.updateTs,jdbcType=TIMESTAMP},
       user_id = #{record.userId,jdbcType=BIGINT},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      assert_prop = #{record.assertProp,jdbcType=VARCHAR},
+      sale = #{record.sale,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -344,6 +379,15 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="assertProp != null" >
+        assert_prop = #{assertProp,jdbcType=VARCHAR},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -362,7 +406,10 @@
       create_ts = #{createTs,jdbcType=TIMESTAMP},
       update_ts = #{updateTs,jdbcType=TIMESTAMP},
       user_id = #{userId,jdbcType=BIGINT},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      assert_prop = #{assertProp,jdbcType=VARCHAR},
+      sale = #{sale,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

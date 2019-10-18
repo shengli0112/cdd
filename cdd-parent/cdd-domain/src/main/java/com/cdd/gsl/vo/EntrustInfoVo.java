@@ -33,6 +33,12 @@ public class EntrustInfoVo {
 
     private Integer status;
 
+    private String assertProp;
+
+    private String sale;
+
+    private String description;
+
     public Long getEntrustId() {
         return entrustId;
     }
@@ -148,5 +154,29 @@ public class EntrustInfoVo {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getAssertProp() {
+        return assertProp;
+    }
+
+    public void setAssertProp(String assertProp) {
+        this.assertProp = assertProp;
+    }
+
+    public String getSale() {
+        return sale;
+    }
+
+    public void setSale(String sale) {
+        this.sale = sale;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

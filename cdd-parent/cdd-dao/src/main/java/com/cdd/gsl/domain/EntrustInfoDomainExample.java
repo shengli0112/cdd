@@ -1064,6 +1064,216 @@ public class EntrustInfoDomainExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andAssertPropIsNull() {
+            addCriterion("assert_prop is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropIsNotNull() {
+            addCriterion("assert_prop is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropEqualTo(String value) {
+            addCriterion("assert_prop =", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropNotEqualTo(String value) {
+            addCriterion("assert_prop <>", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropGreaterThan(String value) {
+            addCriterion("assert_prop >", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropGreaterThanOrEqualTo(String value) {
+            addCriterion("assert_prop >=", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropLessThan(String value) {
+            addCriterion("assert_prop <", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropLessThanOrEqualTo(String value) {
+            addCriterion("assert_prop <=", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropLike(String value) {
+            addCriterion("assert_prop like", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropNotLike(String value) {
+            addCriterion("assert_prop not like", value, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropIn(List<String> values) {
+            addCriterion("assert_prop in", values, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropNotIn(List<String> values) {
+            addCriterion("assert_prop not in", values, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropBetween(String value1, String value2) {
+            addCriterion("assert_prop between", value1, value2, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andAssertPropNotBetween(String value1, String value2) {
+            addCriterion("assert_prop not between", value1, value2, "assertProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleIsNull() {
+            addCriterion("sale is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleIsNotNull() {
+            addCriterion("sale is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleEqualTo(String value) {
+            addCriterion("sale =", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleNotEqualTo(String value) {
+            addCriterion("sale <>", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleGreaterThan(String value) {
+            addCriterion("sale >", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleGreaterThanOrEqualTo(String value) {
+            addCriterion("sale >=", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleLessThan(String value) {
+            addCriterion("sale <", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleLessThanOrEqualTo(String value) {
+            addCriterion("sale <=", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleLike(String value) {
+            addCriterion("sale like", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleNotLike(String value) {
+            addCriterion("sale not like", value, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleIn(List<String> values) {
+            addCriterion("sale in", values, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleNotIn(List<String> values) {
+            addCriterion("sale not in", values, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleBetween(String value1, String value2) {
+            addCriterion("sale between", value1, value2, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaleNotBetween(String value1, String value2) {
+            addCriterion("sale not between", value1, value2, "sale");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

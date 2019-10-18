@@ -33,6 +33,12 @@ public class EntrustInfoDomain {
 
     private Integer status;
 
+    private String assertProp;
+
+    private String sale;
+
+    private String description;
+
     public Long getId() {
         return id;
     }
@@ -151,5 +157,29 @@ public class EntrustInfoDomain {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getAssertProp() {
+        return assertProp;
+    }
+
+    public void setAssertProp(String assertProp) {
+        this.assertProp = assertProp == null ? null : assertProp.trim();
+    }
+
+    public String getSale() {
+        return sale;
+    }
+
+    public void setSale(String sale) {
+        this.sale = sale == null ? null : sale.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

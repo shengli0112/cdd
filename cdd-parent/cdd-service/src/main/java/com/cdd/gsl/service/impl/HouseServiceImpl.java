@@ -387,8 +387,9 @@ public class HouseServiceImpl implements HouseService{
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectUserHouseInfoListByCondition(houseConditionVo);
         List<HouseInfoDomainVo> houseInfoDomains = new ArrayList<>();
         if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+            CheckPhoneDomainExample checkPhoneDomainExample = null;
             for(HouseInfoDomainVo houseInfoDomainVo:houseInfoDomainList){
-                CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                checkPhoneDomainExample = new CheckPhoneDomainExample();
                 checkPhoneDomainExample.createCriteria().andUserIdEqualTo(houseInfoDomainVo.getUserId())
                         .andInfoIdEqualTo(houseInfoDomainVo.getId()).andTypeEqualTo("house");
                 List<CheckPhoneDomain> checkPhoneDomains = checkPhoneDomainMapper.selectByExample(checkPhoneDomainExample);
@@ -530,12 +531,13 @@ public class HouseServiceImpl implements HouseService{
         List<HouseTopDomain> houseTopDomainList = houseTopDomainMapper.selectByExample(houseTopDomainExample);
 
         if(!CollectionUtils.isEmpty(houseTopDomainList)){
-            houseTopDomainList.forEach(houseTop ->{
+            HouseTopDomain houseTopDomain = null;
+            for(HouseTopDomain houseTop:houseTopDomainList){
                 int days = DateUtil.differentDaysByMillisecond(houseTop.getCreateTs(),new Date());
                 logger.info("HouseServiceImpl delayTopHouse days--{}",days);
                 TopInfoDomain topInfoDomain = topInfoDomainMapper.selectByPrimaryKey(houseTop.getTopId());
                 if(days > topInfoDomain.getDay()){
-                    HouseTopDomain houseTopDomain = new HouseTopDomain();
+                    houseTopDomain = new HouseTopDomain();
                     houseTopDomain.setId(houseTop.getId());
                     houseTopDomain.setStatus(0);
                     houseTopDomain.setUpdateTs(new Date());
@@ -552,7 +554,8 @@ public class HouseServiceImpl implements HouseService{
                         leaseParkDao.topLeasePark(houseTop.getObjId());
                     }
                 }
-            });
+            }
+
         }
     }
 
