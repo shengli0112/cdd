@@ -591,21 +591,11 @@ public class UserSerivceImpl implements UserService {
                 commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
                 commonResult.setMessage("该用户已申请");
             }else{
-                VerifyPhoneDomainExample verifyPhoneDomainExample = new VerifyPhoneDomainExample();
-                verifyPhoneDomainExample.createCriteria()
-                        .andPhoneEqualTo(applyBrokerInfoVo.getPhone())
-                        .andVerifyCodeEqualTo(applyBrokerInfoVo.getVerfication());
-                List<VerifyPhoneDomain> verifyPhoneDomains = verifyPhoneDomainMapper.selectByExample(verifyPhoneDomainExample);
-                if(verifyPhoneDomains != null && verifyPhoneDomains.size() > 0){
-                    ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
-                    BeanUtils.copyProperties(applyBrokerInfoVo,applyBrokerInfoDomain);
-                    applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
-                    commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
-                    commonResult.setMessage("申请经纪人成功");
-                }else{
-                    commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
-                    commonResult.setMessage("验证失败");
-                }
+                ApplyBrokerInfoDomain applyBrokerInfoDomain = new ApplyBrokerInfoDomain();
+                BeanUtils.copyProperties(applyBrokerInfoVo,applyBrokerInfoDomain);
+                applyBrokerInfoDomainMapper.insertSelective(applyBrokerInfoDomain);
+                commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+                commonResult.setMessage("申请经纪人成功");
 
             }
 
