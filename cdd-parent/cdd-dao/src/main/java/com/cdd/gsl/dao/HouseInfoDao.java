@@ -188,7 +188,7 @@ public interface HouseInfoDao {
             ")) tmp order by top desc," +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>useArea,</if>"+
-            "<if test='areaOrder == 2'>useArea desc</if>"+
+            "<if test='areaOrder == 2'>useArea desc,</if>"+
             "</if>"+
 
             "<if test='priceOrder != null'>"+
