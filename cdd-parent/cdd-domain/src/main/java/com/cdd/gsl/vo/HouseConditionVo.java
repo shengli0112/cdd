@@ -47,6 +47,8 @@ public class HouseConditionVo {
 
     private String keyword;
 
+    private Integer isOpen;
+
     public String getCity() {
         return city;
     }
@@ -185,5 +187,13 @@ public class HouseConditionVo {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    public Integer getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(Integer isOpen) {
+        this.isOpen = isOpen;
     }
 }
