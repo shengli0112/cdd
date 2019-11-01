@@ -1846,76 +1846,6 @@ public class HouseInfoDomainExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("description is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("description is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("description =", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("description <>", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("description >", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("description >=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("description <", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("description <=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("description like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("description not like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("description in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("description not in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("description between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("description not between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
         public Criteria andTradeIsNull() {
             addCriterion("trade is null");
             return (Criteria) this;
@@ -2303,6 +2233,136 @@ public class HouseInfoDomainExample {
 
         public Criteria andTaxNotBetween(Integer value1, Integer value2) {
             addCriterion("tax not between", value1, value2, "tax");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIsNull() {
+            addCriterion("is_open is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIsNotNull() {
+            addCriterion("is_open is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenEqualTo(Integer value) {
+            addCriterion("is_open =", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotEqualTo(Integer value) {
+            addCriterion("is_open <>", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenGreaterThan(Integer value) {
+            addCriterion("is_open >", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_open >=", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenLessThan(Integer value) {
+            addCriterion("is_open <", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenLessThanOrEqualTo(Integer value) {
+            addCriterion("is_open <=", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIn(List<Integer> values) {
+            addCriterion("is_open in", values, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotIn(List<Integer> values) {
+            addCriterion("is_open not in", values, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenBetween(Integer value1, Integer value2) {
+            addCriterion("is_open between", value1, value2, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_open not between", value1, value2, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysIsNull() {
+            addCriterion("concession_days is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysIsNotNull() {
+            addCriterion("concession_days is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysEqualTo(String value) {
+            addCriterion("concession_days =", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysNotEqualTo(String value) {
+            addCriterion("concession_days <>", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysGreaterThan(String value) {
+            addCriterion("concession_days >", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysGreaterThanOrEqualTo(String value) {
+            addCriterion("concession_days >=", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysLessThan(String value) {
+            addCriterion("concession_days <", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysLessThanOrEqualTo(String value) {
+            addCriterion("concession_days <=", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysLike(String value) {
+            addCriterion("concession_days like", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysNotLike(String value) {
+            addCriterion("concession_days not like", value, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysIn(List<String> values) {
+            addCriterion("concession_days in", values, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysNotIn(List<String> values) {
+            addCriterion("concession_days not in", values, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysBetween(String value1, String value2) {
+            addCriterion("concession_days between", value1, value2, "concessionDays");
+            return (Criteria) this;
+        }
+
+        public Criteria andConcessionDaysNotBetween(String value1, String value2) {
+            addCriterion("concession_days not between", value1, value2, "concessionDays");
             return (Criteria) this;
         }
     }

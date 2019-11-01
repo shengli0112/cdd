@@ -79,6 +79,10 @@ public class HouseInfoDetailVo {
 
     private List<HouseInfoDomainVo> likes;
 
+    private Integer isOpen;
+
+    private String concessionDays;
+
     public Long getId() {
         return id;
     }
@@ -365,5 +369,21 @@ public class HouseInfoDetailVo {
 
     public void setTax(Integer tax) {
         this.tax = tax;
+    }
+
+    public Integer getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(Integer isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public String getConcessionDays() {
+        return concessionDays;
+    }
+
+    public void setConcessionDays(String concessionDays) {
+        this.concessionDays = concessionDays;
     }
 }

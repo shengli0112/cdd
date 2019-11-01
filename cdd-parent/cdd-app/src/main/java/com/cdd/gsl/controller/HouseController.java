@@ -148,6 +148,54 @@ public class HouseController {
     }
 
     /**
+     * 开放的房源信息
+     * @param houseConditionVo
+     * @return
+     */
+    @RequestMapping("findOpenHouseList")
+    public CommonResult findOpenHouseList(HouseConditionVo houseConditionVo){
+        logger.info("HouseController findHouseInfoList");
+        CommonResult commonResult = new CommonResult();
+
+        if(houseConditionVo != null){
+            JSONObject data = houseService.findOpenHouseList(houseConditionVo);
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(data);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不能为空");
+        }
+        return commonResult;
+    }
+
+    /**
+     * 开放房源详情页
+     * @param houseId
+     * @return
+     */
+    @RequestMapping("findOpenHouseDetail")
+    public CommonResult<HouseInfoDetailVo> findOpenHouseDetail(Long houseId){
+        logger.info("HouseController findHouseInfoDetail houseId-{}",houseId);
+        CommonResult<HouseInfoDetailVo> commonResult = new CommonResult<>();
+
+        if(houseId != null){
+            long start = System.currentTimeMillis();
+            HouseInfoDetailVo houseInfoDomain = houseService.findOpenHouseInfoById(houseId);
+            logger.info("HouseController findHouseInfoDetail ms --{}",(System.currentTimeMillis() - start));
+            commonResult.setFlag(1);
+            commonResult.setMessage("查询成功");
+            commonResult.setData(houseInfoDomain);
+
+        }else{
+            commonResult.setFlag(0);
+            commonResult.setMessage("查询失败，参数不正确");
+        }
+        return commonResult;
+    }
+
+    /**
      * 首页房源列表
      * @param houseConditionVo
      * @return

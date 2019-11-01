@@ -22,6 +22,10 @@ public interface HouseService {
 
     JSONObject findHouseInfoList(HouseConditionVo houseConditionVo);
 
+    JSONObject findOpenHouseList(HouseConditionVo houseConditionVo);
+
+    HouseInfoDetailVo findOpenHouseInfoById(Long houseId);
+
     JSONObject findHomeHouseInfoList(HouseConditionVo houseConditionVo);
 
     List<HouseInfoDomainVo> selectUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);

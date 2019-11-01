@@ -352,6 +352,47 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
+    public HouseInfoDetailVo findOpenHouseInfoById(Long houseId) {
+        long start = System.currentTimeMillis();
+        HouseInfoDetailVo houseInfoDetailVo = houseInfoDao.selectHouseInfoById(houseId);
+        /*logger.info("HouseServiceImpl selectHouseInfoById ms --{}",(System.currentTimeMillis() - start));
+        if(houseInfoDetailVo != null){
+            long start1 = System.currentTimeMillis();
+            SingleUserInfoVo singleUserInfoVo = userInfoDao.findUserInfoById(houseInfoDetailVo.getUserId());
+            logger.info("HouseServiceImpl findUserInfoById ms --{}",(System.currentTimeMillis() - start1));
+            long start2 = System.currentTimeMillis();
+            List<UserBrokerVo> userList = houseInfoDao.selectUserByHouseInfo(houseInfoDetailVo);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start2));
+            if(!CollectionUtils.isEmpty(userList)){
+                userList.forEach(userBrokerVo -> {
+                    int count = houseInfoDao.selectHouseCountByUserId(userBrokerVo.getUserId());
+                    userBrokerVo.setHouseCount(count);
+                });
+            }
+            houseInfoDetailVo.setUser_list(userList);
+            houseInfoDetailVo.setUser(singleUserInfoVo);
+            long start3 = System.currentTimeMillis();
+            List<HouseInfoDomainVo> houseInfoDomainVos = houseInfoDao.selectHouseInfoListByDetailLike(houseInfoDetailVo.getCounty());
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start3));
+            houseInfoDetailVo.setLikes(houseInfoDomainVos);
+            BrowseHouseRecordDomain browseHouseRecordDomain = new BrowseHouseRecordDomain();
+            browseHouseRecordDomain.setUserId(houseInfoDetailVo.getUserId());
+            browseHouseRecordDomain.setHouseId(houseId);
+            long start4 = System.currentTimeMillis();
+            browseHouseRecordDomainMapper.insertSelective(browseHouseRecordDomain);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start4));
+            BrowseHouseRecordDomainExample browseHouseRecordDomainExample = new BrowseHouseRecordDomainExample();
+            browseHouseRecordDomainExample.createCriteria().andHouseIdEqualTo(houseId);
+            long start5 = System.currentTimeMillis();
+            List<BrowseHouseRecordDomain> browseHouseRecordDomains = browseHouseRecordDomainMapper.selectByExample(browseHouseRecordDomainExample);
+            logger.info("HouseServiceImpl selectUserByHouseInfo ms --{}",(System.currentTimeMillis() - start5));
+            houseInfoDetailVo.setBrowseCount(browseHouseRecordDomains.size());
+        }*/
+
+        return houseInfoDetailVo;
+    }
+
+    @Override
     public JSONObject findHouseInfoList(HouseConditionVo houseConditionVo) {
         HashMap map = new HashMap();
         /*map.put("page", houseConditionVo.getPageNo());
@@ -360,6 +401,20 @@ public class HouseServiceImpl implements HouseService{
         List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectHouseInfoListByCondition(houseConditionVo);
         int houseCount = houseInfoDao.countUserHouseInfoListByCondition(houseConditionVo);
         int topHouseCount = houseInfoDao.selectTopHouseInfoListByCondition(houseConditionVo);
+
+        houseCount = houseCount+topHouseCount;
+        JSONObject data = new JSONObject();
+
+        data.put("houseCount",houseCount);
+        data.put("houseList",houseInfoDomainList);
+        return data;
+    }
+
+    @Override
+    public JSONObject findOpenHouseList(HouseConditionVo houseConditionVo) {
+        List<HouseInfoDomainVo> houseInfoDomainList = houseInfoDao.selectOpenHouseListByCondition(houseConditionVo);
+        int houseCount = houseInfoDao.countUserOpenHouseByCondition(houseConditionVo);
+        int topHouseCount = houseInfoDao.selectTopOpenHouseByCondition(houseConditionVo);
 
         houseCount = houseCount+topHouseCount;
         JSONObject data = new JSONObject();

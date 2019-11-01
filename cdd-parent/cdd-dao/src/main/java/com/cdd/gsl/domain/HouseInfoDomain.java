@@ -58,8 +58,6 @@ public class HouseInfoDomain {
 
     private String town;
 
-    private String description;
-
     private String trade;
 
     private String expireDate;
@@ -72,7 +70,13 @@ public class HouseInfoDomain {
 
     private Integer tax;
 
+    private Integer isOpen;
+
+    private String concessionDays;
+
     private String background;
+
+    private String description;
 
     public Long getId() {
         return id;
@@ -290,14 +294,6 @@ public class HouseInfoDomain {
         this.town = town == null ? null : town.trim();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
     public String getTrade() {
         return trade;
     }
@@ -346,11 +342,35 @@ public class HouseInfoDomain {
         this.tax = tax;
     }
 
+    public Integer getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(Integer isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public String getConcessionDays() {
+        return concessionDays;
+    }
+
+    public void setConcessionDays(String concessionDays) {
+        this.concessionDays = concessionDays == null ? null : concessionDays.trim();
+    }
+
     public String getBackground() {
         return background;
     }
 
     public void setBackground(String background) {
-        this.background = background == null ? null : background.trim();
+        this.background = background;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

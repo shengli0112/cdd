@@ -17,8 +17,6 @@ public interface HouseInfoDomainMapper {
 
     int insertSelective(HouseInfoDomain record);
 
-    List<HouseInfoDomain> selectByExampleWithBLOBs(HouseInfoDomainExample example);
-
     List<HouseInfoDomain> selectByExample(HouseInfoDomainExample example);
 
     HouseInfoDomain selectByPrimaryKey(Long id);

@@ -81,6 +81,12 @@ public class HouseInfoDomainVo {
     //纳税额 万元
     private Integer tax;
 
+    //是否公开
+    private Integer isOpen;
+
+    //佣金天数
+    private String concessionDays;
+
     public Long getId() {
         return id;
     }
@@ -367,5 +373,21 @@ public class HouseInfoDomainVo {
 
     public void setTax(Integer tax) {
         this.tax = tax;
+    }
+
+    public String getConcessionDays() {
+        return concessionDays;
+    }
+
+    public void setConcessionDays(String concessionDays) {
+        this.concessionDays = concessionDays;
+    }
+
+    public Integer getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(Integer isOpen) {
+        this.isOpen = isOpen;
     }
 }
