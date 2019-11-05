@@ -382,7 +382,7 @@ public class EntrustServiceImpl implements EntrustService {
             e.printStackTrace();
         }
 
-        List<String> phoneList = userInfoDao.findPhoneByServiceArea(entrustInfoDomain.getCity(),entrustInfoDomain.getCounty());
+        List<String> phoneList = userInfoDao.findPhoneByServiceArea(entrustInfoDomain.getCounty());
         if(!CollectionUtils.isEmpty(phoneList)){
             for(String phone:phoneList){
                 StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
