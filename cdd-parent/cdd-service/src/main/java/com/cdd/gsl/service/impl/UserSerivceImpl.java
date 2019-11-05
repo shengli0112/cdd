@@ -1182,7 +1182,11 @@ public class UserSerivceImpl implements UserService {
 
         List<UserInfoDemainVo> userList = new ArrayList<>();
         userInfoDomainList.forEach(user -> {
-            user.setServiceArea(user.getCity()+user.getCounty()+user.getTown());
+            StringBuffer sb = new StringBuffer();
+            sb.append(StringUtils.isEmpty(user.getCity())? "":user.getCity())
+                    .append(StringUtils.isEmpty(user.getCounty())? "":user.getCounty())
+                    .append(StringUtils.isEmpty(user.getTown())? "":user.getTown());
+            user.setServiceArea(sb.toString());
             userList.add(user);
         });
         json.put("total",count);
