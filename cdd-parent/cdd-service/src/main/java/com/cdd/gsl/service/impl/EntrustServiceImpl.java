@@ -162,7 +162,8 @@ public class EntrustServiceImpl implements EntrustService {
             List<EntrustInfoVo> entrustInfoVoList = new ArrayList<>();
             if(entrustInfoVos != null && entrustInfoVos.size() > 0){
                 for(EntrustInfoVo entrustInfoVo:entrustInfoVos){
-                    CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+                    //TODO 查看号码逻辑暂时取消
+                   /* CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
                     if(entrustConditionVo.getUserId() != null){
                         checkPhoneDomainExample.createCriteria().andUserIdEqualTo(entrustConditionVo.getUserId())
                                 .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
@@ -176,7 +177,8 @@ public class EntrustServiceImpl implements EntrustService {
                         entrustInfoVo.setCheckPhone(1);
                     }else{
                         entrustInfoVo.setCheckPhone(0);
-                    }
+                    }*/
+                    entrustInfoVo.setCheckPhone(1);
                     entrustInfoVoList.add(entrustInfoVo);
                 }
             }
@@ -253,7 +255,9 @@ public class EntrustServiceImpl implements EntrustService {
         List<EntrustInfoVo> entrustInfoVoList = new ArrayList<>();
         if(entrustInfoVos != null && entrustInfoVos.size() > 0){
             for(EntrustInfoVo entrustInfoVo:entrustInfoVos){
-                CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
+
+                //TODO 限制查看电话号码逻辑 暂时取消
+                /*CheckPhoneDomainExample checkPhoneDomainExample = new CheckPhoneDomainExample();
                 if(entrustConditionVo.getUserId() != null){
                     checkPhoneDomainExample.createCriteria().andUserIdEqualTo(entrustConditionVo.getUserId())
                             .andInfoIdEqualTo(entrustInfoVo.getEntrustId()).andTypeEqualTo("entrust");
@@ -265,9 +269,9 @@ public class EntrustServiceImpl implements EntrustService {
                     }
                 }else{
                     entrustInfoVo.setCheckPhone(0);
-                }
+                }*/
 
-
+                entrustInfoVo.setCheckPhone(1);
                 entrustInfoVoList.add(entrustInfoVo);
             }
         }
