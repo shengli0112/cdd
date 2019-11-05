@@ -107,7 +107,7 @@ public interface UserInfoDao {
     void updateUserintegralById(@Param("userId")Long userId,@Param("integral")Integer integral);
 
     @Select("<script> select id as id,username as username,phone as phone,user_type as userType,integral as integral,portrait as portrait," +
-            "status as status,create_ts as createTs,update_ts as updateTs,service_area as serviceArea" +
+            "status as status,create_ts as createTs,update_ts as updateTs,service_area as serviceArea,city as city,county as county,town as town" +
             " from t_user_info" +
             " where 1=1 " +
             "<if test='keyword != null'>" +

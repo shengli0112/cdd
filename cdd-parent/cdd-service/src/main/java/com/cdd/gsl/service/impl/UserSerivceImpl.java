@@ -1179,8 +1179,14 @@ public class UserSerivceImpl implements UserService {
         JSONObject json = new JSONObject();
         int count = userInfoDao.userCount(userConditionVo);
         List<UserInfoDemainVo> userInfoDomainList = userInfoDao.userList(userConditionVo);
+
+        List<UserInfoDemainVo> userList = new ArrayList<>();
+        userInfoDomainList.forEach(user -> {
+            user.setServiceArea(user.getCity()+user.getCounty()+user.getTown());
+            userList.add(user);
+        });
         json.put("total",count);
-        json.put("userList",userInfoDomainList);
+        json.put("userList",userList);
         commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
         commonResult.setMessage("查询成功");
         commonResult.setData(json);
