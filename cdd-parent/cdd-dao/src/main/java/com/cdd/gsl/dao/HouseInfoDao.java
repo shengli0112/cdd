@@ -98,7 +98,7 @@ public interface HouseInfoDao {
             +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by " +
             "<if test='areaOrder != null'>"+
@@ -183,7 +183,7 @@ public interface HouseInfoDao {
            +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by  " +
 
@@ -278,7 +278,7 @@ public interface HouseInfoDao {
             +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by " +
             "<if test='areaOrder != null'>"+
@@ -357,7 +357,7 @@ public interface HouseInfoDao {
             +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by  " +
 
@@ -438,7 +438,7 @@ public interface HouseInfoDao {
             +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by top.create_ts desc " +
 
@@ -506,7 +506,7 @@ public interface HouseInfoDao {
             +
             "<if test='keyword != null'>" +
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by top.create_ts desc " +
 
@@ -648,7 +648,7 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') " +
             " or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.house_status asc,h.create_ts desc " +
             "<if test='areaOrder != null'>"+
@@ -712,7 +712,7 @@ public interface HouseInfoDao {
             "</choose>"+
              "<if test=\"keyword != null\">" +
             " and (title like concat('%','${keyword}','%') or city like concat('%','${keyword}','%') or county like concat('%','${keyword}','%') or town like concat('%','${keyword}','%') or street like concat('%','${keyword}','%')" +
-            " or house_number like concat('%','${keyword}','%') or house_edge like concat('%','${keyword}','%'))"+
+            " or house_number like concat('%','${keyword}','%') or house_edge like concat('%','${keyword}','%') or trade like concat('%','${keyword}','%') )"+
             "</if>"+
             "</script>")
     int countUserHouseInfoListByCondition(HouseConditionVo houseConditionVo);
@@ -765,8 +765,10 @@ public interface HouseInfoDao {
             "</otherwise>"+
             "</choose>"+
             "<if test=\"keyword != null\">" +
-            " and (title like concat('%','${keyword}','%') or city like concat('%','${keyword}','%') or county like concat('%','${keyword}','%') or town like concat('%','${keyword}','%') or street like concat('%','${keyword}','%')" +
-            " or house_number like concat('%','${keyword}','%') or house_edge like concat('%','${keyword}','%'))"+
+            " and (title like concat('%','${keyword}','%') or city like concat('%','${keyword}','%') " +
+            " or county like concat('%','${keyword}','%') or town like concat('%','${keyword}','%') " +
+            " or street like concat('%','${keyword}','%') or house_number like concat('%','${keyword}','%') " +
+            " or house_edge like concat('%','${keyword}','%') or trade like concat('%','${keyword}','%'))"+
             "</if>"+
             "</script>")
     int countUserOpenHouseByCondition(HouseConditionVo houseConditionVo);
@@ -830,7 +832,8 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') " +
             " or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%')" +
+            " or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc,h.house_status asc " +
             "<if test='areaOrder != null'>"+
@@ -903,7 +906,7 @@ public interface HouseInfoDao {
             "</choose>"+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc " +
             "<if test='areaOrder != null'>"+
@@ -978,7 +981,8 @@ public interface HouseInfoDao {
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') " +
             " or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') " +
             " or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%')" +
+            " or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.create_ts desc,h.house_status asc " +
             "<if test='areaOrder != null'>"+
@@ -1158,8 +1162,8 @@ public interface HouseInfoDao {
             " from t_house_info h left join t_user_info u on h.user_id=u.id  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') " +
-            "or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%'))"+
+            " or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') " +
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.status desc,h.create_ts desc " +
             " limit #{from},#{limit}"+
@@ -1172,7 +1176,8 @@ public interface HouseInfoDao {
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') " +
             " or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') " +
+            " or u.username like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if></script>")
     public int countAdminHouseInfo(HouseAdminConditionVo houseConditionVo);
 
@@ -1203,7 +1208,7 @@ public interface HouseInfoDao {
             " from t_house_info h left join t_user_info u on h.user_id=u.id  where (h.status=1 or h.status=0) "+
             "<if test='keyword != null'>"+
             " and (h.title like concat('%','${keyword}','%') or h.city like concat('%','${keyword}','%') or h.county like concat('%','${keyword}','%') or h.town like concat('%','${keyword}','%') or h.street like concat('%','${keyword}','%')" +
-            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%'))"+
+            " or h.house_number like concat('%','${keyword}','%') or h.house_edge like concat('%','${keyword}','%') or u.username like concat('%','${keyword}','%') or h.trade like concat('%','${keyword}','%'))"+
             "</if>"+
             " order by h.status desc,h.create_ts desc " +
             "</script>")
