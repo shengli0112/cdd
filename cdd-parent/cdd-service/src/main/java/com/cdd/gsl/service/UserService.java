@@ -93,6 +93,8 @@ public interface UserService {
 
     CommonResult updateCurrency(UserInfoDomain userInfoDomain);
 
+    CommonResult updateServiceArae(UserInfoDomain userInfoDomain);
+
     //String accessKey,String secretKey,String bucket
     CommonResult getQiniuToken();
 

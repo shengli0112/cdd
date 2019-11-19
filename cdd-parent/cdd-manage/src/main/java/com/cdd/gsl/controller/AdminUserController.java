@@ -75,6 +75,15 @@ public class AdminUserController {
     }
 
     /**
+     * 修改服务区域
+     */
+    @RequestMapping("/updateServiceArae")
+    public CommonResult updateServiceArae(@RequestBody UserInfoDomain userInfoDomain){
+
+        return userService.updateServiceArae(userInfoDomain);
+    }
+
+    /**
      * 获取七牛token
      * @return
      */

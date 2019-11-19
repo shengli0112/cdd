@@ -1327,4 +1327,26 @@ public class UserSerivceImpl implements UserService {
 
         return commonResult;
     }
+
+    @Override
+    public CommonResult updateServiceArae(UserInfoDomain userInfoDomain) {
+        CommonResult commonResult = new CommonResult();
+        try{
+            if(userInfoDomain == null
+                    || userInfoDomain.getId() == null
+                    || Strings.isNullOrEmpty(userInfoDomain.getCity())){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数为空");
+                return commonResult;
+            }
+            userInfoDomainMapper.updateByPrimaryKeySelective(userInfoDomain);
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("更新服务区域成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
+        }
+        return commonResult;
+    }
 }
