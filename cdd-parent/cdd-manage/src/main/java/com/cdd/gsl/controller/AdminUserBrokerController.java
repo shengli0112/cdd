@@ -116,7 +116,7 @@ public class AdminUserBrokerController {
     }
 
     @RequestMapping("addUserBroker")
-    public CommonResult addUserBroker(UserBrokerInfoDomain userBrokerInfoDomain){
+    public CommonResult addUserBroker(@RequestBody UserBrokerInfoDomain userBrokerInfoDomain){
         logger.info("AdminUserBrokerController updateUserBroker -{}",userBrokerInfoDomain.getPhone());
         CommonResult commonResult = new CommonResult();
         try{
