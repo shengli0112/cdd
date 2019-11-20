@@ -21,10 +21,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +34,9 @@ public class EntrustServiceImpl implements EntrustService {
 
     @Autowired
     private EntrustInfoDao entrustInfoDao;
+
+    @Autowired
+    private UserBrokerInfoDao userBrokerInfoDao;
 
     @Autowired
     private HouseInfoDomainMapper houseInfoDomainMapper;
@@ -383,8 +383,16 @@ public class EntrustServiceImpl implements EntrustService {
         }
 
         List<String> phoneList = userInfoDao.findPhoneByServiceArea(entrustInfoDomain.getCity());
-        if(!CollectionUtils.isEmpty(phoneList)){
-            for(String phone:phoneList){
+        List<String> brokerPhoneList = userBrokerInfoDao.getPhoneByCity(entrustInfoDomain.getCity());
+        Set<String> phoneSet = new HashSet<>();
+        phoneList.forEach(phone -> {
+            phoneSet.add(phone);
+        });
+        brokerPhoneList.forEach(phone -> {
+            phoneSet.add(phone);
+        });
+        if(!CollectionUtils.isEmpty(phoneSet)){
+            for(String phone:phoneSet){
                 StringBuffer uri = new StringBuffer().append(verifyCodeUrl)
                         .append("?mobile=").append(phone).append("&tpl_id=").append(entrustWarnId)
                         .append("&tpl_value=").append(tplValue).append("&key=").append(verifyCodeKey);

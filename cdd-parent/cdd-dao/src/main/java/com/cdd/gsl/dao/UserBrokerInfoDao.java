@@ -31,6 +31,9 @@ public interface UserBrokerInfoDao {
             "</script>")
     int countUserBroker(UserBrokerConditionVo userBrokerConditionVo);
 
+    @Select("select phone from t_user_broker_info where city=#{city} and status=1")
+    List<String> getPhoneByCity(String city);
+
     @Insert("insert into t_user_broker_info (`name`,phone,city,county,town) values(#{name},#{phone},#{city},#{county},#{town})")
     void insert(UserBrokerInfoDomain userBrokerInfoDomain);
 }

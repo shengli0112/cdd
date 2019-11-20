@@ -97,7 +97,7 @@ public interface UserInfoDao {
     List<SingleUserBrokerVo> findUserBrokerByUserId(@Param("userId") Long userId, @Param("userType") Integer userType);
 
     //status=1 and user_type in (2,3) and
-    @Select("select phone from t_user_info where city=#{city}")
+    @Select("select phone from t_user_info where city=#{city} and status=1")
     List<String> findPhoneByServiceArea(@Param("city") String city);
 
     @Select("select count(*) from t_user_info where status=1")
