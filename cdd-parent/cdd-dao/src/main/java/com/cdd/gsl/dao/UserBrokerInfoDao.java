@@ -2,6 +2,8 @@ package com.cdd.gsl.dao;
 
 import com.cdd.gsl.admin.UserBrokerConditionVo;
 import com.cdd.gsl.admin.UserBrokerVo;
+import com.cdd.gsl.domain.UserBrokerInfoDomain;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -28,4 +30,7 @@ public interface UserBrokerInfoDao {
             "</if>" +
             "</script>")
     int countUserBroker(UserBrokerConditionVo userBrokerConditionVo);
+
+    @Insert("insert into t_user_broker_info (`name`,phone,city,county,town) values(#{name},#{phone},#{city},#{county},#{town})")
+    void insert(UserBrokerInfoDomain userBrokerInfoDomain);
 }

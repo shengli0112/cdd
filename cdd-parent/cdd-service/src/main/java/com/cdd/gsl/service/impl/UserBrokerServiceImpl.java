@@ -146,7 +146,8 @@ public class UserBrokerServiceImpl implements UserBrokerService {
     public CommonResult addUserBroker(UserBrokerInfoDomain userBrokerInfoDomain) {
         CommonResult commonResult = new CommonResult();
         try {
-            userBrokerInfoDomainMapper.insertSelective(userBrokerInfoDomain);
+//            userBrokerInfoDomainMapper.insertSelective(userBrokerInfoDomain);
+            userBrokerInfoDao.insert(userBrokerInfoDomain);
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
         }catch (Exception e){
