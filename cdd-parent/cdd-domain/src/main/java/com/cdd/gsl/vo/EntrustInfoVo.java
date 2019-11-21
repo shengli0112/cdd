@@ -39,6 +39,8 @@ public class EntrustInfoVo {
 
     private String description;
 
+    private Integer isUsed;
+
     public Long getEntrustId() {
         return entrustId;
     }
@@ -178,5 +180,13 @@ public class EntrustInfoVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getIsUsed() {
+        return isUsed;
+    }
+
+    public void setIsUsed(Integer isUsed) {
+        this.isUsed = isUsed;
     }
 }

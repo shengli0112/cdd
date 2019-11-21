@@ -67,52 +67,6 @@ public class EntrustServiceImpl implements EntrustService {
         CommonResult commonResult = new CommonResult();
         if(entrustInfoDomain != null){
             entrustInfoDomainMapper.insertSelective(entrustInfoDomain);
-            try {
-                sendEntrustSms(entrustInfoDomain);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            Integer area = entrustInfoDomain.getArea();
-            Double fromArea =  area * 0.8;
-            Double toArea = area * 1.2;
-            Integer entrustUseType = entrustInfoDomain.getEntrustUseType();
-            Integer houseUseType = 0;
-            if(entrustUseType == 1){
-                houseUseType = 3;
-            }else if(entrustUseType == 2){
-                houseUseType = 4;
-            }else if(entrustUseType == 3){
-                houseUseType = 1;
-            }else if(entrustUseType == 4){
-                houseUseType = 2;
-            }
-            HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
-            //.andAreaBetween(fromArea.intValue(),toArea.intValue())
-            houseInfoDomainExample.createCriteria().andStatusEqualTo(1)
-                    .andCityEqualTo(entrustInfoDomain.getCity()).andCountyEqualTo(entrustInfoDomain.getCounty()).andTownEqualTo(entrustInfoDomain.getTown())
-                    .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
-            List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
-            if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
-                Map<Long,List<HouseInfoDomain>> map = houseInfoDomainList.stream().collect(Collectors.groupingBy(HouseInfoDomain::getUserId));
-                for(Long userId:map.keySet()){
-                    HouseInfoDomain houseInfoDomain = map.get(userId).get(0);
-                    EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
-                    entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
-                    entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
-                    entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
-                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
-                    messageInfoDomain.setUserId(houseInfoDomain.getUserId());
-                    messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
-                    messageInfoDomain.setHouseId(houseInfoDomain.getId());
-                    messageInfoDomain.setMessage(CddConstant.MESSAGE_CONTENT_MATCH);
-                    messageInfoDomain.setMessageType("house");
-                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
-                }
-
-
-
-            }
-
             commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
             commonResult.setMessage("添加成功");
         }else{
@@ -335,6 +289,73 @@ public class EntrustServiceImpl implements EntrustService {
         commonResult.setMessage("查询成功");
         commonResult.setData(entrustInfoVoList);
         return commonResult;
+    }
+
+    @Override
+    public CommonResult checkEntrust(EntrustInfoDomain entrust) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            entrust.setIsUsed(1);
+            if(entrust == null
+                    || entrust.getId() == null
+                    || entrust.getIsUsed() == null){
+                commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+                commonResult.setMessage("参数不能为空");
+                return commonResult;
+            }
+
+            entrustInfoDomainMapper.updateByPrimaryKeySelective(entrust);
+            EntrustInfoDomain entrustInfoDomain = entrustInfoDomainMapper.selectByPrimaryKey(entrust.getId());
+            try {
+                sendEntrustSms(entrustInfoDomain);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            Integer area = entrustInfoDomain.getArea();
+            Double fromArea =  area * 0.8;
+            Double toArea = area * 1.2;
+            Integer entrustUseType = entrustInfoDomain.getEntrustUseType();
+            Integer houseUseType = 0;
+            if(entrustUseType == 1){
+                houseUseType = 3;
+            }else if(entrustUseType == 2){
+                houseUseType = 4;
+            }else if(entrustUseType == 3){
+                houseUseType = 1;
+            }else if(entrustUseType == 4){
+                houseUseType = 2;
+            }
+            HouseInfoDomainExample houseInfoDomainExample = new HouseInfoDomainExample();
+            //.andAreaBetween(fromArea.intValue(),toArea.intValue())
+            houseInfoDomainExample.createCriteria().andStatusEqualTo(1)
+                    .andCityEqualTo(entrustInfoDomain.getCity()).andCountyEqualTo(entrustInfoDomain.getCounty()).andTownEqualTo(entrustInfoDomain.getTown())
+                    .andHouseTypeEqualTo(entrustInfoDomain.getEntrustType()).andHouseUseTypeEqualTo(houseUseType);
+            List<HouseInfoDomain> houseInfoDomainList = houseInfoDomainMapper.selectByExample(houseInfoDomainExample);
+            if(houseInfoDomainList != null && houseInfoDomainList.size() > 0){
+                Map<Long,List<HouseInfoDomain>> map = houseInfoDomainList.stream().collect(Collectors.groupingBy(HouseInfoDomain::getUserId));
+                for(Long userId:map.keySet()){
+                    HouseInfoDomain houseInfoDomain = map.get(userId).get(0);
+                    EntrustUserMappingDomain entrustUserMappingDomain = new EntrustUserMappingDomain();
+                    entrustUserMappingDomain.setEntrustId(entrustInfoDomain.getId());
+                    entrustUserMappingDomain.setUserId(houseInfoDomain.getUserId());
+                    entrustUserMappingDomainMapper.insert(entrustUserMappingDomain);
+                    MessageInfoDomain messageInfoDomain = new MessageInfoDomain();
+                    messageInfoDomain.setUserId(houseInfoDomain.getUserId());
+                    messageInfoDomain.setEntrustId(entrustInfoDomain.getId());
+                    messageInfoDomain.setHouseId(houseInfoDomain.getId());
+                    messageInfoDomain.setMessage(CddConstant.MESSAGE_CONTENT_MATCH);
+                    messageInfoDomain.setMessageType("house");
+                    messageInfoDomainMapper.insertSelective(messageInfoDomain);
+                }
+
+
+
+            }
+
+        } catch (Exception e){
+
+        }
+        return null;
     }
 
     //委托短信提醒

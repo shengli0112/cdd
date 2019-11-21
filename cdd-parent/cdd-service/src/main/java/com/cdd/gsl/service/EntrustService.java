@@ -5,6 +5,7 @@ import com.cdd.gsl.common.result.CommonResult;
 import com.cdd.gsl.domain.EntrustInfoDomain;
 import com.cdd.gsl.vo.EntrustConditionVo;
 import com.cdd.gsl.vo.EntrustInfoVo;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface EntrustService {
     public CommonResult findAdminEntrustList(EntrustAdminConditionVo entrustAdminConditionVo);
 
     public CommonResult exportEntrustList(String keyword);
+
+    CommonResult checkEntrust(EntrustInfoDomain entrustInfoDomain);
 }

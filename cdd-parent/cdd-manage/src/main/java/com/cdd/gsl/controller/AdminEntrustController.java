@@ -77,4 +77,16 @@ public class AdminEntrustController {
 
         return commonResult;
     }
+
+    /**
+     * 审核委托选址
+     * @param entrustInfoDomain
+     * @return
+     */
+    @RequestMapping("checkEntrust")
+    public CommonResult checkEntrust(@RequestBody EntrustInfoDomain entrustInfoDomain){
+        CommonResult commonResult = entrustService.checkEntrust(entrustInfoDomain);
+
+        return commonResult;
+    }
 }

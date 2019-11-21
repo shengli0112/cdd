@@ -39,6 +39,8 @@ public class EntrustInfoDomain {
 
     private String description;
 
+    private Integer isUsed;
+
     public Long getId() {
         return id;
     }
@@ -181,5 +183,13 @@ public class EntrustInfoDomain {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getIsUsed() {
+        return isUsed;
+    }
+
+    public void setIsUsed(Integer isUsed) {
+        this.isUsed = isUsed;
     }
 }

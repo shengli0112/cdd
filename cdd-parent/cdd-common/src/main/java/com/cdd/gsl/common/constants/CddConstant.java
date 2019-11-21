@@ -93,6 +93,11 @@ public class CddConstant {
 
     public static final String STATISTICS_TRAIL_CUSTOMER = "跟进客源从多到少";
 
+    //委托选址审核通过
+    public static final Integer ENTRUST_USED = 1;
+    //委托选址审核未通过
+    public static final Integer ENTRUST_NO_USED = 2;
+
 
 
 }
