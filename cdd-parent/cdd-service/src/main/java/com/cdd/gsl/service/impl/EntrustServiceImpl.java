@@ -351,11 +351,15 @@ public class EntrustServiceImpl implements EntrustService {
 
 
             }
+            commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
+            commonResult.setMessage("审核通过");
 
         } catch (Exception e){
-
+            e.printStackTrace();
+            commonResult.setFlag(CddConstant.RESULT_FAILD_CODE);
+            commonResult.setMessage("服务器异常");
         }
-        return null;
+        return commonResult;
     }
 
     //委托短信提醒
