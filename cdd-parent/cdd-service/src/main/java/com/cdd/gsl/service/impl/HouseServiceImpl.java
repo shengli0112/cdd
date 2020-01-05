@@ -127,7 +127,7 @@ public class HouseServiceImpl implements HouseService{
                     commonResult.setMessage("添加成功");
                 }else{
                     commonResult.setFlag(0);
-                    commonResult.setMessage("重复房源,不能发布");
+                    commonResult.setMessage("市县镇街道门牌号重复,不能发布");
                 }
             }else{
                 houseInfoDomainMapper.insertSelective(houseInfoDomain);

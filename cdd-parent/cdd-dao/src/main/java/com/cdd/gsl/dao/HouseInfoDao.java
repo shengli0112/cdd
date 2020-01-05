@@ -196,7 +196,7 @@ public interface HouseInfoDao {
             "<if test='priceOrder == 1'>h.selling_price,</if>"+
             "<if test='priceOrder == 2'>h.selling_price desc,</if>"+
             "</if>" +
-            " h.create_ts desc " +
+            " h.update_ts desc " +
             ")) tmp order by top desc," +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>useArea,</if>"+
@@ -370,7 +370,7 @@ public interface HouseInfoDao {
             "<if test='priceOrder == 1'>h.selling_price,</if>"+
             "<if test='priceOrder == 2'>h.selling_price desc,</if>"+
             "</if>" +
-            " h.create_ts desc " +
+            " h.update_ts desc,h.sign_contract asc " +
             ")) tmp order by top desc," +
             "<if test='areaOrder != null'>"+
             "<if test='areaOrder == 1'>useArea,</if>"+
@@ -1027,7 +1027,7 @@ public interface HouseInfoDao {
             "single_price as singlePrice,use_area as useArea,create_ts as createTs,trade as trade " +
             " from t_house_info where id >= " +
             "(select floor(rand() * (select max(id) from t_house_info where status=1))) " +
-            " and (house_use_type=3 or house_use_type=4) and status=1 and county=#{county} order by rand() limit 3")
+            " and (house_use_type=3 or house_use_type=4) and status=1 and county=#{county} order by rand() limit 5")
     List<HouseInfoDomainVo> selectHouseInfoListByDetailLike(String county);
 
     @Select("select count(id) from t_house_info where user_id=#{userId} and status=1")

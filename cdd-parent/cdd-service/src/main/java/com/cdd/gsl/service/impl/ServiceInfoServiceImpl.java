@@ -159,7 +159,8 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
         try {
             if(serviceInfoConditionVo != null){
                 List<ServiceInfoVo> serviceInfoVoList = serviceInfoDao.getServiceInfoList(serviceInfoConditionVo);
-                List<ServiceInfoVo> serviceVoList = new ArrayList<>();
+                //TODO 是否查看手机号
+               /* List<ServiceInfoVo> serviceVoList = new ArrayList<>();
                 if(serviceInfoConditionVo.getUserId() != null){
                     if(!CollectionUtils.isEmpty(serviceInfoVoList)){
                         serviceInfoVoList.forEach(serviceInfoVo -> {
@@ -181,8 +182,8 @@ public class ServiceInfoServiceImpl implements ServiceInfoService{
                             serviceVoList.add(serviceInfoVo);
                         });
                     }
-                }
-                commonResult.setData(serviceVoList);
+                }*/
+                commonResult.setData(serviceInfoVoList);
                 commonResult.setFlag(CddConstant.RESULT_SUCCESS_CODE);
                 commonResult.setMessage("查询成功");
 
