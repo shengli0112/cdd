@@ -55,7 +55,7 @@
     <spring.session.version>2.0.2.RELEASE</spring.session.version>
     <spring.mail.version>1.3.3.RELEASE</spring.mail.version>
     <lettuce.version>5.0.5.RELEASE</lettuce.version>
-    <shiro.version>1.3.2</shiro.version>
+    <shiro.version>1.6.0</shiro.version>
   </properties>
 
     <dependencies>
